@@ -1,0 +1,45 @@
+﻿namespace IServicios.Comprobante.DTOs
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Aplicacion.Constantes;
+    using IServicio.BaseDto;
+    using IServicios.FormaPago.DTOs;
+
+    public class ComprobanteDto : DtoBase
+    {
+        public ComprobanteDto()
+        {
+            if (Items == null)
+                Items = new List<DetalleComprobanteDto>();
+
+            if (FormasDePagos == null)
+                FormasDePagos = new List<FormaPagoDto>();
+        }
+
+        public long EmpleadoId { get; set; }
+
+        public long UsuarioId { get; set; }
+
+        public DateTime Fecha { get; set; }
+
+        public int Numero { get; set; }
+
+        public decimal SubTotal => Items.Sum(x => x.SubTotal);
+
+        public decimal Descuento { get; set; }
+
+        public decimal Iva21 { get; set; }
+
+        public decimal Iva105 { get; set; }
+
+        public decimal Total => SubTotal + Iva21 + Iva105 - Descuento;
+
+        public TipoComprobante TipoComprobante { get; set; }
+
+        public List<DetalleComprobanteDto> Items { get; set; }
+
+        public List<FormaPagoDto> FormasDePagos { get; set; }
+    }
+}

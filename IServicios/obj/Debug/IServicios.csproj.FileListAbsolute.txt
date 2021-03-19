@@ -1,0 +1,51 @@
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\IServicios.dll.config
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\IServicios.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\IServicios.pdb
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\Aplicacion.Constantes.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\Dominio.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\EntityFramework.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\Aplicacion.Constantes.pdb
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\Dominio.pdb
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\Dominio.dll.config
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\EntityFramework.xml
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\obj\Debug\IServicios.csprojAssemblyReference.cache
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\obj\Debug\IServicios.csproj.CoreCompileInputs.cache
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\obj\Debug\IServicios.csproj.CopyComplete
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\obj\Debug\IServicios.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\IServicios\obj\Debug\IServicios.pdb
+D:\Code\N-Commerce\IServicios\bin\Debug\IServicios.dll.config
+D:\Code\N-Commerce\IServicios\bin\Debug\IServicios.dll
+D:\Code\N-Commerce\IServicios\bin\Debug\IServicios.pdb
+D:\Code\N-Commerce\IServicios\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\N-Commerce\IServicios\bin\Debug\Dominio.dll
+D:\Code\N-Commerce\IServicios\bin\Debug\EntityFramework.dll
+D:\Code\N-Commerce\IServicios\bin\Debug\EntityFramework.SqlServer.dll
+D:\Code\N-Commerce\IServicios\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\N-Commerce\IServicios\bin\Debug\Dominio.pdb
+D:\Code\N-Commerce\IServicios\bin\Debug\Dominio.dll.config
+D:\Code\N-Commerce\IServicios\bin\Debug\EntityFramework.xml
+D:\Code\N-Commerce\IServicios\bin\Debug\EntityFramework.SqlServer.xml
+D:\Code\N-Commerce\IServicios\obj\Debug\IServicios.csprojAssemblyReference.cache
+D:\Code\N-Commerce\IServicios\obj\Debug\IServicios.csproj.CoreCompileInputs.cache
+D:\Code\N-Commerce\IServicios\obj\Debug\IServicios.csproj.CopyComplete
+D:\Code\N-Commerce\IServicios\obj\Debug\IServicios.dll
+D:\Code\N-Commerce\IServicios\obj\Debug\IServicios.pdb
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\IServicios.dll.config
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\IServicios.dll
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\IServicios.pdb
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\Dominio.dll
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\EntityFramework.dll
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\EntityFramework.SqlServer.dll
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\Dominio.pdb
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\Dominio.dll.config
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\EntityFramework.xml
+D:\Code\BackUp nCom\N-Commerce\IServicios\bin\Debug\EntityFramework.SqlServer.xml
+D:\Code\BackUp nCom\N-Commerce\IServicios\obj\Debug\IServicios.csprojAssemblyReference.cache
+D:\Code\BackUp nCom\N-Commerce\IServicios\obj\Debug\IServicios.csproj.CoreCompileInputs.cache
+D:\Code\BackUp nCom\N-Commerce\IServicios\obj\Debug\IServicios.csproj.CopyComplete
+D:\Code\BackUp nCom\N-Commerce\IServicios\obj\Debug\IServicios.dll
+D:\Code\BackUp nCom\N-Commerce\IServicios\obj\Debug\IServicios.pdb

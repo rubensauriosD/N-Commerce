@@ -1,0 +1,24 @@
+﻿namespace IServicio.Articulo
+{
+    using IServicio.Articulo.DTOs;
+    using IServicios.Articulo.DTOs;
+    using System.Collections.Generic;
+
+    public interface IArticuloServicio : Base.IServicio
+    {
+        int ObtenerCantidadArticulos();
+        
+        int ObtenerSigueinteNroCodigo();
+
+        bool VerificarSiExiste(string datoVerificar, long? entidadId = null);
+
+        IEnumerable<ArticuloVentaDto> ObtenerLookUp(string cadenaBuasar, long listaPreciosId);
+
+        ArticuloVentaDto ObtenerPorCodigo(string codigo, long depositoId, long listaPrecioId);
+
+        bool ModificarPrecioPorPorcentaje(List<ArticuloDto> articulos, decimal porcentaje);
+
+        bool ModificarPrecioPorPrecio(List<ArticuloDto> articulos, decimal monto);
+    }
+
+}

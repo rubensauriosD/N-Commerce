@@ -1,0 +1,46 @@
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.pdb
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.pdb
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csprojAssemblyReference.cache
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormAbm.resources
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormBase.resources
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsultaConDetalle.resources
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsulta.resources
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormLookUp.resources
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.GenerateResource.cache
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CoreCompileInputs.cache
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
+C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.pdb
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csprojAssemblyReference.cache
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormAbm.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsulta.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsultaConDetalle.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormLookUp.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Properties.Resources.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.GenerateResource.cache
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CoreCompileInputs.cache
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.dll
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.pdb
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csprojAssemblyReference.cache
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormAbm.resources
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsulta.resources
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsultaConDetalle.resources
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormLookUp.resources
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Properties.Resources.resources
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.GenerateResource.cache
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CoreCompileInputs.cache
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
+D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormBase.resources
