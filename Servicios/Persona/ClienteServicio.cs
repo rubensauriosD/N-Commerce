@@ -81,6 +81,41 @@
             }
         }
 
+        public bool RevertirPagoCuentaCorriente(MovimientoCuentaCorrienteClienteDto pago)
+        {
+            try
+            {
+                var cliente = _unidadDeTrabajo.ClienteRepositorio.Obtener(pago.ClienteId, "CuentaCorriente");
+                var caja = _unidadDeTrabajo.CajaRepositorio.Obtener(pago.CajaId, "DetalleCajas");
+
+                if (cliente == null || caja == null)
+                    return false;
+
+                cliente.CuentaCorriente.Add(new MovimientoCuentaCorriente()
+                {
+                    Descripcion = pago.Descripcion,
+                    Monto = pago.Monto,
+                    Fecha = DateTime.Now,
+                    TipoMovimiento = TipoMovimiento.Egreso,
+                    EstaEliminado = false
+                });
+
+                caja.DetalleCajas.Add(new DetalleCaja()
+                {
+                    TipoPago = TipoPago.Efectivo,
+                    TipoMovimiento = TipoMovimiento.Egreso,
+                    Monto = pago.Monto,
+                });
+
+                _unidadDeTrabajo.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<MovimientoCuentaCorrienteClienteDto> ObtenerMovimientosCuentaCorriente(long id)
         {
             var lstMovimientos = _unidadDeTrabajo.ClienteRepositorio.Obtener(id, "MovimientoCuentaCorriente")

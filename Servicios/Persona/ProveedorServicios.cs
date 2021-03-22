@@ -104,7 +104,7 @@
 
                 proveedor.MovimientoCuentaCorrienteProveedores.Add(new MovimientoCuentaCorrienteProveedor()
                 {
-                    Descripcion = "Reversion Pago",
+                    Descripcion = $@"Reversion Pago: {pago.Descripcion}",
                     Monto = pago.Monto,
                     Fecha = DateTime.Now,
                     TipoMovimiento = Aplicacion.Constantes.TipoMovimiento.Egreso,

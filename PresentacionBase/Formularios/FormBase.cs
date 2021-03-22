@@ -1,9 +1,11 @@
-﻿using System;
-using System.Diagnostics.Eventing.Reader;
-using System.Windows.Forms;
-
-namespace PresentacionBase.Formularios
+﻿namespace PresentacionBase.Formularios
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Microsoft.Reporting.WinForms;
+
     public partial class FormBase : Form
     {
         public FormBase()
@@ -257,5 +259,37 @@ namespace PresentacionBase.Formularios
                     = DataGridViewContentAlignment.MiddleCenter;
             }
         }
+
+        public void MostrarInforme(string reportLocation, string ResourceName, object dataSource, IEnumerable<ReportParameter> parametros = null)
+        {
+            ReportDataSource rds = new ReportDataSource(ResourceName, dataSource);
+
+            var reportViewer = new ReportViewer();
+            reportViewer.Dock = DockStyle.Fill;
+            reportViewer.Location = new Point(0, 0);
+            reportViewer.Size = new Size(400, 400);
+            reportViewer.TabIndex = 0;
+            reportViewer.ShowBackButton = false;
+            reportViewer.ShowContextMenu = false;
+            reportViewer.ShowCredentialPrompts = false;
+            reportViewer.ShowFindControls = false;
+            reportViewer.ShowParameterPrompts = false;
+            reportViewer.ShowProgress = false;
+            reportViewer.ShowStopButton = false;
+            reportViewer.Show();
+
+            reportViewer.LocalReport.ReportPath = reportLocation;
+            reportViewer.LocalReport.DataSources.Clear();
+            reportViewer.LocalReport.DataSources.Add(rds);
+            reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer.ZoomMode = ZoomMode.PageWidth;
+
+            if (parametros != null)
+                reportViewer.LocalReport.SetParameters(parametros);
+
+            reportViewer.RefreshReport();
+            Controls.Add(reportViewer);
+        }
+
     }
 }

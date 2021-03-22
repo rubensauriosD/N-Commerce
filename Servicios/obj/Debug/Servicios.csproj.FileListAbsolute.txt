@@ -40,33 +40,6 @@ C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Servicios\obj\Debug\Servicios.csproj.
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CopyComplete
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Servicios\obj\Debug\Servicios.dll
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Servicios\obj\Debug\Servicios.pdb
-D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.csprojAssemblyReference.cache
-D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
-D:\Code\N-Commerce\Servicios\bin\Debug\Servicios.dll.config
-D:\Code\N-Commerce\Servicios\bin\Debug\Servicios.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\Servicios.pdb
-D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.Constantes.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\Dominio.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.SqlServer.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\Infraestructura.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\IServicios.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\StructureMap.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.dll
-D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.Constantes.pdb
-D:\Code\N-Commerce\Servicios\bin\Debug\Dominio.pdb
-D:\Code\N-Commerce\Servicios\bin\Debug\Dominio.dll.config
-D:\Code\N-Commerce\Servicios\bin\Debug\Infraestructura.pdb
-D:\Code\N-Commerce\Servicios\bin\Debug\Infraestructura.dll.config
-D:\Code\N-Commerce\Servicios\bin\Debug\IServicios.pdb
-D:\Code\N-Commerce\Servicios\bin\Debug\IServicios.dll.config
-D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.xml
-D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.SqlServer.xml
-D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.pdb
-D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.dll.config
-D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CopyComplete
-D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.dll
-D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.pdb
 D:\Code\BackUp nCom\N-Commerce\Servicios\bin\Debug\Servicios.dll.config
 D:\Code\BackUp nCom\N-Commerce\Servicios\bin\Debug\Servicios.dll
 D:\Code\BackUp nCom\N-Commerce\Servicios\bin\Debug\Servicios.pdb
@@ -94,3 +67,30 @@ D:\Code\BackUp nCom\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CoreCompileI
 D:\Code\BackUp nCom\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CopyComplete
 D:\Code\BackUp nCom\N-Commerce\Servicios\obj\Debug\Servicios.dll
 D:\Code\BackUp nCom\N-Commerce\Servicios\obj\Debug\Servicios.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\Servicios.dll.config
+D:\Code\N-Commerce\Servicios\bin\Debug\Servicios.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\Servicios.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\Dominio.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.SqlServer.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\Infraestructura.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\IServicios.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\StructureMap.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.dll
+D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\Dominio.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\Dominio.dll.config
+D:\Code\N-Commerce\Servicios\bin\Debug\Infraestructura.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\Infraestructura.dll.config
+D:\Code\N-Commerce\Servicios\bin\Debug\IServicios.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\IServicios.dll.config
+D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.xml
+D:\Code\N-Commerce\Servicios\bin\Debug\EntityFramework.SqlServer.xml
+D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.pdb
+D:\Code\N-Commerce\Servicios\bin\Debug\Aplicacion.dll.config
+D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.csprojAssemblyReference.cache
+D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.csproj.CopyComplete
+D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.dll
+D:\Code\N-Commerce\Servicios\obj\Debug\Servicios.pdb

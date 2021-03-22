@@ -34,17 +34,6 @@ C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion\obj\Debug\Aplicacion.cspro
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CopyComplete
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion\obj\Debug\Aplicacion.dll
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion\obj\Debug\Aplicacion.pdb
-D:\Code\N-Commerce\Aplicacion\bin\Debug\Aplicacion.dll.config
-D:\Code\N-Commerce\Aplicacion\bin\Debug\Aplicacion.dll
-D:\Code\N-Commerce\Aplicacion\bin\Debug\Aplicacion.pdb
-D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.dll
-D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.SqlServer.dll
-D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.xml
-D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.SqlServer.xml
-D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CoreCompileInputs.cache
-D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CopyComplete
-D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.dll
-D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.pdb
 D:\Code\BackUp nCom\N-Commerce\Aplicacion\bin\Debug\Aplicacion.dll.config
 D:\Code\BackUp nCom\N-Commerce\Aplicacion\bin\Debug\Aplicacion.dll
 D:\Code\BackUp nCom\N-Commerce\Aplicacion\bin\Debug\Aplicacion.pdb
@@ -57,4 +46,15 @@ D:\Code\BackUp nCom\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CoreCompil
 D:\Code\BackUp nCom\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CopyComplete
 D:\Code\BackUp nCom\N-Commerce\Aplicacion\obj\Debug\Aplicacion.dll
 D:\Code\BackUp nCom\N-Commerce\Aplicacion\obj\Debug\Aplicacion.pdb
+D:\Code\N-Commerce\Aplicacion\bin\Debug\Aplicacion.dll.config
+D:\Code\N-Commerce\Aplicacion\bin\Debug\Aplicacion.dll
+D:\Code\N-Commerce\Aplicacion\bin\Debug\Aplicacion.pdb
+D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.dll
+D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.SqlServer.dll
+D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.xml
+D:\Code\N-Commerce\Aplicacion\bin\Debug\EntityFramework.SqlServer.xml
 D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csprojAssemblyReference.cache
+D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CoreCompileInputs.cache
+D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.csproj.CopyComplete
+D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.dll
+D:\Code\N-Commerce\Aplicacion\obj\Debug\Aplicacion.pdb

@@ -13,21 +13,6 @@ C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\Presentaci
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb
-D:\Code\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.dll
-D:\Code\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.pdb
-D:\Code\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.dll
-D:\Code\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.pdb
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csprojAssemblyReference.cache
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormAbm.resources
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsulta.resources
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsultaConDetalle.resources
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormLookUp.resources
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Properties.Resources.resources
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.GenerateResource.cache
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CoreCompileInputs.cache
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
-D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb
 D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.dll
 D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.pdb
 D:\Code\BackUp nCom\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.dll
@@ -43,4 +28,73 @@ D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.cspro
 D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
 D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
 D:\Code\BackUp nCom\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\PresentacionBase.pdb
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.ReportViewer.Common.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.ReportViewer.Design.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\EnvDTE.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\stdole.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Microsoft.MSXML.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csprojAssemblyReference.cache
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormAbm.resources
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormBase.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsulta.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsultaConDetalle.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormLookUp.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Properties.Resources.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.GenerateResource.cache
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CoreCompileInputs.cache
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csproj.CopyComplete
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.dll
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.pdb

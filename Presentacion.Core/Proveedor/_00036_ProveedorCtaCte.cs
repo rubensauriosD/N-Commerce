@@ -12,13 +12,13 @@
     using PresentacionBase.Formularios;
     using IServicios.Caja;
     using Presentacion.Core.Cliente;
+    using Microsoft.Reporting.WinForms;
+    using IServicios.Informes.DTOs;
 
     public partial class _00036_ProveedorCtaCte : FormBase
     {
         private readonly IProveedorServicio _proveedorServicios;
-
         private ProveedorDto proveedor;
-
         private MovimientoCuentaCorrienteProveedorDto movimientoCuentaCorriente;
 
         public _00036_ProveedorCtaCte(long proveedorId)
@@ -74,12 +74,12 @@
 
         private void ActualizarGrilla()
         {
-            var lstMovimientosCuentaCorriente = _proveedorServicios.ObtenerMovimientosCuentaCorriente(proveedor.Id)
+            proveedor.MovimientosCuentaCorriente = _proveedorServicios.ObtenerMovimientosCuentaCorriente(proveedor.Id)
                 .OrderByDescending(x => x.Fecha)
                 .ToList();
 
-            dgvGrilla.DataSource = lstMovimientosCuentaCorriente;
-            lblSaldoCuentaCorriente.Text = lstMovimientosCuentaCorriente
+            dgvGrilla.DataSource = proveedor.MovimientosCuentaCorriente;
+            lblSaldoCuentaCorriente.Text = proveedor.MovimientosCuentaCorriente
                 .Sum(x => x.Monto * (x.TipoMovimiento == TipoMovimiento.Ingreso ? 1 : -1))
                 .ToString("C2");
         }
@@ -140,7 +140,30 @@
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            var lstMovimientosCuentaCorriente = proveedor.MovimientosCuentaCorriente
+                .Select(x => new InformeMovimientoCuentaCorrienteDto()
+                {
+                    Fecha = x.Fecha.ToShortDateString(),
+                    Descripcion = x.Descripcion,
+                    Ingreso = x.TipoMovimiento == TipoMovimiento.Ingreso ? x.Monto.ToString("C2") : "",
+                    Egreso = x.TipoMovimiento == TipoMovimiento.Egreso ? x.Monto.ToString("C2") : "",
+                })
+                .ToList();
 
+            var parametros = new List<ReportParameter>() { 
+                new ReportParameter("nombreSujetoCuentaCorriente", proveedor.RazonSocial.ToUpper()),
+                new ReportParameter("saldoCuentaCorriente", proveedor.SaldoCuentaCorriente.ToString("C2"))
+            };
+
+            var form = new FormBase();
+            form.MostrarInforme(
+                @"D:\Code\N-Commerce\Presentacion.Core\Informes\InformeMovimientoCuentaCorriente.rdlc",
+                @"MovimientoCuentaCorriente",
+                lstMovimientosCuentaCorriente,
+                parametros);
+
+
+            form.ShowDialog();
         }
 
         private void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)

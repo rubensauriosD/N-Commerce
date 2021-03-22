@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Dominio.UnidadDeTrabajo;
-using IServicio.Persona.DTOs;
-
-namespace Servicios.Persona
+﻿namespace Servicios.Persona
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.Persona.DTOs;
+
     public class Cliente : Persona
     {
         public override long Insertar(PersonaDto entidad)

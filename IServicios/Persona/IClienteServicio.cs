@@ -11,6 +11,8 @@
 
         bool AgregarPagoCuentaCorriente(MovimientoCuentaCorrienteClienteDto pago);
 
+        bool RevertirPagoCuentaCorriente(MovimientoCuentaCorrienteClienteDto pago);
+
         List<MovimientoCuentaCorrienteClienteDto> ObtenerMovimientosCuentaCorriente(long id);
     }
 }

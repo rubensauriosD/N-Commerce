@@ -14,13 +14,6 @@ C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplic
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.CoreCompileInputs.cache
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.dll
 C:\Users\Fede\Videos\Lab 2 - 20\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.pdb
-D:\Code\N-Commerce\Aplicacion.Constantes\bin\Debug\Aplicacion.Constantes.dll
-D:\Code\N-Commerce\Aplicacion.Constantes\bin\Debug\Aplicacion.Constantes.pdb
-D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.Properties.RecursoImagenes.resources
-D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.GenerateResource.cache
-D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.CoreCompileInputs.cache
-D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.dll
-D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.pdb
 D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\bin\Debug\Aplicacion.Constantes.dll
 D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\bin\Debug\Aplicacion.Constantes.pdb
 D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csprojAssemblyReference.cache
@@ -29,4 +22,10 @@ D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Consta
 D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.CoreCompileInputs.cache
 D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.dll
 D:\Code\BackUp nCom\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.pdb
-D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csprojAssemblyReference.cache
+D:\Code\N-Commerce\Aplicacion.Constantes\bin\Debug\Aplicacion.Constantes.dll
+D:\Code\N-Commerce\Aplicacion.Constantes\bin\Debug\Aplicacion.Constantes.pdb
+D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.Properties.RecursoImagenes.resources
+D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.GenerateResource.cache
+D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.CoreCompileInputs.cache
+D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.dll
+D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.pdb

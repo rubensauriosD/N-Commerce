@@ -11,14 +11,16 @@
     using IServicios.Persona.DTOs;
     using PresentacionBase.Formularios;
     using IServicios.Caja;
+    using IServicios.Informes.DTOs;
+    using Microsoft.Reporting.WinForms;
 
     public partial class _00034_ClienteCtaCte : FormBase
     {
         private readonly IClienteServicio _clienteServicios;
 
         private ClienteDto cliente;
-
         private MovimientoCuentaCorrienteClienteDto movimientoCuentaCorriente;
+        private List<MovimientoCuentaCorrienteClienteDto> lstMovimientosCuentaCorriente;
 
         public _00034_ClienteCtaCte(long clienteId)
         {
@@ -78,6 +80,18 @@
                 .ToString("C2");
         }
 
+        private void ActualizarGrilla()
+        {
+            lstMovimientosCuentaCorriente = _clienteServicios.ObtenerMovimientosCuentaCorriente(cliente.Id)
+                .OrderByDescending(x => x.Fecha)
+                .ToList();
+
+            dgvGrilla.DataSource = lstMovimientosCuentaCorriente;
+            lblSaldoCuentaCorriente.Text = lstMovimientosCuentaCorriente
+                .Sum(x => x.Monto * (x.TipoMovimiento == TipoMovimiento.Ingreso ? 1 : -1))
+                .ToString("C2");
+        }
+
         // ACCIONES DE CONTROLES
         private void btnRealizarPago_Click(object sender, EventArgs e)
         {
@@ -109,25 +123,74 @@
             if (!_clienteServicios.AgregarPagoCuentaCorriente(pago))
                 Mjs.Alerta($@"No se pudo ingresar el pago.");
 
-            btnActualizar.PerformClick();
+            ActualizarGrilla();
         }
 
         private void btnCancelarPago_Click(object sender, EventArgs e)
         {
+            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
 
+            if (cajaActiva == null)
+            {
+                Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder realizar la reversión.");
+                return;
+            }
+
+            if (!Mjs.Preguntar($@"Está por revertir un pago.{Environment.NewLine}¿Seguro que desea continuar?"))
+                return;
+
+            var pago = new MovimientoCuentaCorrienteClienteDto()
+            {
+                CajaId = cajaActiva.Id,
+                ClienteId = cliente.Id,
+                Monto = movimientoCuentaCorriente.Monto,
+                TipoMovimiento = TipoMovimiento.Egreso,
+                Descripcion = $@"Reversión pago: {movimientoCuentaCorriente.Descripcion}",
+            };
+
+            if (!_clienteServicios.RevertirPagoCuentaCorriente(pago))
+                Mjs.Alerta($@"No se pudo revertir el pago.");
+
+            ActualizarGrilla();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-
+            ActualizarGrilla();
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            var lstMovimientosInforme = lstMovimientosCuentaCorriente
+                .Select(x => new InformeMovimientoCuentaCorrienteDto()
+                {
+                    Fecha = x.Fecha.ToShortDateString(),
+                    Descripcion = x.Descripcion,
+                    Ingreso = x.TipoMovimiento == TipoMovimiento.Ingreso ? x.Monto.ToString("C2") : "",
+                    Egreso = x.TipoMovimiento == TipoMovimiento.Egreso ? x.Monto.ToString("C2") : "",
+                })
+                .ToList();
 
+            var saldoCuentaCorriente = lstMovimientosCuentaCorriente
+                .Sum(x => x.Monto * (x.TipoMovimiento == TipoMovimiento.Ingreso ? 1 : -1))
+                .ToString("C2");
+
+            var parametros = new List<ReportParameter>() {
+                new ReportParameter("nombreSujetoCuentaCorriente", cliente.ApyNom.ToUpper()),
+                new ReportParameter("saldoCuentaCorriente", saldoCuentaCorriente)
+            };
+
+            var form = new FormBase();
+            form.MostrarInforme(
+                @"D:\Code\N-Commerce\Presentacion.Core\Informes\InformeMovimientoCuentaCorriente.rdlc",
+                @"MovimientoCuentaCorriente",
+                lstMovimientosInforme,
+                parametros);
+
+            form.ShowDialog();
         }
 
-        private void dgvGrilla_RowEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        private void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvGrilla.RowCount < 1)
                 return;

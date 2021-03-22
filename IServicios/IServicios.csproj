@@ -98,6 +98,7 @@
     <Compile Include="FormaPago\IBancoServicio.cs" />
     <Compile Include="FormaPago\IFormaPagoServicios.cs" />
     <Compile Include="FormaPago\ITarjetaServicio.cs" />
+    <Compile Include="Informes\DTOs\InformeMovimientoCuentaCorrienteDto.cs" />
     <Compile Include="Iva\DTOs\IvaDto.cs" />
     <Compile Include="Iva\IIvaServicio.cs" />
     <Compile Include="ListaPrecio\DTOs\ListaPrecioDto.cs" />
