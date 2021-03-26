@@ -12,7 +12,7 @@
 
         // Propiedades
 
-        IMovimientoCuentaCorrienteProveedorRepositorio MovimientoCuentaCorrienteProveedorRepositorio { get; }
+        ICompraRepositorio CompraRepositorio { get; }
         IFacturaRepositorio FacturaRepositorio { get; }
         IClienteRepositorio ClienteRepositorio { get; }
         IEmpleadoRepositorio EmpleadoRepositorio { get; }

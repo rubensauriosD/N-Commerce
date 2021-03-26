@@ -47,6 +47,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVenta = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPagosPendientes = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,7 @@
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.picFotoUsuario = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnComprobanteCompra = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlInfoUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFotoUsuario)).BeginInit();
@@ -232,10 +233,18 @@
             // compraToolStripMenuItem
             // 
             this.compraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.proveedoresToolStripMenuItem});
+            this.proveedoresToolStripMenuItem,
+            this.btnComprobanteCompra});
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
             this.compraToolStripMenuItem.Size = new System.Drawing.Size(62, 19);
             this.compraToolStripMenuItem.Text = "Compra";
+            // 
+            // proveedoresToolStripMenuItem
+            // 
+            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proveedoresToolStripMenuItem.Text = "Proveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // ventaToolStripMenuItem
             // 
@@ -255,52 +264,52 @@
             // btnVenta
             // 
             this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Size = new System.Drawing.Size(180, 22);
+            this.btnVenta.Size = new System.Drawing.Size(167, 22);
             this.btnVenta.Text = "Venta";
             this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // btnPagosPendientes
             // 
             this.btnPagosPendientes.Name = "btnPagosPendientes";
-            this.btnPagosPendientes.Size = new System.Drawing.Size(180, 22);
+            this.btnPagosPendientes.Size = new System.Drawing.Size(167, 22);
             this.btnPagosPendientes.Text = "Pagos Pendientes";
             this.btnPagosPendientes.Click += new System.EventHandler(this.btnPagosPendientes_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(164, 6);
             // 
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.clienteToolStripMenuItem.Text = "Clientes";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.btnAdministrarClientes_Click);
             // 
             // btnListasPrecio
             // 
             this.btnListasPrecio.Name = "btnListasPrecio";
-            this.btnListasPrecio.Size = new System.Drawing.Size(180, 22);
+            this.btnListasPrecio.Size = new System.Drawing.Size(167, 22);
             this.btnListasPrecio.Text = "Listas Precio";
             this.btnListasPrecio.Click += new System.EventHandler(this.btnListasPrecio_Click);
             // 
             // btnIva
             // 
             this.btnIva.Name = "btnIva";
-            this.btnIva.Size = new System.Drawing.Size(180, 22);
+            this.btnIva.Size = new System.Drawing.Size(167, 22);
             this.btnIva.Text = "IVA";
             this.btnIva.Click += new System.EventHandler(this.btnIva_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(164, 6);
             // 
             // btnPuestoTrabajo
             // 
             this.btnPuestoTrabajo.Name = "btnPuestoTrabajo";
-            this.btnPuestoTrabajo.Size = new System.Drawing.Size(180, 22);
+            this.btnPuestoTrabajo.Size = new System.Drawing.Size(167, 22);
             this.btnPuestoTrabajo.Text = "Puesto de Trabajo";
             this.btnPuestoTrabajo.Click += new System.EventHandler(this.btnPuestoTrabajo_Click);
             // 
@@ -528,12 +537,12 @@
             this.panel2.Size = new System.Drawing.Size(784, 3);
             this.panel2.TabIndex = 4;
             // 
-            // proveedoresToolStripMenuItem
+            // btnComprobanteCompra
             // 
-            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.proveedoresToolStripMenuItem.Text = "Proveedores";
-            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
+            this.btnComprobanteCompra.Name = "btnComprobanteCompra";
+            this.btnComprobanteCompra.Size = new System.Drawing.Size(180, 22);
+            this.btnComprobanteCompra.Text = "Compra";
+            this.btnComprobanteCompra.Click += new System.EventHandler(this.btnComprobanteCompra_Click);
             // 
             // Principal
             // 
@@ -620,6 +629,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnPagosPendientes;
         private System.Windows.Forms.ToolStripMenuItem btnModificarPrecioArticulos;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnComprobanteCompra;
     }
 }
 

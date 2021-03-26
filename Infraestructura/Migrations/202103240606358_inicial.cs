@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class inicio_sistema_desde_cero : DbMigration
+    public partial class inicial : DbMigration
     {
         public override void Up()
         {
@@ -549,27 +549,12 @@
                     {
                         Id = c.Long(nullable: false),
                         ProveedorId = c.Long(nullable: false),
-                        FechaEntrega = c.DateTime(nullable: false),
                         Iva27 = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PrecepcionTemp = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PrecepcionPyP = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PrecepcionIva = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PrecepcionIB = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        EstadoFactura = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Comprobante", t => t.Id)
-                .ForeignKey("dbo.Proveedor", t => t.ProveedorId)
-                .Index(t => t.Id)
-                .Index(t => t.ProveedorId);
-            
-            CreateTable(
-                "dbo.Comprobante_CtaCteProveedor",
-                c => new
-                    {
-                        Id = c.Long(nullable: false),
-                        ProveedorId = c.Long(nullable: false),
-                        Estado = c.Int(nullable: false),
+                        ImpuestosInternos = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Comprobante", t => t.Id)
@@ -726,8 +711,6 @@
             DropForeignKey("dbo.Comprobante_Factura", "ClienteId", "dbo.Persona_Cliente");
             DropForeignKey("dbo.Comprobante_Factura", "Id", "dbo.Comprobante");
             DropForeignKey("dbo.Persona_Empleado", "Id", "dbo.Persona");
-            DropForeignKey("dbo.Comprobante_CtaCteProveedor", "ProveedorId", "dbo.Proveedor");
-            DropForeignKey("dbo.Comprobante_CtaCteProveedor", "Id", "dbo.Comprobante");
             DropForeignKey("dbo.Comprobante_Compra", "ProveedorId", "dbo.Proveedor");
             DropForeignKey("dbo.Comprobante_Compra", "Id", "dbo.Comprobante");
             DropForeignKey("dbo.Persona_Cliente", "CondicionIvaId", "dbo.CondicionIva");
@@ -782,8 +765,6 @@
             DropIndex("dbo.Comprobante_Factura", new[] { "ClienteId" });
             DropIndex("dbo.Comprobante_Factura", new[] { "Id" });
             DropIndex("dbo.Persona_Empleado", new[] { "Id" });
-            DropIndex("dbo.Comprobante_CtaCteProveedor", new[] { "ProveedorId" });
-            DropIndex("dbo.Comprobante_CtaCteProveedor", new[] { "Id" });
             DropIndex("dbo.Comprobante_Compra", new[] { "ProveedorId" });
             DropIndex("dbo.Comprobante_Compra", new[] { "Id" });
             DropIndex("dbo.Persona_Cliente", new[] { "CondicionIvaId" });
@@ -831,7 +812,6 @@
             DropTable("dbo.FormaPago_Cheque");
             DropTable("dbo.Comprobante_Factura");
             DropTable("dbo.Persona_Empleado");
-            DropTable("dbo.Comprobante_CtaCteProveedor");
             DropTable("dbo.Comprobante_Compra");
             DropTable("dbo.Persona_Cliente");
             DropTable("dbo.Contador");

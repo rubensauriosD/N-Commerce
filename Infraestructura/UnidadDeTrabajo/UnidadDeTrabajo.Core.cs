@@ -6,13 +6,14 @@
 
     public partial class UnidadDeTrabajo
     {
+
         // ============================================================================================================ //
 
-        private IMovimientoCuentaCorrienteProveedorRepositorio movimientoCuentaCorrienteProveedorRepositorio;
+        private ICompraRepositorio compraRepositorio;
 
-        public IMovimientoCuentaCorrienteProveedorRepositorio MovimientoCuentaCorrienteProveedorRepositorio => movimientoCuentaCorrienteProveedorRepositorio
-                                                               ?? (movimientoCuentaCorrienteProveedorRepositorio =
-                                                                   new MovimientoCuentaCorrienteProveedorRepositorio(_context));
+        public ICompraRepositorio CompraRepositorio => compraRepositorio
+                                                               ?? (compraRepositorio =
+                                                                   new CompraRepositorio(_context));
 
         // ============================================================================================================ //
 

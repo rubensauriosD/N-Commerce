@@ -289,7 +289,6 @@
 
         public ArticuloVentaDto ObtenerPorCodigo(string codigo, long listaPrecioId, long depositoId)
         {
-
             int.TryParse(codigo, out int _codigo);
 
             return _unidadDeTrabajo.ArticuloRepositorio
@@ -313,6 +312,21 @@
                         : 0m,
                     Precio = ObtenerPrecioPublicoDesdeArticulo(x, listaPrecioId),
                     ListaPrecioId = listaPrecioId
+                }).FirstOrDefault();
+        }
+
+        public ArticuloCompraDto ObtenerPorCodigo(string codigo)
+        {
+            int.TryParse(codigo, out int _codigo);
+
+            return _unidadDeTrabajo.ArticuloRepositorio
+                .Obtener(x => x.CodigoBarra == codigo || x.Codigo == _codigo)
+                .Select(x => new ArticuloCompraDto()
+                {
+                    ProductoId = x.Id,
+                    Codigo = x.Codigo.ToString(),
+                    CodigoBarra = x.CodigoBarra,
+                    Descripcion = x.Descripcion,
                 }).FirstOrDefault();
         }
 

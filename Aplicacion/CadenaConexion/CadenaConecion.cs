@@ -4,7 +4,7 @@
     {
         // Atributos
         private const string Servidor = @"FEDEPC"; // Cambia
-        private const string BaseDatos = @"nCommerceBack";
+        private const string BaseDatos = @"N-Commerce";
         private const string Usuario = @"Fede";
         private const string Password = @""; // Cambia
 

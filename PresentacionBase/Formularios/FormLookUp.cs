@@ -6,12 +6,14 @@ namespace PresentacionBase.Formularios
     {
         public long? entidadId;
         public object EntidadSeleccionada;
+        public bool RealizoSeleccion { get; private set; }
 
         public FormLookUp()
         {
             InitializeComponent();
 
             AsignarEvento_EnterLeave(this);
+            RealizoSeleccion = false;
         }
 
         public virtual void ActualizarDatos(DataGridView dgv, string cadenaBuscar)
@@ -52,6 +54,7 @@ namespace PresentacionBase.Formularios
 
         private void btnNuevo_Click(object sender, System.EventArgs e)
         {
+            RealizoSeleccion = true;
             Close();
         }
 

@@ -52,7 +52,8 @@
                         PuestoTrabajoId = facturaDto.PuestoTrabajoId,
                         TipoComprobante = facturaDto.TipoComprobante,
                         UsuarioId = facturaDto.UsuarioId,
-                        DetalleComprobantes = facturaDto.Items.Select(item => new DetalleComprobante() {
+                        DetalleComprobantes = facturaDto.Items.Select(item => new DetalleComprobante()
+                        {
                             Cantidad = item.Cantidad,
                             ArticuloId = item.ArticuloId,
                             Iva = item.Iva,

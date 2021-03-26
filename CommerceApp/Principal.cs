@@ -193,5 +193,10 @@ namespace CommerceApp
             ObjectFactory.GetInstance<_00015_Proveedor>().ShowDialog();
 
         }
+
+        private void btnComprobanteCompra_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00053_Compra>().ShowDialog();
+        }
     }
 }

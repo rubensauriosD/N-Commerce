@@ -1,7 +1,7 @@
-﻿using Aplicacion.Constantes;
-
-namespace Presentacion.Core.Comprobantes
+﻿namespace Presentacion.Core.Comprobantes
 {
+    using Aplicacion.Constantes;
+
     public class ItemView
     {
         public long Id { get; set; }

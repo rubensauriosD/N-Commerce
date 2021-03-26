@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulo\DTOs\ArticuloCompraDto.cs" />
     <Compile Include="Articulo\DTOs\ArticuloCrudDto.cs" />
     <Compile Include="Articulo\DTOs\ArticuloDto.cs" />
     <Compile Include="Articulo\DTOs\ArticuloVentaDto.cs" />
@@ -71,11 +72,13 @@
     <Compile Include="Caja\DTOs\ConceptoGastos.cs" />
     <Compile Include="Caja\IDetalleCajaServicio.cs" />
     <Compile Include="Caja\IGastoServicio.cs" />
+    <Compile Include="Comprobante\DTOs\CompraDto.cs" />
     <Compile Include="Comprobante\DTOs\ComprobanteDto.cs" />
     <Compile Include="Comprobante\DTOs\ComprobantePendienteDetalleDto.cs" />
     <Compile Include="Comprobante\DTOs\ComprobantePendienteDto.cs" />
     <Compile Include="Comprobante\DTOs\DetalleComprobanteDto.cs" />
     <Compile Include="Comprobante\DTOs\FacturaDto.cs" />
+    <Compile Include="Comprobante\ICompraServicio.cs" />
     <Compile Include="FormaPago\DTOs\FormaPagoChequeDto.cs" />
     <Compile Include="FormaPago\DTOs\FormaPagoCtaCteDto.cs" />
     <Compile Include="FormaPago\DTOs\FormaPagoDto.cs" />
@@ -115,7 +118,6 @@
     <Compile Include="Persona\DTOs\ClienteDto.cs" />
     <Compile Include="Persona\DTOs\EmpleadoDto.cs" />
     <Compile Include="Persona\DTOs\PersonaDto.cs" />
-    <Compile Include="Persona\IMovimientoCuentaCorrienteProveedorServicio.cs" />
     <Compile Include="Persona\IClienteServicio.cs" />
     <Compile Include="Persona\IEmpleadoServicio.cs" />
     <Compile Include="Persona\IMovimientoServicio.cs" />

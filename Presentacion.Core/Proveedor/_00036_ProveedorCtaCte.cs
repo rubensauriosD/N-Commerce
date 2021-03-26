@@ -29,15 +29,29 @@
 
             proveedor = (ProveedorDto)_proveedorServicios.Obtener(proveedorId);
             movimientoCuentaCorriente = new MovimientoCuentaCorrienteProveedorDto();
+        }
 
-            SetearControles();
-
+        private void _00036_ProveedorCtaCte_Load(object sender, EventArgs e)
+        {
+            ActualizarGrilla();
             CargarDatos();
         }
 
-        private void SetearControles()
+        private void CargarDatos()
         {
-            dgvGrilla.DataSource = new List<MovimientoCuentaCorrienteProveedorDto>();
+            lblCuit.Text = proveedor.CUIT;
+            lblRazonSocial.Text = proveedor.RazonSocial;
+
+            ActualizarGrilla();
+        }
+
+        private void ActualizarGrilla()
+        {
+            proveedor.MovimientosCuentaCorriente = _proveedorServicios.ObtenerMovimientosCuentaCorriente(proveedor.Id)
+                .OrderByDescending(x => x.Fecha)
+                .ToList();
+
+            dgvGrilla.DataSource = proveedor.MovimientosCuentaCorriente;
 
             // Formatear Grilla
             for (int i = 0; i < dgvGrilla.ColumnCount; i++)
@@ -62,23 +76,7 @@
             dgvGrilla.Columns["MontoSignado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvGrilla.Columns["MontoSignado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvGrilla.Columns["MontoSignado"].DefaultCellStyle.Format = "c2";
-        }
 
-        private void CargarDatos()
-        {
-            lblCuit.Text = proveedor.CUIT;
-            lblRazonSocial.Text = proveedor.RazonSocial;
-
-            ActualizarGrilla();
-        }
-
-        private void ActualizarGrilla()
-        {
-            proveedor.MovimientosCuentaCorriente = _proveedorServicios.ObtenerMovimientosCuentaCorriente(proveedor.Id)
-                .OrderByDescending(x => x.Fecha)
-                .ToList();
-
-            dgvGrilla.DataSource = proveedor.MovimientosCuentaCorriente;
             lblSaldoCuentaCorriente.Text = proveedor.MovimientosCuentaCorriente
                 .Sum(x => x.Monto * (x.TipoMovimiento == TipoMovimiento.Ingreso ? 1 : -1))
                 .ToString("C2");

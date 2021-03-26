@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Dominio.UnidadDeTrabajo;
-using IServicios.Comprobante;
-using IServicios.Comprobante.DTOs;
-using Servicios.Base;
-
-namespace Servicios.Comprobante
+﻿namespace Servicios.Comprobante
 {
+    using System;
+    using System.Collections.Generic;
+    using Dominio.UnidadDeTrabajo;
+    using IServicios.Comprobante;
+    using IServicios.Comprobante.DTOs;
+    using Servicios.Base;
+
     public class ComprobanteServicio : IComprobanteServicio
     {
         protected readonly IUnidadDeTrabajo _unidadDeTrabajo;
@@ -23,6 +23,7 @@ namespace Servicios.Comprobante
         private void InicializadorDiccionario()
         {
             _diccionario.Add(typeof(FacturaDto), "Servicios.Comprobante.Factura");
+            _diccionario.Add(typeof(CompraDto), "Servicios.Comprobante.Compra");
         }
         
         public void AgregarOpcionDiccionario(Type type, string value)

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using static Aplicacion.Constantes.Clases.Password;
-using Aplicacion.Constantes;
-using Dominio.Entidades;
-
-namespace Infraestructura.Migrations
+﻿namespace Infraestructura.Migrations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using static Aplicacion.Constantes.Clases.Password;
+    using Aplicacion.Constantes;
+    using Dominio.Entidades;
+
     internal sealed class Configuration : DbMigrationsConfiguration<DataContext>
     {
         public Configuration()
@@ -357,6 +357,29 @@ namespace Infraestructura.Migrations
                     context.SaveChanges();
                 }
 
+                if (!context.Proveedores.Any(x => x.CUIT == "99999999999"))
+                {
+                    var localidadPorDefecto = context.Localidades.AsNoTracking().FirstOrDefault(x => x.Descripcion == "San Miguel de Tucumán");
+
+                    var condicionIvaPorDefecto = context.CondicionIvas.AsNoTracking().FirstOrDefault(x => x.Descripcion == "Consumidor Final");
+
+                    var proveedoresVarios = new Proveedor
+                    {
+                        LocalidadId = localidadPorDefecto.Id,
+                        CondicionIvaId = condicionIvaPorDefecto.Id,
+                        RazonSocial = "Proveedores Varios",
+                        CUIT = "99999999999",
+                        EstaEliminado = false,
+                        Direccion = "No Declarada",
+                        Mail = "consumidorFinal@gmail.com",
+                        Telefono = "0123456789"
+                    };
+
+                    context.Proveedores.Add(proveedoresVarios);
+
+                    context.SaveChanges();
+                }
+
                 //
                 // Contadores por Defecto
                 //
@@ -481,8 +504,8 @@ namespace Infraestructura.Migrations
                     context.Empleados.Add(new Empleado
                     {
                         Legajo = 1,
-                        Apellido = "Administrador",
-                        Nombre = "Usuario",
+                        Apellido = "Tito",
+                        Nombre = "Jose",
                         Dni = "00000000",
                         Direccion = "Sin direccion",
                         Mail = "sin@correo.com",

@@ -1,9 +1,9 @@
-﻿using Dominio.UnidadDeTrabajo;
-using IServicios.Comprobante.DTOs;
-using StructureMap;
-
-namespace Servicios.Comprobante
+﻿namespace Servicios.Comprobante
 {
+    using Dominio.UnidadDeTrabajo;
+    using IServicios.Comprobante.DTOs;
+    using StructureMap;
+
     public class Comprobante
     {
         protected readonly IUnidadDeTrabajo _unidadDeTrabajo;

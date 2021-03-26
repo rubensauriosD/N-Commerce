@@ -280,6 +280,7 @@
     <Compile Include="Cliente\_00034_ClienteCtaCte.Designer.cs">
       <DependentUpon>_00034_ClienteCtaCte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Clases\CompraView.cs" />
     <Compile Include="Comprobantes\Clases\FacturaView.cs" />
     <Compile Include="Comprobantes\Clases\ItemComprobanteModificarEliminar.cs">
       <SubType>Form</SubType>
@@ -414,6 +415,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Proveedor\ProveedorLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedor\ProveedorLookUp.Designer.cs">
+      <DependentUpon>ProveedorLookUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Proveedor\_00015_Proveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,7 +451,6 @@
     <Compile Include="Provincia\_00002_Abm_Provincia.Designer.cs">
       <DependentUpon>_00002_Abm_Provincia.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Usuario\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -605,6 +611,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Informes\InformeMovimientoCuentaCorriente.rdlc" />
+    <EmbeddedResource Include="Proveedor\ProveedorLookUp.resx">
+      <DependentUpon>ProveedorLookUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Proveedor\_00015_Proveedor.resx">
       <DependentUpon>_00015_Proveedor.cs</DependentUpon>
     </EmbeddedResource>
@@ -646,21 +655,6 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IServicios.Informes.DTOs.InformeMovimientoCuentaCorrienteDto.datasource" />
     <None Include="Properties\DataSources\Presentacion.Core.Properties.Resources.datasource" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

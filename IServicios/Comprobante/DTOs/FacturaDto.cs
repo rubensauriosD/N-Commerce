@@ -1,7 +1,7 @@
-﻿using Aplicacion.Constantes;
-
-namespace IServicios.Comprobante.DTOs
+﻿namespace IServicios.Comprobante.DTOs
 {
+    using Aplicacion.Constantes;
+
     public class FacturaDto : ComprobanteDto
     {
         public long ClienteId { get; set; }

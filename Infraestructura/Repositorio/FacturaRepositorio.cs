@@ -19,10 +19,12 @@
 
         public override Factura Obtener(long entidadId, string propiedadNavegacion = "")
         {
-            var resultado = propiedadNavegacion.Split(new[] { ',' },
-                StringSplitOptions.RemoveEmptyEntries).Aggregate<string,
-                IQueryable<Factura>>(_context.Set<Comprobante>().OfType<Factura>(), (current, include)
-                => current.Include(include));
+            var resultado = propiedadNavegacion
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate<string,IQueryable<Factura>>(
+                    _context.Set<Comprobante>().OfType<Factura>(),
+                    (current, include) => current.Include(include)
+                );
 
             return resultado.FirstOrDefault(x => x.Id == entidadId);
         }
@@ -33,15 +35,16 @@
             var resultadoClient = context.CreateObjectSet<Comprobante>().OfType<Factura>();
             context.Refresh(RefreshMode.ClientWins, resultadoClient);
 
-            var resultado = propiedadNavegacion.Split(new[] { ',' },
-                StringSplitOptions.RemoveEmptyEntries).Aggregate<string,
-                IQueryable<Factura>>(resultadoClient, (current, include) => current.Include(include));
+            var resultado = propiedadNavegacion
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate<string, IQueryable<Factura>>(
+                    resultadoClient,
+                    (current, include) => current.Include(include)
+                );
 
             if (filtro != null) resultado = resultado.Where(filtro);
 
             return resultado.ToList();
         }
-
-
     }
 }

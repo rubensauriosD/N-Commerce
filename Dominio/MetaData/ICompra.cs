@@ -12,11 +12,6 @@ namespace Dominio.MetaData
 
 
         [Required(ErrorMessage = "El campo {0} es Obligatorio.")]
-        [DataType(DataType.Date)]
-        DateTime FechaEntrega { get; set; }
-
-
-        [Required(ErrorMessage = "El campo {0} es Obligatorio.")]
         [DefaultValue(0)]
         decimal Iva27 { get; set; }
 
@@ -42,6 +37,8 @@ namespace Dominio.MetaData
 
 
         [Required(ErrorMessage = "El campo {0} es Obligatorio.")]
-        Estado EstadoFactura { get; set; }
+        [DefaultValue(0)]
+        decimal ImpuestosInternos { get; set; }
+
     }
 }

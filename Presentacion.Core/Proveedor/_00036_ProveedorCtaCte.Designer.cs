@@ -342,8 +342,8 @@ namespace Presentacion.Core.Proveedor
             this.MaximumSize = new System.Drawing.Size(674, 612);
             this.MinimumSize = new System.Drawing.Size(674, 612);
             this.Name = "_00036_ProveedorCtaCte";
-            this.ShowIcon = false;
             this.Text = "Cuenta Corriente de Proveedores";
+            this.Load += new System.EventHandler(this._00036_ProveedorCtaCte_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).EndInit();
             this.pnlTotalDeuda.ResumeLayout(false);
             this.pnlTotalDeuda.PerformLayout();

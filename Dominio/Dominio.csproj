@@ -145,9 +145,9 @@
     <Compile Include="MetaData\IUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\IClienteRepositorio.cs" />
+    <Compile Include="Repositorio\ICompraRepositorio.cs" />
     <Compile Include="Repositorio\IEmpleadoRepositorio.cs" />
     <Compile Include="Repositorio\IFacturaRepositorio.cs" />
-    <Compile Include="Repositorio\IMovimientoCuentaCorrienteRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
     <Compile Include="UnidadDeTrabajo\IUnidadDeTrabajo.cs" />
   </ItemGroup>

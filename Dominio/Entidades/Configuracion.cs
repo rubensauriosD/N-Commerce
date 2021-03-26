@@ -40,6 +40,7 @@ namespace Dominio.Entidades
 
         public bool ActualizaCostoDesdeCompra { get; set; }
 
+        // TODO: Eliminar esta propiedad (La que manda es ActualizarCostoDesdeCompra)
         public bool ModificaPrecioVentaDesdeCompra { get; set; }
 
         public long DepositoNuevoArticuloId { get; set; }

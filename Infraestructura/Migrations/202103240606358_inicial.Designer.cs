@@ -7,13 +7,13 @@ namespace Infraestructura.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class inicio_sistema_desde_cero : IMigrationMetadata
+    public sealed partial class inicial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(inicio_sistema_desde_cero));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(inicial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103050223059_inicio_sistema_desde_cero"; }
+            get { return "202103240606358_inicial"; }
         }
         
         string IMigrationMetadata.Source

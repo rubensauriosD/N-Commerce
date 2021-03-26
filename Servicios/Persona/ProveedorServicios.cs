@@ -129,9 +129,17 @@
         // CONSULTA
         public DtoBase Obtener(long id)
         {
-            var entidad = _unidadDeTrabajo.ProveedorRepositorio.Obtener(id);
+            var entidad = _unidadDeTrabajo.ProveedorRepositorio.Obtener(id, "CondicionIva");
 
             return Map(entidad);
+        }
+
+        public ProveedorDto ObtenerPorCuit(string cuit)
+        {
+            return Obtener("")
+                .ToList()
+                .Select(x => (ProveedorDto)x)
+                .FirstOrDefault(x => x.CUIT == cuit);
         }
 
         public IEnumerable<DtoBase> Obtener(string cadenaBuscar, bool mostrarTodos = true)
@@ -142,7 +150,7 @@
             if (!mostrarTodos)
                 filtro = filtro.And(x => !x.EstaEliminado);
 
-            return _unidadDeTrabajo.ProveedorRepositorio.Obtener(filtro, "MovimientoCuentaCorrienteProveedores")
+            return _unidadDeTrabajo.ProveedorRepositorio.Obtener(filtro, "CondicionIva")
                 .Select(x => Map(x))
                 .OrderBy(x => x.RazonSocial)
                 .ToList();
@@ -178,8 +186,8 @@
 
         public List<MovimientoCuentaCorrienteProveedorDto> ObtenerMovimientosCuentaCorriente(long id)
         {
-            var lstMovimientos = _unidadDeTrabajo.MovimientoCuentaCorrienteProveedorRepositorio
-                .Obtener(x => x.ProveedorId == id)
+            var lstMovimientos = _unidadDeTrabajo.ProveedorRepositorio.Obtener(id, "MovimientoCuentaCorrienteProveedores")
+                .MovimientoCuentaCorrienteProveedores
                 .ToList();
 
             var cuentaCorriente = new List<MovimientoCuentaCorrienteProveedorDto>();
@@ -213,6 +221,7 @@
                 Mail = entidad.Mail,
                 LocalidadId = entidad.LocalidadId,
                 CondicionIvaId = entidad.CondicionIvaId,
+                CondicionIva = entidad.CondicionIva.Descripcion,
                 Eliminado = entidad.EstaEliminado
             };
         }

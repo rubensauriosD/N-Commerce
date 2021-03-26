@@ -1,12 +1,12 @@
-﻿using IServicio.Persona;
-using IServicio.Persona.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-using System.Linq;
-using System.Windows.Forms;
-
-namespace Presentacion.Core.Cliente
+﻿namespace Presentacion.Core.Cliente
 {
+    using IServicio.Persona;
+    using IServicio.Persona.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+    using System.Linq;
+    using System.Windows.Forms;
+
     public partial class ClienteLookUp : FormLookUp
     {
         private readonly IClienteServicio _servicio;

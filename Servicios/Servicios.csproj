@@ -63,6 +63,8 @@
     <Compile Include="Caja\CajaServicio.cs" />
     <Compile Include="Caja\DetalleCajaServicio.cs" />
     <Compile Include="Caja\GastoServicio.cs" />
+    <Compile Include="Comprobante\Compra.cs" />
+    <Compile Include="Comprobante\CompraServicio.cs" />
     <Compile Include="Comprobante\Comprobante.cs" />
     <Compile Include="Comprobante\ComprobanteServicio.cs" />
     <Compile Include="Comprobante\Factura.cs" />
@@ -81,9 +83,7 @@
     <Compile Include="Marca\MarcaServicio.cs" />
     <Compile Include="MotivoBaja\MotivoBajaServicio.cs" />
     <Compile Include="Caja\ConceptoGastosServicio.cs" />
-    <Compile Include="Persona\MovimientoCuentaCorrienteProveedor.cs" />
     <Compile Include="Persona\Cliente.cs" />
-    <Compile Include="Persona\MovimientoCuentaCorrienteProveedorRepositorioServicio.cs" />
     <Compile Include="Persona\ClienteServicio.cs" />
     <Compile Include="Persona\Empleado.cs" />
     <Compile Include="Persona\EmpleadoServicio.cs" />

@@ -109,18 +109,7 @@ D:\Code\BackUp nCom\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.CoreComp
 D:\Code\BackUp nCom\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.CopyComplete
 D:\Code\BackUp nCom\N-Commerce\CommerceApp\obj\Debug\CommerceApp.exe
 D:\Code\BackUp nCom\N-Commerce\CommerceApp\obj\Debug\CommerceApp.pdb
-D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csprojAssemblyReference.cache
-D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.Principal.resources
-D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.Properties.Resources.resources
-D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.GenerateResource.cache
-D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.CoreCompileInputs.cache
-D:\Code\N-Commerce\CommerceApp\bin\Debug\SqlServerTypes\x64\msvcr120.dll
-D:\Code\N-Commerce\CommerceApp\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
-D:\Code\N-Commerce\CommerceApp\bin\Debug\SqlServerTypes\x86\msvcr120.dll
-D:\Code\N-Commerce\CommerceApp\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
-D:\Code\N-Commerce\CommerceApp\bin\Debug\CommerceApp.exe.config
 D:\Code\N-Commerce\CommerceApp\bin\Debug\CommerceApp.exe
-D:\Code\N-Commerce\CommerceApp\bin\Debug\CommerceApp.pdb
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Aplicacion.Constantes.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Aplicacion.IoC.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Dominio.dll
@@ -132,9 +121,9 @@ D:\Code\N-Commerce\CommerceApp\bin\Debug\PresentacionBase.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Servicios.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\StructureMap.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Infraestructura.dll
+D:\Code\N-Commerce\CommerceApp\bin\Debug\Aplicacion.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Microsoft.ReportViewer.WinForms.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\System.Reactive.dll
-D:\Code\N-Commerce\CommerceApp\bin\Debug\Aplicacion.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\Microsoft.ReportViewer.Common.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\System.ValueTuple.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\System.Threading.Tasks.Extensions.dll
@@ -194,6 +183,13 @@ D:\Code\N-Commerce\CommerceApp\bin\Debug\pt\Microsoft.ReportViewer.DataVisualiza
 D:\Code\N-Commerce\CommerceApp\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
 D:\Code\N-Commerce\CommerceApp\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.CopyComplete
+D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csprojAssemblyReference.cache
+D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.Principal.resources
+D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.Properties.Resources.resources
+D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.GenerateResource.cache
+D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.CoreCompileInputs.cache
 D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.exe
 D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.pdb
+D:\Code\N-Commerce\CommerceApp\bin\Debug\CommerceApp.exe.config
+D:\Code\N-Commerce\CommerceApp\bin\Debug\CommerceApp.pdb
+D:\Code\N-Commerce\CommerceApp\obj\Debug\CommerceApp.csproj.CopyComplete

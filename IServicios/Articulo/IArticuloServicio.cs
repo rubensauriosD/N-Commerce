@@ -16,6 +16,8 @@
 
         ArticuloVentaDto ObtenerPorCodigo(string codigo, long depositoId, long listaPrecioId);
 
+        ArticuloCompraDto ObtenerPorCodigo(string codigo);
+
         bool ModificarPrecioPorPorcentaje(List<ArticuloDto> articulos, decimal porcentaje);
 
         bool ModificarPrecioPorPrecio(List<ArticuloDto> articulos, decimal monto);

@@ -115,6 +115,8 @@ namespace Aplicacion.IoC
 
                 x.For<IFacturaServicio>().Use<FacturaServicio>();
 
+                x.For<ICompraServicio>().Use<CompraServicio>();
+
                 x.For<IFormaPagoServicios>().Use<FormaPagoServicios>();
 
                 x.For<IProveedorServicio>().Use<ProveedorServicios>();

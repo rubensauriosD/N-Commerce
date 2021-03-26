@@ -101,8 +101,7 @@ D:\Code\N-Commerce\Infraestructura\bin\Debug\Dominio.dll.config
 D:\Code\N-Commerce\Infraestructura\bin\Debug\EntityFramework.xml
 D:\Code\N-Commerce\Infraestructura\bin\Debug\EntityFramework.SqlServer.xml
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csprojAssemblyReference.cache
-D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.inicio_sistema_desde_cero.resources
-D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.eliminar_cuentaCorrienteProveedor.resources
+D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.inicial.resources
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.GenerateResource.cache
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.CoreCompileInputs.cache
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.CopyComplete

@@ -237,7 +237,7 @@
             var f = new ClienteLookUp();
             f.ShowDialog();
 
-            if (!f.entidadId.HasValue)
+            if (!f.RealizoSeleccion)
                 return;
 
             clienteSeleccionado = (ClienteDto)f.EntidadSeleccionada;
@@ -249,7 +249,7 @@
             var lookUpEmpleado = ObjectFactory.GetInstance<EmpleadoLookUp>();
             lookUpEmpleado.ShowDialog();
 
-            if (!lookUpEmpleado.entidadId.HasValue)
+            if (!lookUpEmpleado.RealizoSeleccion)
                 return;
 
             vendedorSeleccionado = (EmpleadoDto)lookUpEmpleado.EntidadSeleccionada;
@@ -630,6 +630,8 @@
                 }).ToList()
             };
 
+            nuevaFactura.Id = _facturaServicio.Insertar(nuevaFactura);
+
             if (!configuracion.PuestoCajaSeparado)
             { 
                 var fFormaPago = new _00044_FormaPago(facturaView.Total, facturaView.Cliente.Id);
@@ -639,7 +641,6 @@
                     nuevaFactura.FormasDePagos = fFormaPago.FormasPago;
             }
 
-            nuevaFactura.Id = _facturaServicio.Insertar(nuevaFactura);
             _formaPagoServicio.Insertar(nuevaFactura.FormasDePagos, nuevaFactura.Id);
 
             LimpiarParaNuevaFactura();

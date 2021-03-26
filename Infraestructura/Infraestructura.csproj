@@ -54,20 +54,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\202103050223059_inicio_sistema_desde_cero.cs" />
-    <Compile Include="Migrations\202103050223059_inicio_sistema_desde_cero.designer.cs">
-      <DependentUpon>202103050223059_inicio_sistema_desde_cero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103120035195_eliminar_cuentaCorrienteProveedor.cs" />
-    <Compile Include="Migrations\202103120035195_eliminar_cuentaCorrienteProveedor.designer.cs">
-      <DependentUpon>202103120035195_eliminar_cuentaCorrienteProveedor.cs</DependentUpon>
+    <Compile Include="Migrations\202103240606358_inicial.cs" />
+    <Compile Include="Migrations\202103240606358_inicial.designer.cs">
+      <DependentUpon>202103240606358_inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\ClienteRepositorio.cs" />
+    <Compile Include="Repositorio\CompraRepositorio.cs" />
     <Compile Include="Repositorio\EmpleadoRepositorio.cs" />
     <Compile Include="Repositorio\FacturaRepositorio.cs" />
-    <Compile Include="Repositorio\MovimientoCuentaCorrienteProveedorRepositorio.cs" />
     <Compile Include="Repositorio\Repositorio.cs" />
     <Compile Include="UnidadDeTrabajo\UnidadDeTrabajo.Core.cs" />
     <Compile Include="UnidadDeTrabajo\UnidadDeTrabajo.cs" />
@@ -93,11 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103050223059_inicio_sistema_desde_cero.resx">
-      <DependentUpon>202103050223059_inicio_sistema_desde_cero.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103120035195_eliminar_cuentaCorrienteProveedor.resx">
-      <DependentUpon>202103120035195_eliminar_cuentaCorrienteProveedor.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103240606358_inicial.resx">
+      <DependentUpon>202103240606358_inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
