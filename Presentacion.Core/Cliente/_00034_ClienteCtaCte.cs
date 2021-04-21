@@ -95,9 +95,9 @@
         // ACCIONES DE CONTROLES
         private void btnRealizarPago_Click(object sender, EventArgs e)
         {
-            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
 
-            if (cajaActiva == null)
+            if (cajaActivaId == null)
             {
                 Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder realizar el pago.");
                 return;
@@ -113,7 +113,7 @@
                 return;
 
             var pago = new MovimientoCuentaCorrienteClienteDto() {
-                CajaId = cajaActiva.Id,
+                CajaId = (long)cajaActivaId,
                 ClienteId = cliente.Id,
                 Monto = fMontoPago.MontoPago,
                 TipoMovimiento = TipoMovimiento.Ingreso,
@@ -128,9 +128,9 @@
 
         private void btnCancelarPago_Click(object sender, EventArgs e)
         {
-            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
 
-            if (cajaActiva == null)
+            if (cajaActivaId == null)
             {
                 Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder realizar la reversión.");
                 return;
@@ -141,7 +141,7 @@
 
             var pago = new MovimientoCuentaCorrienteClienteDto()
             {
-                CajaId = cajaActiva.Id,
+                CajaId = (long)cajaActivaId,
                 ClienteId = cliente.Id,
                 Monto = movimientoCuentaCorriente.Monto,
                 TipoMovimiento = TipoMovimiento.Egreso,

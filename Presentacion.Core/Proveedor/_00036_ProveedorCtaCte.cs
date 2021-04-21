@@ -85,9 +85,9 @@
         // ACCIONES DE CONTROLES
         private void btnRealizarPago_Click(object sender, EventArgs e)
         {
-            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
 
-            if (cajaActiva == null)
+            if (cajaActivaId == null)
             {
                 Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder realizar el pago.");
                 return;
@@ -100,10 +100,10 @@
                 return;
 
             var pago = new MovimientoCuentaCorrienteProveedorDto() {
-                CajaId = cajaActiva.Id,
+                CajaId = (long)cajaActivaId,
                 ProveedorId = proveedor.Id,
                 Monto = fMontoPago.MontoPago,
-                TipoMovimiento = TipoMovimiento.Ingreso,
+                TipoMovimiento = TipoMovimiento.Egreso,
                 Descripcion = "Pago en cuenta corriente",
             };
 
@@ -115,15 +115,16 @@
 
         private void btnRebertirPago_Click(object sender, EventArgs e)
         {
-            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
 
-            if (cajaActiva == null)
+            if (cajaActivaId == null)
             {
                 Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder revertir el pago.");
                 return;
             }
 
-            movimientoCuentaCorriente.CajaId = cajaActiva.Id;
+            movimientoCuentaCorriente.CajaId = (long)cajaActivaId;
+            movimientoCuentaCorriente.ProveedorId = proveedor.Id;
 
             if (!_proveedorServicios.RevertirPagoCuentaCorriente(movimientoCuentaCorriente))
                 Mjs.Alerta($@"No se pudo revertir el pago.");

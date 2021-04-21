@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Dominio.MetaData;
-
-namespace Dominio.Entidades
+﻿namespace Dominio.Entidades
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Dominio.MetaData;
+
     [Table("FormaPago_Tarjeta")]
     [MetadataType(typeof(IFormaPagoTarjeta))]
     public class FormaPagoTarjeta : FormaPago

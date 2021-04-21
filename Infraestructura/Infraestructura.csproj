@@ -58,6 +58,10 @@
     <Compile Include="Migrations\202103240606358_inicial.designer.cs">
       <DependentUpon>202103240606358_inicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104181641057_pagoCuentaCorrienteProveedores.cs" />
+    <Compile Include="Migrations\202104181641057_pagoCuentaCorrienteProveedores.designer.cs">
+      <DependentUpon>202104181641057_pagoCuentaCorrienteProveedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\ClienteRepositorio.cs" />
@@ -91,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103240606358_inicial.resx">
       <DependentUpon>202103240606358_inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104181641057_pagoCuentaCorrienteProveedores.resx">
+      <DependentUpon>202104181641057_pagoCuentaCorrienteProveedores.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

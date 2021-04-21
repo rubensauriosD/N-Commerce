@@ -12,7 +12,7 @@
 
         IEnumerable<CajaDto> Obtener(string cadenaBuscar, bool filtroPorFecha, DateTime fechaDesde, DateTime fechaHasta);
 
-        CajaDto ObtenerCajaAciva(long usuarioId);
+        long? ObtenerCajaAciva(long usuarioId);
 
         void Abrir(long usuarioId, decimal monto);
 

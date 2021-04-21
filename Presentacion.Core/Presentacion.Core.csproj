@@ -397,6 +397,12 @@
     <Compile Include="FormaPago\_00049_CobroDiferido.Designer.cs">
       <DependentUpon>_00049_CobroDiferido.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormaPago\_00054_FormaPagoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaPago\_00054_FormaPagoCompra.Designer.cs">
+      <DependentUpon>_00054_FormaPagoCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Localidad\_00005_Localidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -599,6 +605,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormaPago\_00049_CobroDiferido.resx">
       <DependentUpon>_00049_CobroDiferido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaPago\_00054_FormaPagoCompra.resx">
+      <DependentUpon>_00054_FormaPagoCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localidad\_00005_Localidad.resx">
       <DependentUpon>_00005_Localidad.cs</DependentUpon>

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Windows.Forms;
-using Aplicacion.Constantes;
-using Aplicacion.IoC;
-using IServicio.Configuracion;
-using Presentacion.Core.Configuracion;
-using Presentacion.Core.Usuario;
-using StructureMap;
-
-namespace CommerceApp
+﻿namespace CommerceApp
 {
+    using System;
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using Aplicacion.IoC;
+    using IServicio.Configuracion;
+    using Presentacion.Core.Configuracion;
+    using Presentacion.Core.Usuario;
+    using StructureMap;
+
     static class Program
     {
         /// <summary>

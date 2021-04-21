@@ -1,12 +1,5 @@
 ﻿namespace IServicios.Comprobante.DTOs
 {
-    using Aplicacion.Constantes;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     public class CompraDto : ComprobanteDto
     {
         public long ProveedorId { get; set; }
@@ -22,6 +15,7 @@
         public decimal PrecepcionIB { get; set; }
 
         public decimal ImpuestosInternos { get; set; }
+
 
     }
 }

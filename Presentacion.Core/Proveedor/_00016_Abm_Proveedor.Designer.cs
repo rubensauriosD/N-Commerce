@@ -57,7 +57,7 @@
             this.btnNuevaCondicionIva.Location = new System.Drawing.Point(456, 306);
             this.btnNuevaCondicionIva.Name = "btnNuevaCondicionIva";
             this.btnNuevaCondicionIva.Size = new System.Drawing.Size(32, 21);
-            this.btnNuevaCondicionIva.TabIndex = 148;
+            this.btnNuevaCondicionIva.TabIndex = 0;
             this.btnNuevaCondicionIva.Text = "...";
             this.btnNuevaCondicionIva.UseVisualStyleBackColor = true;
             this.btnNuevaCondicionIva.Click += new System.EventHandler(this.btnNuevaCondicionIva_Click);
@@ -69,7 +69,7 @@
             this.cmbCondicionIva.Location = new System.Drawing.Point(133, 306);
             this.cmbCondicionIva.Name = "cmbCondicionIva";
             this.cmbCondicionIva.Size = new System.Drawing.Size(317, 21);
-            this.cmbCondicionIva.TabIndex = 146;
+            this.cmbCondicionIva.TabIndex = 23;
             // 
             // label7
             // 
@@ -79,7 +79,7 @@
             this.label7.Location = new System.Drawing.Point(19, 308);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 16);
-            this.label7.TabIndex = 147;
+            this.label7.TabIndex = 22;
             this.label7.Text = "Condición de Iva";
             // 
             // btnNuevaLocalidad
@@ -87,7 +87,7 @@
             this.btnNuevaLocalidad.Location = new System.Drawing.Point(456, 240);
             this.btnNuevaLocalidad.Name = "btnNuevaLocalidad";
             this.btnNuevaLocalidad.Size = new System.Drawing.Size(32, 21);
-            this.btnNuevaLocalidad.TabIndex = 145;
+            this.btnNuevaLocalidad.TabIndex = 19;
             this.btnNuevaLocalidad.Text = "...";
             this.btnNuevaLocalidad.UseVisualStyleBackColor = true;
             this.btnNuevaLocalidad.Click += new System.EventHandler(this.btnNuevaLocalidad_Click);
@@ -97,7 +97,7 @@
             this.btnNuevoDepartamento.Location = new System.Drawing.Point(456, 206);
             this.btnNuevoDepartamento.Name = "btnNuevoDepartamento";
             this.btnNuevoDepartamento.Size = new System.Drawing.Size(32, 21);
-            this.btnNuevoDepartamento.TabIndex = 144;
+            this.btnNuevoDepartamento.TabIndex = 16;
             this.btnNuevoDepartamento.Text = "...";
             this.btnNuevoDepartamento.UseVisualStyleBackColor = true;
             this.btnNuevoDepartamento.Click += new System.EventHandler(this.btnNuevoDepartamento_Click);
@@ -107,7 +107,7 @@
             this.btnNuevaProvincia.Location = new System.Drawing.Point(456, 174);
             this.btnNuevaProvincia.Name = "btnNuevaProvincia";
             this.btnNuevaProvincia.Size = new System.Drawing.Size(32, 21);
-            this.btnNuevaProvincia.TabIndex = 143;
+            this.btnNuevaProvincia.TabIndex = 13;
             this.btnNuevaProvincia.Text = "...";
             this.btnNuevaProvincia.UseVisualStyleBackColor = true;
             this.btnNuevaProvincia.Click += new System.EventHandler(this.btnNuevaProvincia_Click);
@@ -119,7 +119,7 @@
             this.cmbLocalidad.Location = new System.Drawing.Point(133, 240);
             this.cmbLocalidad.Name = "cmbLocalidad";
             this.cmbLocalidad.Size = new System.Drawing.Size(317, 21);
-            this.cmbLocalidad.TabIndex = 139;
+            this.cmbLocalidad.TabIndex = 18;
             // 
             // label2
             // 
@@ -129,7 +129,7 @@
             this.label2.Location = new System.Drawing.Point(59, 242);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 16);
-            this.label2.TabIndex = 142;
+            this.label2.TabIndex = 17;
             this.label2.Text = "Localidad";
             // 
             // cmbDepartamento
@@ -139,7 +139,7 @@
             this.cmbDepartamento.Location = new System.Drawing.Point(133, 207);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(317, 21);
-            this.cmbDepartamento.TabIndex = 138;
+            this.cmbDepartamento.TabIndex = 15;
             // 
             // label1
             // 
@@ -149,7 +149,7 @@
             this.label1.Location = new System.Drawing.Point(33, 209);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 16);
-            this.label1.TabIndex = 141;
+            this.label1.TabIndex = 14;
             this.label1.Text = "Departamento";
             // 
             // cmbProvincia
@@ -159,7 +159,7 @@
             this.cmbProvincia.Location = new System.Drawing.Point(133, 174);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(317, 21);
-            this.cmbProvincia.TabIndex = 137;
+            this.cmbProvincia.TabIndex = 12;
             // 
             // lblProvincia
             // 
@@ -169,7 +169,7 @@
             this.lblProvincia.Location = new System.Drawing.Point(63, 176);
             this.lblProvincia.Name = "lblProvincia";
             this.lblProvincia.Size = new System.Drawing.Size(64, 16);
-            this.lblProvincia.TabIndex = 140;
+            this.lblProvincia.TabIndex = 11;
             this.lblProvincia.Text = "Provincia";
             // 
             // label8
@@ -180,7 +180,7 @@
             this.label8.Location = new System.Drawing.Point(280, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 16);
-            this.label8.TabIndex = 136;
+            this.label8.TabIndex = 7;
             this.label8.Text = "Teléfono";
             // 
             // txtTelefono
@@ -189,7 +189,7 @@
             this.txtTelefono.Location = new System.Drawing.Point(348, 111);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(140, 22);
-            this.txtTelefono.TabIndex = 129;
+            this.txtTelefono.TabIndex = 8;
             // 
             // label6
             // 
@@ -199,7 +199,7 @@
             this.label6.Location = new System.Drawing.Point(55, 114);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 16);
-            this.label6.TabIndex = 135;
+            this.label6.TabIndex = 5;
             this.label6.Text = "CUIT/CUIL";
             // 
             // txtCUIT
@@ -208,7 +208,7 @@
             this.txtCUIT.Location = new System.Drawing.Point(133, 111);
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(122, 22);
-            this.txtCUIT.TabIndex = 128;
+            this.txtCUIT.TabIndex = 6;
             // 
             // label5
             // 
@@ -218,7 +218,7 @@
             this.label5.Location = new System.Drawing.Point(39, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 16);
-            this.label5.TabIndex = 134;
+            this.label5.TabIndex = 3;
             this.label5.Text = "Razón Social";
             // 
             // txtRazonSocial
@@ -227,7 +227,7 @@
             this.txtRazonSocial.Location = new System.Drawing.Point(133, 81);
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(355, 22);
-            this.txtRazonSocial.TabIndex = 127;
+            this.txtRazonSocial.TabIndex = 4;
             // 
             // label3
             // 
@@ -237,7 +237,7 @@
             this.label3.Location = new System.Drawing.Point(81, 275);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 16);
-            this.label3.TabIndex = 133;
+            this.label3.TabIndex = 20;
             this.label3.Text = "E-Mail";
             // 
             // txtMail
@@ -246,7 +246,7 @@
             this.txtMail.Location = new System.Drawing.Point(133, 272);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(355, 22);
-            this.txtMail.TabIndex = 131;
+            this.txtMail.TabIndex = 21;
             // 
             // lblDescripcion
             // 
@@ -256,7 +256,7 @@
             this.lblDescripcion.Location = new System.Drawing.Point(63, 145);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(64, 16);
-            this.lblDescripcion.TabIndex = 132;
+            this.lblDescripcion.TabIndex = 9;
             this.lblDescripcion.Text = "Domicilio";
             // 
             // txtDomicilio
@@ -265,7 +265,7 @@
             this.txtDomicilio.Location = new System.Drawing.Point(133, 142);
             this.txtDomicilio.Name = "txtDomicilio";
             this.txtDomicilio.Size = new System.Drawing.Size(355, 22);
-            this.txtDomicilio.TabIndex = 130;
+            this.txtDomicilio.TabIndex = 10;
             // 
             // _00016_Abm_Proveedor
             // 
@@ -297,7 +297,6 @@
             this.MaximumSize = new System.Drawing.Size(529, 389);
             this.MinimumSize = new System.Drawing.Size(529, 389);
             this.Name = "_00016_Abm_Proveedor";
-            this.ShowIcon = false;
             this.Text = "Proveedor (Alta, Baja y Modificación)";
             this.Controls.SetChildIndex(this.txtDomicilio, 0);
             this.Controls.SetChildIndex(this.lblDescripcion, 0);

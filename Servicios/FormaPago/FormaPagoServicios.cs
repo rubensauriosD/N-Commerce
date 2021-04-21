@@ -103,7 +103,7 @@
                 Cheque = new Cheque
                 {
                     BancoId = formaPago.BancoId,
-                    ClienteId = formaPago.ClienteId,
+                    ClienteId = factura.ClienteId,
                     FechaVencimiento = formaPago.FechaVencimiento,
                     Numero = formaPago.Numero,
                     EstaEliminado = false

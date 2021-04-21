@@ -2,18 +2,21 @@
 {
     using System;
     using System.Linq;
+    using System.Windows.Forms;
     using StructureMap;
     using IServicio.Persona;
     using IServicio.Persona.DTOs;
     using Presentacion.Core.Comprobantes.Clases;
     using Presentacion.Core.Proveedor;
     using PresentacionBase.Formularios;
-    using System.Windows.Forms;
     using IServicio.Articulo;
     using Aplicacion.Constantes;
     using IServicios.Articulo.DTOs;
     using IServicios.Comprobante.DTOs;
     using IServicios.Comprobante;
+    using IServicios.Persona.DTOs;
+    using IServicios.Caja;
+    using IServicios.Caja.DTOs;
 
     public partial class _00053_Compra : FormBase
     {
@@ -23,6 +26,8 @@
 
         private ArticuloCompraDto itemSeleccionado;
         private CompraView compra;
+        private long cajaActivaId;
+
 
         public _00053_Compra()
         {
@@ -31,7 +36,15 @@
             _proveedorServicios = ObjectFactory.GetInstance<IProveedorServicio>();
             _artiuloServicios = ObjectFactory.GetInstance<IArticuloServicio>();
             _compraServicios = ObjectFactory.GetInstance<ICompraServicio>();
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
 
+            if (cajaActivaId == null)
+            {
+                Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder realizar la operación.");
+                Close();
+            }
+
+            this.cajaActivaId = (long)cajaActivaId;
         }
 
         private void _00053_Compra_Load(object sender, EventArgs e)
@@ -40,6 +53,13 @@
             PoblarComboBox(cmbTipoComprobante, Enum.GetValues(typeof(TipoComprobante)));
 
             SetearControles();
+
+            ActualizarGrilla();
+
+            SetEstadoCargaCodigo();
+
+            txtCuit.Focus();
+            txtCuit.SelectAll();
         }
 
         private void SetearControles()
@@ -47,45 +67,61 @@
             compra = new CompraView();
             itemSeleccionado = new ArticuloCompraDto();
 
-            nudCantidad.Value = 1;
-            nudCantidad.Enabled = false;
-
-            nudPrecioUnitario.Value = 0;
-            nudPrecioUnitario.Enabled = false;
-
             dtpFecha.Value = DateTime.Today;
 
-            cmbTipoComprobante.SelectedItem = TipoComprobante.A;
+            nudIva105.Value = 0;
+            chkIva105.Checked = false;
+            nudIva21.Value = 0;
+            chkIva21.Checked = false;
+            nudIva27.Value = 0;
+            chkIva27.Checked = false;
+            nudImpuestoInterno.Value = 0;
+            chkImpuestoInterno.Checked = false;
+            nudPercepcionIva.Value = 0;
+            chkPercepcionIva.Checked = false;
+            nudPercepcionTem.Value = 0;
+            chkPercepcionTem.Checked = false;
+            nudPercepcionPyP.Value = 0;
+            chkPercepcionPyP.Checked = false;
+            nudPercepcionIB.Value = 0;
+            chkPercepcionIB.Checked = false;
+
+            cmbTipoComprobante.SelectedItem = TipoComprobante.B;
             compra.Tipo = (TipoComprobante)cmbTipoComprobante.SelectedItem;
-            
+            txtNroComprobante.Text = "";
+
             compra.Proveedor = _proveedorServicios.ObtenerPorCuit("99999999999");
             CargarDatosProveedor();
-
             ActualizarGrilla();
-
-            txtCuit.Focus();
-            txtCuit.SelectAll();
         }
 
         private void CargarDatosProveedor()
         {
+            grbFormasPago.Enabled = true;
             txtCuit.Text = compra.Proveedor.CUIT;
             txtNombre.Text = compra.Proveedor.RazonSocial;
             txtDomicilio.Text = compra.Proveedor.Direccion;
             txtTelefono.Text = compra.Proveedor.Telefono;
             txtCondicionIva.Text = compra.Proveedor.CondicionIva;
+
+            if (compra.Proveedor.Id == 99999999999)
+            {
+                grbFormasPago.Enabled = false;
+                chkEfectivo.Checked = true;
+                chkCuentaCorriente.Checked = false;
+            }
         }
 
         private void ActualizarTotal()
         {
             lblTotal.Text = (compra.Items.Sum(x => x.SubTotal)
-                    +nudImpuestoInterno.Value 
-                    +nudIva105.Value 
-                    + nudIva21.Value 
-                    + nudIva27.Value 
-                    + nudPercepcionIB.Value 
-                    + nudPercepcionIva.Value 
-                    + nudPercepcionPyP.Value 
+                    + nudImpuestoInterno.Value
+                    + nudIva105.Value
+                    + nudIva21.Value
+                    + nudIva27.Value
+                    + nudPercepcionIB.Value
+                    + nudPercepcionIva.Value
+                    + nudPercepcionPyP.Value
                     + nudPercepcionTem.Value
                 ).ToString("C2");
         }
@@ -130,6 +166,12 @@
         private void nud_Leave(object sender, EventArgs e)
         {
             ActualizarTotal();
+        }
+
+        private void nudPrecioUnitario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+                SetEstadoCargaCodigo();
         }
 
         private void chkIva27_CheckedChanged(object sender, EventArgs e)
@@ -180,6 +222,16 @@
             nudPercepcionIB.Value = 0;
         }
 
+        private void formaPagoEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+            chkCuentaCorriente.Checked = !chkEfectivo.Checked;
+        }
+
+        private void formaPagoCuentaCorriente_CheckedChanged(object sender, EventArgs e)
+        {
+            chkEfectivo.Checked = !chkCuentaCorriente.Checked;
+        }
+
         private void cmbTipoComprobante_SelectionChangeCommitted(object sender, EventArgs e)
         {
             compra.Tipo = (TipoComprobante)cmbTipoComprobante.SelectedItem;
@@ -220,38 +272,54 @@
             CargarDatosProveedor();
         }
 
+        // PORCESO AGREGAR ITEM
+
+        private void SetEstadoCargaCodigo()
+        {
+            btnAgregarItem.Enabled = false;
+            nudCantidad.Enabled = false;
+            nudPrecioUnitario.Enabled = false;
+            txtCodigo.Enabled = true;
+
+            nudCantidad.Value = 1;
+            nudPrecioUnitario.Value = 1;
+            txtSubTotalLinea.Text = "";
+            txtDescripcion.Text = "";
+            
+            txtCodigo.Clear();
+            txtCodigo.Focus();
+        }
+
+        private void SetEstadoConfirmarItem()
+        {
+            btnAgregarItem.Enabled = true;
+            nudCantidad.Enabled = true;
+            nudPrecioUnitario.Enabled = true;
+            txtCodigo.Enabled = false;
+
+            txtDescripcion.Text = itemSeleccionado.Descripcion;
+            
+            nudPrecioUnitario.Focus();
+            nudPrecioUnitario.Select(1,4);
+        }
+
         private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string codigo = txtCodigo.Text;
-
-            if (codigo == string.Empty || e.KeyChar != (char)Keys.Enter)
-            {
-                nudCantidad.Value = 1;
-                nudCantidad.Enabled = false;
-                nudPrecioUnitario.Value = 0;
-                nudPrecioUnitario.Enabled = false;
+            if (e.KeyChar != (char)Keys.Enter)
                 return;
-            }
 
             itemSeleccionado = _artiuloServicios.ObtenerPorCodigo(txtCodigo.Text);
 
             if (itemSeleccionado == null)
             {
                 Mjs.Error("Código no encontrado.");
-                txtCodigo.Clear();
                 txtCodigo.Focus();
-                txtDescripcion.Text = "";
+                txtCodigo.SelectAll();
                 return;
             }
 
-            txtDescripcion.Text = itemSeleccionado.Descripcion;
-            nudCantidad.Enabled = true;
-            nudPrecioUnitario.Enabled = true;
-            nudPrecioUnitario.Value = 0;
-            nudPrecioUnitario.Select(0, 4);
+            SetEstadoConfirmarItem();
         }
-
-        // EVENTO DE BOTONES
 
         private void btnAgregarItem_Click(object sender, EventArgs e)
         {
@@ -260,15 +328,11 @@
             compra.AgregarItem(itemSeleccionado);
 
             itemSeleccionado = new ArticuloCompraDto();
-            nudCantidad.Value = 1;
-            nudCantidad.Enabled = false;
-            nudPrecioUnitario.Value = 0;
-            nudPrecioUnitario.Enabled = false;
-            txtDescripcion.Text = "";
             ActualizarGrilla();
-            txtCodigo.Clear();
-            txtCodigo.Focus();
+            SetEstadoCargaCodigo();
         }
+
+        // EVENTO DE BOTONES
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
@@ -284,6 +348,25 @@
 
         private void btnGuardarCompra_Click(object sender, EventArgs e)
         {
+            if (compra.Items.Count < 1)
+            {
+                Mjs.Alerta($@"No se puede guardar el comprobante.{Environment.NewLine} No tiene items agregados.");
+                return;
+            }
+
+            CompraDto nuevaCompra = ExtraerDatosDeCompra();
+
+            _compraServicios.Insertar(nuevaCompra);
+
+            RealizarPagoDeLaCompra();
+
+            Mjs.Info("Comprobante guardado correctamente.");
+
+            SetearControles();
+        }
+
+        private CompraDto ExtraerDatosDeCompra()
+        {
             // Extraer datos
             compra.ImpuestosInternos = nudImpuestoInterno.Value;
             compra.Iva105 = nudIva105.Value;
@@ -296,7 +379,7 @@
             compra.Fecha = dtpFecha.Value;
 
             // guardar los datos
-            var nuevaCompra = new CompraDto()
+            return new CompraDto()
             {
                 ProveedorId = compra.Proveedor.Id,
                 EmpleadoId = Identidad.EmpleadoId,
@@ -322,13 +405,42 @@
                     Precio = iv.Precio
                 }).ToList()
             };
+        }
 
-            nuevaCompra.Id = _compraServicios.Insertar(nuevaCompra);
+        private void RealizarPagoDeLaCompra()
+        {
+            // Pago de la compra
+            var totalCompra = compra.Items.Sum(x => x.SubTotal)
+                    + nudImpuestoInterno.Value
+                    + nudIva105.Value
+                    + nudIva21.Value
+                    + nudIva27.Value
+                    + nudPercepcionIB.Value
+                    + nudPercepcionIva.Value
+                    + nudPercepcionPyP.Value
+                    + nudPercepcionTem.Value;
 
-            // TODO: Ver que hacemos con el pago de la compra
+            // Pago en efectivo
+            if (chkEfectivo.Checked)
+                _compraServicios.InsertarDetalleCaja(new CajaDetalleDto()
+                {
+                    CajaId = cajaActivaId,
+                    TipoPago = TipoPago.Efectivo,
+                    TipoMovimiento = TipoMovimiento.Egreso,
+                    Monto = totalCompra
+                });
 
-            Mjs.Info("Comprobante guardado correctamente.");
-            SetearControles();
+            // Pago en cuenta corriente
+            else
+                _compraServicios.InsertarMovimientoCuentaCorriente(new MovimientoCuentaCorrienteProveedorDto()
+                {
+                    ProveedorId = compra.Proveedor.Id,
+                    CajaId = cajaActivaId,
+                    Fecha = compra.Fecha,
+                    Descripcion = "Compra en cuenta corriente",
+                    TipoMovimiento = TipoMovimiento.Ingreso,
+                    Monto = totalCompra
+                });
         }
     }
 }

@@ -20,14 +20,14 @@
         }
 
         // CONSULTA
-        public CajaDto ObtenerCajaAciva(long usuarioId)
+        public long? ObtenerCajaAciva(long usuarioId)
         {
-            return Map(
-                _unidadDeTrabajo.CajaRepositorio
-                .Obtener()
-                .ToList()
-                .LastOrDefault(x => x.UsuarioAperturaId == usuarioId && x.UsuarioCierreId == null)
-            );
+            var caja = _unidadDeTrabajo.CajaRepositorio
+            .Obtener()
+            .ToList()
+            .LastOrDefault(x => x.UsuarioAperturaId == usuarioId && x.UsuarioCierreId == null);
+
+            return caja?.Id;
         }
 
         public decimal ObtenerMontoCajaAnterior(long usuarioId)
@@ -130,30 +130,43 @@
         }
 
         // PRIVADAS
-        private CajaDto Map (Dominio.Entidades.Caja x)
-            => new CajaDto()
+        private CajaDto Map(Dominio.Entidades.Caja x)
+        {
+            try
             {
-                Id = x.Id,
-                // ----------------------------------------//
-                UsuarioAperturaId = x.UsuarioAperturaId,
-                UsuarioApertura = x.UsuarioApertura.Nombre,
-                FechaApertura = x.FechaApertura,
-                MontoApertura = x.MontoInicial,
-                // ----------------------------------------//
-                UsuarioCierreId = x.UsuarioCierreId,
-                UsuarioCierre = x.UsuarioCierreId.HasValue ? x.UsuarioCierre.Nombre : "----",
-                FechaCierre = x.FechaCierre,
-                Eliminado = x.EstaEliminado,
-                // ----------------------------------------//
-                Detalle = x.DetalleCajas.Select(d => new CajaDetalleDto() { 
-                    Id = d.Id,
-                    CajaId = d.CajaId,
-                    TipoMovimiento = d.TipoMovimiento,
-                    TipoPago = d.TipoPago,
-                    Monto = d.Monto,
-                    Eliminado = d.EstaEliminado,
-                }).ToList()
-            };
+                var detalle = (x.DetalleCajas ?? new List<Dominio.Entidades.DetalleCaja>())
+                        .Select(d => new CajaDetalleDto()
+                        {
+                            Id = d.Id,
+                            CajaId = d.CajaId,
+                            TipoMovimiento = d.TipoMovimiento,
+                            TipoPago = d.TipoPago,
+                            Monto = d.Monto,
+                            Eliminado = d.EstaEliminado,
+                        }).ToList();
+
+                return 
+                    new CajaDto()
+                    {
+                        Id = x.Id,
+                        // ----------------------------------------//
+                        UsuarioAperturaId = x.UsuarioAperturaId,
+                        UsuarioApertura = x.UsuarioApertura.Nombre ?? "",
+                        FechaApertura = x.FechaApertura,
+                        MontoApertura = x.MontoInicial,
+                        // ----------------------------------------//
+                        UsuarioCierreId = x.UsuarioCierreId ?? 0,
+                        UsuarioCierre = x.UsuarioCierreId.HasValue ? x.UsuarioCierre.Nombre : "----",
+                        FechaCierre = x.FechaCierre ?? DateTime.Today,
+                        Eliminado = x.EstaEliminado,
+                        Detalle = detalle
+                    };
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
         private Dominio.Entidades.Caja Map (CajaDto x)
             => new Dominio.Entidades.Caja()

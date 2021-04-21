@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Aplicacion.Constantes;
     using IServicio.FormaPago;
     using IServicio.Persona;
@@ -42,12 +41,9 @@
             FormasPago = new List<FormaPagoDto>();
             Cliente = (ClienteDto)clienteServicio.Obtener(typeof(ClienteDto), clienteId);
             ClienteSaldoCuentaCorriente = clienteServicio.SaldoCuentaCorriente(Cliente.Id);
-
-            SetearControles();
-            CargarDatos();
         }
 
-        private void SetearControles()
+        private void _00044_FormaPago_Load(object sender, EventArgs e)
         {
             PoblarComboBox(
                 cmbBanco,
@@ -64,6 +60,8 @@
             nudMontoCheque.Maximum = TotalAPagar;
             nudMontoTarjeta.Maximum = TotalAPagar;
             nudMontoCtaCte.Maximum = TotalAPagar;
+
+            CargarDatos();
         }
 
         private void CargarDatos()
@@ -222,7 +220,6 @@
                     {
                         TipoPago = TipoPago.Cheque,
                         BancoId = (long)cmbBanco.SelectedValue,
-                        ClienteId = Cliente.Id,
                         FechaVencimiento = dtpFechaVencimientoCheque.Value,
                         Monto = nudMontoCheque.Value,
                         Numero = txtNumeroCheque.Text,

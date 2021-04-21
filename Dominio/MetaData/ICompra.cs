@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Aplicacion.Constantes;
-
-namespace Dominio.MetaData
+﻿namespace Dominio.MetaData
 {
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public interface ICompra
     {
         [Required(ErrorMessage = "El campo {0} es Obligatorio.")]

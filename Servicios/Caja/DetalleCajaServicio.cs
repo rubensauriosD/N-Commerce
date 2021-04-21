@@ -1,7 +1,7 @@
-﻿using IServicios.Caja;
-
-namespace Servicios.Caja
+﻿namespace Servicios.Caja
 {
+    using IServicios.Caja;
+
     public class DetalleCajaServicio : IDetalleCajaServicio
     {
     }

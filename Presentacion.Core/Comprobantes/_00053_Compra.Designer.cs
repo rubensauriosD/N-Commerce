@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grbFormasPago = new System.Windows.Forms.GroupBox();
+            this.chkCuentaCorriente = new System.Windows.Forms.CheckBox();
+            this.chkEfectivo = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnGuardarCompra = new System.Windows.Forms.Button();
             this.nudIva27 = new System.Windows.Forms.NumericUpDown();
@@ -82,6 +85,7 @@
             this.txtDomicilio = new System.Windows.Forms.TextBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            this.grbFormasPago.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudIva27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPercepcionIva)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPercepcionPyP)).BeginInit();
@@ -99,6 +103,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.grbFormasPago);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.btnGuardarCompra);
             this.panel1.Controls.Add(this.nudIva27);
@@ -124,6 +129,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(799, 107);
             this.panel1.TabIndex = 2;
+            // 
+            // grbFormasPago
+            // 
+            this.grbFormasPago.Controls.Add(this.chkCuentaCorriente);
+            this.grbFormasPago.Controls.Add(this.chkEfectivo);
+            this.grbFormasPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grbFormasPago.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbFormasPago.Location = new System.Drawing.Point(405, 12);
+            this.grbFormasPago.Name = "grbFormasPago";
+            this.grbFormasPago.Size = new System.Drawing.Size(164, 83);
+            this.grbFormasPago.TabIndex = 20;
+            this.grbFormasPago.TabStop = false;
+            this.grbFormasPago.Text = "[ Forma Pago ]";
+            // 
+            // chkCuentaCorriente
+            // 
+            this.chkCuentaCorriente.AutoSize = true;
+            this.chkCuentaCorriente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCuentaCorriente.Location = new System.Drawing.Point(14, 47);
+            this.chkCuentaCorriente.Name = "chkCuentaCorriente";
+            this.chkCuentaCorriente.Size = new System.Drawing.Size(116, 19);
+            this.chkCuentaCorriente.TabIndex = 1;
+            this.chkCuentaCorriente.Text = "Cuenta Corriente";
+            this.chkCuentaCorriente.UseVisualStyleBackColor = true;
+            this.chkCuentaCorriente.CheckedChanged += new System.EventHandler(this.formaPagoCuentaCorriente_CheckedChanged);
+            // 
+            // chkEfectivo
+            // 
+            this.chkEfectivo.AutoSize = true;
+            this.chkEfectivo.Checked = true;
+            this.chkEfectivo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEfectivo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkEfectivo.Location = new System.Drawing.Point(14, 24);
+            this.chkEfectivo.Name = "chkEfectivo";
+            this.chkEfectivo.Size = new System.Drawing.Size(68, 19);
+            this.chkEfectivo.TabIndex = 0;
+            this.chkEfectivo.Text = "Efectivo";
+            this.chkEfectivo.UseVisualStyleBackColor = true;
+            this.chkEfectivo.CheckedChanged += new System.EventHandler(this.formaPagoEfectivo_CheckedChanged);
             // 
             // label12
             // 
@@ -512,6 +556,7 @@
             0,
             0,
             0});
+            this.nudPrecioUnitario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudPrecioUnitario_KeyPress);
             // 
             // panel3
             // 
@@ -582,6 +627,7 @@
             // 
             this.btnAgregarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarItem.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnAgregarItem.Enabled = false;
             this.btnAgregarItem.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnAgregarItem.FlatAppearance.BorderSize = 0;
             this.btnAgregarItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -619,6 +665,7 @@
             0,
             0,
             0});
+            this.nudCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudPrecioUnitario_KeyPress);
             // 
             // label7
             // 
@@ -830,6 +877,8 @@
             this.Load += new System.EventHandler(this._00053_Compra_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.grbFormasPago.ResumeLayout(false);
+            this.grbFormasPago.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudIva27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPercepcionIva)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPercepcionPyP)).EndInit();
@@ -902,5 +951,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbTipoComprobante;
+        private System.Windows.Forms.GroupBox grbFormasPago;
+        private System.Windows.Forms.CheckBox chkCuentaCorriente;
+        private System.Windows.Forms.CheckBox chkEfectivo;
     }
 }
