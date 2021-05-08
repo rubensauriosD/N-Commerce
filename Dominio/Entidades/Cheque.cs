@@ -1,7 +1,6 @@
 ﻿namespace Dominio.Entidades
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Dominio.MetaData;
@@ -19,12 +18,13 @@
 
         public DateTime FechaVencimiento { get; set; }
 
+        public DateTime? FechaDeposito { get; set; }
+
+        public bool Depositado { get; set; }
+
         // Propiedades de Navegacion
         public virtual Banco Banco { get; set; }
 
         public virtual Cliente Cliente { get; set; }
-
-        public virtual ICollection<DepositoCheque> DepositoCheques { get; set; }
-
     }
 }

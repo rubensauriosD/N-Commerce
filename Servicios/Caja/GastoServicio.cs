@@ -35,6 +35,7 @@
                 ConceptoGastoId = dto.ConceptoGastoId,
                 Fecha = dto.Fecha,
                 Monto = dto.Monto,
+                CajaId = dto.CajaId,
                 EstaEliminado = false
             };
 
@@ -70,6 +71,7 @@
                 ConceptoGastoId = entidad.ConceptoGastoId,
                 Fecha = entidad.Fecha,
                 Monto = entidad.Monto,
+                CajaId = entidad.CajaId,
                 Eliminado = entidad.EstaEliminado
             };
         }
@@ -90,6 +92,7 @@
                     ConceptoGastoId = x.ConceptoGastoId,
                     Fecha = x.Fecha,
                     Monto = x.Monto,
+                    CajaId = x.CajaId,
                     Eliminado = x.EstaEliminado
                 })
                 .OrderBy(x => x.Descripcion)

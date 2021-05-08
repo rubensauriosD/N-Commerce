@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Aplicacion.Constantes;
-
-namespace Dominio.MetaData
+﻿namespace Dominio.MetaData
 {
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using Aplicacion.Constantes;
+
     public interface IConfiguracion
     {
         // ====================================== //
@@ -57,10 +57,6 @@ namespace Dominio.MetaData
         [DefaultValue(true)]
         bool ActualizaCostoDesdeCompra { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es Obligatorio")]
-        [DefaultValue(true)]
-        bool ModificaPrecioVentaDesdeCompra { get; set; }
-
         // ====================================== //
         // ==    Forma de Pago por defecto     == //
         // ====================================== //
@@ -102,12 +98,6 @@ namespace Dominio.MetaData
 
         [Required(ErrorMessage = "El campo {0} es Obligatorio")]
         [DefaultValue(false)]
-        bool ActivarRetiroDeCaja { get; set; }
-
-        [Required(ErrorMessage = "El campo {0} es Obligatorio")]
-        [DataType(DataType.Currency)]
-        // Propiedad para no permitir que tenga mas de un cierto
-        // monto de dinero en la caja
-        decimal MontoMaximoRetiroCaja { get; set; }
+        bool PermitirArqueoNegativo { get; set; }
     }
 }

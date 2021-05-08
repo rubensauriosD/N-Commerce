@@ -36,7 +36,7 @@
             _proveedorServicios = ObjectFactory.GetInstance<IProveedorServicio>();
             _artiuloServicios = ObjectFactory.GetInstance<IArticuloServicio>();
             _compraServicios = ObjectFactory.GetInstance<ICompraServicio>();
-            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)
             {

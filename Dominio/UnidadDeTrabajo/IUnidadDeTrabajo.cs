@@ -16,6 +16,7 @@
         IFacturaRepositorio FacturaRepositorio { get; }
         IClienteRepositorio ClienteRepositorio { get; }
         IEmpleadoRepositorio EmpleadoRepositorio { get; }
+        IRepositorio<Cheque> ChequeRepositorio { get; }
         IRepositorio<Articulo> ArticuloRepositorio { get; }
         IRepositorio<Banco> BancoRepositorio { get; }
         IRepositorio<ConceptoGasto> ConceptoGastoRepositorio { get; }

@@ -1,8 +1,10 @@
 ﻿namespace Presentacion.Core.Caja
 {
     using System.Windows.Forms;
+    using Aplicacion.Constantes;
     using IServicio.Caja;
     using IServicio.Caja.DTOs;
+    using IServicios.Caja;
     using PresentacionBase.Formularios;
     using StructureMap;
 
@@ -10,6 +12,8 @@
     {
         private readonly IGastoServicio _servicio;
         private readonly IConceptoGastoServicio _servicioConceptoGasto;
+        private readonly ICajaServicio _servicioCaja;
+        private long cajaActivaId;
 
         public _00044_Abm_Gastos(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -18,8 +22,22 @@
 
             _servicio = ObjectFactory.GetInstance<IGastoServicio>();
             _servicioConceptoGasto = ObjectFactory.GetInstance<IConceptoGastoServicio>();
+            _servicioCaja = ObjectFactory.GetInstance<ICajaServicio>();
 
-            
+        }
+
+        private void _00044_Abm_Gastos_Load(object sender, System.EventArgs e)
+        {
+            var cajaId = _servicioCaja.ObtenerIdCajaAciva(Identidad.UsuarioId);
+
+            if (cajaId == null)
+            {
+                Mjs.Alerta("No se puede continuar con la operación porqué no hay una caja abierta.");
+                Close();
+            }
+
+            cajaActivaId = (long)cajaId;
+
             PoblarComboBox(
                 cmbConcepto,
                 _servicioConceptoGasto.Obtener(string.Empty, false),
@@ -73,6 +91,7 @@
             nuevoRegistro.ConceptoGastoId = (long)cmbConcepto.SelectedValue;
             nuevoRegistro.Monto = nudMontoPagar.Value;
             nuevoRegistro.Eliminado = false;
+            nuevoRegistro.CajaId = cajaActivaId;
 
             _servicio.Insertar(nuevoRegistro);
         }
@@ -86,6 +105,7 @@
             modificarRegistro.ConceptoGastoId = (long)cmbConcepto.SelectedValue;
             modificarRegistro.Monto = nudMontoPagar.Value;
             modificarRegistro.Eliminado = false;
+            modificarRegistro.CajaId = cajaActivaId;
 
             _servicio.Modificar(modificarRegistro);
         }
@@ -116,5 +136,6 @@
                     "Id"
                     );
         }
+
     }
 }

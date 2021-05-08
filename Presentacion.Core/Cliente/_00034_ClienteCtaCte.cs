@@ -95,7 +95,7 @@
         // ACCIONES DE CONTROLES
         private void btnRealizarPago_Click(object sender, EventArgs e)
         {
-            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)
             {
@@ -128,7 +128,7 @@
 
         private void btnCancelarPago_Click(object sender, EventArgs e)
         {
-            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)
             {

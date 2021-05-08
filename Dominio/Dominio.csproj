@@ -64,10 +64,8 @@
     <Compile Include="Entidades\CondicionIva.cs" />
     <Compile Include="Entidades\Configuracion.cs" />
     <Compile Include="Entidades\Contador.cs" />
-    <Compile Include="Entidades\CuentaBancaria.cs" />
     <Compile Include="Entidades\Departamento.cs" />
     <Compile Include="Entidades\Deposito.cs" />
-    <Compile Include="Entidades\DepositoCheque.cs" />
     <Compile Include="Entidades\DetalleCaja.cs" />
     <Compile Include="Entidades\DetalleComprobante.cs" />
     <Compile Include="Entidades\Empleado.cs" />

@@ -221,7 +221,6 @@ namespace PresentacionBase.Formularios
             this.Controls.Add(this.pnlSeparador);
             this.Controls.Add(this.tspMenu);
             this.Name = "FormConsulta";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FormConsulta_Load);
             this.tspMenu.ResumeLayout(false);
@@ -242,7 +241,6 @@ namespace PresentacionBase.Formularios
         private System.Windows.Forms.ToolStrip tspMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Panel pnlSeparador;
-        private System.Windows.Forms.Panel pnlBusqueda;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.DataGridView dgvGrilla;
@@ -253,5 +251,6 @@ namespace PresentacionBase.Formularios
         protected System.Windows.Forms.ToolStripButton btnSalir;
         private System.Windows.Forms.ToolStripStatusLabel lblRegistros;
         private System.Windows.Forms.PictureBox picBuscar;
+        public System.Windows.Forms.Panel pnlBusqueda;
     }
 }

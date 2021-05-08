@@ -155,6 +155,7 @@
             this.MinimumSize = new System.Drawing.Size(511, 275);
             this.Name = "_00044_Abm_Gastos";
             this.Text = "Gastos (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00044_Abm_Gastos_Load);
             this.Controls.SetChildIndex(this.cmbConcepto, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btnNuevoConcepto, 0);

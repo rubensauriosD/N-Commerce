@@ -48,6 +48,7 @@
             this.btnConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnComprobanteCompra = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVenta = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPagosPendientes = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +75,7 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.btnBanco = new System.Windows.Forms.ToolStripMenuItem();
             this.btnTarjeta = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCheque = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlInfoUsuario = new System.Windows.Forms.Panel();
             this.lnkCambiarFoto = new System.Windows.Forms.LinkLabel();
             this.lnkCambiarPassword = new System.Windows.Forms.LinkLabel();
@@ -82,7 +84,8 @@
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.picFotoUsuario = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnComprobanteCompra = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAdministrarDepositos = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDepositoTransferencias = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlInfoUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFotoUsuario)).BeginInit();
@@ -242,9 +245,16 @@
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
+            // 
+            // btnComprobanteCompra
+            // 
+            this.btnComprobanteCompra.Name = "btnComprobanteCompra";
+            this.btnComprobanteCompra.Size = new System.Drawing.Size(139, 22);
+            this.btnComprobanteCompra.Text = "Compra";
+            this.btnComprobanteCompra.Click += new System.EventHandler(this.btnComprobanteCompra_Click);
             // 
             // ventaToolStripMenuItem
             // 
@@ -361,10 +371,12 @@
             // 
             // btnDeposito
             // 
+            this.btnDeposito.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAdministrarDepositos,
+            this.btnDepositoTransferencias});
             this.btnDeposito.Name = "btnDeposito";
             this.btnDeposito.Size = new System.Drawing.Size(207, 22);
             this.btnDeposito.Text = "Depósito";
-            this.btnDeposito.Click += new System.EventHandler(this.btnDeposito_Click);
             // 
             // cajaToolStripMenuItem
             // 
@@ -377,7 +389,8 @@
             this.btnConceptoGasto,
             this.toolStripMenuItem8,
             this.btnBanco,
-            this.btnTarjeta});
+            this.btnTarjeta,
+            this.btnCheque});
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
             this.cajaToolStripMenuItem.Size = new System.Drawing.Size(42, 19);
             this.cajaToolStripMenuItem.Text = "Caja";
@@ -440,6 +453,13 @@
             this.btnTarjeta.Size = new System.Drawing.Size(159, 22);
             this.btnTarjeta.Text = "Tarjeta";
             this.btnTarjeta.Click += new System.EventHandler(this.btnTarjeta_Click);
+            // 
+            // btnCheque
+            // 
+            this.btnCheque.Name = "btnCheque";
+            this.btnCheque.Size = new System.Drawing.Size(159, 22);
+            this.btnCheque.Text = "Cheque";
+            this.btnCheque.Click += new System.EventHandler(this.btnCheque_Click);
             // 
             // pnlInfoUsuario
             // 
@@ -537,12 +557,19 @@
             this.panel2.Size = new System.Drawing.Size(784, 3);
             this.panel2.TabIndex = 4;
             // 
-            // btnComprobanteCompra
+            // btnAdministrarDepositos
             // 
-            this.btnComprobanteCompra.Name = "btnComprobanteCompra";
-            this.btnComprobanteCompra.Size = new System.Drawing.Size(180, 22);
-            this.btnComprobanteCompra.Text = "Compra";
-            this.btnComprobanteCompra.Click += new System.EventHandler(this.btnComprobanteCompra_Click);
+            this.btnAdministrarDepositos.Name = "btnAdministrarDepositos";
+            this.btnAdministrarDepositos.Size = new System.Drawing.Size(180, 22);
+            this.btnAdministrarDepositos.Text = "Administrar";
+            this.btnAdministrarDepositos.Click += new System.EventHandler(this.btnAdministrarDepositos_Click);
+            // 
+            // btnDepositoTransferencias
+            // 
+            this.btnDepositoTransferencias.Name = "btnDepositoTransferencias";
+            this.btnDepositoTransferencias.Size = new System.Drawing.Size(180, 22);
+            this.btnDepositoTransferencias.Text = "Transferencias";
+            this.btnDepositoTransferencias.Click += new System.EventHandler(this.btnDepositoTransferencias_Click);
             // 
             // Principal
             // 
@@ -630,6 +657,9 @@
         private System.Windows.Forms.ToolStripMenuItem btnModificarPrecioArticulos;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnComprobanteCompra;
+        private System.Windows.Forms.ToolStripMenuItem btnCheque;
+        private System.Windows.Forms.ToolStripMenuItem btnAdministrarDepositos;
+        private System.Windows.Forms.ToolStripMenuItem btnDepositoTransferencias;
     }
 }
 

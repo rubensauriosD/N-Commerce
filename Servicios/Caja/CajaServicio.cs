@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using Dominio.UnidadDeTrabajo;
     using Infraestructura.UnidadDeTrabajo;
+    using IServicio.Caja.DTOs;
     using IServicios.Caja;
     using IServicios.Caja.DTOs;
     using Servicios.Base;
@@ -20,7 +21,7 @@
         }
 
         // CONSULTA
-        public long? ObtenerCajaAciva(long usuarioId)
+        public long? ObtenerIdCajaAciva(long usuarioId)
         {
             var caja = _unidadDeTrabajo.CajaRepositorio
             .Obtener()
@@ -28,6 +29,25 @@
             .LastOrDefault(x => x.UsuarioAperturaId == usuarioId && x.UsuarioCierreId == null);
 
             return caja?.Id;
+        }
+
+        public CajaDto ObtenerCajaAciva(long usuarioId)
+        {
+            try
+            {
+                var caja = _unidadDeTrabajo.CajaRepositorio
+                .Obtener(
+                    x => x.UsuarioAperturaId == usuarioId && x.UsuarioCierreId == null,
+                    "UsuarioApertura, UsuarioCierre, DetalleCajas, Gastos")
+                .ToList()
+                .LastOrDefault();
+
+                return Map(caja);
+            }
+            catch (Exception e)
+            {
+                throw new Exception ($@"No se pudo obtener la caja activa.{Environment.NewLine + e.Message}");
+            }
         }
 
         public decimal ObtenerMontoCajaAnterior(long usuarioId)
@@ -69,7 +89,7 @@
             }
 
             return _unidadDeTrabajo.CajaRepositorio.Obtener(filtro,
-            "UsuarioApertura, UsuarioCierre, DetalleCajas")
+            "UsuarioApertura, UsuarioCierre, DetalleCajas, Gastos")
             .Select(x => Map(x))
             .ToList();
         }
@@ -114,7 +134,7 @@
                 if (caja == null)
                     throw new Exception("No se encontro una caja para cerrar");
 
-                caja.UsuarioCierreId = (long?)null;
+                caja.UsuarioCierreId = usuarioId;
                 caja.FechaCierre = DateTime.Now;
                 caja.MontoCierre = monto;
 
@@ -124,7 +144,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($@"Error al abrir la caja:{Environment.NewLine + ex.Message}");
+                throw new Exception($@"Error al cerrar la caja:{Environment.NewLine + ex.Message}");
             }
 
         }
@@ -134,6 +154,9 @@
         {
             try
             {
+                if (x == null)
+                    return new CajaDto();
+
                 var detalle = (x.DetalleCajas ?? new List<Dominio.Entidades.DetalleCaja>())
                         .Select(d => new CajaDetalleDto()
                         {
@@ -145,7 +168,19 @@
                             Eliminado = d.EstaEliminado,
                         }).ToList();
 
-                return 
+                var gastos = (x.Gastos ?? new List<Dominio.Entidades.Gasto>())
+                        .Select(d => new GastoDto()
+                        {
+                            Id = d.Id,
+                            CajaId = d.CajaId,
+                            Fecha = d.Fecha,
+                            Descripcion = d.Descripcion,
+                            ConceptoGastoId = d.ConceptoGastoId,
+                            Monto = d.Monto,
+                            Eliminado = d.EstaEliminado,
+                        }).ToList();
+
+                return
                     new CajaDto()
                     {
                         Id = x.Id,
@@ -158,8 +193,10 @@
                         UsuarioCierreId = x.UsuarioCierreId ?? 0,
                         UsuarioCierre = x.UsuarioCierreId.HasValue ? x.UsuarioCierre.Nombre : "----",
                         FechaCierre = x.FechaCierre ?? DateTime.Today,
+                        MontoCierre = x.MontoCierre ?? 0,
                         Eliminado = x.EstaEliminado,
-                        Detalle = detalle
+                        Detalle = detalle,
+                        Gastos = gastos
                     };
             }
             catch (Exception e)

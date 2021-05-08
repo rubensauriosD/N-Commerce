@@ -40,8 +40,6 @@ namespace IServicio.Configuracion.DTOs
 
         public bool ActualizaCostoDesdeCompra { get; set; }
 
-        public bool ModificaPrecioVentaDesdeCompra { get; set; }
-
         public long DepositoNuevoArticuloId { get; set; }
 
         // ====================================== //
@@ -72,7 +70,7 @@ namespace IServicio.Configuracion.DTOs
 
         public bool PuestoCajaSeparado { get; set; }
 
-        public bool ActivarRetiroDeCaja { get; set; }
+        public bool PermitirArqueoNegativo { get; set; }
 
         // ====================================== //
         // =========       Báscula      ========= //
@@ -85,10 +83,6 @@ namespace IServicio.Configuracion.DTOs
         public bool EtiquetaPorPrecio { get; set; }
 
         public bool EtiquetaPorPeso { get; set; }
-
-        // Propiedad para no permitir que tenga mas de un cierto
-        // monto de dinero en la caja
-        public decimal MontoMaximoRetiroCaja { get; set; }
 
         // ====================================== //
 

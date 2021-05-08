@@ -45,10 +45,8 @@
         public DbSet<CondicionIva> CondicionIvas { get; set; }
         public DbSet<Configuracion> Configurationes { get; set; }
         public DbSet<Contador> Contadores { get; set; }
-        public DbSet<CuentaBancaria> CuentaBancarias { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
         public DbSet<Deposito> Depositos { get; set; }
-        public DbSet<DepositoCheque> DepositoCheques { get; set; }
         public DbSet<DetalleCaja> DetalleCajas { get; set; }
         public DbSet<DetalleComprobante> DetalleComprobantes { get; set; }
         public DbSet<Empleado> Empleados { get; set; }

@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using Dominio.UnidadDeTrabajo;
-using IServicio.Configuracion;
-using IServicio.Configuracion.DTOs;
-
-namespace Servicios.Configuracion
+﻿namespace Servicios.Configuracion
 {
+    using System.Linq;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.Configuracion;
+    using IServicio.Configuracion.DTOs;
+
     public class ConfiguracionServicio : IConfiguracionServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;
@@ -24,7 +24,7 @@ namespace Servicios.Configuracion
             config.Id = configuracionDto.Id;
             config.EstaEliminado = false;
             config.LocalidadId = configuracionDto.LocalidadId;
-            config.ActivarRetiroDeCaja = configuracionDto.ActivarRetiroDeCaja;
+            config.PermitirArqueoNegativo = configuracionDto.PermitirArqueoNegativo;
             config.ActualizaCostoDesdeCompra = configuracionDto.ActualizaCostoDesdeCompra;
             config.Celular = configuracionDto.Celular;
             config.Cuit = configuracionDto.Cuit;
@@ -33,8 +33,6 @@ namespace Servicios.Configuracion
             config.FacturaDescuentaStock = configuracionDto.FacturaDescuentaStock;
             config.IngresoManualCajaInicial = configuracionDto.IngresoManualCajaInicial;
             config.ListaPrecioPorDefectoId = configuracionDto.ListaPrecioPorDefectoId;
-            config.ModificaPrecioVentaDesdeCompra = configuracionDto.ModificaPrecioVentaDesdeCompra;
-            config.MontoMaximoRetiroCaja = configuracionDto.MontoMaximoRetiroCaja;
             config.NombreFantasia = configuracionDto.NombreFantasia;
             config.ObservacionEnPieFactura = configuracionDto.ObservacionEnPieFactura;
             config.PresupuestoDescuentaStock = configuracionDto.PresupuestoDescuentaStock;
@@ -78,7 +76,7 @@ namespace Servicios.Configuracion
                 LocalidadId = config.LocalidadId,
                 DepartamentoId = config.Localidad.DepartamentoId,
                 ProvinciaId = config.Localidad.Departamento.ProvinciaId,
-                ActivarRetiroDeCaja = config.ActivarRetiroDeCaja,
+                PermitirArqueoNegativo = config.PermitirArqueoNegativo,
                 ActualizaCostoDesdeCompra = config.ActualizaCostoDesdeCompra,
                 Celular = config.Celular,
                 Cuit = config.Cuit,
@@ -87,8 +85,6 @@ namespace Servicios.Configuracion
                 FacturaDescuentaStock = config.FacturaDescuentaStock,
                 IngresoManualCajaInicial = config.IngresoManualCajaInicial,
                 ListaPrecioPorDefectoId = config.ListaPrecioPorDefectoId,
-                ModificaPrecioVentaDesdeCompra = config.ModificaPrecioVentaDesdeCompra,
-                MontoMaximoRetiroCaja = config.MontoMaximoRetiroCaja,
                 NombreFantasia = config.NombreFantasia,
                 ObservacionEnPieFactura = config.ObservacionEnPieFactura,
                 PresupuestoDescuentaStock = config.PresupuestoDescuentaStock,

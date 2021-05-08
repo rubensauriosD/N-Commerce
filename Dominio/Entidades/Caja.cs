@@ -32,5 +32,8 @@
         public virtual Usuario UsuarioCierre { get; set; }
 
         public virtual ICollection<DetalleCaja> DetalleCajas { get; set; }
+
+        [ForeignKey("CajaId")]
+        public virtual ICollection<Gasto> Gastos { get; set; }
     }
 }

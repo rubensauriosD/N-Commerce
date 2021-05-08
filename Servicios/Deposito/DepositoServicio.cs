@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Transactions;
-using Dominio.UnidadDeTrabajo;
-using IServicio.BaseDto;
-using IServicio.Deposito;
-using IServicio.Deposito.DTOs;
-using Servicios.Base;
-
-namespace Servicios.Deposito
+﻿namespace Servicios.Deposito
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Transactions;
+    using Aplicacion.Constantes;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.BaseDto;
+    using IServicio.Deposito;
+    using IServicio.Deposito.DTOs;
+    using IServicios.Deposito.DTOs;
+    using Servicios.Base;
+
     public class DepositoServicio : IDepositoSevicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;
@@ -20,6 +22,7 @@ namespace Servicios.Deposito
             _unidadDeTrabajo = unidadDeTrabajo;
         }
 
+        // --- Persistencia
         public void Eliminar(long id)
         {
             _unidadDeTrabajo.DepositoRepositorio.Eliminar(id);
@@ -82,15 +85,52 @@ namespace Servicios.Deposito
             _unidadDeTrabajo.Commit();
         }
 
+        public bool TransferirArticulos(TransferenciaDepositoDto transferencia)
+        {
+            try
+            {
+                var stocks = _unidadDeTrabajo.StockRepositorio.Obtener().ToList();
+
+                var origen = stocks.First(x => x.DepositoId == transferencia.OrigenId && x.ArticuloId == transferencia.ArticuloId);
+                var destino = stocks.First(x => x.DepositoId == transferencia.DestinoId && x.ArticuloId == transferencia.ArticuloId);
+
+                if (origen.Cantidad < transferencia.Cantidad)
+                {
+                    Mjs.Alerta("Stock insuficiente en el deposito de origen para realizar la transferencia.");
+                    return false;
+                }
+
+                origen.Cantidad -= transferencia.Cantidad;
+                destino.Cantidad += transferencia.Cantidad;
+
+                _unidadDeTrabajo.StockRepositorio.Modificar(origen);
+                _unidadDeTrabajo.StockRepositorio.Modificar(destino);
+                _unidadDeTrabajo.Commit();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error en DepositoServicio.TransferirArticulos:{Environment.NewLine}{e.Message}");
+            }
+        }
+
+        // --- Consulta
         public DtoBase Obtener(long id)
         {
-            var entidad = _unidadDeTrabajo.DepositoRepositorio.Obtener(id);
+            var entidad = _unidadDeTrabajo.DepositoRepositorio.Obtener(id, "Stocks, Stocks.Articulo");
 
             return new DepositoDto
             {
                 Id = entidad.Id,
                 Descripcion = entidad.Descripcion,
                 Ubicacion = entidad.Ubicacion,
+                Stocks = entidad.Stocks.Select(s => new StockDto()
+                {
+                    ArticuloId = s.ArticuloId,
+                    Articulo = s.Articulo.Descripcion,
+                    Cantidad = s.Cantidad
+                }).ToList(),
                 Eliminado = entidad.EstaEliminado
             };
         }
@@ -104,12 +144,17 @@ namespace Servicios.Deposito
                 filtro = filtro.And(x => !x.EstaEliminado);
 
 
-            return _unidadDeTrabajo.DepositoRepositorio.Obtener(filtro)
+            return _unidadDeTrabajo.DepositoRepositorio.Obtener(filtro,"Stocks, Stocks.Articulo")
                 .Select(x => new DepositoDto
                 {
                     Id = x.Id,
                     Descripcion = x.Descripcion,
                     Ubicacion = x.Ubicacion,
+                    Stocks = x.Stocks.Select(s => new StockDto() { 
+                        ArticuloId = s.ArticuloId,
+                        Articulo = s.Articulo.Descripcion,
+                        Cantidad = s.Cantidad
+                    }).ToList(),
                     Eliminado = x.EstaEliminado
                 })
                 .OrderBy(x => x.Descripcion)

@@ -1,21 +1,21 @@
-﻿using System;
-using System.Windows.Forms;
-using Aplicacion.Constantes;
-using IServicio.Configuracion;
-using IServicio.Configuracion.DTOs;
-using IServicio.Departamento;
-using IServicio.Deposito;
-using IServicio.ListaPrecio;
-using IServicio.Localidad;
-using IServicio.Provincia;
-using Presentacion.Core.Articulo;
-using Presentacion.Core.Departamento;
-using Presentacion.Core.Localidad;
-using Presentacion.Core.Provincia;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Configuracion
+﻿namespace Presentacion.Core.Configuracion
 {
+    using System;
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Configuracion;
+    using IServicio.Configuracion.DTOs;
+    using IServicio.Departamento;
+    using IServicio.Deposito;
+    using IServicio.ListaPrecio;
+    using IServicio.Localidad;
+    using IServicio.Provincia;
+    using Presentacion.Core.Articulo;
+    using Presentacion.Core.Departamento;
+    using Presentacion.Core.Localidad;
+    using Presentacion.Core.Provincia;
+    using PresentacionBase.Formularios;
+
     public partial class _00012_Configuracion : FormBase
     {
         private readonly IProvinciaServicio _provinciaServicio;
@@ -110,7 +110,6 @@ namespace Presentacion.Core.Configuracion
                 chkPresupuestoDescuentaStock.Checked = _configuracion.PresupuestoDescuentaStock;
                 chkRemitoDescuentaStock.Checked = _configuracion.RemitoDescuentaStock;
                 chkActualizaCostoDesdeCompra.Checked = _configuracion.ActualizaCostoDesdeCompra;
-                chkModificaPrevioVentaDesdeCompra.Checked = _configuracion.ModificaPrecioVentaDesdeCompra;
                 cmbTipoPagoCompraPorDefecto.SelectedItem = _configuracion.TipoFormaPagoPorDefectoCompra;
                 cmbDepositoPorDefectoStock.SelectedValue = _configuracion.DepositoNuevoArticuloId;
 
@@ -140,8 +139,7 @@ namespace Presentacion.Core.Configuracion
                     rdbIngresoPorCierreDelDIaAnterior.Checked = true;
 
                 chkPuestoSeparado.Checked = _configuracion.PuestoCajaSeparado;
-                chkRetiroDineroCaja.Checked = _configuracion.ActivarRetiroDeCaja;
-                nudMontoMaximo.Value = _configuracion.MontoMaximoRetiroCaja;
+                chkPermitirArqueoNegativo.Checked = _configuracion.PermitirArqueoNegativo;
             }
             else
             {
@@ -198,7 +196,6 @@ namespace Presentacion.Core.Configuracion
             _configuracion.PresupuestoDescuentaStock = chkPresupuestoDescuentaStock.Checked;
             _configuracion.RemitoDescuentaStock = chkRemitoDescuentaStock.Checked;
             _configuracion.ActualizaCostoDesdeCompra = chkActualizaCostoDesdeCompra.Checked;
-            _configuracion.ModificaPrecioVentaDesdeCompra = chkModificaPrevioVentaDesdeCompra.Checked;
             _configuracion.TipoFormaPagoPorDefectoCompra = (TipoPago)cmbTipoPagoCompraPorDefecto.SelectedItem;
             _configuracion.DepositoNuevoArticuloId = (long)cmbDepositoPorDefectoStock.SelectedValue;
 
@@ -225,8 +222,7 @@ namespace Presentacion.Core.Configuracion
             _configuracion.IngresoManualCajaInicial = rdbIngresoManualCaja.Checked;
 
             _configuracion.PuestoCajaSeparado = chkPuestoSeparado.Checked;
-            _configuracion.ActivarRetiroDeCaja = chkRetiroDineroCaja.Checked;
-            _configuracion.MontoMaximoRetiroCaja = nudMontoMaximo.Value;
+            _configuracion.PermitirArqueoNegativo = chkPermitirArqueoNegativo.Checked;
         }
 
         private bool VerificarDatosObligatorios()

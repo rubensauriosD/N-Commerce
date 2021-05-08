@@ -208,6 +208,12 @@
     <Compile Include="Articulo\_00051_Abm_Deposito.Designer.cs">
       <DependentUpon>_00051_Abm_Deposito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulo\_00058_Deposito_Transferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\_00058_Deposito_Transferencia.Designer.cs">
+      <DependentUpon>_00058_Deposito_Transferencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Caja\_00038_Caja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,18 @@
     </Compile>
     <Compile Include="Cliente\_00034_ClienteCtaCte.Designer.cs">
       <DependentUpon>_00034_ClienteCtaCte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaPago\_00055_Cheque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaPago\_00055_Cheque.Designer.cs">
+      <DependentUpon>_00055_Cheque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaPago\_00056_Cheque_Abm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaPago\_00056_Cheque_Abm.Designer.cs">
+      <DependentUpon>_00056_Cheque_Abm.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Clases\CompraView.cs" />
     <Compile Include="Comprobantes\Clases\FacturaView.cs" />
@@ -403,6 +421,12 @@
     <Compile Include="FormaPago\_00054_FormaPagoCompra.Designer.cs">
       <DependentUpon>_00054_FormaPagoCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormaPago\_00057_Cheque_Deposito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaPago\_00057_Cheque_Deposito.Designer.cs">
+      <DependentUpon>_00057_Cheque_Deposito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Localidad\_00005_Localidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -519,6 +543,9 @@
     <EmbeddedResource Include="Articulo\_00051_Abm_Deposito.resx">
       <DependentUpon>_00051_Abm_Deposito.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\_00058_Deposito_Transferencia.resx">
+      <DependentUpon>_00058_Deposito_Transferencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Caja\_00038_Caja.resx">
       <DependentUpon>_00038_Caja.cs</DependentUpon>
     </EmbeddedResource>
@@ -554,6 +581,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cliente\_00034_ClienteCtaCte.resx">
       <DependentUpon>_00034_ClienteCtaCte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaPago\_00055_Cheque.resx">
+      <DependentUpon>_00055_Cheque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Clases\ItemComprobanteModificarEliminar.resx">
       <DependentUpon>ItemComprobanteModificarEliminar.cs</DependentUpon>
@@ -608,6 +638,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormaPago\_00054_FormaPagoCompra.resx">
       <DependentUpon>_00054_FormaPagoCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaPago\_00056_Cheque_Abm.resx">
+      <DependentUpon>_00056_Cheque_Abm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaPago\_00057_Cheque_Deposito.resx">
+      <DependentUpon>_00057_Cheque_Deposito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localidad\_00005_Localidad.resx">
       <DependentUpon>_00005_Localidad.cs</DependentUpon>

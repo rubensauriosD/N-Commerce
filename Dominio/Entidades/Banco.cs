@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Dominio.MetaData;
-
-namespace Dominio.Entidades
+﻿namespace Dominio.Entidades
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Dominio.MetaData;
+
     [Table("Banco")]
     [MetadataType(typeof(IBanco))]
     public class Banco : EntidadBase
@@ -14,7 +14,5 @@ namespace Dominio.Entidades
 
         // Propiedades de Navegacion
         public virtual ICollection<Cheque> Cheques { get; set; }
-
-        public virtual ICollection<CuentaBancaria> CuentaBancarias { get; set; }
     }
 }

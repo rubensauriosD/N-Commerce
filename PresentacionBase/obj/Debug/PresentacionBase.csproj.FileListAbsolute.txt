@@ -89,6 +89,7 @@ D:\Code\N-Commerce\PresentacionBase\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinF
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.csprojAssemblyReference.cache
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormAbm.resources
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormBase.resources
+D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormBusquedaSeleccion.resources
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsulta.resources
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormConsultaConDetalle.resources
 D:\Code\N-Commerce\PresentacionBase\obj\Debug\PresentacionBase.Formularios.FormLookUp.resources

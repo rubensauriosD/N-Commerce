@@ -1,25 +1,25 @@
-﻿using System;
-using System.Windows.Forms;
-using Aplicacion.Constantes;
-using Presentacion.Core.Articulo;
-using Presentacion.Core.Caja;
-using Presentacion.Core.Cliente;
-using Presentacion.Core.Comprobantes;
-using Presentacion.Core.CondicionIva;
-using Presentacion.Core.Configuracion;
-using Presentacion.Core.Departamento;
-using Presentacion.Core.Empleado;
-using Presentacion.Core.Localidad;
-using Presentacion.Core.Provincia;
-using Presentacion.Core.Usuario;
-using PresentacionBase.Formularios;
-using IServicios.Caja;
-using StructureMap;
-using Presentacion.Core.FormaPago;
-using Presentacion.Core.Proveedor;
-
-namespace CommerceApp
+﻿namespace CommerceApp
 {
+    using System;
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using Presentacion.Core.Articulo;
+    using Presentacion.Core.Caja;
+    using Presentacion.Core.Cliente;
+    using Presentacion.Core.Comprobantes;
+    using Presentacion.Core.CondicionIva;
+    using Presentacion.Core.Configuracion;
+    using Presentacion.Core.Departamento;
+    using Presentacion.Core.Empleado;
+    using Presentacion.Core.Localidad;
+    using Presentacion.Core.Provincia;
+    using Presentacion.Core.Usuario;
+    using PresentacionBase.Formularios;
+    using IServicios.Caja;
+    using StructureMap;
+    using Presentacion.Core.FormaPago;
+    using Presentacion.Core.Proveedor;
+
     public partial class Principal : Form
     {
         private readonly ICajaServicio _cajaServicio;
@@ -107,11 +107,6 @@ namespace CommerceApp
             ObjectFactory.GetInstance<_00043_Gastos>().ShowDialog();
         }
 
-        private void btnDeposito_Click(object sender, EventArgs e)
-        {
-            ObjectFactory.GetInstance<_00050_Deposito>().ShowDialog();
-        }
-
         private void btnArticulo_Click(object sender, EventArgs e)
         {
             ObjectFactory.GetInstance<_00017_Articulo>().ShowDialog();
@@ -158,14 +153,15 @@ namespace CommerceApp
 
         private void btnCerrarCaja_Click(object sender, EventArgs e)
         {
-            // Verificar que la caja no este abierta
+            // Verificar que la caja este abierta
             if (!_cajaServicio.VerificarSiExisteCajaAbierta(Identidad.UsuarioId))
             {
                 Mjs.Alerta("No hay una caja abierta.");
                 return;
             }
 
-            ObjectFactory.GetInstance<_00040_CierreCaja>().ShowDialog();
+            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            new _00040_CierreCaja(cajaActiva).ShowDialog();
         }
 
         private void btnBanco_Click(object sender, EventArgs e)
@@ -197,6 +193,21 @@ namespace CommerceApp
         private void btnComprobanteCompra_Click(object sender, EventArgs e)
         {
             ObjectFactory.GetInstance<_00053_Compra>().ShowDialog();
+        }
+
+        private void btnCheque_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00055_Cheque>().ShowDialog();
+        }
+
+        private void btnAdministrarDepositos_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00050_Deposito>().ShowDialog();
+        }
+
+        private void btnDepositoTransferencias_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00058_Deposito_Transferencia>().ShowDialog();
         }
     }
 }

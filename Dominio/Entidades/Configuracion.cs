@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Aplicacion.Constantes;
-using Dominio.MetaData;
-
-namespace Dominio.Entidades
+﻿namespace Dominio.Entidades
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Aplicacion.Constantes;
+    using Dominio.MetaData;
+
     [Table("Configuracion")]
     [MetadataType(typeof(IConfiguracion))]
     public class Configuracion : EntidadBase
@@ -40,9 +40,6 @@ namespace Dominio.Entidades
 
         public bool ActualizaCostoDesdeCompra { get; set; }
 
-        // TODO: Eliminar esta propiedad (La que manda es ActualizarCostoDesdeCompra)
-        public bool ModificaPrecioVentaDesdeCompra { get; set; }
-
         public long DepositoNuevoArticuloId { get; set; }
 
         // ====================================== //
@@ -73,7 +70,7 @@ namespace Dominio.Entidades
 
         public bool PuestoCajaSeparado { get; set; }
 
-        public bool ActivarRetiroDeCaja { get; set; }
+        public bool PermitirArqueoNegativo { get; set; }
 
         // ====================================== //
         // =========       Báscula      ========= //
@@ -86,10 +83,6 @@ namespace Dominio.Entidades
         public bool EtiquetaPorPrecio { get; set; }
 
         public bool EtiquetaPorPeso { get; set; }
-
-        // Propiedad para no permitir que tenga mas de un cierto
-        // monto de dinero en la caja
-        public decimal MontoMaximoRetiroCaja { get; set; }
 
         // Propiedades de Navegacion
         public virtual ListaPrecio ListaPrecioPorDefecto { get; set; }

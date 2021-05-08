@@ -1,23 +1,23 @@
-﻿using System.Windows.Forms;
-using IServicio.FormaPago;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.FormaPago
+﻿namespace Presentacion.Core.FormaPago
 {
+    using System.Windows.Forms;
+    using IServicio.FormaPago;
+    using PresentacionBase.Formularios;
+
     public partial class _00047_Banco : FormConsulta
     {
-        private readonly IBancoServicio _marcaServicio;
+        private readonly IBancoServicio _bancoServicio;
 
-        public _00047_Banco(IBancoServicio marcaServicio)
+        public _00047_Banco(IBancoServicio bancoServicio)
         {
             InitializeComponent();
 
-            _marcaServicio = marcaServicio;
+            _bancoServicio = bancoServicio;
         }
 
         public override void ActualizarDatos(DataGridView dgv, string cadenaBuscar)
         {
-            dgv.DataSource = _marcaServicio.Obtener(cadenaBuscar);
+            dgv.DataSource = _bancoServicio.Obtener(cadenaBuscar);
 
             base.ActualizarDatos(dgv, cadenaBuscar);
         }

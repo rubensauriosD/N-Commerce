@@ -6,7 +6,7 @@
 
     public partial class FormAbm : FormBase
     {
-        protected long? EntidadId;
+        public long? EntidadId { get; protected set; }
         protected TipoOperacion TipoOperacion;
 
         private bool _realizoAlgunaOperacion;
@@ -32,7 +32,7 @@
             EjecutarPostLimpieza();
         }
 
-        private void btnEjecutar_Click(object sender, System.EventArgs e)
+        private void btnEjecutar_Click(object sender, EventArgs e)
         {
             switch (TipoOperacion)
             {

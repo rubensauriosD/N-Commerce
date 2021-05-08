@@ -1,11 +1,18 @@
-﻿using Dominio.Entidades;
-using Dominio.Repositorio;
-using Infraestructura.Repositorio;
-
-namespace Infraestructura.UnidadDeTrabajo
+﻿namespace Infraestructura.UnidadDeTrabajo
 {
+    using Dominio.Entidades;
+    using Dominio.Repositorio;
+    using Infraestructura.Repositorio;
+
     public partial class UnidadDeTrabajo
     {
+        // ============================================================================================================ //
+
+        private IRepositorio<Cheque> chequeRepositorio;
+        public IRepositorio<Cheque> ChequeRepositorio => chequeRepositorio
+                                                               ?? (chequeRepositorio =
+                                                                   new Repositorio<Cheque>(_context));
+
         // ============================================================================================================ //
 
         private IRepositorio<Banco> bancoRepositorio;

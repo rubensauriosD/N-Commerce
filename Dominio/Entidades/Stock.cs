@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Dominio.MetaData;
-
-namespace Dominio.Entidades
+﻿namespace Dominio.Entidades
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Dominio.MetaData;
+
     [Table("Stock")]
     [MetadataType(typeof(IStock))]
     public class Stock : EntidadBase
@@ -14,7 +14,6 @@ namespace Dominio.Entidades
         public long DepositoId { get; set; }
 
         public decimal Cantidad { get; set; }
-
 
         // Propiedades de Navegacion
         public Articulo Articulo { get; set; }

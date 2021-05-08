@@ -18,5 +18,11 @@
         [Required(ErrorMessage = "El campo {0} es Obligatorio.")]
         [DataType(DataType.Date)]
         DateTime FechaVencimiento { get; set; }
+
+        [DataType(DataType.Date)]
+        DateTime? FechaDeposito { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es Obligatorio.")]
+        bool Depositado { get; set; }
     }
 }

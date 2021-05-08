@@ -75,6 +75,7 @@
     <Compile Include="Departamento\DepartamentoServicio.cs" />
     <Compile Include="Deposito\DepositoServicio.cs" />
     <Compile Include="FormaPago\BancoServicio.cs" />
+    <Compile Include="FormaPago\ChequeServicio.cs" />
     <Compile Include="FormaPago\FormaPagoServicios.cs" />
     <Compile Include="FormaPago\TarjetaServicio.cs" />
     <Compile Include="Iva\IvaServicio.cs" />

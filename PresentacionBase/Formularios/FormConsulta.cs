@@ -131,6 +131,7 @@
             separador.Name = $@"toolStripSeparator{tspMenu.Items.Count}";
             separador.Size = new Size(6, 42);
 
+            tspMenu.Items.Add(separador);
         }
 
         public void AgregarBotonAlMenu(ToolStripButton btn)

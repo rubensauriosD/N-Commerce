@@ -18,6 +18,8 @@
 
         public decimal Monto { get; set; }
 
+        public long CajaId { get; set; }
+
         // Propiedades de Navegacion
         public virtual ConceptoGasto ConceptoGasto { get; set; }
     }

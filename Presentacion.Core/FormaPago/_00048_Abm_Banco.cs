@@ -1,11 +1,11 @@
-﻿using Aplicacion.Constantes;
-using IServicio.FormaPago;
-using IServicios.FormaPago.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.FormaPago
+﻿namespace Presentacion.Core.FormaPago
 {
+    using Aplicacion.Constantes;
+    using IServicio.FormaPago;
+    using IServicios.FormaPago.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00048_Abm_Banco : FormAbm
     {
         private readonly IBancoServicio _servicio;

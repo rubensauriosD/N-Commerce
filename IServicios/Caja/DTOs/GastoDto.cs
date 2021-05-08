@@ -1,8 +1,8 @@
-﻿using System;
-using IServicio.BaseDto;
-
-namespace IServicio.Caja.DTOs
+﻿namespace IServicio.Caja.DTOs
 {
+    using System;
+    using IServicio.BaseDto;
+
     public class GastoDto : DtoBase
     {
         public long ConceptoGastoId { get; set; }
@@ -12,5 +12,7 @@ namespace IServicio.Caja.DTOs
         public string Descripcion { get; set; }
 
         public decimal Monto { get; set; }
+
+        public long CajaId { get; set; }
     }
 }

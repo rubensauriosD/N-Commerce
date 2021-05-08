@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
-
-namespace PresentacionBase.Formularios
+﻿namespace PresentacionBase.Formularios
 {
+    using System.Windows.Forms;
+
     public partial class FormLookUp : FormBase
     {
         public long? entidadId;

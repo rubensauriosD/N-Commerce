@@ -69,7 +69,6 @@ namespace Presentacion.Core.Configuracion
             this.chkPresupuestoDescuentaStock = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbTipoPagoCompraPorDefecto = new System.Windows.Forms.ComboBox();
-            this.chkModificaPrevioVentaDesdeCompra = new System.Windows.Forms.CheckBox();
             this.chkActualizaCostoDesdeCompra = new System.Windows.Forms.CheckBox();
             this.chkFacturaDescuentaStock = new System.Windows.Forms.CheckBox();
             this.tabPageVenta = new System.Windows.Forms.TabPage();
@@ -85,8 +84,7 @@ namespace Presentacion.Core.Configuracion
             this.label7 = new System.Windows.Forms.Label();
             this.cmbTipoPagoPorDefecto = new System.Windows.Forms.ComboBox();
             this.tabPageCaja = new System.Windows.Forms.TabPage();
-            this.nudMontoMaximo = new System.Windows.Forms.NumericUpDown();
-            this.chkRetiroDineroCaja = new System.Windows.Forms.CheckBox();
+            this.chkPermitirArqueoNegativo = new System.Windows.Forms.CheckBox();
             this.chkPuestoSeparado = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdbIngresoPorCierreDelDIaAnterior = new System.Windows.Forms.RadioButton();
@@ -107,7 +105,6 @@ namespace Presentacion.Core.Configuracion
             this.tabPageStock.SuspendLayout();
             this.tabPageVenta.SuspendLayout();
             this.tabPageCaja.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMontoMaximo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -473,7 +470,6 @@ namespace Presentacion.Core.Configuracion
             this.tabPageStock.Controls.Add(this.chkPresupuestoDescuentaStock);
             this.tabPageStock.Controls.Add(this.label4);
             this.tabPageStock.Controls.Add(this.cmbTipoPagoCompraPorDefecto);
-            this.tabPageStock.Controls.Add(this.chkModificaPrevioVentaDesdeCompra);
             this.tabPageStock.Controls.Add(this.chkActualizaCostoDesdeCompra);
             this.tabPageStock.Controls.Add(this.chkFacturaDescuentaStock);
             this.tabPageStock.Location = new System.Drawing.Point(4, 25);
@@ -558,18 +554,6 @@ namespace Presentacion.Core.Configuracion
             this.cmbTipoPagoCompraPorDefecto.Name = "cmbTipoPagoCompraPorDefecto";
             this.cmbTipoPagoCompraPorDefecto.Size = new System.Drawing.Size(261, 24);
             this.cmbTipoPagoCompraPorDefecto.TabIndex = 5;
-            // 
-            // chkModificaPrevioVentaDesdeCompra
-            // 
-            this.chkModificaPrevioVentaDesdeCompra.AutoSize = true;
-            this.chkModificaPrevioVentaDesdeCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkModificaPrevioVentaDesdeCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkModificaPrevioVentaDesdeCompra.Location = new System.Drawing.Point(39, 121);
-            this.chkModificaPrevioVentaDesdeCompra.Name = "chkModificaPrevioVentaDesdeCompra";
-            this.chkModificaPrevioVentaDesdeCompra.Size = new System.Drawing.Size(265, 20);
-            this.chkModificaPrevioVentaDesdeCompra.TabIndex = 4;
-            this.chkModificaPrevioVentaDesdeCompra.Text = "Modifica Precio Venta desde la Compra";
-            this.chkModificaPrevioVentaDesdeCompra.UseVisualStyleBackColor = true;
             // 
             // chkActualizaCostoDesdeCompra
             // 
@@ -733,8 +717,7 @@ namespace Presentacion.Core.Configuracion
             // tabPageCaja
             // 
             this.tabPageCaja.BackColor = System.Drawing.Color.White;
-            this.tabPageCaja.Controls.Add(this.nudMontoMaximo);
-            this.tabPageCaja.Controls.Add(this.chkRetiroDineroCaja);
+            this.tabPageCaja.Controls.Add(this.chkPermitirArqueoNegativo);
             this.tabPageCaja.Controls.Add(this.chkPuestoSeparado);
             this.tabPageCaja.Controls.Add(this.groupBox1);
             this.tabPageCaja.Location = new System.Drawing.Point(4, 25);
@@ -744,32 +727,17 @@ namespace Presentacion.Core.Configuracion
             this.tabPageCaja.TabIndex = 3;
             this.tabPageCaja.Text = "Caja";
             // 
-            // nudMontoMaximo
+            // chkPermitirArqueoNegativo
             // 
-            this.nudMontoMaximo.DecimalPlaces = 2;
-            this.nudMontoMaximo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMontoMaximo.Location = new System.Drawing.Point(60, 224);
-            this.nudMontoMaximo.Margin = new System.Windows.Forms.Padding(2);
-            this.nudMontoMaximo.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
-            0,
-            0});
-            this.nudMontoMaximo.Name = "nudMontoMaximo";
-            this.nudMontoMaximo.Size = new System.Drawing.Size(171, 23);
-            this.nudMontoMaximo.TabIndex = 3;
-            // 
-            // chkRetiroDineroCaja
-            // 
-            this.chkRetiroDineroCaja.AutoSize = true;
-            this.chkRetiroDineroCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRetiroDineroCaja.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkRetiroDineroCaja.Location = new System.Drawing.Point(39, 193);
-            this.chkRetiroDineroCaja.Name = "chkRetiroDineroCaja";
-            this.chkRetiroDineroCaja.Size = new System.Drawing.Size(363, 20);
-            this.chkRetiroDineroCaja.TabIndex = 2;
-            this.chkRetiroDineroCaja.Text = "Activar el Retiro de Dinero por Maximo Permitido en caja";
-            this.chkRetiroDineroCaja.UseVisualStyleBackColor = true;
+            this.chkPermitirArqueoNegativo.AutoSize = true;
+            this.chkPermitirArqueoNegativo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPermitirArqueoNegativo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkPermitirArqueoNegativo.Location = new System.Drawing.Point(39, 193);
+            this.chkPermitirArqueoNegativo.Name = "chkPermitirArqueoNegativo";
+            this.chkPermitirArqueoNegativo.Size = new System.Drawing.Size(171, 20);
+            this.chkPermitirArqueoNegativo.TabIndex = 2;
+            this.chkPermitirArqueoNegativo.Text = "PermitirArqueoNegativo";
+            this.chkPermitirArqueoNegativo.UseVisualStyleBackColor = true;
             // 
             // chkPuestoSeparado
             // 
@@ -943,9 +911,7 @@ namespace Presentacion.Core.Configuracion
             this.Controls.Add(this.tabControlConfig);
             this.Controls.Add(this.pnlSeparador);
             this.Controls.Add(this.toolStrip1);
-            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(550, 450);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(550, 450);
             this.Name = "_00012_Configuracion";
             this.Text = "Configuración del Sistema";
@@ -961,7 +927,6 @@ namespace Presentacion.Core.Configuracion
             this.tabPageVenta.PerformLayout();
             this.tabPageCaja.ResumeLayout(false);
             this.tabPageCaja.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMontoMaximo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -1008,7 +973,6 @@ namespace Presentacion.Core.Configuracion
         private System.Windows.Forms.CheckBox chkPresupuestoDescuentaStock;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbTipoPagoCompraPorDefecto;
-        private System.Windows.Forms.CheckBox chkModificaPrevioVentaDesdeCompra;
         private System.Windows.Forms.CheckBox chkActualizaCostoDesdeCompra;
         private System.Windows.Forms.CheckBox chkFacturaDescuentaStock;
         private System.Windows.Forms.TabPage tabPageVenta;
@@ -1020,12 +984,11 @@ namespace Presentacion.Core.Configuracion
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbTipoPagoPorDefecto;
         private System.Windows.Forms.TabPage tabPageCaja;
-        private System.Windows.Forms.CheckBox chkRetiroDineroCaja;
+        private System.Windows.Forms.CheckBox chkPermitirArqueoNegativo;
         private System.Windows.Forms.CheckBox chkPuestoSeparado;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdbIngresoPorCierreDelDIaAnterior;
         private System.Windows.Forms.RadioButton rdbIngresoManualCaja;
-        private System.Windows.Forms.NumericUpDown nudMontoMaximo;
         private System.Windows.Forms.Button btnNuevaLocalidad;
         private System.Windows.Forms.Button btnNuevoDepartamento;
         private System.Windows.Forms.Button btnNuevaProvincia;

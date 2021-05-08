@@ -5,6 +5,7 @@
     using System.Linq;
     using Aplicacion.Constantes;
     using IServicio.BaseDto;
+    using IServicio.Caja.DTOs;
 
     public class CajaDto : DtoBase
     {
@@ -12,14 +13,21 @@
         {
             if (Detalle == null)
                 Detalle = new List<CajaDetalleDto>();
+
+            if (Gastos == null)
+                Gastos = new List<GastoDto>();
         }
 
         public long UsuarioAperturaId { get; set; }
         public string UsuarioApertura { get; set; }
-        public decimal MontoApertura { get; set; }
-        public string MontoAperturaStr => MontoApertura.ToString("C2");
+
         public DateTime FechaApertura { get; set; }
         public string FechaAperturaStr => FechaApertura.ToShortDateString();
+
+        public decimal MontoApertura { get; set; } = 0;
+        public string MontoAperturaStr => MontoApertura.ToString("C2");
+        public decimal MontoCierre { get; set; } = 0;
+        public string MontoCierreStr => MontoCierre != 0 ? MontoCierre.ToString("C2") : "----";
 
         // ==========================================//
 
@@ -28,41 +36,56 @@
         public DateTime? FechaCierre { get; set; }
         public string FechaCierreStr => FechaCierre.HasValue ? FechaCierre.Value.ToShortDateString() : "----";
 
-        public decimal MontoCierre =>
-            TotalEntradaEfectivo + TotalEntradaCheque + TotalEntradaTarjeta
-            - TotalSalidaEfectivo - TotalSalidaCheque - TotalSalidaTarjeta;
+        // ==========================================//
 
-        public string MontoCierreStr => MontoCierre == 0 ? MontoCierre.ToString("C2") : "----";
+        public decimal TotalIngresos => Detalle.Where(x => x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
+        public string TotalIngresosStr => TotalIngresos.ToString("C2");
+
+        public decimal TotalIngresoEfectivo => Detalle.Where(x => x.TipoPago == TipoPago.Efectivo && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
+        public string TotalIngresoEfectivoStr => TotalIngresoEfectivo.ToString("C2");
+
+        public decimal TotalIngresoTarjeta => Detalle.Where(x => x.TipoPago == TipoPago.Tarjeta && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
+        public string TotalIngresoTarjetaStr => TotalIngresoTarjeta.ToString("C2");
+
+        public decimal TotalIngresoCheque => Detalle.Where(x => x.TipoPago == TipoPago.Cheque && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
+        public string TotalIngresoChequeStr => TotalIngresoCheque.ToString("C2");
+
+        public decimal TotalIngresoCtaCte => Detalle.Where(x => x.TipoPago == TipoPago.CtaCte && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
+        public string TotalIngresoCtaCteStr => TotalIngresoCtaCte.ToString("C2");
 
         // ==========================================//
 
-        public decimal TotalEntradaEfectivo => Detalle.Where(x => x.TipoPago == TipoPago.Efectivo && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
-        public string TotalEntradaEfectivoStr => TotalEntradaEfectivo.ToString("C2");
-        public decimal TotalSalidaEfectivo => Detalle.Where(x => x.TipoPago == TipoPago.Efectivo && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
-        public string TotalSalidaEfectivoStr => TotalSalidaEfectivo.ToString("C2");
+        public decimal TotalCompras => Detalle.Where(x => x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
+        public string TotalComprasStr => TotalCompras.ToString("C2");
+
+        public decimal TotalEgresoEfectivo => Detalle.Where(x => x.TipoPago == TipoPago.Efectivo && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
+        public string TotalEgresoEfectivoStr => TotalEgresoEfectivo.ToString("C2");
+        
+        public decimal TotalEgresoTarjeta => Detalle.Where(x => x.TipoPago == TipoPago.Tarjeta && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
+        public string TotalEgresoTarjetaStr => TotalEgresoTarjeta.ToString("C2");
+        
+        public decimal TotalEgresoCheque => Detalle.Where(x => x.TipoPago == TipoPago.Cheque && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
+        public string TotalEgresoChequeStr => TotalEgresoCheque.ToString("C2");
+        
+        public decimal TotalEgresoCtaCte => Detalle.Where(x => x.TipoPago == TipoPago.CtaCte && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
+        public string TotalEgresoCtaCteStr => TotalEgresoCtaCte.ToString("C2");
 
         // ==========================================//
 
-        public decimal TotalEntradaTarjeta => Detalle.Where(x => x.TipoPago == TipoPago.Tarjeta && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
-        public string TotalEntradaTarjetaStr => TotalEntradaTarjeta.ToString("C2");
-        public decimal TotalSalidaTarjeta => Detalle.Where(x => x.TipoPago == TipoPago.Tarjeta && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
-        public string TotalSalidaTarjetaStr => TotalSalidaTarjeta.ToString("C2");
+        public decimal TotalGastos => Gastos.Sum(x => x.Monto);
+        public string TotalGastosStr => TotalGastos.ToString("C2");
 
         // ==========================================//
 
-        public decimal TotalEntradaCheque => Detalle.Where(x => x.TipoPago == TipoPago.Cheque && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
-        public string TotalEntradaChequeStr => TotalEntradaCheque.ToString("C2");
-        public decimal TotalSalidaCheque => Detalle.Where(x => x.TipoPago == TipoPago.Cheque && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
-        public string TotalSalidaChequeStr => TotalSalidaCheque.ToString("C2");
+        public decimal TotalEgresos => TotalGastos + TotalCompras;
+        public string TotalEgresosStr => TotalEgresos.ToString("C2");
 
-        // ==========================================//
-
-        public decimal TotalEntradaCtaCte => Detalle.Where(x => x.TipoPago == TipoPago.CtaCte && x.TipoMovimiento == TipoMovimiento.Ingreso).Sum(x => x.Monto);
-        public string TotalEntradaCtaCteStr => TotalEntradaCtaCte.ToString("C2");
-        public decimal TotalSalidaCtaCte => Detalle.Where(x => x.TipoPago == TipoPago.CtaCte && x.TipoMovimiento == TipoMovimiento.Egreso).Sum(x => x.Monto);
-        public string TotalSalidaCtaCteStr => TotalSalidaCtaCte.ToString("C2");
+        public decimal MontoCierreCalculado => MontoApertura + TotalIngresos - TotalEgresos;
+        public string MontoCierreCalculadoStr => MontoCierreCalculado.ToString("C2");
 
         // Colecciones
-        public ICollection<CajaDetalleDto> Detalle { get; set; }
+        public List<CajaDetalleDto> Detalle { get; set; }
+
+        public List<GastoDto> Gastos { get; set; }
     }
 }

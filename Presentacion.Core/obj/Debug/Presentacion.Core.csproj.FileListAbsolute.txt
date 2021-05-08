@@ -259,6 +259,7 @@ D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00009_
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00010_Abm_Cliente.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00035_PagoCuentaCorriente.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00034_ClienteCtaCte.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00055_Cheque.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Comprobantes.Clases.ItemComprobanteModificarEliminar.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Comprobantes._00050_Venta.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Comprobantes._00051_PuestoTrabajo.resources
@@ -276,6 +277,7 @@ D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._0004
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00046_Abm_tarjeta.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00048_Abm_Banco.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00049_CobroDiferido.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00054_FormaPagoCompra.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Localidad._00005_Localidad.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Localidad._00006_AbmLocalidad.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Properties.Resources.resources
@@ -294,4 +296,6 @@ D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.csproj.CoreComp
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.csproj.CopyComplete
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.dll
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.pdb
-D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00054_FormaPagoCompra.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00056_Cheque_Abm.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00057_Cheque_Deposito.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Articulo._00058_Deposito_Transferencia.resources
