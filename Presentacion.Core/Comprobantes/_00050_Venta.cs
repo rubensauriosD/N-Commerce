@@ -26,12 +26,13 @@
     using Presentacion.Core.FormaPago;
     using PresentacionBase.Formularios;
     using IServicios.FormaPago;
+    using IServicios.Informes.DTOs;
+    using Microsoft.Reporting.WinForms;
+    using System.Collections.Generic;
 
     public partial class _00050_Venta : FormBase
     {
         private ConfiguracionDto configuracion;
-        private ClienteDto clienteSeleccionado;
-        private EmpleadoDto vendedorSeleccionado;
         private ArticuloVentaDto articuloSeleccionado;
         private ListaPrecioDto listaPrecioSeleccionada;
         private FacturaView facturaView;
@@ -47,13 +48,14 @@
         private readonly IPuestoTrabajoServicio _puestoTrabajoServicio;
         private readonly IArticuloServicio _articuloServicio;
         private readonly IFacturaServicio _facturaServicio;
+        private readonly IPresupuestoServicio _presupuestoServicio;
         private readonly IFormaPagoServicios _formaPagoServicio;
 
         public _00050_Venta(IConfiguracionServicio configuracionServicio,
             IClienteServicio clienteServicio,
             IEmpleadoServicio empleadoServicio,
             IListaPrecioServicio listaPrecioServicio,
-            IContadorServicio contadorServicio,
+            IPresupuestoServicio presupuestoServicio,
             IPuestoTrabajoServicio puestoTrabjoServicio,
             IArticuloServicio articuloServicio,
             IFormaPagoServicios formaPagoServicio,
@@ -71,14 +73,15 @@
             _puestoTrabajoServicio = puestoTrabjoServicio;
             _articuloServicio = articuloServicio;
             _facturaServicio = facturaServicio;
+            _presupuestoServicio = presupuestoServicio;
             _formaPagoServicio = formaPagoServicio;
 
             listaPrecioSeleccionada = new ListaPrecioDto();
             articuloSeleccionado = new ArticuloVentaDto();
             facturaView = new FacturaView();
-            clienteSeleccionado = (ClienteDto)_clienteServicio.Obtener(typeof(ClienteDto),
+            facturaView.Cliente = (ClienteDto)_clienteServicio.Obtener(typeof(ClienteDto),
                 ConfiguracionPorDefecto.ClienteDni).First();
-            vendedorSeleccionado = (EmpleadoDto)_empleadoServicio.Obtener(typeof(EmpleadoDto),
+            facturaView.Vendedor = (EmpleadoDto)_empleadoServicio.Obtener(typeof(EmpleadoDto),
                 Identidad.EmpleadoId);
             configuracion = _configuracionServicio.Obtener();
 
@@ -208,25 +211,25 @@
 
         private void CargarDatosVendedor()
         {
-            if (vendedorSeleccionado == null)
+            if (facturaView.Vendedor == null)
             {
                 Mjs.Alerta("Por favor seleccione un vendedor.");
                 return;
             }
 
-            txtVendedor.Text = vendedorSeleccionado.ApyNom;
+            txtVendedor.Text = facturaView.Vendedor.ApyNom;
         }
 
         private void CargarDatosCliente()
         {
-            if (clienteSeleccionado == null)
+            if (facturaView.Cliente == null)
                 return;
 
-            txtClienteDni.Text = clienteSeleccionado.Dni;
-            txtClienteNombre.Text = clienteSeleccionado.ApyNom;
-            txtClienteDomicilio.Text = clienteSeleccionado.Direccion;
-            txtClienteTelefono.Text = clienteSeleccionado.Telefono;
-            txtClienteCondicionIva.Text = clienteSeleccionado.CondicionIva;
+            txtClienteDni.Text = facturaView.Cliente.Dni;
+            txtClienteNombre.Text = facturaView.Cliente.ApyNom;
+            txtClienteDomicilio.Text = facturaView.Cliente.Direccion;
+            txtClienteTelefono.Text = facturaView.Cliente.Telefono;
+            txtClienteCondicionIva.Text = facturaView.Cliente.CondicionIva;
         }
 
         //
@@ -240,7 +243,7 @@
             if (!f.RealizoSeleccion)
                 return;
 
-            clienteSeleccionado = (ClienteDto)f.EntidadSeleccionada;
+            facturaView.Cliente = (ClienteDto)f.EntidadSeleccionada;
             CargarDatosCliente();
         }
 
@@ -252,7 +255,7 @@
             if (!lookUpEmpleado.RealizoSeleccion)
                 return;
 
-            vendedorSeleccionado = (EmpleadoDto)lookUpEmpleado.EntidadSeleccionada;
+            facturaView.Vendedor = (EmpleadoDto)lookUpEmpleado.EntidadSeleccionada;
         }
 
         private void cmbComprobanteListaPrecio_SelectionChangeCommitted(object sender, EventArgs e)
@@ -282,7 +285,7 @@
 
         private void txtClienteDni_Leave(object sender, EventArgs e)
         {
-            txtClienteDni.Text = clienteSeleccionado.Dni;
+            txtClienteDni.Text = facturaView.Cliente.Dni;
         }
 
         private void nudCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -604,8 +607,6 @@
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
-            facturaView.Cliente = clienteSeleccionado;
-            facturaView.Vendedor = vendedorSeleccionado;
             facturaView.TipoComprobante = (TipoComprobante)cmbComprobanteTipo.SelectedItem;
             facturaView.PuestoVentaId = (long)cmbPuestoVenta.SelectedValue;
             facturaView.UsuarioId = Identidad.UsuarioId;
@@ -644,6 +645,73 @@
             _formaPagoServicio.Insertar(nuevaFactura.FormasDePagos, nuevaFactura.Id);
 
             LimpiarParaNuevaFactura();
+        }
+
+        // --- Presupuesto
+        private void btnPresupuesto_Click(object sender, EventArgs e)
+        {
+            if (configuracion.PresupuestoDescuentaStock)
+                if (!Mjs.Preguntar($"Emitir el presupuesto puede alterar el stock de algunos productos.{Environment.NewLine}¿Seguro que desea continuar?"))
+                    return;
+
+            var nuevoPresupuesto = new PresupuestoDto()
+            {
+                ClienteId = facturaView.Cliente.Id,
+                Cliente = facturaView.Cliente.ApyNom,
+                EmpleadoId = facturaView.Vendedor.Id,
+                UsuarioId = Identidad.UsuarioId,
+                Descuento = facturaView.Descuento,
+                Iva21 = 0m,
+                Iva105 = 0m,
+                TipoComprobante = TipoComprobante.Presupuesto,
+                Items = facturaView.Items.Select(iv => new DetalleComprobanteDto()
+                {
+                    ArticuloId = iv.ArticuloId,
+                    Codigo = iv.Codigo,
+                    Descripcion = iv.Descripcion,
+                    Cantidad = iv.Cantidad,
+                    Iva = iv.Iva,
+                    Precio = iv.Precio
+                }).ToList()
+            };
+
+            nuevoPresupuesto.Id = _presupuestoServicio.Insertar(nuevoPresupuesto);
+            
+            nuevoPresupuesto.Numero = _presupuestoServicio.ObtenerNumeroPresupuesto(nuevoPresupuesto.Id);
+
+            ImprimirPresupuesto(nuevoPresupuesto);
+            LimpiarParaNuevaFactura();
+        }
+
+        private void ImprimirPresupuesto(PresupuestoDto presupuesto)
+        {
+            var items = presupuesto.Items
+                .Select(i => new InformePresupuestoDetalleDto()
+                {
+                    Cantidad = i.Cantidad.ToString(),
+                    Descripcion = i.Descripcion,
+                    Precio = i.Precio.ToString("c"),
+                    Subtotal = i.SubTotal.ToString("c")
+                })
+                .ToList();
+
+            var parametros = new List<ReportParameter>() {
+                new ReportParameter("nombreSujeto", presupuesto.Cliente.ToUpper()),
+                new ReportParameter("NumeroPresupuesto", presupuesto.Numero.ToString("00000")),
+                new ReportParameter("SubTotal", presupuesto.SubTotal.ToString("c")),
+                new ReportParameter("Iva", (presupuesto.Iva105 + presupuesto.Iva21).ToString("c")),
+                new ReportParameter("Descuento", presupuesto.Descuento.ToString("c")),
+                new ReportParameter("Total", presupuesto.Total.ToString("C2"))
+            };
+            
+            var form = new FormBase();
+            form.MostrarInforme(
+                @"D:\Code\N-Commerce\Presentacion.Core\Informes\InformePresupesto.rdlc",
+                @"InformePresupuestoDto",
+                items,
+                parametros);
+            
+            form.ShowDialog();
         }
     }
 }

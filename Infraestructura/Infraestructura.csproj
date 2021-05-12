@@ -76,6 +76,7 @@
     <Compile Include="Repositorio\CompraRepositorio.cs" />
     <Compile Include="Repositorio\EmpleadoRepositorio.cs" />
     <Compile Include="Repositorio\FacturaRepositorio.cs" />
+    <Compile Include="Repositorio\PresupuestoRepositorio.cs" />
     <Compile Include="Repositorio\Repositorio.cs" />
     <Compile Include="UnidadDeTrabajo\UnidadDeTrabajo.Core.cs" />
     <Compile Include="UnidadDeTrabajo\UnidadDeTrabajo.cs" />

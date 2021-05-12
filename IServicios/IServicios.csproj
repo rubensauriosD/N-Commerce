@@ -78,7 +78,9 @@
     <Compile Include="Comprobante\DTOs\ComprobantePendienteDto.cs" />
     <Compile Include="Comprobante\DTOs\DetalleComprobanteDto.cs" />
     <Compile Include="Comprobante\DTOs\FacturaDto.cs" />
+    <Compile Include="Comprobante\DTOs\PresupuestoDto.cs" />
     <Compile Include="Comprobante\ICompraServicio.cs" />
+    <Compile Include="Comprobante\IPresupuestoServicio.cs" />
     <Compile Include="Deposito\DTOs\StockDto.cs" />
     <Compile Include="Deposito\DTOs\TransferenciaDepositoDto.cs" />
     <Compile Include="FormaPago\DTOs\ChequeDto.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="FormaPago\IFormaPagoServicios.cs" />
     <Compile Include="FormaPago\ITarjetaServicio.cs" />
     <Compile Include="Informes\DTOs\InformeMovimientoCuentaCorrienteDto.cs" />
+    <Compile Include="Informes\DTOs\InformePresupuestoDetalleDto.cs" />
     <Compile Include="Iva\DTOs\IvaDto.cs" />
     <Compile Include="Iva\IIvaServicio.cs" />
     <Compile Include="ListaPrecio\DTOs\ListaPrecioDto.cs" />

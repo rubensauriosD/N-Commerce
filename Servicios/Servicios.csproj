@@ -69,6 +69,8 @@
     <Compile Include="Comprobante\ComprobanteServicio.cs" />
     <Compile Include="Comprobante\Factura.cs" />
     <Compile Include="Comprobante\FacturaServicio.cs" />
+    <Compile Include="Comprobante\Presupuesto.cs" />
+    <Compile Include="Comprobante\PresupuestoServicio.cs" />
     <Compile Include="CondicionIva\CondicionIvaServicio.cs" />
     <Compile Include="Configuracion\ConfiguracionServicio.cs" />
     <Compile Include="Contador\ContadorServicio.cs" />

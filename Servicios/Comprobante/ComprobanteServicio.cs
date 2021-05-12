@@ -24,6 +24,7 @@
         {
             _diccionario.Add(typeof(FacturaDto), "Servicios.Comprobante.Factura");
             _diccionario.Add(typeof(CompraDto), "Servicios.Comprobante.Compra");
+            _diccionario.Add(typeof(PresupuestoDto), "Servicios.Comprobante.Presupuesto");
         }
         
         public void AgregarOpcionDiccionario(Type type, string value)

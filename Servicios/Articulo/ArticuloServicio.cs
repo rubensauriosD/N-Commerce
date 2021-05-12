@@ -396,11 +396,18 @@
         {
             var porcentajeGanancia = _unidadDeTrabajo.ListaPrecioRepositorio.Obtener(listaPrecioId).PorcentajeGanancia;
 
+            var fechaHoy = DateTime.Today.Year *10000 + DateTime.Today.Month *100 +DateTime.Today.Day;
+
             Precio precio = art.Precios
-                        .FirstOrDefault(p => p.FechaActualizacion == art.Precios.Where(pre => pre.FechaActualizacion.Day <= DateTime.Today.Day
-                                                                                    && pre.FechaActualizacion.Month <= DateTime.Today.Month
-                                                                                    && pre.FechaActualizacion.Year <= DateTime.Today.Year)
-                                                                                .Max(f => f.FechaActualizacion));
+                        .FirstOrDefault(p => p.FechaActualizacion == art.Precios
+                            .Where(pre => pre.FechaActualizacion.Year * 10000 + pre.FechaActualizacion.Month * 100 + pre.FechaActualizacion.Day <= fechaHoy)
+                            .Max(f => f.FechaActualizacion));
+
+            //Precio precio = art.Precios
+            //            .FirstOrDefault(p => p.FechaActualizacion == art.Precios.Where(pre => pre.FechaActualizacion.Day <= DateTime.Today.Day
+            //                                                                        && pre.FechaActualizacion.Month <= DateTime.Today.Month
+            //                                                                        && pre.FechaActualizacion.Year <= DateTime.Today.Year)
+            //                                                                    .Max(f => f.FechaActualizacion));
 
             return precio.PrecioCosto * (1 + porcentajeGanancia / 100);
         }

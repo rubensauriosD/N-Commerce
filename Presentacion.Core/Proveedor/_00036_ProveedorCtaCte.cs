@@ -161,7 +161,6 @@
                 lstMovimientosCuentaCorriente,
                 parametros);
 
-
             form.ShowDialog();
         }
 

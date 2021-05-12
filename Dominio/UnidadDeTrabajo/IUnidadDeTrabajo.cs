@@ -12,6 +12,7 @@
 
         // Propiedades
 
+        IPresupuestoRepositorio PresupuestoRepositorio { get; }
         ICompraRepositorio CompraRepositorio { get; }
         IFacturaRepositorio FacturaRepositorio { get; }
         IClienteRepositorio ClienteRepositorio { get; }

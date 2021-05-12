@@ -117,6 +117,8 @@
 
                 x.For<IFacturaServicio>().Use<FacturaServicio>();
 
+                x.For<IPresupuestoServicio>().Use<PresupuestoServicio>();
+
                 x.For<ICompraServicio>().Use<CompraServicio>();
 
                 x.For<IFormaPagoServicios>().Use<FormaPagoServicios>();

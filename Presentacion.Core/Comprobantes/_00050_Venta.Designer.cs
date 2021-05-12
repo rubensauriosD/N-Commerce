@@ -77,8 +77,8 @@
             this.lblTotalTitulo = new System.Windows.Forms.Label();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
             this.pnlCuerpo = new System.Windows.Forms.Panel();
-            this.lblPrecioPorCantidad = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
+            this.lblPrecioPorCantidad = new System.Windows.Forms.Label();
             this.pnlCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.pnlPie.SuspendLayout();
@@ -620,6 +620,7 @@
             this.btnPresupuesto.TabIndex = 0;
             this.btnPresupuesto.Text = "Presup.";
             this.btnPresupuesto.UseVisualStyleBackColor = false;
+            this.btnPresupuesto.Click += new System.EventHandler(this.btnPresupuesto_Click);
             // 
             // btnCambiarCantidad
             // 
@@ -723,19 +724,6 @@
             this.pnlCuerpo.Size = new System.Drawing.Size(784, 251);
             this.pnlCuerpo.TabIndex = 2;
             // 
-            // lblPrecioPorCantidad
-            // 
-            this.lblPrecioPorCantidad.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblPrecioPorCantidad.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblPrecioPorCantidad.Font = new System.Drawing.Font("Segoe UI Semibold", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioPorCantidad.ForeColor = System.Drawing.Color.White;
-            this.lblPrecioPorCantidad.Location = new System.Drawing.Point(0, 200);
-            this.lblPrecioPorCantidad.Name = "lblPrecioPorCantidad";
-            this.lblPrecioPorCantidad.Size = new System.Drawing.Size(784, 51);
-            this.lblPrecioPorCantidad.TabIndex = 8;
-            this.lblPrecioPorCantidad.Text = "2 X $ 110.00 = $ 220.00";
-            this.lblPrecioPorCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblDescripcion
             // 
             this.lblDescripcion.BackColor = System.Drawing.Color.RoyalBlue;
@@ -748,6 +736,19 @@
             this.lblDescripcion.TabIndex = 9;
             this.lblDescripcion.Text = "TOMATE TRITURADO MAROLIO 960G";
             this.lblDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPrecioPorCantidad
+            // 
+            this.lblPrecioPorCantidad.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblPrecioPorCantidad.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblPrecioPorCantidad.Font = new System.Drawing.Font("Segoe UI Semibold", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioPorCantidad.ForeColor = System.Drawing.Color.White;
+            this.lblPrecioPorCantidad.Location = new System.Drawing.Point(0, 200);
+            this.lblPrecioPorCantidad.Name = "lblPrecioPorCantidad";
+            this.lblPrecioPorCantidad.Size = new System.Drawing.Size(784, 51);
+            this.lblPrecioPorCantidad.TabIndex = 8;
+            this.lblPrecioPorCantidad.Text = "2 X $ 110.00 = $ 220.00";
+            this.lblPrecioPorCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // _00050_Venta
             // 

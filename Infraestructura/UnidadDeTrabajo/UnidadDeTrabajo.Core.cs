@@ -9,6 +9,14 @@
 
         // ============================================================================================================ //
 
+        private IPresupuestoRepositorio presupuestoRepositorio;
+
+        public IPresupuestoRepositorio PresupuestoRepositorio => presupuestoRepositorio
+                                                               ?? (presupuestoRepositorio =
+                                                                   new PresupuestoRepositorio(_context));
+
+        // ============================================================================================================ //
+
         private ICompraRepositorio compraRepositorio;
 
         public ICompraRepositorio CompraRepositorio => compraRepositorio

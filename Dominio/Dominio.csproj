@@ -146,6 +146,7 @@
     <Compile Include="Repositorio\ICompraRepositorio.cs" />
     <Compile Include="Repositorio\IEmpleadoRepositorio.cs" />
     <Compile Include="Repositorio\IFacturaRepositorio.cs" />
+    <Compile Include="Repositorio\IPresupuestoRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
     <Compile Include="UnidadDeTrabajo\IUnidadDeTrabajo.cs" />
   </ItemGroup>
