@@ -1,19 +1,19 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using Aplicacion.Constantes;
-using IServicio.Departamento;
-using IServicio.Localidad;
-using IServicio.Persona;
-using IServicio.Persona.DTOs;
-using IServicio.Provincia;
-using Presentacion.Core.Departamento;
-using Presentacion.Core.Localidad;
-using Presentacion.Core.Provincia;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Empleado
+﻿namespace Presentacion.Core.Empleado
 {
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Departamento;
+    using IServicio.Localidad;
+    using IServicio.Persona;
+    using IServicio.Persona.DTOs;
+    using IServicio.Provincia;
+    using Presentacion.Core.Departamento;
+    using Presentacion.Core.Localidad;
+    using Presentacion.Core.Provincia;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00008_Abm_Empleado : FormAbm
     {
         private readonly IEmpleadoServicio _servicio;
@@ -32,6 +32,33 @@ namespace Presentacion.Core.Empleado
             _departamentoServicio = ObjectFactory.GetInstance<IDepartamentoServicio>();
             _localidadServicio = ObjectFactory.GetInstance<ILocalidadServicio>();
             _condicionIvaServicio = ObjectFactory.GetInstance<ICondicionIvaServicio>();
+        }
+
+        private void _00010_Abm_Empleado_Load(object sender, System.EventArgs e)
+        {
+            imgFoto.Image = Imagen.ImagenEmpleadoPorDefecto;
+            txtLegajo.Text = _servicio.ObtenerSiguienteLegajo().ToString("0000");
+
+            PoblarComboBox(
+                cmbProvincia,
+                _provinciaServicio.Obtener(string.Empty, false),
+                "Descripcion",
+                "Id"
+                );
+
+            if (cmbProvincia.Items.Count > 0)
+                PoblarComboBox(
+                    cmbDepartamento,
+                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
+                    "Descripcion",
+                    "Id");
+
+            if (cmbDepartamento.Items.Count > 0)
+                PoblarComboBox(
+                    cmbLocalidad,
+                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
+                    "Descripcion",
+                    "Id");
         }
 
         public override void CargarDatos(long? entidadId)
@@ -81,9 +108,7 @@ namespace Presentacion.Core.Empleado
             return _servicio.VerificarSiExisteDni(txtDni.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Modificacion de metodos
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new EmpleadoDto();
@@ -131,33 +156,7 @@ namespace Presentacion.Core.Empleado
             txtLegajo.Focus();
         }
 
-        private void _00010_Abm_Empleado_Load(object sender, System.EventArgs e)
-        {
-            imgFoto.Image = Imagen.ImagenEmpleadoPorDefecto;
-            txtLegajo.Text = _servicio.ObtenerSiguienteLegajo().ToString("0000");
-
-            PoblarComboBox(
-                cmbProvincia,
-                _provinciaServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id"
-                );
-
-            if (cmbProvincia.Items.Count > 0)
-                PoblarComboBox(
-                    cmbDepartamento,
-                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                    "Descripcion",
-                    "Id");
-
-            if (cmbDepartamento.Items.Count > 0)
-                PoblarComboBox(
-                    cmbLocalidad,
-                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                    "Descripcion",
-                    "Id");
-        }
-
+        // --- Eventos de controles
         private void cmbProvincia_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
             if (cmbProvincia.Items.Count > 0)
@@ -225,7 +224,6 @@ namespace Presentacion.Core.Empleado
 
         private void btnImagen_Click(object sender, System.EventArgs e)
         {
-
             ofdBuscarFoto.Title = "Seleccionar Imagen";
             ofdBuscarFoto.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
             

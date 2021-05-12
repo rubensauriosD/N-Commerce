@@ -1,7 +1,7 @@
-﻿using IServicio.Base;
-
-namespace IServicio.Usuario
+﻿namespace IServicio.Usuario
 {
+    using IServicio.Base;
+
     public interface IUsuarioServicio : IServicioConsulta
     {
         void Crear(long empleadoId, string apellidoEmpleado, string nombreEmpleado);

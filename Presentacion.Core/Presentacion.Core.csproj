@@ -493,6 +493,18 @@
     <Compile Include="Usuario\_00011_Usuario.Designer.cs">
       <DependentUpon>_00011_Usuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuario\_00060_Usuario_Modificar_Password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\_00060_Usuario_Modificar_Password.Designer.cs">
+      <DependentUpon>_00060_Usuario_Modificar_Password.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\_0059_Usuario_Cambiar_Foto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\_0059_Usuario_Cambiar_Foto.Designer.cs">
+      <DependentUpon>_0059_Usuario_Cambiar_Foto.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Articulo\ArticuloLookUp.resx">
@@ -680,6 +692,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Usuario\_00011_Usuario.resx">
       <DependentUpon>_00011_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\_00060_Usuario_Modificar_Password.resx">
+      <DependentUpon>_00060_Usuario_Modificar_Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\_0059_Usuario_Cambiar_Foto.resx">
+      <DependentUpon>_0059_Usuario_Cambiar_Foto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

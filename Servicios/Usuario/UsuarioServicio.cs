@@ -1,17 +1,17 @@
-﻿using System;
-using IServicio.BaseDto;
-using IServicio.Usuario;
-using System.Collections.Generic;
-using System.Linq;
-using Aplicacion.Constantes.Clases;
-using Dominio.UnidadDeTrabajo;
-using IServicio.Usuario.DTOs;
-using static Aplicacion.Constantes.Clases.Password;
-using System.Linq.Expressions;
-using Servicios.Base;
-
-namespace Servicios.Usuario
+﻿namespace Servicios.Usuario
 {
+    using System;
+    using IServicio.BaseDto;
+    using IServicio.Usuario;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Aplicacion.Constantes.Clases;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.Usuario.DTOs;
+    using static Aplicacion.Constantes.Clases.Password;
+    using System.Linq.Expressions;
+    using Servicios.Base;
+
     public class UsuarioServicio : IUsuarioServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;
@@ -109,10 +109,7 @@ namespace Servicios.Usuario
             return listaUsuario.ToList();
         }
 
-        // ===================================================================================================== //
-        // ============================       Metodos Privados       =========================================== //
-        // ===================================================================================================== //
-
+        // --- Metodos Privados
         private string ObtenerNombreUsuario(string apellidoEmpleado, string nombreEmpleado)
         {
             if (string.IsNullOrEmpty(apellidoEmpleado))
@@ -139,5 +136,6 @@ namespace Servicios.Usuario
 
             return nombreUsuario;
         }
+
     }
 }

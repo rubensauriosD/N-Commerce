@@ -19,6 +19,7 @@
     using StructureMap;
     using Presentacion.Core.FormaPago;
     using Presentacion.Core.Proveedor;
+    using IServicio.Persona;
 
     public partial class Principal : Form
     {
@@ -121,12 +122,24 @@
 
         private void lnkCambiarPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Mjs.Info("Servicio no disponible.");
+            new _00060_Usuario_Modificar_Password().ShowDialog();
         }
 
         private void lnkCambiarFoto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Mjs.Info("Servicio no disponible.");
+            var fSeleccionFoto = new _0059_Usuario_Cambiar_Foto(Identidad.Foto);
+            fSeleccionFoto.ShowDialog();
+
+            if (!fSeleccionFoto.RealizoOperacion)
+                return;
+
+            var foto = Imagen.ConvertirImagen(fSeleccionFoto.Foto);
+
+            if(!ObjectFactory.GetInstance<IEmpleadoServicio>().ModificarFoto(Identidad.EmpleadoId,foto))
+                return;
+
+            Identidad.Foto = Imagen.ConvertirImagen(foto);
+            picFotoUsuario.Image = Identidad.Foto;
         }
 
         private void btnVenta_Click(object sender, EventArgs e)

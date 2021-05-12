@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Aplicacion.Constantes;
     using Dominio.UnidadDeTrabajo;
     using IServicio.Persona;
 
@@ -10,6 +11,32 @@
         public EmpleadoServicio(IUnidadDeTrabajo unidadDeTrabajo) 
             : base(unidadDeTrabajo)
         {
+        }
+
+        public bool ModificarFoto(long id, byte[] foto)
+        {
+            try
+            {
+                var empleado = _unidadDeTrabajo.EmpleadoRepositorio.Obtener(id);
+                empleado.Foto = foto;
+
+                if (empleado == null)
+                {
+                    Mjs.Alerta("Error al encontrar el empleado.");
+                    return false;
+                }
+
+                _unidadDeTrabajo.EmpleadoRepositorio.Modificar(empleado);
+                _unidadDeTrabajo.Commit();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error en EmpleadoServicio.ModificarFoto:{Environment.NewLine}{e.Message}");
+                return false;
+            }
+
         }
 
         public int ObtenerSiguienteLegajo()
