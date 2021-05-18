@@ -1,14 +1,16 @@
-﻿using System.Windows.Forms;
-using IServicio.UnidadMedida;
-using IServicio.UnidadMedida.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.UnidadMedida;
+    using IServicio.UnidadMedida.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00024_Abm_UnidadDeMedida : FormAbm
     {
         private readonly IUnidadMedidaServicio _servicio;
+        private readonly Validar Validar;
 
         public _00024_Abm_UnidadDeMedida(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,12 @@ namespace Presentacion.Core.Articulo
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IUnidadMedidaServicio>();
+        }
+
+        private void _00024_Abm_UnidadDeMedida_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoAlfanumerico(txtDescripcion);
+            txtDescripcion.MaxLength = 250;
         }
 
         public override void CargarDatos(long? entidadId)

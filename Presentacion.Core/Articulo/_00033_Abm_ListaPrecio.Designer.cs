@@ -116,6 +116,7 @@
             this.MinimumSize = new System.Drawing.Size(461, 262);
             this.Name = "_00033_Abm_ListaPrecio";
             this.Text = "Lista de Precio (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00033_Abm_ListaPrecio_Load);
             this.Controls.SetChildIndex(this.lblDescripcion, 0);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);

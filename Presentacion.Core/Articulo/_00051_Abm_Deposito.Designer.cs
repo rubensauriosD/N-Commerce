@@ -80,7 +80,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescripcion);
             this.Name = "_00051_Abm_Deposito";
-            this.Text = "_00051_Abm_Deposito";
+            this.Text = "Depósito";
+            this.Load += new System.EventHandler(this._00051_Abm_Deposito_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.txtUbicacion, 0);

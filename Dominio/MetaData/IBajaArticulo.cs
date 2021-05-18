@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Dominio.MetaData
+﻿namespace Dominio.MetaData
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public interface IBajaArticulo
     {
         [Required(ErrorMessage = "El campo {0} es Obligatorio")]

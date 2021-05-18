@@ -61,6 +61,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 265);
             this.Name = "_00028_Abm_MotivoBaja";
             this.Text = "Motivo de Baja (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00028_Abm_MotivoBaja_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);

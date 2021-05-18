@@ -19,6 +19,7 @@
         private readonly IRubroServicio _rubroServicio;
         private readonly IUnidadMedidaServicio _unidadMedidaServicio;
         private readonly IIvaServicio _ivaServicio;
+        private readonly Validar Validar;
         private Image ImagenProductoPorDefecto => Imagen.ImagenEmpleadoPorDefecto;
 
         public _00018_Abm_Articulo(TipoOperacion tipoOperacion, long? entidadId = null)
@@ -31,6 +32,7 @@
             _rubroServicio = ObjectFactory.GetInstance<IRubroServicio>();
             _unidadMedidaServicio = ObjectFactory.GetInstance<IUnidadMedidaServicio>();
             _ivaServicio = ObjectFactory.GetInstance<IIvaServicio>();
+            Validar = new Validar();
 
             imgFoto.Image = ImagenProductoPorDefecto;
 
@@ -38,6 +40,24 @@
             PoblarComboBox(cmbRubro, _rubroServicio.Obtener(string.Empty, false), "Descripcion", "Id");
             PoblarComboBox(cmbUnidad, _unidadMedidaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
             PoblarComboBox(cmbIva, _ivaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
+        }
+
+        private void _00018_Abm_Articulo_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoCodigoBarra(txtcodigoBarra);
+
+            Validar.ComoAlfanumerico(new Control[] {
+                txtCodigo,
+                txtDescripcion,
+            });
+
+            Validar.ComoAlfanumerico(new Control[] { 
+                txtAbreviatura,
+                txtUbicacion,
+                txtDetalle,
+            }, false);
+
+            txtAbreviatura.MaxLength = 10;
         }
 
         public override void CargarDatos(long? entidadId)
@@ -103,9 +123,7 @@
             return _articuloServicio.VerificarSiExiste(txtDescripcion.Text, id);
         }
 
-        //
-        // Sobrescritura de comportamiento de botones
-        //
+        // --- Sobrescritura de comportamiento de botones
         public override void EjecutarComandoNuevo()
         {
             var registro = new ArticuloCrudDto();
@@ -183,9 +201,7 @@
             txtcodigoBarra.Focus();
         }
 
-        //
-        // Eventos de Botones
-        //
+        // --- Eventos de Botones
         private void btnNuevaMarca_Click(object sender, System.EventArgs e)
         {
             var fNuevaMarca = new _00022_Abm_Marca(TipoOperacion.Nuevo);
@@ -246,5 +262,6 @@
         {
             nudLimiteVenta.Enabled = chkActivarLimite.Checked;
         }
+
     }
 }

@@ -299,3 +299,5 @@ D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.pdb
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Cliente._00056_Cheque_Abm.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00057_Cheque_Deposito.resources
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Articulo._00058_Deposito_Transferencia.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Usuario._00060_Usuario_Modificar_Password.resources
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.Usuario._0059_Usuario_Cambiar_Foto.resources

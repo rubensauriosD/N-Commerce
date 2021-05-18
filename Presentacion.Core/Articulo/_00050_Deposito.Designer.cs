@@ -28,10 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // pnlBusqueda
+            // 
+            this.pnlBusqueda.Size = new System.Drawing.Size(800, 43);
+            // 
+            // _00050_Deposito
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "_00050_Deposito";
+            this.Name = "_00050_Deposito";
+            this.Text = "Depósito";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

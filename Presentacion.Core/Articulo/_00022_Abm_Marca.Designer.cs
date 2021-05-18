@@ -61,6 +61,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 265);
             this.Name = "_00022_Abm_Marca";
             this.Text = "Marca (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00022_Abm_Marca_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);

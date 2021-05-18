@@ -1,14 +1,15 @@
-﻿using System;
-using System.Windows.Forms;
-using Aplicacion.Constantes;
-using IServicio.Seguridad;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System;
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Seguridad;
+    using PresentacionBase.Formularios;
+
     public partial class ListaPrecioAutorizacion : FormBase
     {
         private readonly ISeguridadServicio _servicio;
+        private readonly Validar Validar;
 
         public bool PuedeAcceder { get; private set; }
 
@@ -17,6 +18,7 @@ namespace Presentacion.Core.Articulo
             InitializeComponent();
 
             _servicio = servicio;
+            Validar = new Validar();
             PuedeAcceder = false;
         }
 
@@ -35,9 +37,9 @@ namespace Presentacion.Core.Articulo
             picPassword.Image = Imagen.Bloquear;
 
             // Setear Controles
+            Validar.ComoPassword(txtPassword);
+            Validar.ComoAlfanumerico(txtUsuario);
             txtUsuario.MaxLength = 30;
-            txtPassword.MaxLength = 30;
-            txtPassword.UseSystemPasswordChar = true;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)

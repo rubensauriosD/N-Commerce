@@ -1,14 +1,16 @@
-﻿using System.Windows.Forms;
-using IServicio.Deposito;
-using IServicio.Deposito.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Deposito;
+    using IServicio.Deposito.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00051_Abm_Deposito : FormAbm
     {
         private readonly IDepositoSevicio _servicio;
+        private readonly Validar Validar;
 
         public _00051_Abm_Deposito(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,15 @@ namespace Presentacion.Core.Articulo
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IDepositoSevicio>();
+        }
+
+        private void _00051_Abm_Deposito_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoAlfanumerico(txtDescripcion);
+            Validar.ComoAlfanumerico(txtUbicacion, false);
+
+            txtDescripcion.MaxLength = 250;
+            txtUbicacion.MaxLength = 400;
         }
 
         public override void CargarDatos(long? entidadId)
@@ -86,6 +97,5 @@ namespace Presentacion.Core.Articulo
 
             txtDescripcion.Focus();
         }
-
     }
 }

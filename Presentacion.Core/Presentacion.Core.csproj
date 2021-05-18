@@ -525,14 +525,26 @@
     <EmbeddedResource Include="Articulo\_00020_Abm_Rubro.resx">
       <DependentUpon>_00020_Abm_Rubro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\_00021_Marca.resx">
+      <DependentUpon>_00021_Marca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Articulo\_00022_Abm_Marca.resx">
       <DependentUpon>_00022_Abm_Marca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\_00023_UnidadDeMedida.resx">
+      <DependentUpon>_00023_UnidadDeMedida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\_00024_Abm_UnidadDeMedida.resx">
       <DependentUpon>_00024_Abm_UnidadDeMedida.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\_00025_Iva.resx">
+      <DependentUpon>_00025_Iva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Articulo\_00026_Abm_Iva.resx">
       <DependentUpon>_00026_Abm_Iva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\_00027_MotivoBaja.resx">
+      <DependentUpon>_00027_MotivoBaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\_00028_Abm_MotivoBaja.resx">
       <DependentUpon>_00028_Abm_MotivoBaja.cs</DependentUpon>
@@ -551,6 +563,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\_00033_Abm_ListaPrecio.resx">
       <DependentUpon>_00033_Abm_ListaPrecio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\_00050_Deposito.resx">
+      <DependentUpon>_00050_Deposito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\_00051_Abm_Deposito.resx">
       <DependentUpon>_00051_Abm_Deposito.cs</DependentUpon>

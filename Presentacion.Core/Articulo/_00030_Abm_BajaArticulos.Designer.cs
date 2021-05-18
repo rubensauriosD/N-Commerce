@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlFoto = new System.Windows.Forms.Panel();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.lblFoto = new System.Windows.Forms.Label();
             this.imgFotoArticulo = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.btnBuscarArticulo = new System.Windows.Forms.Button();
             this.txtArticulo = new System.Windows.Forms.TextBox();
             this.lblArticulo = new System.Windows.Forms.Label();
-            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadBaja)).BeginInit();
@@ -62,6 +62,18 @@
             this.pnlFoto.Name = "pnlFoto";
             this.pnlFoto.Size = new System.Drawing.Size(180, 255);
             this.pnlFoto.TabIndex = 161;
+            // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAgregarImagen.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btnAgregarImagen.Location = new System.Drawing.Point(9, 213);
+            this.btnAgregarImagen.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(163, 30);
+            this.btnAgregarImagen.TabIndex = 85;
+            this.btnAgregarImagen.Text = "Agregar Imagen";
+            this.btnAgregarImagen.UseVisualStyleBackColor = false;
             // 
             // lblFoto
             // 
@@ -218,18 +230,6 @@
             this.lblArticulo.TabIndex = 150;
             this.lblArticulo.Text = "Articulo";
             // 
-            // btnAgregarImagen
-            // 
-            this.btnAgregarImagen.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAgregarImagen.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnAgregarImagen.Location = new System.Drawing.Point(9, 213);
-            this.btnAgregarImagen.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregarImagen.Name = "btnAgregarImagen";
-            this.btnAgregarImagen.Size = new System.Drawing.Size(163, 30);
-            this.btnAgregarImagen.TabIndex = 85;
-            this.btnAgregarImagen.Text = "Agregar Imagen";
-            this.btnAgregarImagen.UseVisualStyleBackColor = false;
-            // 
             // _00030_Abm_BajaArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +252,7 @@
             this.MinimumSize = new System.Drawing.Size(712, 390);
             this.Name = "_00030_Abm_BajaArticulos";
             this.Text = "Baja de Articulos (Alta, y Modificación)";
+            this.Load += new System.EventHandler(this._00030_Abm_BajaArticulos_Load);
             this.Controls.SetChildIndex(this.lblArticulo, 0);
             this.Controls.SetChildIndex(this.txtArticulo, 0);
             this.Controls.SetChildIndex(this.btnBuscarArticulo, 0);

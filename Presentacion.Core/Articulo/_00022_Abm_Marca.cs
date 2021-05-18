@@ -1,14 +1,16 @@
-﻿using System.Windows.Forms;
-using IServicio.Marca;
-using IServicio.Marca.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Marca;
+    using IServicio.Marca.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00022_Abm_Marca : FormAbm
     {
         private readonly IMarcaServicio _servicio;
+        private readonly Validar Validar;
 
         public _00022_Abm_Marca(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,13 @@ namespace Presentacion.Core.Articulo
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IMarcaServicio>();
+            Validar = new Validar();
+        }
+
+        private void _00022_Abm_Marca_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoAlfanumerico(txtDescripcion);
+            txtDescripcion.MaxLength = 250;
         }
 
         public override void CargarDatos(long? entidadId)

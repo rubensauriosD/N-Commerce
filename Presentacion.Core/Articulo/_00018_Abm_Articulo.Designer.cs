@@ -773,6 +773,7 @@
             this.MinimumSize = new System.Drawing.Size(594, 539);
             this.Name = "_00018_Abm_Articulo";
             this.Text = "Articulo (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00018_Abm_Articulo_Load);
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

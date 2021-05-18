@@ -62,6 +62,7 @@
             this.Name = "_00024_Abm_UnidadDeMedida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unidad de Medida (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00024_Abm_UnidadDeMedida_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);
