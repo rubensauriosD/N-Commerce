@@ -22,6 +22,7 @@
     using IServicio.Seguridad;
     using IServicio.UnidadMedida;
     using IServicio.Usuario;
+    using IServicios.Articulo;
     using IServicios.Caja;
     using IServicios.Comprobante;
     using IServicios.Contador;
@@ -40,6 +41,7 @@
     using Servicios.ListaPrecio;
     using Servicios.Localidad;
     using Servicios.Marca;
+    using Servicios.MotivoBaja;
     using Servicios.Persona;
     using Servicios.Provincia;
     using Servicios.PuestoTrabajo;
@@ -62,6 +64,10 @@
                 x.For<IUnidadDeTrabajo>().Use<UnidadDeTrabajo>();
 
                 // =================================================================== //
+
+                x.For<IMotivoBajaServicio>().Use<MotivoBajaServicio>();
+
+                x.For<IBajaArticuloServicio>().Use<BajaArticuloServicio>();
 
                 x.For<IProvinciaServicio>().Use<ProvinciaServicio>();
 

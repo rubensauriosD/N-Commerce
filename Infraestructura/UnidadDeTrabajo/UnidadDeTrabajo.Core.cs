@@ -33,6 +33,14 @@
 
         // ============================================================================================================ //
 
+        private IRepositorio<BajaArticulo> bajaArticuloRepositorio;
+
+        public IRepositorio<BajaArticulo> BajaArticuloRepositorio => bajaArticuloRepositorio
+                                                               ?? (bajaArticuloRepositorio =
+                                                                   new Repositorio<BajaArticulo>(_context));
+
+        // ============================================================================================================ //
+
         private IRepositorio<Caja> cajaRepositorio;
 
         public IRepositorio<Caja> CajaRepositorio => cajaRepositorio

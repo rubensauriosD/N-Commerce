@@ -56,10 +56,12 @@
     <Compile Include="Articulo\DTOs\ArticuloCrudDto.cs" />
     <Compile Include="Articulo\DTOs\ArticuloDto.cs" />
     <Compile Include="Articulo\DTOs\ArticuloVentaDto.cs" />
+    <Compile Include="Articulo\DTOs\BajaArticuloDto.cs" />
     <Compile Include="Articulo\DTOs\MotivoBajaDto.cs" />
     <Compile Include="Articulo\DTOs\PrecioDto.cs" />
     <Compile Include="Articulo\DTOs\StockDepositoDto.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
+    <Compile Include="Articulo\IBajaArticuloServicio.cs" />
     <Compile Include="Articulo\IMotivoBajaServicio.cs" />
     <Compile Include="BaseDto\DtoBase.cs" />
     <Compile Include="Base\IServicio.cs" />

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.pnlFoto = new System.Windows.Forms.Panel();
-            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.lblFoto = new System.Windows.Forms.Label();
             this.imgFotoArticulo = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,26 +53,13 @@
             // 
             this.pnlFoto.BackColor = System.Drawing.Color.Silver;
             this.pnlFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlFoto.Controls.Add(this.btnAgregarImagen);
             this.pnlFoto.Controls.Add(this.lblFoto);
             this.pnlFoto.Controls.Add(this.imgFotoArticulo);
             this.pnlFoto.Location = new System.Drawing.Point(502, 79);
             this.pnlFoto.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFoto.Name = "pnlFoto";
             this.pnlFoto.Size = new System.Drawing.Size(180, 255);
-            this.pnlFoto.TabIndex = 161;
-            // 
-            // btnAgregarImagen
-            // 
-            this.btnAgregarImagen.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAgregarImagen.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnAgregarImagen.Location = new System.Drawing.Point(9, 213);
-            this.btnAgregarImagen.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregarImagen.Name = "btnAgregarImagen";
-            this.btnAgregarImagen.Size = new System.Drawing.Size(163, 30);
-            this.btnAgregarImagen.TabIndex = 85;
-            this.btnAgregarImagen.Text = "Agregar Imagen";
-            this.btnAgregarImagen.UseVisualStyleBackColor = false;
+            this.pnlFoto.TabIndex = 13;
             // 
             // lblFoto
             // 
@@ -85,7 +71,7 @@
             this.lblFoto.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFoto.Name = "lblFoto";
             this.lblFoto.Size = new System.Drawing.Size(178, 29);
-            this.lblFoto.TabIndex = 84;
+            this.lblFoto.TabIndex = 0;
             this.lblFoto.Text = "Foto";
             this.lblFoto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -109,7 +95,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 16);
-            this.label3.TabIndex = 160;
+            this.label3.TabIndex = 10;
             this.label3.Text = "Observación";
             // 
             // txtObservacion
@@ -118,7 +104,7 @@
             this.txtObservacion.Location = new System.Drawing.Point(120, 162);
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(323, 172);
-            this.txtObservacion.TabIndex = 159;
+            this.txtObservacion.TabIndex = 11;
             this.txtObservacion.Text = "";
             // 
             // lblCantidadBaja
@@ -130,7 +116,7 @@
             this.lblCantidadBaja.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCantidadBaja.Name = "lblCantidadBaja";
             this.lblCantidadBaja.Size = new System.Drawing.Size(124, 16);
-            this.lblCantidadBaja.TabIndex = 158;
+            this.lblCantidadBaja.TabIndex = 5;
             this.lblCantidadBaja.Text = "Cantidad para Baja";
             // 
             // lblStockActual
@@ -142,7 +128,7 @@
             this.lblStockActual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(82, 16);
-            this.lblStockActual.TabIndex = 157;
+            this.lblStockActual.TabIndex = 3;
             this.lblStockActual.Text = "Stock Actual";
             // 
             // nudCantidadBaja
@@ -151,7 +137,7 @@
             this.nudCantidadBaja.Location = new System.Drawing.Point(348, 106);
             this.nudCantidadBaja.Name = "nudCantidadBaja";
             this.nudCantidadBaja.Size = new System.Drawing.Size(95, 22);
-            this.nudCantidadBaja.TabIndex = 156;
+            this.nudCantidadBaja.TabIndex = 6;
             // 
             // nudStockActual
             // 
@@ -160,7 +146,7 @@
             this.nudStockActual.Location = new System.Drawing.Point(120, 106);
             this.nudStockActual.Name = "nudStockActual";
             this.nudStockActual.Size = new System.Drawing.Size(95, 22);
-            this.nudStockActual.TabIndex = 155;
+            this.nudStockActual.TabIndex = 4;
             // 
             // btnNuevoMotivoBaja
             // 
@@ -169,10 +155,11 @@
             this.btnNuevoMotivoBaja.Margin = new System.Windows.Forms.Padding(2);
             this.btnNuevoMotivoBaja.Name = "btnNuevoMotivoBaja";
             this.btnNuevoMotivoBaja.Size = new System.Drawing.Size(37, 25);
-            this.btnNuevoMotivoBaja.TabIndex = 153;
+            this.btnNuevoMotivoBaja.TabIndex = 9;
             this.btnNuevoMotivoBaja.Text = "...";
             this.btnNuevoMotivoBaja.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNuevoMotivoBaja.UseVisualStyleBackColor = true;
+            this.btnNuevoMotivoBaja.Click += new System.EventHandler(this.btnNuevoMotivoBaja_Click);
             // 
             // cmbMotivoBaja
             // 
@@ -182,7 +169,8 @@
             this.cmbMotivoBaja.Margin = new System.Windows.Forms.Padding(2);
             this.cmbMotivoBaja.Name = "cmbMotivoBaja";
             this.cmbMotivoBaja.Size = new System.Drawing.Size(323, 24);
-            this.cmbMotivoBaja.TabIndex = 152;
+            this.cmbMotivoBaja.TabIndex = 8;
+            this.cmbMotivoBaja.SelectedIndexChanged += new System.EventHandler(this.cmbMotivoBaja_SelectedIndexChanged);
             // 
             // lblMotivoDeBaja
             // 
@@ -193,7 +181,7 @@
             this.lblMotivoDeBaja.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMotivoDeBaja.Name = "lblMotivoDeBaja";
             this.lblMotivoDeBaja.Size = new System.Drawing.Size(98, 16);
-            this.lblMotivoDeBaja.TabIndex = 154;
+            this.lblMotivoDeBaja.TabIndex = 7;
             this.lblMotivoDeBaja.Text = "Motivo de Baja";
             // 
             // btnBuscarArticulo
@@ -203,10 +191,11 @@
             this.btnBuscarArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
             this.btnBuscarArticulo.Size = new System.Drawing.Size(37, 23);
-            this.btnBuscarArticulo.TabIndex = 151;
+            this.btnBuscarArticulo.TabIndex = 2;
             this.btnBuscarArticulo.Text = "...";
             this.btnBuscarArticulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBuscarArticulo.UseVisualStyleBackColor = true;
+            this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click);
             // 
             // txtArticulo
             // 
@@ -216,7 +205,7 @@
             this.txtArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.txtArticulo.Name = "txtArticulo";
             this.txtArticulo.Size = new System.Drawing.Size(323, 22);
-            this.txtArticulo.TabIndex = 149;
+            this.txtArticulo.TabIndex = 1;
             // 
             // lblArticulo
             // 
@@ -227,7 +216,7 @@
             this.lblArticulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblArticulo.Name = "lblArticulo";
             this.lblArticulo.Size = new System.Drawing.Size(52, 16);
-            this.lblArticulo.TabIndex = 150;
+            this.lblArticulo.TabIndex = 0;
             this.lblArticulo.Text = "Articulo";
             // 
             // _00030_Abm_BajaArticulos
@@ -292,6 +281,5 @@
         private System.Windows.Forms.Button btnBuscarArticulo;
         private System.Windows.Forms.TextBox txtArticulo;
         private System.Windows.Forms.Label lblArticulo;
-        private System.Windows.Forms.Button btnAgregarImagen;
     }
 }

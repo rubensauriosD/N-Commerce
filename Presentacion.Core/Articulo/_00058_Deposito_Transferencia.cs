@@ -16,6 +16,7 @@
     {
         private readonly IArticuloServicio _articuloServicio;
         private readonly IDepositoSevicio _depositoServicio;
+        private readonly Validar Validar;
 
         private TransferenciaDepositoDto transferencia;
 
@@ -25,6 +26,7 @@
 
             _articuloServicio = ObjectFactory.GetInstance<IArticuloServicio>();
             _depositoServicio = ObjectFactory.GetInstance<IDepositoSevicio>();
+            Validar = new Validar();
 
             transferencia = new TransferenciaDepositoDto();
         }
@@ -58,13 +60,39 @@
         {
             bool ok = true;
 
-            ok &= transferencia.ArticuloId != 0
-                && transferencia.DestinoId != 0
-                && transferencia.OrigenId != 0
-                && transferencia.Cantidad > 0;
+            if (transferencia.ArticuloId < 1)
+            { 
+                Validar.SetErrorProvider(lblArticulo, "Seleccione un artículo");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(lblArticulo);
 
-            if (!ok)
-                Mjs.Alerta("Los datos seleccionados no son correctos");
+
+            if (transferencia.OrigenId < 1)
+            { 
+                Validar.SetErrorProvider(lblDepositoOrigen, "Seleccione un depósito de origen.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(lblDepositoOrigen);
+
+
+            if (transferencia.DestinoId < 1 && transferencia.OrigenId != transferencia.DestinoId)
+            { 
+                Validar.SetErrorProvider(lblDepositoDestino, "Seleccione un depósito de destino.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(lblDepositoDestino);
+
+            if (transferencia.Cantidad < 1)
+            {
+                Validar.SetErrorProvider(nudCantidad, "Ingrese una cantidad correcta.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(nudCantidad);
 
             return ok;
         }

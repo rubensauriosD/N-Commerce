@@ -181,10 +181,10 @@ namespace Presentacion.Core.Configuracion
             this.tabControlConfig.Controls.Add(this.tabPageVenta);
             this.tabControlConfig.Controls.Add(this.tabPageCaja);
             this.tabControlConfig.Controls.Add(this.tabPage1);
-            this.tabControlConfig.Location = new System.Drawing.Point(4, 68);
+            this.tabControlConfig.Location = new System.Drawing.Point(12, 67);
             this.tabControlConfig.Name = "tabControlConfig";
             this.tabControlConfig.SelectedIndex = 0;
-            this.tabControlConfig.Size = new System.Drawing.Size(528, 350);
+            this.tabControlConfig.Size = new System.Drawing.Size(510, 332);
             this.tabControlConfig.TabIndex = 6;
             // 
             // tabPageEmpresa
@@ -216,7 +216,7 @@ namespace Presentacion.Core.Configuracion
             this.tabPageEmpresa.Location = new System.Drawing.Point(4, 25);
             this.tabPageEmpresa.Name = "tabPageEmpresa";
             this.tabPageEmpresa.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEmpresa.Size = new System.Drawing.Size(520, 321);
+            this.tabPageEmpresa.Size = new System.Drawing.Size(502, 303);
             this.tabPageEmpresa.TabIndex = 0;
             this.tabPageEmpresa.Text = "Datos Empresa";
             // 
@@ -596,7 +596,7 @@ namespace Presentacion.Core.Configuracion
             this.tabPageVenta.Location = new System.Drawing.Point(4, 25);
             this.tabPageVenta.Name = "tabPageVenta";
             this.tabPageVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageVenta.Size = new System.Drawing.Size(520, 321);
+            this.tabPageVenta.Size = new System.Drawing.Size(502, 303);
             this.tabPageVenta.TabIndex = 2;
             this.tabPageVenta.Text = "Ventas";
             // 
@@ -723,7 +723,7 @@ namespace Presentacion.Core.Configuracion
             this.tabPageCaja.Location = new System.Drawing.Point(4, 25);
             this.tabPageCaja.Name = "tabPageCaja";
             this.tabPageCaja.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCaja.Size = new System.Drawing.Size(520, 321);
+            this.tabPageCaja.Size = new System.Drawing.Size(502, 303);
             this.tabPageCaja.TabIndex = 3;
             this.tabPageCaja.Text = "Caja";
             // 
@@ -797,7 +797,7 @@ namespace Presentacion.Core.Configuracion
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(520, 321);
+            this.tabPage1.Size = new System.Drawing.Size(502, 303);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Báscula";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -806,10 +806,10 @@ namespace Presentacion.Core.Configuracion
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(186, 174);
+            this.label13.Location = new System.Drawing.Point(179, 174);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(323, 132);
+            this.label13.Size = new System.Drawing.Size(318, 123);
             this.label13.TabIndex = 142;
             this.label13.Text = resources.GetString("label13.Text");
             // 
@@ -818,7 +818,7 @@ namespace Presentacion.Core.Configuracion
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(186, 158);
+            this.label12.Location = new System.Drawing.Point(186, 155);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 16);
@@ -827,9 +827,9 @@ namespace Presentacion.Core.Configuracion
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(18, 158);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 152);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(163, 148);
+            this.pictureBox1.Size = new System.Drawing.Size(153, 145);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 

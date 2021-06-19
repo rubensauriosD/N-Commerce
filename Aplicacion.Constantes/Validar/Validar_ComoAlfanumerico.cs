@@ -14,8 +14,6 @@
 
         public void ComoAlfanumerico(Control control, bool obligatorio = false)
         {
-            var errorProvider = new ErrorProvider();
-
             Validador validador = (string txt, out string errMjs) =>
             {
                 errMjs = "El campo solo admite números y letras.";
@@ -35,20 +33,25 @@
             {
                 if (!validador(e.KeyChar.ToString(), out string errMjs))
                     e.Handled = true;
+
             };
 
             control.Validating += (object sender, System.ComponentModel.CancelEventArgs e) =>
             {
+                if (sender is TextBox)
+                    (sender as TextBox).Text =  EliminarEspaciosEnBlanco((sender as TextBox).Text.Trim());
+
                 if (!validador(control.Text, out string errorMsg))
                 {
                     e.Cancel = true;
-                    control.Select();
                     errorProvider.SetError(control, errorMsg);
                 }
             };
 
-            control.Validated += (object sender, EventArgs e)
-                => errorProvider.SetError((Control)sender, "");
+            control.Validated += (object sender, EventArgs e) =>
+            {
+                errorProvider.SetError((Control)sender, "");
+            };
         }
     }
 }

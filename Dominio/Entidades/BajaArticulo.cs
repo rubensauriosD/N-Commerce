@@ -1,10 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Dominio.MetaData;
-
-namespace Dominio.Entidades
+﻿namespace Dominio.Entidades
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Dominio.MetaData;
+
     [Table("BajaArticulo")]
     [MetadataType(typeof(IBajaArticulo))]
     public class BajaArticulo : EntidadBase

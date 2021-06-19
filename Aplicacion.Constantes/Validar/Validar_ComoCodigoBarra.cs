@@ -8,8 +8,6 @@
     {
         public void ComoCodigoBarra(Control control, bool obligatorio = false)
         {
-            var errorProvider = new ErrorProvider();
-
             if (control is TextBox)
                 ConfigurarProiedadesCodigoBarra(control as TextBox);
 
@@ -56,7 +54,6 @@
                 if (!validador(control.Text, out string errorMsg))
                 {
                     e.Cancel = true;
-                    control.Select();
                     errorProvider.SetError(control, errorMsg);
                 }
             };

@@ -41,7 +41,7 @@
             this.label1.Location = new System.Drawing.Point(82, 126);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Descripción";
             // 
             // txtDescripcion
@@ -50,7 +50,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(168, 123);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(288, 22);
-            this.txtDescripcion.TabIndex = 8;
+            this.txtDescripcion.TabIndex = 1;
             // 
             // label2
             // 
@@ -59,7 +59,7 @@
             this.label2.Location = new System.Drawing.Point(93, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 16);
-            this.label2.TabIndex = 11;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Ubicación";
             // 
             // txtUbicacion
@@ -68,7 +68,7 @@
             this.txtUbicacion.Location = new System.Drawing.Point(168, 166);
             this.txtUbicacion.Name = "txtUbicacion";
             this.txtUbicacion.Size = new System.Drawing.Size(288, 22);
-            this.txtUbicacion.TabIndex = 10;
+            this.txtUbicacion.TabIndex = 3;
             // 
             // _00051_Abm_Deposito
             // 

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo\ArticuloServicio.cs" />
+    <Compile Include="Articulo\BajaArticuloServicio.cs" />
     <Compile Include="Base\AndOr.cs" />
     <Compile Include="Base\GenericCompare.cs" />
     <Compile Include="Base\GenericInstance.cs" />

@@ -1,9 +1,9 @@
-﻿using System.Windows.Forms;
-using IServicio.Rubro;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Windows.Forms;
+    using IServicio.Rubro;
+    using PresentacionBase.Formularios;
+
     public partial class _00019_Rubro : FormConsulta
     {
         private readonly IRubroServicio _rubroServicio;

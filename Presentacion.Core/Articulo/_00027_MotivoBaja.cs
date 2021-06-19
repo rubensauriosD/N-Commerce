@@ -1,9 +1,9 @@
-﻿using System.Windows.Forms;
-using IServicio.Articulo;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Windows.Forms;
+    using IServicio.Articulo;
+    using PresentacionBase.Formularios;
+
     public partial class _00027_MotivoBaja : FormConsulta
     {
         private readonly IMotivoBajaServicio _marcaServicio;

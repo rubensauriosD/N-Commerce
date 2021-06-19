@@ -143,9 +143,7 @@
         }
 
 
-        //
-        // Metodos configurables
-        //
+        // --- Metodos configurables
         public virtual void EjecutarComandoNuevo()
         {
         }

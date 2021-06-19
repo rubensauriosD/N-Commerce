@@ -45,7 +45,7 @@
             this.chkPedirAutorizacion.Location = new System.Drawing.Point(167, 170);
             this.chkPedirAutorizacion.Name = "chkPedirAutorizacion";
             this.chkPedirAutorizacion.Size = new System.Drawing.Size(135, 20);
-            this.chkPedirAutorizacion.TabIndex = 108;
+            this.chkPedirAutorizacion.TabIndex = 5;
             this.chkPedirAutorizacion.Text = "Pedir Autorización";
             this.chkPedirAutorizacion.UseVisualStyleBackColor = true;
             // 
@@ -54,9 +54,14 @@
             this.nudPorcentaje.DecimalPlaces = 2;
             this.nudPorcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPorcentaje.Location = new System.Drawing.Point(167, 131);
+            this.nudPorcentaje.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.nudPorcentaje.Name = "nudPorcentaje";
             this.nudPorcentaje.Size = new System.Drawing.Size(123, 22);
-            this.nudPorcentaje.TabIndex = 107;
+            this.nudPorcentaje.TabIndex = 3;
             // 
             // label1
             // 
@@ -66,7 +71,7 @@
             this.label1.Location = new System.Drawing.Point(24, 133);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 16);
-            this.label1.TabIndex = 106;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Porcentaje  Ganancia";
             // 
             // txtDescripcion
@@ -76,7 +81,7 @@
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(241, 22);
-            this.txtDescripcion.TabIndex = 104;
+            this.txtDescripcion.TabIndex = 1;
             // 
             // lblDescripcion
             // 
@@ -87,7 +92,7 @@
             this.lblDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(80, 16);
-            this.lblDescripcion.TabIndex = 105;
+            this.lblDescripcion.TabIndex = 0;
             this.lblDescripcion.Text = "Descripcion";
             // 
             // label2
@@ -98,7 +103,7 @@
             this.label2.Location = new System.Drawing.Point(295, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 16);
-            this.label2.TabIndex = 109;
+            this.label2.TabIndex = 4;
             this.label2.Text = "[%]";
             // 
             // _00033_Abm_ListaPrecio

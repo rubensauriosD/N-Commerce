@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Dominio.UnidadDeTrabajo;
-using IServicio.Articulo;
-using IServicio.Articulo.DTOs;
-using IServicio.BaseDto;
-using Servicios.Base;
-
-namespace Servicios.MotivoBaja
+﻿namespace Servicios.MotivoBaja
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.Articulo;
+    using IServicio.Articulo.DTOs;
+    using IServicio.BaseDto;
+    using Servicios.Base;
+
     public class MotivoBajaServicio : IMotivoBajaServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;

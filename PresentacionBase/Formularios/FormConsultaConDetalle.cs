@@ -62,7 +62,7 @@
                 return;
             }
 
-            if (entidadId.HasValue)
+            if (!entidadId.HasValue)
             {
                 MessageBox.Show("Por favor seleccione un registro");
                 return;
@@ -92,7 +92,8 @@
 
         public virtual void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvGrilla.RowCount <= 0) return;
+            if (dgvGrilla.RowCount <= 0) 
+                return;
 
             entidadId = (long) dgvGrilla["Id", e.RowIndex].Value;
 

@@ -430,7 +430,15 @@
                 }
 
                 //
-                // Puesto Trabajo
+                // Tarjeta
+                //
+                if (!context.MotivoBajas.Any())
+                    context.MotivoBajas.Add(new MotivoBaja { 
+                        Descripcion = "Reversión",
+                    });
+
+                //
+                // Tarjeta
                 //
                 if (!context.Tarjetas.Any())
                     context.Tarjetas.Add(new Tarjeta { 
@@ -530,44 +538,6 @@
                         });
                 }
 
-                //
-                // Configuracion Inicial
-                //
-                //if (!context.Configurationes.Any())
-                //{
-                //    context.Configurationes.Add(new Configuracion
-                //    {
-                //        EstaEliminado = false,
-                //        LocalidadId = context.Localidades.First().Id,
-                //        DepositoNuevoArticuloId = context.Depositos.First().Id,
-                //        DepositoVentaId = context.Depositos.First().Id,
-                //        ListaPrecioPorDefectoId = context.ListaPrecios.First().Id,
-                //        RazonSocial = "Razón Social",
-                //        NombreFantasia = "Fantasía",
-                //        Telefono = "0000000000",
-                //        Celular = "0000000000",
-                //        Cuit = "00000000000",
-                //        Direccion = "Sin dirección",
-                //        Email =  "sin@mail.com",
-                //        ObservacionEnPieFactura = "",
-                //        ActivarRetiroDeCaja = false,
-                //        ActualizaCostoDesdeCompra = true,
-                //        FacturaDescuentaStock = true,
-                //        IngresoManualCajaInicial = true,
-                //        ModificaPrecioVentaDesdeCompra = false,
-                //        MontoMaximoRetiroCaja = 0,
-                //        PresupuestoDescuentaStock = false,
-                //        PuestoCajaSeparado = false,
-                //        RemitoDescuentaStock = false,
-                //        TipoFormaPagoPorDefectoCompra = TipoPago.Efectivo,
-                //        TipoFormaPagoPorDefectoVenta = TipoPago.Efectivo,
-                //        UnificarRenglonesIngresarMismoProducto = true,
-                //        ActivarBascula = true,
-                //        CodigoBascula = "4004",
-                //        EtiquetaPorPeso = true,
-                //        EtiquetaPorPrecio = false,
-                //    });
-                //}
             }
             catch (Exception e)
             {

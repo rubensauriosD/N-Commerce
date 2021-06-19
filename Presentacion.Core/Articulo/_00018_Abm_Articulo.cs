@@ -46,18 +46,13 @@
         {
             Validar.ComoCodigoBarra(txtcodigoBarra);
 
-            Validar.ComoAlfanumerico(new Control[] {
-                txtCodigo,
-                txtDescripcion,
-            });
-
-            Validar.ComoAlfanumerico(new Control[] { 
-                txtAbreviatura,
-                txtUbicacion,
-                txtDetalle,
-            }, false);
-
+            Validar.ComoAlfanumerico(txtDescripcion, true);
+            Validar.ComoNumero(txtCodigo, true);
+            Validar.ComoAlfanumerico(txtAbreviatura);
             txtAbreviatura.MaxLength = 10;
+            Validar.ComoAlfanumerico(txtUbicacion);
+            Validar.ComoAlfanumerico(txtDetalle);
+            Validar.ComoPrecio(nudPrecioCosto,true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -109,13 +104,44 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtCodigo.Text)
-                && !string.IsNullOrEmpty(txtcodigoBarra.Text)
-                && !string.IsNullOrEmpty(txtDescripcion.Text)
-                && cmbMarca.Items.Count > 0
-                && cmbRubro.Items.Count > 0
-                && cmbUnidad.Items.Count > 0
-                && cmbIva.Items.Count > 0;
+            bool ok = ValidateChildren();
+
+            if (cmbMarca.Items.Count < 1)
+            {
+                Validar.SetErrorProvider(cmbMarca, "Debes seleccionar una marca.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbMarca);
+
+
+            if (cmbRubro.Items.Count < 1)
+            {
+                Validar.SetErrorProvider(cmbRubro, "Debes seleccionar un rubro.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbRubro);
+
+
+            if (cmbUnidad.Items.Count < 1)
+            {
+                Validar.SetErrorProvider(cmbUnidad, "Debes seleccionar una unidad.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbUnidad);
+
+
+            if (cmbIva.Items.Count < 1)
+            {
+                Validar.SetErrorProvider(cmbIva, "Debes seleccionar una alicuota iva.");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbIva);
+
+            return ok;
         }
 
         public override bool VerificarSiExiste(long? id = null)

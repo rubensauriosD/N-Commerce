@@ -1,9 +1,10 @@
-﻿using System.Windows.Forms;
-using IServicio.Deposito;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Deposito;
+    using PresentacionBase.Formularios;
+
     public partial class _00050_Deposito : FormConsulta
     {
         private readonly IDepositoSevicio _depositoServicio;
@@ -45,6 +46,20 @@ namespace Presentacion.Core.Articulo
 
         public override bool EjecutarComando(TipoOperacion tipoOperacion, long? id = null)
         {
+            if (id != null && id == 1)
+            {
+                Mjs.Info("No se puede eliminar este depósito.");
+                return false;
+            }
+
+            if (tipoOperacion == TipoOperacion.Eliminar
+                && id != null
+                && _depositoServicio.TieneStokDeArticulos(id))
+            {
+                Mjs.Alerta("No se puede eliminar depósitos con stoks");
+                return false;
+            }
+
             var form = new _00051_Abm_Deposito(tipoOperacion, id);
             form.ShowDialog();
             return form.RealizoAlgunaOperacion;

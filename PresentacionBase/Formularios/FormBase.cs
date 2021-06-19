@@ -11,6 +11,7 @@
         public FormBase()
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.EnableAllowFocusChange;
         }
 
         protected void Control_Leave(object sender, EventArgs e)
@@ -113,7 +114,7 @@
                     break;
 
                 case ComboBox ctrl:
-                    ctrl.SelectedIndex = 0;
+                    ctrl.SelectedIndex = 1;
                     break;
 
                 case DateTimePicker ctrl:

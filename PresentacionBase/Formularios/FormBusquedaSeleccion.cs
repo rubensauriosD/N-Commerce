@@ -1,17 +1,18 @@
 ﻿namespace PresentacionBase.Formularios
 {
     using System;
-    using System.Collections.Generic;
     using System.Windows.Forms;
+    using Aplicacion.Constantes;
 
     public partial class FormBusquedaSeleccion : FormBase
     {
         public delegate void SetDatosGrilla(DataGridView grilla, string cadenaBuscar);
         public delegate void SetFormatoGrilla(DataGridView grilla);
 
+        private Validar Validar;
         private SetDatosGrilla datosGrilla;
         private SetFormatoGrilla formatoGrilla;
-        private string _placeHolder => "Buscar ...";
+        private string _placeHolder => "Buscar";
         public object Seleccion { get; private set; }
         public bool RealizoSeleccion { get; private set; }
         public string Titulo { set { Text = value; } }
@@ -24,6 +25,7 @@
             formatoGrilla = setFormatoGrilla;
 
             Seleccion = new object();
+            Validar = new Validar();
         }
 
         public FormBusquedaSeleccion(IConfiguracionBusquedaListado config)
@@ -34,7 +36,16 @@
 
         private void FormBusquedaSeleccion_Load(object sender, EventArgs e)
         {
+            Validar.ComoAlfanumerico(txtBuscar);
+            txtBuscar.Text = _placeHolder;
+
             ActualizarGrilla();
+
+            if (dgvGrilla.RowCount > 0)
+                return;
+
+            Mjs.Info("No hay elementos para seleccionar.");
+            Close();
         }
 
         private void ActualizarGrilla()
@@ -53,23 +64,24 @@
             formatoGrilla(dgvGrilla);
         }
 
+        // --- Acciones de controles
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
                 ActualizarGrilla();
         }
 
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == string.Empty || txtBuscar.TextLength < 3)
+                txtBuscar.Text = _placeHolder;
+        }
+
         private void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvGrilla.RowCount <= 0) return;
-
+        
             Seleccion = dgvGrilla.Rows[e.RowIndex].DataBoundItem;
-        }
-
-        private void dgvGrilla_DoubleClick(object sender, EventArgs e)
-        {
-            RealizoSeleccion = true;
-            Close();
         }
 
         private void dgvGrilla_KeyPress(object sender, KeyPressEventArgs e)
@@ -78,12 +90,6 @@
 
             if (letra == (char)Keys.Escape)
                 Close();
-
-            if (letra == (char)Keys.Enter)
-            {
-                RealizoSeleccion = true;
-                Close();
-            }
 
             // Si presiono una tecla
             if (char.IsLetterOrDigit(letra))
@@ -116,6 +122,25 @@
                 // MostrarResultados filtrados
                 ActualizarGrilla();
             }
+        }
+
+        private void dgvGrilla_KeyDown(object sender, KeyEventArgs e)
+        {
+            string letra = e.KeyCode.ToString();
+
+            if (letra == "F12")
+            {
+                RealizoSeleccion = Seleccion != null;
+                Close();
+                return;
+            }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            RealizoSeleccion = Seleccion != null;
+            Close();
+            return;
         }
     }
 }

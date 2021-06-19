@@ -18,6 +18,7 @@
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IListaPrecioServicio>();
+            Validar = new Validar();
         }
 
         private void _00033_Abm_ListaPrecio_Load(object sender, System.EventArgs e)
@@ -51,7 +52,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)

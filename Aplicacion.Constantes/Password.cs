@@ -9,7 +9,7 @@
     {
         private static readonly string ClaveSecreta = "1MonitorFeo@Tiene@BrilloPerfecto";
 
-        public static string PasswordPorDefecto => "P$assword123";
+        public static string PasswordPorDefecto => "password123";
 
         public static string Encriptar(string cadena)
         {

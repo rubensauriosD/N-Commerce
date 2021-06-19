@@ -18,12 +18,13 @@
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IDepositoSevicio>();
+            Validar = new Validar();
         }
 
         private void _00051_Abm_Deposito_Load(object sender, System.EventArgs e)
         {
-            Validar.ComoAlfanumerico(txtDescripcion);
-            Validar.ComoAlfanumerico(txtUbicacion, false);
+            Validar.ComoAlfanumerico(txtDescripcion, true);
+            Validar.ComoAlfanumerico(txtUbicacion);
 
             txtDescripcion.MaxLength = 250;
             txtUbicacion.MaxLength = 400;
@@ -53,8 +54,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text)
-                && !string.IsNullOrEmpty(txtUbicacion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)
@@ -62,9 +62,7 @@
             return _servicio.VerificarSiExiste(txtDescripcion.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new DepositoDto();
@@ -88,6 +86,12 @@
 
         public override void EjecutarComandoEliminar()
         {
+            if (_servicio.TieneStokDeArticulos(EntidadId))
+            {
+                Mjs.Alerta("No se puede eliminar depósitos con stoks");
+                return;
+            }
+
             _servicio.Eliminar(EntidadId.Value);
         }
 

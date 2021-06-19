@@ -25,8 +25,33 @@
         // --- Persistencia
         public void Eliminar(long id)
         {
-            _unidadDeTrabajo.DepositoRepositorio.Eliminar(id);
-            _unidadDeTrabajo.Commit();
+            if (id == 1)
+                return;
+
+            try
+            {
+                var deposito = _unidadDeTrabajo.DepositoRepositorio.Obtener(id, "Stocks");
+
+                if (deposito == null)
+                {
+                    Mjs.Alerta("Depósito no encontrado.");
+                    return;
+                }
+
+                if (deposito.Stocks.Any(s => s.Cantidad > 0))
+                {
+                    Mjs.Alerta("No se puede eliminar depositos con Stoks.");
+                    return;
+                }
+
+                _unidadDeTrabajo.DepositoRepositorio.Eliminar(id);
+                _unidadDeTrabajo.Commit();
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"DepositoServicio.Eliminar: {e.Message}");
+            }
         }
 
         public void Insertar(DtoBase dtoEntidad)
@@ -173,6 +198,27 @@
                                                                         && x.Descripcion.Equals(datoVerificar,
                                                                             StringComparison.CurrentCultureIgnoreCase))
                     .Any();
+        }
+
+        public bool TieneStokDeArticulos(long? id)
+        {
+            try
+            {
+                var deposito = _unidadDeTrabajo.DepositoRepositorio.Obtener((long)id, "Stocks");
+
+                if (deposito == null)
+                {
+                    Mjs.Alerta("Depósito no encontrado.");
+                    return false;
+                }
+
+                return deposito.Stocks.Any(s => s.Cantidad > 0);
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"DepositoServicio.TieneStokDeArticulos: {e.Message}");
+            }
         }
     }
 }

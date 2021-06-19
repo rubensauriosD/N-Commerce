@@ -34,6 +34,7 @@ namespace PresentacionBase.Formularios
             this.panel1 = new System.Windows.Forms.Panel();
             this.picBuscar = new System.Windows.Forms.PictureBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
@@ -56,7 +57,7 @@ namespace PresentacionBase.Formularios
             this.dgvGrilla.Size = new System.Drawing.Size(443, 397);
             this.dgvGrilla.TabIndex = 12;
             this.dgvGrilla.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_RowEnter);
-            this.dgvGrilla.DoubleClick += new System.EventHandler(this.dgvGrilla_DoubleClick);
+            this.dgvGrilla.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvGrilla_KeyDown);
             this.dgvGrilla.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGrilla_KeyPress);
             // 
             // panel1
@@ -93,12 +94,29 @@ namespace PresentacionBase.Formularios
             this.txtBuscar.TabIndex = 14;
             this.txtBuscar.Text = "Buscar ...";
             this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
+            this.txtBuscar.Leave += new System.EventHandler(this.txtBuscar_Leave);
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSeleccionar.FlatAppearance.BorderSize = 0;
+            this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeleccionar.ForeColor = System.Drawing.Color.White;
+            this.btnSeleccionar.Location = new System.Drawing.Point(12, 15);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(128, 28);
+            this.btnSeleccionar.TabIndex = 15;
+            this.btnSeleccionar.Text = "Seleccionar (F12)";
+            this.btnSeleccionar.UseVisualStyleBackColor = false;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // FormBusquedaSeleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 450);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvGrilla);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -119,5 +137,6 @@ namespace PresentacionBase.Formularios
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox picBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

@@ -222,5 +222,10 @@
         {
             ObjectFactory.GetInstance<_00058_Deposito_Transferencia>().ShowDialog();
         }
+
+        private void btnBajaArticulo_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00029_BajaDeArticulos>().ShowDialog();
+        }
     }
 }

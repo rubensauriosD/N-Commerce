@@ -65,6 +65,8 @@
             this.btnMarca = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUnidadMedida = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDeposito = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAdministrarDepositos = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDepositoTransferencias = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAdministrarCajas = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAperturaCaja = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,8 +86,7 @@
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.picFotoUsuario = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnAdministrarDepositos = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDepositoTransferencias = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnBajaArticulo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlInfoUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFotoUsuario)).BeginInit();
@@ -328,6 +329,7 @@
             this.stockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnArticulo,
             this.btnModificarPrecioArticulos,
+            this.btnBajaArticulo,
             this.toolStripMenuItem6,
             this.btnMarca,
             this.btnUnidadMedida,
@@ -377,6 +379,20 @@
             this.btnDeposito.Name = "btnDeposito";
             this.btnDeposito.Size = new System.Drawing.Size(207, 22);
             this.btnDeposito.Text = "Depósito";
+            // 
+            // btnAdministrarDepositos
+            // 
+            this.btnAdministrarDepositos.Name = "btnAdministrarDepositos";
+            this.btnAdministrarDepositos.Size = new System.Drawing.Size(148, 22);
+            this.btnAdministrarDepositos.Text = "Administrar";
+            this.btnAdministrarDepositos.Click += new System.EventHandler(this.btnAdministrarDepositos_Click);
+            // 
+            // btnDepositoTransferencias
+            // 
+            this.btnDepositoTransferencias.Name = "btnDepositoTransferencias";
+            this.btnDepositoTransferencias.Size = new System.Drawing.Size(148, 22);
+            this.btnDepositoTransferencias.Text = "Transferencias";
+            this.btnDepositoTransferencias.Click += new System.EventHandler(this.btnDepositoTransferencias_Click);
             // 
             // cajaToolStripMenuItem
             // 
@@ -557,19 +573,12 @@
             this.panel2.Size = new System.Drawing.Size(784, 3);
             this.panel2.TabIndex = 4;
             // 
-            // btnAdministrarDepositos
+            // btnBajaArticulo
             // 
-            this.btnAdministrarDepositos.Name = "btnAdministrarDepositos";
-            this.btnAdministrarDepositos.Size = new System.Drawing.Size(180, 22);
-            this.btnAdministrarDepositos.Text = "Administrar";
-            this.btnAdministrarDepositos.Click += new System.EventHandler(this.btnAdministrarDepositos_Click);
-            // 
-            // btnDepositoTransferencias
-            // 
-            this.btnDepositoTransferencias.Name = "btnDepositoTransferencias";
-            this.btnDepositoTransferencias.Size = new System.Drawing.Size(180, 22);
-            this.btnDepositoTransferencias.Text = "Transferencias";
-            this.btnDepositoTransferencias.Click += new System.EventHandler(this.btnDepositoTransferencias_Click);
+            this.btnBajaArticulo.Name = "btnBajaArticulo";
+            this.btnBajaArticulo.Size = new System.Drawing.Size(207, 22);
+            this.btnBajaArticulo.Text = "Baja Artículo";
+            this.btnBajaArticulo.Click += new System.EventHandler(this.btnBajaArticulo_Click);
             // 
             // Principal
             // 
@@ -660,6 +669,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnCheque;
         private System.Windows.Forms.ToolStripMenuItem btnAdministrarDepositos;
         private System.Windows.Forms.ToolStripMenuItem btnDepositoTransferencias;
+        private System.Windows.Forms.ToolStripMenuItem btnBajaArticulo;
     }
 }
 

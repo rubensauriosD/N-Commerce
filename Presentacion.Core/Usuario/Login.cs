@@ -21,6 +21,7 @@
             _servicio = servicio;
             PuedeAccedearAlSistema = false;
             DeseaSalirDelSistema = false;
+            AutoValidate = AutoValidate.EnableAllowFocusChange;
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -31,10 +32,10 @@
             picPassword.Image = Imagen.Bloquear;
 
             // Setear Controles
-            Validar.ComoAlfanumerico(txtUsuario);
+            Validar.ComoAlfanumerico(txtUsuario, true);
             txtUsuario.MaxLength = 30;
 
-            Validar.ComoPassword (txtPassword);
+            Validar.ComoPassword(txtPassword, true);
         }
 
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
@@ -53,12 +54,9 @@
         // --- Acciones de controles
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Validate();
-
-            // Los campos no pueden estar vacios
-            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            if (!ValidateChildren())
             {
-                Mjs.Error("Ingrese los campos obligatorios.");
+                Mjs.Alerta($"Algunos de los datos ingresados no son corretos.");
                 return;
             }
 

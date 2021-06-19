@@ -8,8 +8,6 @@
     {
         public void ComoPassword(Control control, bool obligatorio = false)
         {
-            var errorProvider = new ErrorProvider();
-
             if (control is TextBox)
                 ConfigurarProiedadesPassword(control as TextBox);
 
@@ -17,7 +15,7 @@
             {
                 errMjs = "Password debe tener entre 6 y 20 caracteres alfanuméricos.";
 
-                bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
+                bool ok = txt.All(c => char.IsLetterOrDigit(c) || c == '\b');
 
                 ok &= txt.Length >= 6;
                 ok &= txt.Length <= 20;
@@ -25,7 +23,7 @@
                 if (obligatorio)
                 {
                     errMjs += " El campo es obligatorio.";
-                    ok &= obligatorio ? txt != "" : true;
+                    ok &= txt != "";
                 }
 
                 return ok;
@@ -35,20 +33,14 @@
             {
                 errMjs = "Password debe tener entre 6 y 12 caracteres alfanuméricos.";
 
-                bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
-
-                if (obligatorio)
-                {
-                    errMjs += " El campo es obligatorio.";
-                    ok &= obligatorio ? txt != "" : true;
-                }
+                bool ok = txt.All(c => char.IsLetterOrDigit(c) || c == '\b');
 
                 return ok;
             };
 
             control.KeyPress += (object sender, KeyPressEventArgs e) =>
             {
-                if (!validador(e.KeyChar.ToString(), out string errMjs))
+                if (!validadorLetra(e.KeyChar.ToString(), out string errMjs))
                     e.Handled = true;
             };
 
@@ -57,7 +49,6 @@
                 if (!validador(control.Text, out string errorMsg))
                 {
                     e.Cancel = true;
-                    control.Select();
                     errorProvider.SetError(control, errorMsg);
                 }
             };

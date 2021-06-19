@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Dominio.UnidadDeTrabajo;
-using IServicio.BaseDto;
-using IServicio.Marca;
-using IServicio.Marca.DTOs;
-using Servicios.Base;
-
-namespace Servicios.Marca
+﻿namespace Servicios.Marca
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.BaseDto;
+    using IServicio.Marca;
+    using IServicio.Marca.DTOs;
+    using Servicios.Base;
+
     public class MarcaServicio : IMarcaServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;

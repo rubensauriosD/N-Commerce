@@ -7,5 +7,6 @@
         bool VerificarSiExiste(string datoVerificar, long? entidadId = null);
 
         bool TransferirArticulos(TransferenciaDepositoDto transferencia);
+        bool TieneStokDeArticulos(long? entidadId);
     }
 }

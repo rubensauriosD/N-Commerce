@@ -23,7 +23,7 @@
 
         private void _00026_Abm_Iva_Load(object sender, System.EventArgs e)
         {
-            Validar.ComoAlfanumerico(txtDescripcion);
+            Validar.ComoAlfanumerico(txtDescripcion, true);
             txtDescripcion.MaxLength = 250;
         }
 
@@ -50,7 +50,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)
