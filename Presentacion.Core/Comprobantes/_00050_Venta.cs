@@ -596,7 +596,10 @@
 
         private void LimpiarParaNuevaFactura()
         {
-            facturaView = new FacturaView();
+            var vendedor = facturaView.Vendedor;
+
+            facturaView = new FacturaView { Vendedor = vendedor };
+
             permitirIngresarCantidad = false;
             tieneAutorizacionListaPrecio = false;
             CargarCabeceraDelComprobante();
@@ -607,6 +610,12 @@
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
+            if (facturaView.Items.Count < 1)
+            {
+                Mjs.Alerta("No hay elementos para mostrar.");
+                return;
+            }
+
             facturaView.TipoComprobante = (TipoComprobante)cmbComprobanteTipo.SelectedItem;
             facturaView.PuestoVentaId = (long)cmbPuestoVenta.SelectedValue;
             facturaView.UsuarioId = Identidad.UsuarioId;
@@ -650,6 +659,12 @@
         // --- Presupuesto
         private void btnPresupuesto_Click(object sender, EventArgs e)
         {
+            if (facturaView.Items.Count < 1)
+            {
+                Mjs.Alerta("No hay elementos para mostrar.");
+                return;
+            }
+
             if (configuracion.PresupuestoDescuentaStock)
                 if (!Mjs.Preguntar($"Emitir el presupuesto puede alterar el stock de algunos productos.{Environment.NewLine}¿Seguro que desea continuar?"))
                     return;
