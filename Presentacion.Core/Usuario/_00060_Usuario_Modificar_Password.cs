@@ -10,6 +10,7 @@
     {
         private readonly ISeguridadServicio _seguridadServicio;
         private readonly long _usuarioId;
+        private readonly Validar Validar;
 
         public _00060_Usuario_Modificar_Password()
         {
@@ -17,6 +18,14 @@
 
             _seguridadServicio = ObjectFactory.GetInstance<ISeguridadServicio>();
             _usuarioId = Identidad.UsuarioId;
+            Validar = new Validar();
+        }
+
+        private void _00060_Usuario_Modificar_Password_Load(object sender, EventArgs e)
+        {
+            Validar.ComoPassword(txtNuevaPassword, true);
+            Validar.ComoPassword(txtNuevaPasswordRepetida, true);
+            Validar.ComoPassword(txtPasswordActual, true);
         }
 
         // --- Guardar Datos Ingresados

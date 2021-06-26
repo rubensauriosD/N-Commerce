@@ -761,7 +761,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "_00050_Venta";
-            this.Text = "TPV - Punto de Venta 1";
+            this.Text = "Venta";
             this.Load += new System.EventHandler(this._00050_Venta_Load);
             this.pnlCabecera.ResumeLayout(false);
             this.pnlCabecera.PerformLayout();

@@ -6,38 +6,28 @@
 
     public partial class Validar
     {
-        private const int CuitLength = 11;
-        private string cuitErrMjs = $"El campo debe contener 11 carácteres numéricos.{Environment.NewLine}Ej.: 20123456784";
+        private const int DniLength = 8;
 
-        public bool EsCuit(string txt, out string errMjs)
-        {
-            bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
-
-            ok &= txt.Length == CuitLength;
-
-            errMjs = cuitErrMjs;
-
-            return ok;
-        }
-
-        public void ComoCuit(Control control, bool obligatorio = false)
+        public void ComoDni(Control control, bool obligatorio = false)
         {
             if (control is TextBox)
-                ConfigurarProiedadesCuit(control as TextBox);
+                ConfigurarProiedadesDni(control as TextBox);
 
             Validador validador = (string txt, out string errMjs) =>
             {
-                errMjs = cuitErrMjs;
+                errMjs = "El campo debe contener 8 carácteres numéricos.";
 
                 bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
 
-                ok &= txt.Length == CuitLength;
+                ok &= txt.Length == DniLength;
 
                 if (obligatorio)
                 {
-                    errMjs += $"{Environment.NewLine}El campo es obligatorio.";
+                    errMjs += " El campo es obligatorio.";
                     ok &= obligatorio ? txt != "" : true;
                 }
+
+                errMjs += " Ej.: 20123456";
 
                 return ok;
             };
@@ -61,9 +51,9 @@
                 => errorProvider.SetError((Control)sender, "");
         }
 
-        private void ConfigurarProiedadesCuit(TextBox textBox)
+        private void ConfigurarProiedadesDni(TextBox textBox)
         {
-            textBox.MaxLength = CuitLength;
+            textBox.MaxLength = DniLength;
             textBox.TextAlign = HorizontalAlignment.Right;
         }
     }

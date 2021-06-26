@@ -199,6 +199,7 @@ namespace Presentacion.Core.Cliente
             this.Controls.Add(this.txtNumero);
             this.Name = "_00056_Cheque_Abm";
             this.Text = "Cheque";
+            this.Load += new System.EventHandler(this._00056_Cheque_Abm_Load);
             this.Controls.SetChildIndex(this.txtNumero, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.dtpVencimiento, 0);

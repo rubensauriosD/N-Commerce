@@ -13,11 +13,11 @@
 
         public bool Depositado { get; set; } = false;
 
-        public long ClienteId { get; set; }
+        public long ClienteId { get; set; } = 0;
 
         public string Cliente { get; set; } = "";
 
-        public long BancoId { get; set; }
+        public long BancoId { get; set; } = 0;
 
         public string Banco { get; set; } = "";
 

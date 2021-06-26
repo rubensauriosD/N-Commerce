@@ -9,6 +9,7 @@
     public partial class _00048_Abm_Banco : FormAbm
     {
         private readonly IBancoServicio _servicio;
+        private readonly Validar Validar;
 
         public _00048_Abm_Banco(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +17,12 @@
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IBancoServicio>();
+            Validar = new Validar();
+        }
+
+        private void _00048_Abm_Banco_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoTexto(txtDescripcion, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -41,7 +48,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)
@@ -49,9 +56,7 @@
             return _servicio.VerificarSiExiste(txtDescripcion.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new BancoDto();

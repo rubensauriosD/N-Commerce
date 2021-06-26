@@ -1,14 +1,16 @@
-﻿using System.Windows.Forms;
-using IServicio.PuestoTrabajo;
-using IServicio.PuestoTrabajo.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Comprobantes
+﻿namespace Presentacion.Core.Comprobantes
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.PuestoTrabajo;
+    using IServicio.PuestoTrabajo.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00052_Abm_PuestoTrabajo : FormAbm
     {
         private readonly IPuestoTrabajoServicio _servicio;
+        private readonly Validar Validar;
 
         public _00052_Abm_PuestoTrabajo(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,7 @@ namespace Presentacion.Core.Comprobantes
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IPuestoTrabajoServicio>();
+            Validar = new Validar();
         }
 
         public override void CargarDatos(long? entidadId)
@@ -39,7 +42,7 @@ namespace Presentacion.Core.Comprobantes
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text)
+            return ValidateChildren()
                 && int.TryParse(txtCodigo.Text, out int _);
         }
 
@@ -49,9 +52,7 @@ namespace Presentacion.Core.Comprobantes
                 && _servicio.VerificarSiExiste(txtCodigo.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             if (!int.TryParse(txtCodigo.Text, out int _codigo))
@@ -99,6 +100,7 @@ namespace Presentacion.Core.Comprobantes
 
         private void _00052_Abm_PuestoTrabajo_Load(object sender, System.EventArgs e)
         {
+            Validar.ComoTexto(txtDescripcion, false);
             txtCodigo.Text = _servicio.ProximoCodigo().ToString("0000");
         }
     }

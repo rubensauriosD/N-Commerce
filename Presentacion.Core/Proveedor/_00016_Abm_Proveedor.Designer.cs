@@ -298,6 +298,7 @@
             this.MinimumSize = new System.Drawing.Size(529, 389);
             this.Name = "_00016_Abm_Proveedor";
             this.Text = "Proveedor (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00016_Abm_Proveedor_Load);
             this.Controls.SetChildIndex(this.txtDomicilio, 0);
             this.Controls.SetChildIndex(this.lblDescripcion, 0);
             this.Controls.SetChildIndex(this.txtMail, 0);

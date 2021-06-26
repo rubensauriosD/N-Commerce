@@ -64,6 +64,7 @@
     <Compile Include="Validar\Validar.cs" />
     <Compile Include="Validar\Validar_ComoAlfanumerico.cs" />
     <Compile Include="Validar\Validar_ComoCodigoBarra.cs" />
+    <Compile Include="Validar\Validar_ComoDni.cs" />
     <Compile Include="Validar\Validar_ComoPrecio.cs" />
     <Compile Include="Validar\Validar_ComoDomicilio.cs" />
     <Compile Include="Validar\Validar_ComoMail.cs" />

@@ -23,6 +23,7 @@
         private readonly IProveedorServicio _proveedorServicios;
         private readonly IArticuloServicio _artiuloServicios;
         private readonly ICompraServicio _compraServicios;
+        private readonly Validar Validar;
 
         private ArticuloCompraDto itemSeleccionado;
         private CompraView compra;
@@ -36,6 +37,8 @@
             _proveedorServicios = ObjectFactory.GetInstance<IProveedorServicio>();
             _artiuloServicios = ObjectFactory.GetInstance<IArticuloServicio>();
             _compraServicios = ObjectFactory.GetInstance<ICompraServicio>();
+            Validar = new Validar();
+
             var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)
@@ -49,6 +52,10 @@
 
         private void _00053_Compra_Load(object sender, EventArgs e)
         {
+            Validar.ComoCuit(txtCuit);
+            Validar.ComoNumero(txtNroComprobante);
+            Validar.ComoNumero(txtCodigo);
+
             dtpFecha.MaxDate = DateTime.Now;
             PoblarComboBox(cmbTipoComprobante, Enum.GetValues(typeof(TipoComprobante)));
 
@@ -259,9 +266,11 @@
 
         private void txtCuit_KeyUp(object sender, KeyEventArgs e)
         {
-            // TODO: Chequear que solo haga la busqueda si el formato es de cuit
-            //if (txtCuit.TextLength != 11)
-            //    return;
+            if (!Validar.EsCuit(txtCuit.Text, out string errTxt))
+            {
+                Mjs.Alerta(errTxt);
+                return;
+            }
 
             var proveedor = _proveedorServicios.ObtenerPorCuit(txtCuit.Text);
 

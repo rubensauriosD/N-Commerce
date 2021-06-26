@@ -20,7 +20,7 @@
         private readonly IProvinciaServicio _provinciaServicio;
         private readonly IDepartamentoServicio _departamentoServicio;
         private readonly ILocalidadServicio _localidadServicio;
-        private readonly ICondicionIvaServicio _condicionIvaServicio;
+        private readonly Validar Validar;
 
         public _00008_Abm_Empleado(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -31,7 +31,7 @@
             _provinciaServicio = ObjectFactory.GetInstance<IProvinciaServicio>();
             _departamentoServicio = ObjectFactory.GetInstance<IDepartamentoServicio>();
             _localidadServicio = ObjectFactory.GetInstance<ILocalidadServicio>();
-            _condicionIvaServicio = ObjectFactory.GetInstance<ICondicionIvaServicio>();
+            Validar = new Validar();
         }
 
         private void _00010_Abm_Empleado_Load(object sender, System.EventArgs e)
@@ -59,6 +59,18 @@
                     _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
                     "Descripcion",
                     "Id");
+
+            SetearValidaciones();
+        }
+
+        private void SetearValidaciones()
+        {
+            Validar.ComoTexto(txtApellido, true);
+            Validar.ComoTexto(txtNombre, true);
+            Validar.ComoDni(txtDni, true);
+            Validar.ComoTelefono(txtTelefono);
+            Validar.ComoDomicilio(txtDomicilio);
+            Validar.ComoMail(txtMail);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -98,9 +110,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtApellido.Text)
-                && !string.IsNullOrEmpty(txtNombre.Text)
-                && !string.IsNullOrEmpty(txtDni.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)

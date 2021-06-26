@@ -1,6 +1,7 @@
 ﻿namespace Presentacion.Core.Proveedor
 {
     using System.Windows.Forms;
+    using Aplicacion.Constantes;
     using IServicio.Departamento;
     using IServicio.Departamento.DTOs;
     using IServicio.Localidad;
@@ -21,6 +22,7 @@
         private readonly IDepartamentoServicio _departamentoServicio;
         private readonly ILocalidadServicio _localidadServicio;
         private readonly ICondicionIvaServicio _condicionIvaServicio;
+        private readonly Validar Validar;
 
         public _00016_Abm_Proveedor(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -32,12 +34,52 @@
             _departamentoServicio = ObjectFactory.GetInstance<IDepartamentoServicio>();
             _localidadServicio = ObjectFactory.GetInstance<ILocalidadServicio>();
             _condicionIvaServicio = ObjectFactory.GetInstance<ICondicionIvaServicio>();
+            Validar = new Validar();
 
             // Poblar controles
             PoblarComboBox(cmbCondicionIva, _condicionIvaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
             PoblarComboBox(cmbLocalidad, _localidadServicio.Obtener(string.Empty, false), "Descripcion", "Id");
             PoblarComboBox(cmbDepartamento, _departamentoServicio.Obtener(string.Empty, false), "Descripcion", "Id");
             PoblarComboBox(cmbProvincia, _provinciaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
+        }
+
+        private void _00016_Abm_Proveedor_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoAlfanumerico(txtRazonSocial, true);
+            Validar.ComoCuit(txtCUIT, true);
+            Validar.ComoTelefono(txtTelefono);
+            Validar.ComoDomicilio(txtDomicilio);
+            Validar.ComoMail(txtMail);
+
+            // Cargar Combos
+            PoblarComboBox(
+                cmbCondicionIva,
+                _condicionIvaServicio.Obtener(string.Empty, false),
+                "Descripcion",
+                "Id"
+                );
+
+            PoblarComboBox(
+                cmbProvincia,
+                _provinciaServicio.Obtener(string.Empty, false),
+                "Descripcion",
+                "Id"
+                );
+
+            if (cmbProvincia.Items.Count > 0)
+                PoblarComboBox(
+                    cmbDepartamento,
+                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
+                    "Descripcion",
+                    "Id");
+
+            if (cmbDepartamento.Items.Count > 0)
+                PoblarComboBox(
+                    cmbLocalidad,
+                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
+                    "Descripcion",
+                    "Id");
+
         }
 
         public override void CargarDatos(long? entidadId)
@@ -73,7 +115,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return true;
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)
@@ -81,9 +123,7 @@
             return _servicio.VerificarSiExisteCuit(txtCUIT.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new ProveedorDto();
@@ -123,38 +163,6 @@
             base.LimpiarControles(obj);
 
             txtRazonSocial.Focus();
-        }
-
-        private void _00010_Abm_Proveedor_Load(object sender, System.EventArgs e)
-        {
-            // Cargar Combos
-            PoblarComboBox(
-                cmbCondicionIva,
-                _condicionIvaServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id"
-                );
-
-            PoblarComboBox(
-                cmbProvincia,
-                _provinciaServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id"
-                );
-
-            if (cmbProvincia.Items.Count > 0)
-                PoblarComboBox(
-                    cmbDepartamento,
-                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                    "Descripcion",
-                    "Id");
-
-            if (cmbDepartamento.Items.Count > 0)
-                PoblarComboBox(
-                    cmbLocalidad,
-                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                    "Descripcion",
-                    "Id");
         }
 
         private void cmbProvincia_SelectionChangeCommitted(object sender, System.EventArgs e)

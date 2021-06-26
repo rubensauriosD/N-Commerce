@@ -134,6 +134,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 265);
             this.Name = "_00006_AbmLocalidad";
             this.Text = "Localidad (Alta, Baja y Modificacion)";
+            this.Load += new System.EventHandler(this._00006_AbmLocalidad_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);

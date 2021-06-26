@@ -1,6 +1,7 @@
 ﻿namespace Presentacion.Core.Caja
 {
     using System.Windows.Forms;
+    using Aplicacion.Constantes;
     using IServicio.Caja;
     using IServicio.Caja.DTOs;
     using PresentacionBase.Formularios;
@@ -9,6 +10,7 @@
     public partial class _00042_Abm_ConceptoGastos : FormAbm
     {
         private readonly IConceptoGastoServicio _servicio;
+        private readonly Validar Validar;
 
         public _00042_Abm_ConceptoGastos(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,11 @@
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IConceptoGastoServicio>();
+        }
+
+        private void _00042_Abm_ConceptoGastos_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoAlfanumerico(txtDescripcion, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -41,7 +48,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)
@@ -49,9 +56,7 @@
             return _servicio.VerificarSiExiste(txtDescripcion.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new ConceptoGastoDto();

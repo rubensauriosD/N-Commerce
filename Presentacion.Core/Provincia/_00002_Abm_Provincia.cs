@@ -1,14 +1,16 @@
-﻿using System.Windows.Forms;
-using IServicio.Provincia;
-using IServicio.Provincia.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Provincia
+﻿namespace Presentacion.Core.Provincia
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Provincia;
+    using IServicio.Provincia.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00002_Abm_Provincia : FormAbm
     {
         private readonly IProvinciaServicio _provinciaServicio;
+        private readonly Validar Validar;
 
         public _00002_Abm_Provincia(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,7 @@ namespace Presentacion.Core.Provincia
             InitializeComponent();
 
             _provinciaServicio = ObjectFactory.GetInstance<IProvinciaServicio>();
+            Validar = new Validar();
         }
 
         public override void CargarDatos(long? entidadId)
@@ -41,7 +44,12 @@ namespace Presentacion.Core.Provincia
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
+        }
+
+        private void _00002_Abm_Provincia_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoTexto(txtDescripcion, true);
         }
 
         public override bool VerificarSiExiste(long? id = null)

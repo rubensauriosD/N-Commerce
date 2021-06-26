@@ -149,6 +149,7 @@ namespace Presentacion.Core.Usuario
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "_00060_Usuario_Modificar_Password";
             this.Text = "Cambiar Password";
+            this.Load += new System.EventHandler(this._00060_Usuario_Modificar_Password_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

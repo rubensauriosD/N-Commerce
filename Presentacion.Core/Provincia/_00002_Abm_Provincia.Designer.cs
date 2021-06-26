@@ -61,6 +61,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 265);
             this.Name = "_00002_Abm_Provincia";
             this.Text = "Provincia (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00002_Abm_Provincia_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);

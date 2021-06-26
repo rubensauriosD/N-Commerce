@@ -631,7 +631,7 @@
             this.btnAgregarItem.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnAgregarItem.FlatAppearance.BorderSize = 0;
             this.btnAgregarItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarItem.ForeColor = System.Drawing.Color.White;
             this.btnAgregarItem.Location = new System.Drawing.Point(715, 108);
             this.btnAgregarItem.Name = "btnAgregarItem";

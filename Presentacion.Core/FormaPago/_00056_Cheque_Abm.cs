@@ -1,13 +1,8 @@
 ﻿namespace Presentacion.Core.Cliente
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Data;
-    using System.Drawing;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
     using Aplicacion.Constantes;
     using IServicio.FormaPago;
@@ -21,10 +16,11 @@
 
     public partial class _00056_Cheque_Abm : FormAbm
     {
-        private ChequeDto cheque;
         private readonly IChequeServicio _servicio;
         private readonly IBancoServicio _bancoServicio;
         private readonly IClienteServicio _clienteServicio;
+        private readonly Validar Validar;
+        private ChequeDto cheque;
 
         public _00056_Cheque_Abm(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -34,9 +30,16 @@
             _servicio = ObjectFactory.GetInstance<IChequeServicio>();
             _clienteServicio = ObjectFactory.GetInstance<IClienteServicio>();
             _bancoServicio = ObjectFactory.GetInstance<IBancoServicio>();
+            Validar = new Validar();
+
             cheque = entidadId.HasValue 
                 ? (ChequeDto)_servicio.Obtener((long)entidadId)
                 : new ChequeDto();
+        }
+
+        private void _00056_Cheque_Abm_Load(object sender, EventArgs e)
+        {
+            Validar.ComoNumero(txtNumero, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -65,8 +68,19 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            // TODO: Cheque - Verificar datos obligatorios
-            return true;
+            if (cheque.ClienteId < 1)
+            {
+                Mjs.Alerta("Seleccione un cliente.");
+                return false;
+            }
+
+            if (cheque.BancoId < 1)
+            {
+                Mjs.Alerta("Seleccione un banco.");
+                return false;
+            }
+
+            return ValidateChildren();
         }
 
         // --- Acciones de botones

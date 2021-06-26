@@ -1,14 +1,15 @@
-﻿using Aplicacion.Constantes;
-using IServicio.FormaPago;
-using IServicios.FormaPago.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.FormaPago
+﻿namespace Presentacion.Core.FormaPago
 {
+    using Aplicacion.Constantes;
+    using IServicio.FormaPago;
+    using IServicios.FormaPago.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00046_Abm_tarjeta : FormAbm
     {
         private readonly ITarjetaServicio _servicio;
+        private readonly Validar Validar;
 
         public _00046_Abm_tarjeta(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +17,12 @@ namespace Presentacion.Core.FormaPago
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<ITarjetaServicio>();
+            Validar = new Validar();
+        }
+
+        private void _00046_Abm_tarjeta_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoTexto(txtDescripcion, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -41,7 +48,7 @@ namespace Presentacion.Core.FormaPago
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)
@@ -49,9 +56,7 @@ namespace Presentacion.Core.FormaPago
             return _servicio.VerificarSiExiste(txtDescripcion.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new TarjetaDto();

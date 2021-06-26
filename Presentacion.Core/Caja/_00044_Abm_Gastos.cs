@@ -13,6 +13,7 @@
         private readonly IGastoServicio _servicio;
         private readonly IConceptoGastoServicio _servicioConceptoGasto;
         private readonly ICajaServicio _servicioCaja;
+        private readonly Validar Validar;
         private long cajaActivaId;
 
         public _00044_Abm_Gastos(TipoOperacion tipoOperacion, long? entidadId = null)
@@ -23,11 +24,13 @@
             _servicio = ObjectFactory.GetInstance<IGastoServicio>();
             _servicioConceptoGasto = ObjectFactory.GetInstance<IConceptoGastoServicio>();
             _servicioCaja = ObjectFactory.GetInstance<ICajaServicio>();
-
+            Validar = new Validar();
         }
 
         private void _00044_Abm_Gastos_Load(object sender, System.EventArgs e)
         {
+            Validar.ComoAlfanumerico(txtDescripcion, true);
+
             var cajaId = _servicioCaja.ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaId == null)
@@ -72,7 +75,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)

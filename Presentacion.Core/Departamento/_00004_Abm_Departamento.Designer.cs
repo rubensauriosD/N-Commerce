@@ -97,6 +97,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 265);
             this.Name = "_00004_Abm_Departamento";
             this.Text = "Departamento (Alta, Baja, Modificacion)";
+            this.Load += new System.EventHandler(this._00004_Abm_Departamento_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);

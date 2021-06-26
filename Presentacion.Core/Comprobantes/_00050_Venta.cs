@@ -50,6 +50,7 @@
         private readonly IFacturaServicio _facturaServicio;
         private readonly IPresupuestoServicio _presupuestoServicio;
         private readonly IFormaPagoServicios _formaPagoServicio;
+        private readonly Validar Validar;
 
         public _00050_Venta(IConfiguracionServicio configuracionServicio,
             IClienteServicio clienteServicio,
@@ -75,6 +76,7 @@
             _facturaServicio = facturaServicio;
             _presupuestoServicio = presupuestoServicio;
             _formaPagoServicio = formaPagoServicio;
+            Validar = new Validar();
 
             listaPrecioSeleccionada = new ListaPrecioDto();
             articuloSeleccionado = new ArticuloVentaDto();
@@ -96,6 +98,10 @@
 
         private void _00050_Venta_Load(object sender, EventArgs e)
         {
+            Validar.ComoDni(txtClienteDni);
+            Validar.ComoAlfanumerico(txtCodigo);
+            Validar.ComoNumero(txtPrecioUnitario);
+
             if (!ObjectFactory.GetInstance<ICajaServicio>().VerificarSiExisteCajaAbierta(Identidad.UsuarioId))
             {
                 Mjs.Alerta($"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder emitir comprobantes.");
@@ -119,9 +125,7 @@
             lblTotal.Text = facturaView.TotalStr;
         }
 
-        //
-        // Cuerpo del Comprobante
-        //
+        // --- Cuerpo del Comprobante
         private void CargarCuerpoDeComprobante()
         {
             dgvGrilla.DataSource = facturaView.Items.OrderByDescending(x => x.Id).ToList();
@@ -181,9 +185,7 @@
             dgv.Columns["SubtotalStr"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        //
-        // Cabecera del Comprobante
-        //
+        // --- Cabecera del Comprobante
         private void CargarCabeceraDelComprobante()
         {
             CargarDatosCliente();
@@ -232,9 +234,7 @@
             txtClienteCondicionIva.Text = facturaView.Cliente.CondicionIva;
         }
 
-        //
-        // Eventos de Controles
-        //
+        // --- Eventos de Controles
         private void btnClienteBuscar_Click(object sender, EventArgs e)
         {
             var f = new ClienteLookUp();
@@ -298,9 +298,7 @@
 
         }
 
-        //
-        // Eventos de txtCodigo
-        //
+        // --- Eventos de txtCodigo
         private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
             string codigo = txtCodigo.Text;
@@ -420,9 +418,7 @@
             btnAgregarItem.PerformClick();
         }
 
-        //
-        // Evnto de BtnAgregar
-        //
+        // --- Evnto de BtnAgregar
         private void btnAgregarItem_Click(object sender, EventArgs e)
         {
             // Si no hay un articulo seleccionado
@@ -539,9 +535,7 @@
             txtCodigo.Focus();
         }
 
-        //
-        // Evento de Grilla
-        //
+        // --- Evento de Grilla
         private void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvGrilla.RowCount < 1)

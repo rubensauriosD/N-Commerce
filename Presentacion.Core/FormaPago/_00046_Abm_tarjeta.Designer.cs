@@ -61,6 +61,7 @@
             this.MinimumSize = new System.Drawing.Size(482, 265);
             this.Name = "_00046_Abm_tarjeta";
             this.Text = "Tarjeta (Alta, Baja y Modificación)";
+            this.Load += new System.EventHandler(this._00046_Abm_tarjeta_Load);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);

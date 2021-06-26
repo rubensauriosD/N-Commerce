@@ -1,21 +1,23 @@
-﻿using System.Windows.Forms;
-using IServicio.Departamento;
-using IServicio.Localidad;
-using IServicio.Localidad.DTOs;
-using IServicio.Provincia;
-using IServicios.Localidad.DTOs;
-using Presentacion.Core.Departamento;
-using Presentacion.Core.Provincia;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Localidad
+﻿namespace Presentacion.Core.Localidad
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Departamento;
+    using IServicio.Localidad;
+    using IServicio.Localidad.DTOs;
+    using IServicio.Provincia;
+    using IServicios.Localidad.DTOs;
+    using Presentacion.Core.Departamento;
+    using Presentacion.Core.Provincia;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00006_AbmLocalidad : FormAbm
     {
         private readonly IProvinciaServicio _provinciaServicio;
         private readonly IDepartamentoServicio _departamentoServicio;
         private readonly ILocalidadServicio _localidadServicio;
+        private readonly Validar Validar;
 
         public _00006_AbmLocalidad(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -25,6 +27,12 @@ namespace Presentacion.Core.Localidad
             _provinciaServicio = ObjectFactory.GetInstance<IProvinciaServicio>();
             _departamentoServicio = ObjectFactory.GetInstance<IDepartamentoServicio>();
             _localidadServicio = ObjectFactory.GetInstance<ILocalidadServicio>();
+            Validar = new Validar();
+        }
+
+        private void _00006_AbmLocalidad_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoTexto(txtDescripcion, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -96,16 +104,13 @@ namespace Presentacion.Core.Localidad
 
         public override bool VerificarDatosObligatorios()
         {
-            if (string.IsNullOrEmpty(txtDescripcion.Text))
-                return false;
-
             if (cmbProvincia.Items.Count <= 0)
                 return false;
 
             if (cmbDepartamento.Items.Count <= 0)
                 return false;
 
-            return true;
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)

@@ -1,18 +1,20 @@
-﻿using System.Windows.Forms;
-using IServicio.Departamento;
-using IServicio.Departamento.DTOs;
-using IServicio.Provincia;
-using IServicios.Departamento.DTOs;
-using Presentacion.Core.Provincia;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.Departamento
+﻿namespace Presentacion.Core.Departamento
 {
+    using System.Windows.Forms;
+    using Aplicacion.Constantes;
+    using IServicio.Departamento;
+    using IServicio.Departamento.DTOs;
+    using IServicio.Provincia;
+    using IServicios.Departamento.DTOs;
+    using Presentacion.Core.Provincia;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+
     public partial class _00004_Abm_Departamento : FormAbm
     {
         private readonly IDepartamentoServicio _departamentoServicio;
         private readonly IProvinciaServicio _provinciaServicio;
+        private readonly Validar Validar;
 
         public _00004_Abm_Departamento(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -21,6 +23,12 @@ namespace Presentacion.Core.Departamento
 
             _departamentoServicio = ObjectFactory.GetInstance<IDepartamentoServicio>();
             _provinciaServicio = ObjectFactory.GetInstance<IProvinciaServicio>();
+            Validar = new Validar();
+        }
+
+        private void _00004_Abm_Departamento_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoTexto(txtDescripcion, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -79,13 +87,10 @@ namespace Presentacion.Core.Departamento
 
         public override bool VerificarDatosObligatorios()
         {
-            if (string.IsNullOrEmpty(txtDescripcion.Text))
-                return false;
-
             if (cmbProvincia.Items.Count <= 0)
                 return false;
 
-            return true;
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)

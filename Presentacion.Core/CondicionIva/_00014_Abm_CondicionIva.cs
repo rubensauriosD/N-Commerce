@@ -1,14 +1,16 @@
-﻿using System.Windows.Forms;
-using IServicio.Departamento;
-using IServicio.CondicionIva.DTOs;
-using PresentacionBase.Formularios;
-using StructureMap;
-
-namespace Presentacion.Core.CondicionIva
+﻿namespace Presentacion.Core.CondicionIva
 {
+    using System.Windows.Forms;
+    using IServicio.Departamento;
+    using IServicio.CondicionIva.DTOs;
+    using PresentacionBase.Formularios;
+    using StructureMap;
+    using Aplicacion.Constantes;
+
     public partial class _00014_Abm_CondicionIva : FormAbm
     {
         private readonly ICondicionIvaServicio _servicio;
+        private readonly Validar Validar;
 
         public _00014_Abm_CondicionIva(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
@@ -16,6 +18,12 @@ namespace Presentacion.Core.CondicionIva
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<ICondicionIvaServicio>();
+            Validar = new Validar();
+        }
+
+        private void _00014_Abm_CondicionIva_Load(object sender, System.EventArgs e)
+        {
+            Validar.ComoTexto(txtDescripcion, true);
         }
 
         public override void CargarDatos(long? entidadId)
@@ -49,9 +57,7 @@ namespace Presentacion.Core.CondicionIva
             return _servicio.VerificarSiExiste(txtDescripcion.Text, id);
         }
 
-        //
-        // Acciones de botones
-        //
+        // --- Acciones de botones
         public override void EjecutarComandoNuevo()
         {
             var nuevoRegistro = new CondicionIvaDto();
