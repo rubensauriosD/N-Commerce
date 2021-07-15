@@ -26,7 +26,7 @@
             control.KeyPress += (object sender, KeyPressEventArgs e) =>
             {
                 if (!validador(e.KeyChar.ToString(), out string errMjs))
-                    e.Handled = false;
+                    e.Handled = true;
             };
 
             control.Validating += (object sender, System.ComponentModel.CancelEventArgs e) =>

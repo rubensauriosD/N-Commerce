@@ -1,9 +1,9 @@
-﻿using System.Windows.Forms;
-using IServicio.Departamento;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Departamento
+﻿namespace Presentacion.Core.Departamento
 {
+    using System.Windows.Forms;
+    using IServicio.Departamento;
+    using PresentacionBase.Formularios;
+
     public partial class _00003_Departamento : FormConsulta
     {
         private readonly IDepartamentoServicio _departamentoServicio;

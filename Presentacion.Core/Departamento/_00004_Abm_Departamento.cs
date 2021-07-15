@@ -1,6 +1,5 @@
 ﻿namespace Presentacion.Core.Departamento
 {
-    using System.Windows.Forms;
     using Aplicacion.Constantes;
     using IServicio.Departamento;
     using IServicio.Departamento.DTOs;
@@ -28,37 +27,19 @@
 
         private void _00004_Abm_Departamento_Load(object sender, System.EventArgs e)
         {
-            Validar.ComoTexto(txtDescripcion, true);
-        }
+            Validar.ComoAlfanumerico(txtDescripcion, true);
 
-        public override void CargarDatos(long? entidadId)
-        {
             PoblarComboBox(cmbProvincia,
                 _provinciaServicio.Obtener(string.Empty),
                 "Descripcion",
                 "Id");
 
-            if (entidadId.HasValue) // Eliminar o Modificar
+            if (EntidadId.HasValue)
             {
-                if (TipoOperacion == TipoOperacion.Eliminar)
-                    DesactivarControles(this);
-
-                var entidad = (DepartamentoDto)_departamentoServicio.Obtener(entidadId.Value);
-
-                if (entidad == null)
-                {
-                    MessageBox.Show("Ocurrio un error al Obtener el registro seleccionado");
-                    Close();
-                }
-
+                var entidad = (DepartamentoDto)_departamentoServicio.Obtener(EntidadId.Value);
+                cmbProvincia.SelectedValue = entidad.ProvinciaId;
 
                 txtDescripcion.Text = entidad.Descripcion;
-                cmbProvincia.SelectedValue = entidad.ProvinciaId;
-            }
-            else
-            {
-                txtDescripcion.Clear();
-                txtDescripcion.Focus();
             }
         }
 
@@ -88,7 +69,12 @@
         public override bool VerificarDatosObligatorios()
         {
             if (cmbProvincia.Items.Count <= 0)
+            {
+                Validar.SetErrorProvider(cmbProvincia, "Obligatorio");
                 return false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbProvincia);
 
             return ValidateChildren();
         }
@@ -99,6 +85,7 @@
                 .VerificarSiExiste(txtDescripcion.Text, (long) cmbProvincia.SelectedValue, id);
         }
 
+        // --- Acciones de controloes
         private void btnNuevaProvincia_Click(object sender, System.EventArgs e)
         {
             var formNuevaProvincia = new _00002_Abm_Provincia(TipoOperacion.Nuevo);

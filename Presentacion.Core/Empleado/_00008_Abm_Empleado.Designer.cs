@@ -62,7 +62,7 @@
             // 
             // pnlFoto
             // 
-            this.pnlFoto.BackColor = System.Drawing.Color.Silver;
+            this.pnlFoto.BackColor = System.Drawing.Color.Gainsboro;
             this.pnlFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlFoto.Controls.Add(this.btnImagen);
             this.pnlFoto.Controls.Add(this.lblFoto);
@@ -75,12 +75,14 @@
             // 
             // btnImagen
             // 
+            this.btnImagen.BackColor = System.Drawing.Color.Silver;
+            this.btnImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImagen.Location = new System.Drawing.Point(11, 221);
             this.btnImagen.Name = "btnImagen";
             this.btnImagen.Size = new System.Drawing.Size(170, 31);
             this.btnImagen.TabIndex = 85;
             this.btnImagen.Text = "Obtener Imagen";
-            this.btnImagen.UseVisualStyleBackColor = true;
+            this.btnImagen.UseVisualStyleBackColor = false;
             this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
             // 
             // lblFoto
@@ -97,12 +99,12 @@
             // 
             // imgFoto
             // 
-            this.imgFoto.BackColor = System.Drawing.Color.White;
+            this.imgFoto.BackColor = System.Drawing.Color.Gainsboro;
             this.imgFoto.Location = new System.Drawing.Point(11, 39);
             this.imgFoto.Margin = new System.Windows.Forms.Padding(2);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(170, 170);
-            this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgFoto.TabIndex = 0;
             this.imgFoto.TabStop = false;
             // 

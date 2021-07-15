@@ -26,6 +26,36 @@
             EntidadId = entidadId;
         }
 
+        private void FormAbm_Load(object sender, EventArgs e)
+        {
+            switch (TipoOperacion)
+            {
+                case TipoOperacion.Nuevo:
+                    btnEjecutar.Text = "&Guardar";
+                    btnEjecutar.Image = Imagen.Guardar;
+                    break;
+
+                case TipoOperacion.Modificar:
+                    btnEjecutar.Text = "&Modificar";
+                    btnEjecutar.Image = Imagen.Editar;
+                    break;
+
+                case TipoOperacion.Eliminar:
+                    btnEjecutar.Text = "&Eliminar";
+                    btnEjecutar.Image = Imagen.Eliminar;
+                    DesactivarControles(this);
+                    btnLimpiar.Enabled = false;
+                    break;
+            }
+
+            if (EntidadId.HasValue)
+                CargarDatos(EntidadId);
+
+            if (TipoOperacion == TipoOperacion.Eliminar)
+                DesactivarControles(this);
+        }
+
+        // --- Acciones de botones
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarControles(this);
@@ -114,35 +144,6 @@
                 Close();
         }
 
-        private void FormAbm_Load(object sender, EventArgs e)
-        {
-            switch (TipoOperacion)
-            {
-                case TipoOperacion.Nuevo:
-                    btnEjecutar.Text = "&Guardar";
-                    btnEjecutar.Image = Imagen.Guardar;
-                    break;
-
-                case TipoOperacion.Modificar:
-                    btnEjecutar.Text = "&Modificar";
-                    btnEjecutar.Image = Imagen.Editar;
-                    break;
-
-                case TipoOperacion.Eliminar:
-                    btnEjecutar.Text = "&Eliminar";
-                    btnEjecutar.Image = Imagen.Eliminar;
-                    btnLimpiar.Enabled = false;
-                    break;
-            }
-
-            if (EntidadId.HasValue)
-                CargarDatos(EntidadId);
-
-            if (TipoOperacion == TipoOperacion.Eliminar)
-                DesactivarControles(this);
-        }
-
-
         // --- Metodos configurables
         public virtual void EjecutarComandoNuevo()
         {
@@ -167,8 +168,7 @@
         }
 
         public virtual void CargarDatos(long? entidadId)
-        {
-
+        {    
         }
 
         public virtual void EjecutarPostLimpieza()

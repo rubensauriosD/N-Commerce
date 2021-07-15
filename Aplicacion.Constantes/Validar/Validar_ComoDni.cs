@@ -19,7 +19,7 @@
 
                 bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
 
-                ok &= txt.Length == DniLength;
+                ok &= txt.Length <= DniLength;
 
                 if (obligatorio)
                 {

@@ -1,13 +1,18 @@
 ﻿namespace Presentacion.Core.Empleado
 {
+    using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
     using System.Windows.Forms;
     using Aplicacion.Constantes;
     using IServicio.Departamento;
+    using IServicio.Departamento.DTOs;
     using IServicio.Localidad;
+    using IServicio.Localidad.DTOs;
     using IServicio.Persona;
     using IServicio.Persona.DTOs;
     using IServicio.Provincia;
+    using IServicio.Provincia.DTOs;
     using Presentacion.Core.Departamento;
     using Presentacion.Core.Localidad;
     using Presentacion.Core.Provincia;
@@ -60,24 +65,20 @@
                     "Descripcion",
                     "Id");
 
-            SetearValidaciones();
-        }
+            if (EntidadId.HasValue)
+                CargarDatosEntidad();
 
-        private void SetearValidaciones()
-        {
             Validar.ComoTexto(txtApellido, true);
             Validar.ComoTexto(txtNombre, true);
             Validar.ComoDni(txtDni, true);
             Validar.ComoTelefono(txtTelefono);
-            Validar.ComoDomicilio(txtDomicilio);
+            Validar.ComoDomicilio(txtDomicilio, true);
             Validar.ComoMail(txtMail);
         }
 
-        public override void CargarDatos(long? entidadId)
+        private void CargarDatosEntidad()
         {
-            base.CargarDatos(entidadId);
-
-            var resultado = (EmpleadoDto)_servicio.Obtener(typeof(EmpleadoDto), entidadId.Value);
+            var resultado = (EmpleadoDto)_servicio.Obtener(typeof(EmpleadoDto), EntidadId.Value);
 
             if (resultado == null)
             {
@@ -95,21 +96,109 @@
             txtMail.Text = resultado.Mail;
             imgFoto.Image = Imagen.ConvertirImagen(resultado.Foto);
 
-            PoblarComboBox(cmbProvincia, _provinciaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
-            cmbProvincia.SelectedValue = resultado.ProvinciaId;
+            ActualizarProvincia(resultado.ProvinciaId);
 
-            PoblarComboBox(cmbDepartamento, _departamentoServicio.ObtenerPorProvincia(resultado.ProvinciaId), "Descripcion", "Id");
-            cmbDepartamento.SelectedValue = resultado.DepartamentoId;
+            ActualizarDepartamento(resultado.DepartamentoId);
 
-            PoblarComboBox(cmbLocalidad, _localidadServicio.ObtenerPorDepartamento(resultado.DepartamentoId), "Descripcion", "Id");
-            cmbLocalidad.SelectedValue = resultado.LocalidadId;
+            ActualizarLocalidad(resultado.LocalidadId);
+        }
 
-            if (TipoOperacion == TipoOperacion.Eliminar)
-                DesactivarControles(this);
+        private void ActualizarProvincia(long id = 0)
+        {
+            var lstProvincias = _provinciaServicio.Obtener(string.Empty, false)
+                .Select(x => (ProvinciaDto)x)
+                .OrderBy(x => x.Descripcion)
+                .ToList();
+
+            PoblarComboBox(
+                cmbProvincia,
+                lstProvincias,
+                "Descripcion",
+                "Id"
+                );
+
+            if(id != 0)
+                cmbProvincia.SelectedValue = id;
+
+            ActualizarDepartamento();
+        }
+
+        private void ActualizarDepartamento(long id = 0)
+        {
+            if (cmbProvincia.Items.Count < 1)
+            {
+                cmbDepartamento.DataSource = new List<DepartamentoDto>();
+                return;
+            } 
+
+            var lstDepartamentos = _departamentoServicio.Obtener(string.Empty, false)
+                .Select(x => (DepartamentoDto)x)
+                .OrderBy(x => x.Descripcion)
+                .ToList();
+
+            PoblarComboBox(
+                cmbDepartamento,
+                lstDepartamentos,
+                "Descripcion",
+                "Id"
+                );
+
+            if (id != 0)
+                cmbDepartamento.SelectedValue = id;
+
+            ActualizarLocalidad();
+        }
+
+        private void ActualizarLocalidad(long id = 0)
+        {
+            if (cmbDepartamento.Items.Count < 1)
+            {
+                cmbLocalidad.DataSource = new List<LocalidadDto>();
+                return;
+            }
+
+            var lstLocalidades = _localidadServicio.Obtener(string.Empty, false)
+                .Select(x => (LocalidadDto)x)
+                .OrderBy(x => x.Descripcion)
+                .ToList();
+
+            PoblarComboBox(
+                cmbLocalidad,
+                lstLocalidades,
+                "Descripcion",
+                "Id"
+                );
+
+            if (id != 0)
+                cmbLocalidad.SelectedValue = id;
         }
 
         public override bool VerificarDatosObligatorios()
         {
+            if (cmbProvincia.Items.Count <= 0)
+            {
+                Validar.SetErrorProvider(cmbProvincia, "Obligatorio");
+                return false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbProvincia);
+
+            if (cmbDepartamento.Items.Count <= 0)
+            {
+                Validar.SetErrorProvider(cmbDepartamento, "Obligatorio");
+                return false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbDepartamento);
+
+            if (cmbLocalidad.Items.Count <= 0)
+            {
+                Validar.SetErrorProvider(cmbLocalidad, "Obligatorio");
+                return false;
+            }
+            else
+                Validar.ClearErrorProvider(cmbLocalidad);
+
             return ValidateChildren();
         }
 
@@ -169,67 +258,82 @@
         // --- Eventos de controles
         private void cmbProvincia_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
-            if (cmbProvincia.Items.Count > 0)
-                PoblarComboBox(
-                    cmbDepartamento,
-                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            if (cmbProvincia.Items.Count < 1)
+            {
+                cmbDepartamento.DataSource = new List<DepartamentoDto>();
+                cmbLocalidad.DataSource = new List<LocalidadDto>();
+                return;
+            }
+
+            PoblarComboBox(
+                cmbDepartamento,
+                _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
+                "Descripcion",
+                "Id");
+
+            if (cmbDepartamento.Items.Count < 1)
+            {
+                cmbLocalidad.DataSource = new List<LocalidadDto>();
+                return;
+            }
+
+            PoblarComboBox(
+                cmbLocalidad,
+                _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
+                "Descripcion",
+                "Id");
         }
 
         private void cmbDepartamento_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
-            if (cmbDepartamento.Items.Count > 0)
-                PoblarComboBox(
-                    cmbLocalidad,
-                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            if (cmbDepartamento.Items.Count < 1)
+            {
+                cmbLocalidad.DataSource = new List<LocalidadDto>();
+                return;
+            }
+
+            PoblarComboBox(
+                cmbLocalidad,
+                _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
+                "Descripcion",
+                "Id");
         }
 
         private void btnNuevaProvincia_Click(object sender, System.EventArgs e)
         {
             var form = new _00002_Abm_Provincia(TipoOperacion.Nuevo);
+            form.ShowDialog();
 
             if (!form.RealizoAlgunaOperacion)
                 return;
 
-            PoblarComboBox(
-                cmbProvincia,
-                _provinciaServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id"
-                );
+            var idProvinciaCreada = _provinciaServicio.Obtener(string.Empty, false).Max(x => x.Id);
+
+            ActualizarProvincia(idProvinciaCreada);
         }
 
         private void btnNuevoDepartamento_Click(object sender, System.EventArgs e)
         {
             var form = new _00004_Abm_Departamento(TipoOperacion.Nuevo);
+            form.ShowDialog();
 
             if (!form.RealizoAlgunaOperacion)
                 return;
 
-            if (cmbProvincia.Items.Count > 0)
-                PoblarComboBox(
-                    cmbDepartamento,
-                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            var idDepartamentoCreada = _departamentoServicio.Obtener(string.Empty, false).Max(x => x.Id);
+            ActualizarDepartamento(idDepartamentoCreada);
         }
 
         private void btnNuevaLocalidad_Click(object sender, System.EventArgs e)
         {
             var form = new _00006_AbmLocalidad(TipoOperacion.Nuevo);
+            form.ShowDialog();
 
             if (!form.RealizoAlgunaOperacion)
                 return;
 
-            if (cmbDepartamento.Items.Count > 0)
-                PoblarComboBox(
-                    cmbLocalidad,
-                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            var idLocalidadCreada = _localidadServicio.Obtener(string.Empty, false).Max(x => x.Id);
+            ActualizarLocalidad(idLocalidadCreada);
         }
 
         private void btnImagen_Click(object sender, System.EventArgs e)

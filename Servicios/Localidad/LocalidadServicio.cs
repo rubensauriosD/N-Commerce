@@ -1,15 +1,16 @@
-﻿using IServicio.BaseDto;
-using IServicio.Localidad;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Dominio.UnidadDeTrabajo;
-using IServicio.Localidad.DTOs;
-using System.Linq.Expressions;
-using Servicios.Base;
-
-namespace Servicios.Localidad
+﻿namespace Servicios.Localidad
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.BaseDto;
+    using IServicio.Localidad;
+    using IServicio.Localidad.DTOs;
+    using IServicios.Localidad.DTOs;
+    using Servicios.Base;
+
     public class LocalidadServicio : ILocalidadServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;
@@ -27,7 +28,7 @@ namespace Servicios.Localidad
 
         public void Insertar(DtoBase dtoEntidad)
         {
-            var dto = (LocalidadDto) dtoEntidad;
+            var dto = (LocalidadCrudDto) dtoEntidad;
 
             var entidad = new Dominio.Entidades.Localidad
             {
@@ -42,7 +43,7 @@ namespace Servicios.Localidad
 
         public void Modificar(DtoBase dtoEntidad)
         {
-            var dto = (LocalidadDto) dtoEntidad;
+            var dto = (LocalidadCrudDto) dtoEntidad;
 
             var entidad = _unidadDeTrabajo.LocalidadRepositorio.Obtener(dto.Id);
 
