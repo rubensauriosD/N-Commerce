@@ -49,7 +49,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return !string.IsNullOrEmpty(txtDescripcion.Text);
+            return ValidateChildren();
         }
 
         public override bool VerificarSiExiste(long? id = null)

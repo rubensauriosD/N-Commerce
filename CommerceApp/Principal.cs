@@ -32,21 +32,6 @@
             _cajaServicio = ObjectFactory.GetInstance<ICajaServicio>();
         }
 
-        private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ObjectFactory.GetInstance<_00001_Provincia>().ShowDialog();
-        }
-
-        private void consultaToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ObjectFactory.GetInstance<_00003_Departamento>().ShowDialog();
-        }
-
-        private void consultaToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            ObjectFactory.GetInstance<_00005_Localidad>().ShowDialog();
-        }
-
         private void btnAdministrarClientes_Click(object sender, EventArgs e)
         {
             ObjectFactory.GetInstance<_00009_Cliente>().ShowDialog();
@@ -226,6 +211,21 @@
         private void btnBajaArticulo_Click(object sender, EventArgs e)
         {
             ObjectFactory.GetInstance<_00029_BajaDeArticulos>().ShowDialog();
+        }
+
+        private void btnProvincia_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00001_Provincia>().ShowDialog();
+        }
+
+        private void btnDepartamento_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00003_Departamento>().ShowDialog();
+        }
+
+        private void btnLocalidad_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00005_Localidad>().ShowDialog();
         }
     }
 }

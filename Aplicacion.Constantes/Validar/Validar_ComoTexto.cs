@@ -17,7 +17,7 @@
                 if (obligatorio)
                 {
                     errMjs += " El campo es obligatorio.";
-                    ok &= obligatorio ? txt != "" : true;
+                    ok &= txt != "";
                 }
 
                 return ok;

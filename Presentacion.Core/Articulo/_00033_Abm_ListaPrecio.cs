@@ -23,7 +23,7 @@
 
         private void _00033_Abm_ListaPrecio_Load(object sender, System.EventArgs e)
         {
-            Validar.ComoAlfanumerico(txtDescripcion);
+            Validar.ComoAlfanumerico(txtDescripcion, true);
             txtDescripcion.MaxLength = 250;
         }
 

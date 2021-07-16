@@ -297,6 +297,14 @@
 
             ok &= ValidateChildren();
 
+            if (!validar.EsCuit(txtCUIL.Text, out string errMjs))
+            {
+                validar.SetErrorProvider(txtCUIL, errMjs);
+                ok = false;
+            }
+            else
+                validar.ClearErrorProvider(txtCUIL);
+
             if (_configuracion.ProvinciaId < 1)
             {
                 validar.SetErrorProvider(cmbProvincia, "Debes seleccionar una provincia.");
@@ -461,6 +469,11 @@
                 _depositoServicio.Obtener(string.Empty, false),
                 "Descripcion",
                 "Id");
+        }
+
+        private void chkActibarBascula_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlBasculaConfig.Enabled = chkActibarBascula.Checked;
         }
     }
 }

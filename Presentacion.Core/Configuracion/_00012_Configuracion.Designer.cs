@@ -93,7 +93,7 @@ namespace Presentacion.Core.Configuracion
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlBasculaConfig = new System.Windows.Forms.Panel();
             this.rdbEtiquetaPorPrecio = new System.Windows.Forms.RadioButton();
             this.rdbEtiquetaPorPeso = new System.Windows.Forms.RadioButton();
             this.txtDigitosComienzoCodigo = new System.Windows.Forms.TextBox();
@@ -108,7 +108,7 @@ namespace Presentacion.Core.Configuracion
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnlBasculaConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSeparador
@@ -475,7 +475,7 @@ namespace Presentacion.Core.Configuracion
             this.tabPageStock.Location = new System.Drawing.Point(4, 25);
             this.tabPageStock.Name = "tabPageStock";
             this.tabPageStock.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStock.Size = new System.Drawing.Size(520, 321);
+            this.tabPageStock.Size = new System.Drawing.Size(502, 303);
             this.tabPageStock.TabIndex = 1;
             this.tabPageStock.Text = "Stock";
             // 
@@ -792,7 +792,7 @@ namespace Presentacion.Core.Configuracion
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.pnlBasculaConfig);
             this.tabPage1.Controls.Add(this.chkActibarBascula);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
@@ -833,17 +833,17 @@ namespace Presentacion.Core.Configuracion
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // panel1
+            // pnlBasculaConfig
             // 
-            this.panel1.BackColor = System.Drawing.Color.Bisque;
-            this.panel1.Controls.Add(this.rdbEtiquetaPorPrecio);
-            this.panel1.Controls.Add(this.rdbEtiquetaPorPeso);
-            this.panel1.Controls.Add(this.txtDigitosComienzoCodigo);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(18, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(496, 100);
-            this.panel1.TabIndex = 2;
+            this.pnlBasculaConfig.BackColor = System.Drawing.Color.Bisque;
+            this.pnlBasculaConfig.Controls.Add(this.rdbEtiquetaPorPrecio);
+            this.pnlBasculaConfig.Controls.Add(this.rdbEtiquetaPorPeso);
+            this.pnlBasculaConfig.Controls.Add(this.txtDigitosComienzoCodigo);
+            this.pnlBasculaConfig.Controls.Add(this.label11);
+            this.pnlBasculaConfig.Location = new System.Drawing.Point(18, 43);
+            this.pnlBasculaConfig.Name = "pnlBasculaConfig";
+            this.pnlBasculaConfig.Size = new System.Drawing.Size(484, 100);
+            this.pnlBasculaConfig.TabIndex = 2;
             // 
             // rdbEtiquetaPorPrecio
             // 
@@ -902,6 +902,7 @@ namespace Presentacion.Core.Configuracion
             this.chkActibarBascula.TabIndex = 1;
             this.chkActibarBascula.Text = "Activar báscula";
             this.chkActibarBascula.UseVisualStyleBackColor = true;
+            this.chkActibarBascula.CheckedChanged += new System.EventHandler(this.chkActibarBascula_CheckedChanged);
             // 
             // _00012_Configuracion
             // 
@@ -932,8 +933,8 @@ namespace Presentacion.Core.Configuracion
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlBasculaConfig.ResumeLayout(false);
+            this.pnlBasculaConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1002,7 +1003,7 @@ namespace Presentacion.Core.Configuracion
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlBasculaConfig;
         private System.Windows.Forms.RadioButton rdbEtiquetaPorPrecio;
         private System.Windows.Forms.RadioButton rdbEtiquetaPorPeso;
         private System.Windows.Forms.TextBox txtDigitosComienzoCodigo;

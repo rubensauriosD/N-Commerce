@@ -31,7 +31,7 @@
 
                 bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
 
-                ok &= txt.Length == CuitLength;
+                ok &= txt.Length <= CuitLength;
 
                 if (obligatorio)
                 {
