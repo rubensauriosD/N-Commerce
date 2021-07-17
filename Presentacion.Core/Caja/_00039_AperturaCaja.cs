@@ -1,19 +1,11 @@
-﻿using Aplicacion.Constantes;
-using IServicio.Configuracion;
-using IServicios.Caja;
-using PresentacionBase.Formularios;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Presentacion.Core.Caja
+﻿namespace Presentacion.Core.Caja
 {
+    using Aplicacion.Constantes;
+    using IServicio.Configuracion;
+    using IServicios.Caja;
+    using PresentacionBase.Formularios;
+    using System;
+
     public partial class _00039_AperturaCaja : FormBase
     {
         private readonly ICajaServicio cajaServicio;
@@ -32,27 +24,33 @@ namespace Presentacion.Core.Caja
         {
             var config = configuracionServicio.Obtener();
 
-            nudMonto.Value = config.IngresoManualCajaInicial ? 0
-                : cajaServicio.ObtenerMontoCajaAnterior(Identidad.UsuarioId);
-            nudMonto.Select(0, nudMonto.Text.Length);
-            nudMonto.Focus();
-        }
-
-        //
-        // Acciones de botones
-        //
-        private void btnEjecutar_Click(object sender, EventArgs e)
-        {
-            try
+            if (config.IngresoManualCajaInicial)
             {
-                cajaServicio.Abrir(Identidad.UsuarioId, nudMonto.Value);
-                Mjs.Info("Los datos se guardaron correctamente.");
+                nudMonto.Value = 0;
+                nudMonto.Select(0, nudMonto.Text.Length);
+                nudMonto.Focus();
+            }
+            else
+            {
+                var montoCajaAnterior = cajaServicio.ObtenerMontoCajaAnterior(Identidad.UsuarioId);
+
+                cajaServicio.Abrir(Identidad.UsuarioId, montoCajaAnterior);
+
+                Mjs.Info(
+                    "Caja abierta correctamente."
+                    +$@"{Environment.NewLine}Monto de apertura: {montoCajaAnterior.ToString("C")}"
+                    );
+
                 Close();
             }
-            catch (Exception ex)
-            {
-                Mjs.Error(ex.Message);
-            }
+        }
+
+        // --- Acciones de botones
+        private void btnEjecutar_Click(object sender, EventArgs e)
+        {
+            cajaServicio.Abrir(Identidad.UsuarioId, nudMonto.Value);
+            Mjs.Info("Los datos se guardaron correctamente.");
+            Close();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

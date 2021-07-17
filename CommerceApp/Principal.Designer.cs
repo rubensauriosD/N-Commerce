@@ -34,8 +34,8 @@
             this.btnDepartamento = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLocalidad = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEmpleado = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCondicionIva = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -122,64 +122,64 @@
             // btnProvincia
             // 
             this.btnProvincia.Name = "btnProvincia";
-            this.btnProvincia.Size = new System.Drawing.Size(180, 22);
+            this.btnProvincia.Size = new System.Drawing.Size(150, 22);
             this.btnProvincia.Text = "Provincia";
             this.btnProvincia.Click += new System.EventHandler(this.btnProvincia_Click);
             // 
             // btnDepartamento
             // 
             this.btnDepartamento.Name = "btnDepartamento";
-            this.btnDepartamento.Size = new System.Drawing.Size(180, 22);
+            this.btnDepartamento.Size = new System.Drawing.Size(150, 22);
             this.btnDepartamento.Text = "Departamento";
             this.btnDepartamento.Click += new System.EventHandler(this.btnDepartamento_Click);
             // 
             // btnLocalidad
             // 
             this.btnLocalidad.Name = "btnLocalidad";
-            this.btnLocalidad.Size = new System.Drawing.Size(180, 22);
+            this.btnLocalidad.Size = new System.Drawing.Size(150, 22);
             this.btnLocalidad.Text = "Localidad";
             this.btnLocalidad.Click += new System.EventHandler(this.btnLocalidad_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(180, 22);
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(147, 6);
             // 
             // btnEmpleado
             // 
             this.btnEmpleado.Name = "btnEmpleado";
-            this.btnEmpleado.Size = new System.Drawing.Size(180, 22);
+            this.btnEmpleado.Size = new System.Drawing.Size(150, 22);
             this.btnEmpleado.Text = "Empleados";
             this.btnEmpleado.Click += new System.EventHandler(this.btnEmpleado_Click);
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(150, 22);
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(147, 6);
             // 
             // btnCondicionIva
             // 
             this.btnCondicionIva.Name = "btnCondicionIva";
-            this.btnCondicionIva.Size = new System.Drawing.Size(180, 22);
+            this.btnCondicionIva.Size = new System.Drawing.Size(150, 22);
             this.btnCondicionIva.Text = "Condicion IVA";
             this.btnCondicionIva.Click += new System.EventHandler(this.btnCondicionIva_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(147, 6);
             // 
             // btnConfiguracion
             // 
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(180, 22);
+            this.btnConfiguracion.Size = new System.Drawing.Size(150, 22);
             this.btnConfiguracion.Text = "Configuración";
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
@@ -516,7 +516,7 @@
             this.picFotoUsuario.Location = new System.Drawing.Point(11, 11);
             this.picFotoUsuario.Name = "picFotoUsuario";
             this.picFotoUsuario.Size = new System.Drawing.Size(50, 50);
-            this.picFotoUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFotoUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFotoUsuario.TabIndex = 0;
             this.picFotoUsuario.TabStop = false;
             // 
