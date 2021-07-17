@@ -30,11 +30,9 @@
         {
             this.SuspendLayout();
             // 
-            // pnlDetalleContenedor
-            // 
-            // 
             // pnlBusqueda
             // 
+            this.pnlBusqueda.Size = new System.Drawing.Size(802, 43);
             // 
             // _00015_Proveedor
             // 
@@ -42,8 +40,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 450);
             this.Name = "_00015_Proveedor";
-            this.ShowIcon = false;
-            this.Text = "_00015_Proveedor";
+            this.Text = "Proveedores";
             this.ResumeLayout(false);
             this.PerformLayout();
 

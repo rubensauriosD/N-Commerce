@@ -82,7 +82,7 @@
                 .ToString("C2");
         }
 
-        // ACCIONES DE CONTROLES
+        // --- ACCIONES DE CONTROLES
         private void btnRealizarPago_Click(object sender, EventArgs e)
         {
             var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
@@ -115,6 +115,18 @@
 
         private void btnRebertirPago_Click(object sender, EventArgs e)
         {
+            if (movimientoCuentaCorriente.Id == 0)
+            {
+                Mjs.Alerta("No hay movimientos para revertir.");
+                return;
+            }
+
+            if (movimientoCuentaCorriente.TipoMovimiento == TipoMovimiento.Egreso)
+            {
+                Mjs.Alerta("No se puede revertir este movimiento.");
+                return;
+            }
+
             var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)

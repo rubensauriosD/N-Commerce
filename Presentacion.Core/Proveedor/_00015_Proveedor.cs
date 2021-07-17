@@ -36,12 +36,18 @@
             AgregarBotonAlMenu(btnCuentaCorriente);
         }
 
-        // Cuenta Corriente
+        // --- Cuenta Corriente
         private void MostrarCuentaCuente(object sender, EventArgs e)
         {
             if (proveedor.Id == 0)
             {
                 Mjs.Alerta("No se seleccionó ningún proveedor.");
+                return;
+            }
+
+            if (proveedor.Id == 1)
+            {
+                Mjs.Alerta("Proveedores Varios no tiene cuenta corriente.");
                 return;
             }
 
