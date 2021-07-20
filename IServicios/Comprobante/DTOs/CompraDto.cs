@@ -16,6 +16,5 @@
 
         public decimal ImpuestosInternos { get; set; }
 
-
     }
 }

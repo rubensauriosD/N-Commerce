@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using PresentacionBase.Formularios;
-using IServicio.Articulo.DTOs;
-using IServicio.Articulo;
-
-namespace Presentacion.Core.Articulo
+﻿namespace Presentacion.Core.Articulo
 {
+    using System.Linq;
+    using System.Windows.Forms;
+    using PresentacionBase.Formularios;
+    using IServicio.Articulo.DTOs;
+    using IServicio.Articulo;
+
     public partial class ArticuloLookUp : FormLookUp
     {
         private readonly IArticuloServicio _servicio;
@@ -34,7 +34,10 @@ namespace Presentacion.Core.Articulo
 
         public override void ActualizarDatos(DataGridView dgv, string cadenaBuscar)
         {
-            dgv.DataSource = (List<ArticuloDto>)_servicio.Obtener(cadenaBuscar);
+            dgv.DataSource = _servicio.Obtener(cadenaBuscar)
+                .Select(x => (ArticuloDto)x)
+                .OrderBy(x => x.Descripcion)
+                .ToList();
 
             base.ActualizarDatos(dgv, cadenaBuscar);
         }

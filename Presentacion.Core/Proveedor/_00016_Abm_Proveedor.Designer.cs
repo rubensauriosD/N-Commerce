@@ -140,6 +140,7 @@
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(317, 21);
             this.cmbDepartamento.TabIndex = 15;
+            this.cmbDepartamento.SelectionChangeCommitted += new System.EventHandler(this.cmbDepartamento_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -160,6 +161,7 @@
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(317, 21);
             this.cmbProvincia.TabIndex = 12;
+            this.cmbProvincia.SelectionChangeCommitted += new System.EventHandler(this.cmbProvincia_SelectionChangeCommitted);
             // 
             // lblProvincia
             // 

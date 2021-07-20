@@ -63,7 +63,6 @@
             this.btnBuscarProveedor = new System.Windows.Forms.Button();
             this.txtNroComprobante = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSubTotalLinea = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnAgregarItem = new System.Windows.Forms.Button();
             this.nudCantidad = new System.Windows.Forms.NumericUpDown();
@@ -84,6 +83,7 @@
             this.lblDomicilio = new System.Windows.Forms.Label();
             this.txtDomicilio = new System.Windows.Forms.TextBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
+            this.lblSubTotalLinea = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.grbFormasPago.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudIva27)).BeginInit();
@@ -443,6 +443,7 @@
             // pnlCabecera
             // 
             this.pnlCabecera.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlCabecera.Controls.Add(this.lblSubTotalLinea);
             this.pnlCabecera.Controls.Add(this.cmbTipoComprobante);
             this.pnlCabecera.Controls.Add(this.label13);
             this.pnlCabecera.Controls.Add(this.dtpFecha);
@@ -453,7 +454,6 @@
             this.pnlCabecera.Controls.Add(this.btnBuscarProveedor);
             this.pnlCabecera.Controls.Add(this.txtNroComprobante);
             this.pnlCabecera.Controls.Add(this.panel2);
-            this.pnlCabecera.Controls.Add(this.txtSubTotalLinea);
             this.pnlCabecera.Controls.Add(this.label9);
             this.pnlCabecera.Controls.Add(this.btnAgregarItem);
             this.pnlCabecera.Controls.Add(this.nudCantidad);
@@ -556,6 +556,7 @@
             0,
             0,
             0});
+            this.nudPrecioUnitario.ValueChanged += new System.EventHandler(this.nudPrecioUnitario_ValueChanged);
             this.nudPrecioUnitario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudPrecioUnitario_KeyPress);
             // 
             // panel3
@@ -586,6 +587,7 @@
             this.txtNroComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNroComprobante.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNroComprobante.Location = new System.Drawing.Point(648, 55);
+            this.txtNroComprobante.MaxLength = 12;
             this.txtNroComprobante.Name = "txtNroComprobante";
             this.txtNroComprobante.Size = new System.Drawing.Size(139, 23);
             this.txtNroComprobante.TabIndex = 17;
@@ -600,24 +602,13 @@
             this.panel2.Size = new System.Drawing.Size(2, 71);
             this.panel2.TabIndex = 11;
             // 
-            // txtSubTotalLinea
-            // 
-            this.txtSubTotalLinea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubTotalLinea.Enabled = false;
-            this.txtSubTotalLinea.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubTotalLinea.Location = new System.Drawing.Point(600, 107);
-            this.txtSubTotalLinea.Name = "txtSubTotalLinea";
-            this.txtSubTotalLinea.Size = new System.Drawing.Size(111, 25);
-            this.txtSubTotalLinea.TabIndex = 27;
-            this.txtSubTotalLinea.TabStop = false;
-            // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(617, 87);
+            this.label9.Location = new System.Drawing.Point(623, 88);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 17);
             this.label9.TabIndex = 26;
@@ -665,6 +656,7 @@
             0,
             0,
             0});
+            this.nudCantidad.ValueChanged += new System.EventHandler(this.nudPrecioUnitario_ValueChanged);
             this.nudCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudPrecioUnitario_KeyPress);
             // 
             // label7
@@ -863,6 +855,17 @@
             this.dgvGrilla.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_RowEnter);
             this.dgvGrilla.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvGrilla_KeyDown);
             // 
+            // lblSubTotalLinea
+            // 
+            this.lblSubTotalLinea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSubTotalLinea.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotalLinea.Location = new System.Drawing.Point(600, 107);
+            this.lblSubTotalLinea.Name = "lblSubTotalLinea";
+            this.lblSubTotalLinea.Size = new System.Drawing.Size(109, 25);
+            this.lblSubTotalLinea.TabIndex = 21;
+            this.lblSubTotalLinea.Text = "$ 99 999 .99";
+            this.lblSubTotalLinea.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // _00053_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -921,7 +924,6 @@
         private System.Windows.Forms.Panel pnlCabecera;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnBuscarProveedor;
-        private System.Windows.Forms.TextBox txtSubTotalLinea;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnAgregarItem;
         private System.Windows.Forms.NumericUpDown nudCantidad;
@@ -954,5 +956,6 @@
         private System.Windows.Forms.GroupBox grbFormasPago;
         private System.Windows.Forms.CheckBox chkCuentaCorriente;
         private System.Windows.Forms.CheckBox chkEfectivo;
+        private System.Windows.Forms.Label lblSubTotalLinea;
     }
 }

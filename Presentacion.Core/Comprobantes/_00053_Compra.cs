@@ -17,6 +17,8 @@
     using IServicios.Persona.DTOs;
     using IServicios.Caja;
     using IServicios.Caja.DTOs;
+    using System.Collections.Generic;
+    using IServicio.Articulo.DTOs;
 
     public partial class _00053_Compra : FormBase
     {
@@ -53,8 +55,8 @@
         private void _00053_Compra_Load(object sender, EventArgs e)
         {
             Validar.ComoCuit(txtCuit);
-            Validar.ComoNumero(txtNroComprobante);
             Validar.ComoNumero(txtCodigo);
+            Validar.ComoNumero(txtNroComprobante);
 
             dtpFecha.MaxDate = DateTime.Now;
             PoblarComboBox(cmbTipoComprobante, Enum.GetValues(typeof(TipoComprobante)));
@@ -111,9 +113,15 @@
             txtTelefono.Text = compra.Proveedor.Telefono;
             txtCondicionIva.Text = compra.Proveedor.CondicionIva;
 
-            if (compra.Proveedor.Id == 99999999999)
+            if (compra.Proveedor.CUIT == "99999999999")
             {
                 grbFormasPago.Enabled = false;
+                chkEfectivo.Checked = true;
+                chkCuentaCorriente.Checked = false;
+            }
+            else
+            {
+                grbFormasPago.Enabled = true;
                 chkEfectivo.Checked = true;
                 chkCuentaCorriente.Checked = false;
             }
@@ -169,7 +177,12 @@
             ActualizarTotal();
         }
 
-        // EVENTO DE COTROLES
+        // --- EVENTOS DE COTROLES
+        private void nudPrecioUnitario_ValueChanged(object sender, EventArgs e)
+        {
+            lblSubTotalLinea.Text = (nudCantidad.Value * nudPrecioUnitario.Value).ToString("c");
+        }
+
         private void nud_Leave(object sender, EventArgs e)
         {
             ActualizarTotal();
@@ -266,22 +279,30 @@
 
         private void txtCuit_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter)
+                return;
+
             if (!Validar.EsCuit(txtCuit.Text, out string errTxt))
             {
-                Mjs.Alerta(errTxt);
+                Validar.SetErrorProvider(txtCuit, errTxt);
                 return;
             }
+            else Validar.ClearErrorProvider(txtCuit);
 
             var proveedor = _proveedorServicios.ObtenerPorCuit(txtCuit.Text);
 
             if (proveedor == null)
+            {
+                Validar.SetErrorProvider(txtCuit, "Proveedor no encontrado.");
                 return;
+            }
+            else Validar.ClearErrorProvider(txtCuit);
 
             compra.Proveedor = proveedor;
             CargarDatosProveedor();
         }
 
-        // PORCESO AGREGAR ITEM
+        // --- PROCESO AGREGAR ITEM
 
         private void SetEstadoCargaCodigo()
         {
@@ -292,7 +313,7 @@
 
             nudCantidad.Value = 1;
             nudPrecioUnitario.Value = 1;
-            txtSubTotalLinea.Text = "";
+            lblSubTotalLinea.Text = "$0";
             txtDescripcion.Text = "";
             
             txtCodigo.Clear();
@@ -317,6 +338,9 @@
             if (e.KeyChar != (char)Keys.Enter)
                 return;
 
+            if (txtCodigo.Text == "0")
+                ActivarBusquedaYListadoDeArticulo();
+
             itemSeleccionado = _artiuloServicios.ObtenerPorCodigo(txtCodigo.Text);
 
             if (itemSeleccionado == null)
@@ -332,6 +356,12 @@
 
         private void btnAgregarItem_Click(object sender, EventArgs e)
         {
+            if (nudPrecioUnitario.Value <= 0)
+            {
+                Mjs.Alerta("El precio del artículo no puede ser 0.");
+                return;
+            }
+
             itemSeleccionado.Precio = nudPrecioUnitario.Value;
             itemSeleccionado.Cantidad = nudCantidad.Value;
             compra.AgregarItem(itemSeleccionado);
@@ -341,7 +371,41 @@
             SetEstadoCargaCodigo();
         }
 
-        // EVENTO DE BOTONES
+        // --- BUSQUEDA Y LISTADO DE ARTICULOS
+
+        private void ActivarBusquedaYListadoDeArticulo()
+        {
+            var fBusquedaSeleccionArticulos = new FormBusquedaSeleccion(setDatosBusquedaArticulos, setFormatoBusquedaArticulo);
+            fBusquedaSeleccionArticulos.ShowDialog();
+
+            if (!fBusquedaSeleccionArticulos.RealizoSeleccion)
+                return;
+
+            txtCodigo.Text = ((ArticuloDto)fBusquedaSeleccionArticulos.Seleccion).Codigo.ToString();
+        }
+
+        private void setFormatoBusquedaArticulo(DataGridView grilla)
+        {
+            grilla.Columns["Codigo"].Visible = true;
+            grilla.Columns["Codigo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            grilla.Columns["Codigo"].HeaderText = @"Código";
+            grilla.Columns["Codigo"].DisplayIndex = 1;
+
+            grilla.Columns["Descripcion"].Visible = true;
+            grilla.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["Descripcion"].HeaderText = @"Articulo";
+            grilla.Columns["Descripcion"].DisplayIndex = 2;
+        }
+
+        private void setDatosBusquedaArticulos(DataGridView grilla, string cadenaBuscar)
+        {
+            grilla.DataSource = _artiuloServicios.Obtener(cadenaBuscar)
+                .Select(x => (ArticuloDto)x)
+                .OrderByDescending(x => x.Descripcion)
+                .ToList();
+        }
+
+        // --- EVENTO DE BOTONES
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
@@ -387,7 +451,7 @@
             compra.RetencionTEM = nudPercepcionTem.Value;
             compra.Fecha = dtpFecha.Value;
 
-            // guardar los datos
+            // Guardar los datos
             return new CompraDto()
             {
                 ProveedorId = compra.Proveedor.Id,
@@ -418,7 +482,6 @@
 
         private void RealizarPagoDeLaCompra()
         {
-            // Pago de la compra
             var totalCompra = compra.Items.Sum(x => x.SubTotal)
                     + nudImpuestoInterno.Value
                     + nudIva105.Value
@@ -451,5 +514,6 @@
                     Monto = totalCompra
                 });
         }
+
     }
 }
