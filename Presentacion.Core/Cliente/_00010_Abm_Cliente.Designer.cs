@@ -312,9 +312,20 @@
             // 
             // nudLimiteCompra
             // 
+            this.nudLimiteCompra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudLimiteCompra.DecimalPlaces = 2;
             this.nudLimiteCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLimiteCompra.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nudLimiteCompra.Location = new System.Drawing.Point(307, 39);
+            this.nudLimiteCompra.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
             this.nudLimiteCompra.Name = "nudLimiteCompra";
             this.nudLimiteCompra.Size = new System.Drawing.Size(120, 22);
             this.nudLimiteCompra.TabIndex = 3;
@@ -352,6 +363,7 @@
             this.chkActivarCuentaCorriente.TabIndex = 1;
             this.chkActivarCuentaCorriente.Text = "Activar";
             this.chkActivarCuentaCorriente.UseVisualStyleBackColor = true;
+            this.chkActivarCuentaCorriente.CheckedChanged += new System.EventHandler(this.chkActivarCuentaCorriente_CheckedChanged);
             // 
             // label9
             // 

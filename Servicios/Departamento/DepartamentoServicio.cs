@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Dominio.UnidadDeTrabajo;
-using IServicio.BaseDto;
-using IServicio.Departamento;
-using IServicio.Departamento.DTOs;
-using IServicios.Departamento.DTOs;
-using Servicios.Base;
-
-namespace Servicios.Departamento
+﻿namespace Servicios.Departamento
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.BaseDto;
+    using IServicio.Departamento;
+    using IServicio.Departamento.DTOs;
+    using IServicios.Departamento.DTOs;
+    using Servicios.Base;
+
     public class DepartamentoServicio : IDepartamentoServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;
