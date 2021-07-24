@@ -6,5 +6,7 @@
     public interface IFacturaServicio : IComprobanteServicio
     {
         IEnumerable<ComprobantePendienteDto> ObtenerPendientesPago();
+
+        FacturaDto Obtener(long id);
     }
 }

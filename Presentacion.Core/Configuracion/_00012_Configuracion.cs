@@ -10,6 +10,7 @@
     using IServicio.Departamento;
     using IServicio.Deposito;
     using IServicio.ListaPrecio;
+    using IServicio.ListaPrecio.DTOs;
     using IServicio.Localidad;
     using IServicio.Provincia;
     using Presentacion.Core.Articulo;
@@ -111,9 +112,15 @@
                     "Descripcion",
                     "Id");
 
+            var lstListaPrecios = _listaPreciosServicio
+                .Obtener(string.Empty, false)
+                .Select(x => (ListaPrecioDto)x)
+                .Where(x => !x.NecesitaAutorizacion)
+                .ToList();
+
             PoblarComboBox(
                 cmbListaPrecioDefecto,
-                _listaPreciosServicio.Obtener(string.Empty, false),
+                lstListaPrecios,
                 "Descripcion",
                 "Id");
 
@@ -170,7 +177,6 @@
             //
             chkFacturaDescuentaStock.Checked = _configuracion.FacturaDescuentaStock;
             chkPresupuestoDescuentaStock.Checked = _configuracion.PresupuestoDescuentaStock;
-            chkRemitoDescuentaStock.Checked = _configuracion.RemitoDescuentaStock;
             chkActualizaCostoDesdeCompra.Checked = _configuracion.ActualizaCostoDesdeCompra;
             cmbTipoPagoCompraPorDefecto.SelectedItem = _configuracion.TipoFormaPagoPorDefectoCompra;
             cmbDepositoPorDefectoStock.SelectedValue = _configuracion.DepositoNuevoArticuloId;
@@ -260,7 +266,7 @@
             //
             _configuracion.FacturaDescuentaStock = chkFacturaDescuentaStock.Checked;
             _configuracion.PresupuestoDescuentaStock = chkPresupuestoDescuentaStock.Checked;
-            _configuracion.RemitoDescuentaStock = chkRemitoDescuentaStock.Checked;
+            _configuracion.RemitoDescuentaStock = false;
             _configuracion.ActualizaCostoDesdeCompra = chkActualizaCostoDesdeCompra.Checked;
             _configuracion.TipoFormaPagoPorDefectoCompra = (TipoPago)cmbTipoPagoCompraPorDefecto.SelectedItem;
             _configuracion.DepositoNuevoArticuloId = (long)cmbDepositoPorDefectoStock.SelectedValue;

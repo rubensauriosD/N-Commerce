@@ -672,6 +672,7 @@
     <EmbeddedResource Include="FormaPago\_00057_Cheque_Deposito.resx">
       <DependentUpon>_00057_Cheque_Deposito.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Informes\InformeFactura.rdlc" />
     <EmbeddedResource Include="Informes\InformePresupesto.rdlc" />
     <EmbeddedResource Include="Localidad\_00005_Localidad.resx">
       <DependentUpon>_00005_Localidad.cs</DependentUpon>
@@ -732,6 +733,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\IServicios.Comprobante.DTOs.FacturaDto.datasource" />
     <None Include="Properties\DataSources\IServicios.Informes.DTOs.InformeMovimientoCuentaCorrienteDto.datasource" />
     <None Include="Properties\DataSources\IServicios.Informes.DTOs.InformePresupuestoDetalleDto.datasource" />
     <None Include="Properties\DataSources\Presentacion.Core.Properties.Resources.datasource" />

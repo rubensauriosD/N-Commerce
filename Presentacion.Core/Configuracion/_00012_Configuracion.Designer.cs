@@ -65,7 +65,6 @@ namespace Presentacion.Core.Configuracion
             this.btnNuevoDepositoStock = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbDepositoPorDefectoStock = new System.Windows.Forms.ComboBox();
-            this.chkRemitoDescuentaStock = new System.Windows.Forms.CheckBox();
             this.chkPresupuestoDescuentaStock = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbTipoPagoCompraPorDefecto = new System.Windows.Forms.ComboBox();
@@ -466,7 +465,6 @@ namespace Presentacion.Core.Configuracion
             this.tabPageStock.Controls.Add(this.btnNuevoDepositoStock);
             this.tabPageStock.Controls.Add(this.label10);
             this.tabPageStock.Controls.Add(this.cmbDepositoPorDefectoStock);
-            this.tabPageStock.Controls.Add(this.chkRemitoDescuentaStock);
             this.tabPageStock.Controls.Add(this.chkPresupuestoDescuentaStock);
             this.tabPageStock.Controls.Add(this.label4);
             this.tabPageStock.Controls.Add(this.cmbTipoPagoCompraPorDefecto);
@@ -510,18 +508,6 @@ namespace Presentacion.Core.Configuracion
             this.cmbDepositoPorDefectoStock.Size = new System.Drawing.Size(261, 24);
             this.cmbDepositoPorDefectoStock.TabIndex = 18;
             // 
-            // chkRemitoDescuentaStock
-            // 
-            this.chkRemitoDescuentaStock.AutoSize = true;
-            this.chkRemitoDescuentaStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRemitoDescuentaStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkRemitoDescuentaStock.Location = new System.Drawing.Point(39, 75);
-            this.chkRemitoDescuentaStock.Name = "chkRemitoDescuentaStock";
-            this.chkRemitoDescuentaStock.Size = new System.Drawing.Size(195, 20);
-            this.chkRemitoDescuentaStock.TabIndex = 2;
-            this.chkRemitoDescuentaStock.Text = "Remito descuenta del Stock";
-            this.chkRemitoDescuentaStock.UseVisualStyleBackColor = true;
-            // 
             // chkPresupuestoDescuentaStock
             // 
             this.chkPresupuestoDescuentaStock.AutoSize = true;
@@ -560,7 +546,7 @@ namespace Presentacion.Core.Configuracion
             this.chkActualizaCostoDesdeCompra.AutoSize = true;
             this.chkActualizaCostoDesdeCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkActualizaCostoDesdeCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkActualizaCostoDesdeCompra.Location = new System.Drawing.Point(39, 98);
+            this.chkActualizaCostoDesdeCompra.Location = new System.Drawing.Point(39, 78);
             this.chkActualizaCostoDesdeCompra.Name = "chkActualizaCostoDesdeCompra";
             this.chkActualizaCostoDesdeCompra.Size = new System.Drawing.Size(212, 20);
             this.chkActualizaCostoDesdeCompra.TabIndex = 3;
@@ -970,7 +956,6 @@ namespace Presentacion.Core.Configuracion
         private System.Windows.Forms.TextBox txtRazonSocial;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.TabPage tabPageStock;
-        private System.Windows.Forms.CheckBox chkRemitoDescuentaStock;
         private System.Windows.Forms.CheckBox chkPresupuestoDescuentaStock;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbTipoPagoCompraPorDefecto;

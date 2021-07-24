@@ -256,6 +256,7 @@
                 return;
 
             facturaView.Vendedor = (EmpleadoDto)lookUpEmpleado.EntidadSeleccionada;
+            txtVendedor.Text = facturaView.Vendedor.ApyNom.ToUpper();
         }
 
         private void cmbComprobanteListaPrecio_SelectionChangeCommitted(object sender, EventArgs e)
@@ -472,7 +473,8 @@
             var stockDisponible = articuloSeleccionado.Stock
                 - facturaView.Items.Where(x => x.ArticuloId == item.ArticuloId).Sum(x => x.Cantidad);
 
-            if (stockDisponible < item.Cantidad && !articuloSeleccionado.PermiteStockNegativo)
+            if (!articuloSeleccionado.PermiteStockNegativo
+                && stockDisponible < item.Cantidad && !articuloSeleccionado.PermiteStockNegativo)
             {
                 Mjs.Alerta($"Solo hay {stockDisponible} de {item.Descripcion} en stock.");
                 return false;
@@ -594,6 +596,10 @@
 
             facturaView = new FacturaView { Vendedor = vendedor };
 
+            facturaView.Cliente = (ClienteDto)_clienteServicio
+                .Obtener(typeof(ClienteDto), ConfiguracionPorDefecto.ClienteDni)
+                .First();
+
             permitirIngresarCantidad = false;
             tieneAutorizacionListaPrecio = false;
             CargarCabeceraDelComprobante();
@@ -624,6 +630,7 @@
                 Iva21 = 0m,
                 Iva105 = 0m,
                 TipoComprobante = facturaView.TipoComprobante,
+                Estado = Estado.Pendiente,
                 Items = facturaView.Items.Select(iv => new DetalleComprobanteDto() {
                     ArticuloId = iv.ArticuloId,
                     Codigo = iv.Codigo,
@@ -634,7 +641,9 @@
                 }).ToList()
             };
 
-            nuevaFactura.Id = _facturaServicio.Insertar(nuevaFactura);
+            var nuevaFacturaId = _facturaServicio.Insertar(nuevaFactura);
+
+            nuevaFactura = _facturaServicio.Obtener(nuevaFacturaId);
 
             if (!configuracion.PuestoCajaSeparado)
             { 
@@ -642,12 +651,50 @@
                 fFormaPago.ShowDialog();
 
                 if (fFormaPago.RealizoVenta)
+                { 
                     nuevaFactura.FormasDePagos = fFormaPago.FormasPago;
+                    _formaPagoServicio.Insertar(nuevaFactura.FormasDePagos, nuevaFactura.Id);
+                }
             }
 
-            _formaPagoServicio.Insertar(nuevaFactura.FormasDePagos, nuevaFactura.Id);
+            ImprimirFactura(nuevaFactura, facturaView.Cliente.ApyNom);
 
             LimpiarParaNuevaFactura();
+        }
+
+        private void ImprimirFactura(FacturaDto factura, string cliente)
+        {
+            var observaciones = configuracion.ObservacionEnPieFactura != ""
+                ? configuracion.ObservacionEnPieFactura : "---";
+
+            var items = factura.Items
+                .Select(i => new InformePresupuestoDetalleDto()
+                {
+                    Cantidad = i.Cantidad.ToString(),
+                    Descripcion = i.Descripcion,
+                    Precio = i.Precio.ToString("c"),
+                    Subtotal = i.SubTotal.ToString("c")
+                })
+                .ToList();
+
+            var parametros = new List<ReportParameter>() {
+                new ReportParameter("nombreSujeto", cliente.ToUpper()),
+                new ReportParameter("NumeroFactura", factura.Numero.ToString("00000")),
+                new ReportParameter("SubTotal", factura.SubTotal.ToString("c")),
+                new ReportParameter("Iva", (factura.Iva105 + factura.Iva21).ToString("c")),
+                new ReportParameter("Descuento", factura.Descuento.ToString("c")),
+                new ReportParameter("Total", factura.Total.ToString("C2")),
+                new ReportParameter("Observaciones", observaciones)
+            };
+
+            var form = new FormBase();
+            form.MostrarInforme(
+                @"D:\Code\N-Commerce\Presentacion.Core\Informes\InformeFactura.rdlc",
+                @"DetalleInforme",
+                items,
+                parametros);
+
+            form.ShowDialog();
         }
 
         // --- Presupuesto

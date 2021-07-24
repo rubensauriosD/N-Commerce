@@ -1,12 +1,12 @@
-﻿using Aplicacion.Constantes;
-using IServicio.Articulo;
-using IServicio.Persona.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Presentacion.Core.Comprobantes
+﻿namespace Presentacion.Core.Comprobantes
 {
+    using Aplicacion.Constantes;
+    using IServicio.Articulo;
+    using IServicio.Persona.DTOs;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class FacturaView
     {
         public FacturaView()

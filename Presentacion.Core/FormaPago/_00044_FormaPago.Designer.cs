@@ -297,6 +297,7 @@
             this.txtDni.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtDni.Location = new System.Drawing.Point(8, 175);
             this.txtDni.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDni.MaxLength = 8;
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(136, 23);
             this.txtDni.TabIndex = 117;
@@ -307,6 +308,7 @@
             this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtNombre.Location = new System.Drawing.Point(8, 135);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(283, 23);
             this.txtNombre.TabIndex = 115;
@@ -317,6 +319,7 @@
             this.txtApellido.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtApellido.Location = new System.Drawing.Point(8, 94);
             this.txtApellido.Margin = new System.Windows.Forms.Padding(2);
+            this.txtApellido.MaxLength = 50;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(283, 23);
             this.txtApellido.TabIndex = 114;
@@ -433,7 +436,7 @@
             this.tabPageCheque.Location = new System.Drawing.Point(4, 4);
             this.tabPageCheque.Name = "tabPageCheque";
             this.tabPageCheque.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCheque.Size = new System.Drawing.Size(285, 424);
+            this.tabPageCheque.Size = new System.Drawing.Size(299, 424);
             this.tabPageCheque.TabIndex = 2;
             this.tabPageCheque.Text = "CHEQUE";
             // 
@@ -454,7 +457,7 @@
             this.dtpFechaVencimientoCheque.Location = new System.Drawing.Point(6, 209);
             this.dtpFechaVencimientoCheque.Name = "dtpFechaVencimientoCheque";
             this.dtpFechaVencimientoCheque.Size = new System.Drawing.Size(228, 23);
-            this.dtpFechaVencimientoCheque.TabIndex = 11;
+            this.dtpFechaVencimientoCheque.TabIndex = 7;
             // 
             // btnNuevoBanco
             // 
@@ -464,7 +467,7 @@
             this.btnNuevoBanco.Location = new System.Drawing.Point(240, 163);
             this.btnNuevoBanco.Name = "btnNuevoBanco";
             this.btnNuevoBanco.Size = new System.Drawing.Size(26, 25);
-            this.btnNuevoBanco.TabIndex = 10;
+            this.btnNuevoBanco.TabIndex = 6;
             this.btnNuevoBanco.Text = "...";
             this.btnNuevoBanco.UseVisualStyleBackColor = true;
             this.btnNuevoBanco.Click += new System.EventHandler(this.btnNuevoBanco_Click);
@@ -476,7 +479,7 @@
             this.label14.Location = new System.Drawing.Point(6, 147);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(40, 15);
-            this.label14.TabIndex = 9;
+            this.label14.TabIndex = 4;
             this.label14.Text = "Banco";
             // 
             // cmbBanco
@@ -487,15 +490,16 @@
             this.cmbBanco.Location = new System.Drawing.Point(6, 165);
             this.cmbBanco.Name = "cmbBanco";
             this.cmbBanco.Size = new System.Drawing.Size(228, 23);
-            this.cmbBanco.TabIndex = 8;
+            this.cmbBanco.TabIndex = 5;
             // 
             // txtNumeroCheque
             // 
             this.txtNumeroCheque.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtNumeroCheque.Location = new System.Drawing.Point(6, 121);
+            this.txtNumeroCheque.MaxLength = 8;
             this.txtNumeroCheque.Name = "txtNumeroCheque";
             this.txtNumeroCheque.Size = new System.Drawing.Size(228, 23);
-            this.txtNumeroCheque.TabIndex = 7;
+            this.txtNumeroCheque.TabIndex = 3;
             // 
             // label13
             // 
@@ -504,7 +508,7 @@
             this.label13.Location = new System.Drawing.Point(6, 103);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(90, 15);
-            this.label13.TabIndex = 6;
+            this.label13.TabIndex = 2;
             this.label13.Text = "Nro. de Cheque";
             // 
             // nudMontoCheque
@@ -519,7 +523,7 @@
             0});
             this.nudMontoCheque.Name = "nudMontoCheque";
             this.nudMontoCheque.Size = new System.Drawing.Size(228, 23);
-            this.nudMontoCheque.TabIndex = 5;
+            this.nudMontoCheque.TabIndex = 1;
             this.nudMontoCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudMontoCheque.ValueChanged += new System.EventHandler(this.nudMontoCheque_ValueChanged);
             // 
@@ -530,7 +534,7 @@
             this.label12.Location = new System.Drawing.Point(6, 59);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 15);
-            this.label12.TabIndex = 4;
+            this.label12.TabIndex = 0;
             this.label12.Text = "Monto";
             // 
             // label3
@@ -541,7 +545,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(279, 38);
+            this.label3.Size = new System.Drawing.Size(293, 38);
             this.label3.TabIndex = 1;
             this.label3.Text = "Cheque";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -572,17 +576,19 @@
             // 
             this.txtCuponPago.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtCuponPago.Location = new System.Drawing.Point(7, 165);
+            this.txtCuponPago.MaxLength = 8;
             this.txtCuponPago.Name = "txtCuponPago";
             this.txtCuponPago.Size = new System.Drawing.Size(228, 23);
-            this.txtCuponPago.TabIndex = 21;
+            this.txtCuponPago.TabIndex = 5;
             // 
             // txtNumeroTarjeta
             // 
             this.txtNumeroTarjeta.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtNumeroTarjeta.Location = new System.Drawing.Point(7, 121);
+            this.txtNumeroTarjeta.MaxLength = 16;
             this.txtNumeroTarjeta.Name = "txtNumeroTarjeta";
             this.txtNumeroTarjeta.Size = new System.Drawing.Size(228, 23);
-            this.txtNumeroTarjeta.TabIndex = 14;
+            this.txtNumeroTarjeta.TabIndex = 3;
             // 
             // label23
             // 
@@ -591,7 +597,7 @@
             this.label23.Location = new System.Drawing.Point(7, 147);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(66, 15);
-            this.label23.TabIndex = 20;
+            this.label23.TabIndex = 4;
             this.label23.Text = "Cupo Pago";
             // 
             // nudCantidadCuotas
@@ -599,7 +605,7 @@
             this.nudCantidadCuotas.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.nudCantidadCuotas.Location = new System.Drawing.Point(7, 210);
             this.nudCantidadCuotas.Maximum = new decimal(new int[] {
-            500,
+            18,
             0,
             0,
             0});
@@ -610,7 +616,7 @@
             0});
             this.nudCantidadCuotas.Name = "nudCantidadCuotas";
             this.nudCantidadCuotas.Size = new System.Drawing.Size(79, 23);
-            this.nudCantidadCuotas.TabIndex = 19;
+            this.nudCantidadCuotas.TabIndex = 7;
             this.nudCantidadCuotas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudCantidadCuotas.Value = new decimal(new int[] {
             1,
@@ -625,7 +631,7 @@
             this.label22.Location = new System.Drawing.Point(7, 192);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(44, 15);
-            this.label22.TabIndex = 18;
+            this.label22.TabIndex = 6;
             this.label22.Text = "Cuotas";
             // 
             // btnNuevaTarjeta
@@ -636,7 +642,7 @@
             this.btnNuevaTarjeta.Location = new System.Drawing.Point(241, 252);
             this.btnNuevaTarjeta.Name = "btnNuevaTarjeta";
             this.btnNuevaTarjeta.Size = new System.Drawing.Size(26, 25);
-            this.btnNuevaTarjeta.TabIndex = 17;
+            this.btnNuevaTarjeta.TabIndex = 10;
             this.btnNuevaTarjeta.Text = "...";
             this.btnNuevaTarjeta.UseVisualStyleBackColor = true;
             this.btnNuevaTarjeta.Click += new System.EventHandler(this.btnNuevaTarjeta_Click);
@@ -648,7 +654,7 @@
             this.label16.Location = new System.Drawing.Point(7, 236);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 15);
-            this.label16.TabIndex = 16;
+            this.label16.TabIndex = 8;
             this.label16.Text = "Tarjeta";
             // 
             // cmbTarjeta
@@ -659,7 +665,7 @@
             this.cmbTarjeta.Location = new System.Drawing.Point(7, 254);
             this.cmbTarjeta.Name = "cmbTarjeta";
             this.cmbTarjeta.Size = new System.Drawing.Size(228, 23);
-            this.cmbTarjeta.TabIndex = 15;
+            this.cmbTarjeta.TabIndex = 9;
             // 
             // label17
             // 
@@ -668,7 +674,7 @@
             this.label17.Location = new System.Drawing.Point(7, 103);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(83, 15);
-            this.label17.TabIndex = 13;
+            this.label17.TabIndex = 2;
             this.label17.Text = "Nro. de Tarjeta";
             // 
             // nudMontoTarjeta
@@ -683,7 +689,7 @@
             0});
             this.nudMontoTarjeta.Name = "nudMontoTarjeta";
             this.nudMontoTarjeta.Size = new System.Drawing.Size(228, 23);
-            this.nudMontoTarjeta.TabIndex = 12;
+            this.nudMontoTarjeta.TabIndex = 1;
             this.nudMontoTarjeta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudMontoTarjeta.ValueChanged += new System.EventHandler(this.nudMontoTarjeta_ValueChanged);
             // 
@@ -706,7 +712,7 @@
             this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(293, 38);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Tarjeta";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -721,7 +727,7 @@
             this.tabControlFormaPago.Name = "tabControlFormaPago";
             this.tabControlFormaPago.SelectedIndex = 0;
             this.tabControlFormaPago.Size = new System.Drawing.Size(326, 432);
-            this.tabControlFormaPago.TabIndex = 2;
+            this.tabControlFormaPago.TabIndex = 1;
             // 
             // lblTotalEfectivo
             // 

@@ -57,7 +57,7 @@
                 return false;
             }
 
-            if (pssNueva == pssRepetida)
+            if (pssNueva != pssRepetida)
             {
                 Mjs.Alerta("Password repetida incorrecta.");
                 txtNuevaPasswordRepetida.Clear();

@@ -16,6 +16,7 @@
         private readonly IBancoServicio bancoServicio;
         private readonly ITarjetaServicio tarjetaServicio;
         private readonly IClienteServicio clienteServicio;
+        private readonly Validar Validar;
 
         private ClienteDto Cliente;
         public List<FormaPagoDto> FormasPago { get; private set; }
@@ -36,6 +37,7 @@
             bancoServicio = ObjectFactory.GetInstance<IBancoServicio>();
             tarjetaServicio = ObjectFactory.GetInstance<ITarjetaServicio>();
             clienteServicio = ObjectFactory.GetInstance<IClienteServicio>();
+            Validar = new Validar();
 
             TotalAPagar = totalAPagar;
             FormasPago = new List<FormaPagoDto>();
@@ -45,21 +47,38 @@
 
         private void _00044_FormaPago_Load(object sender, EventArgs e)
         {
+            Validar.ComoNumero(txtNumeroCheque);
+            nudMontoCheque.Maximum = TotalAPagar;
+            txtNumeroCheque.MaxLength = 10;
+            dtpFechaVencimientoCheque.MinDate = DateTime.Today.AddDays(-30);
+            dtpFechaVencimientoCheque.MaxDate = DateTime.Today.AddDays(180);
             PoblarComboBox(
                 cmbBanco,
                 (List<BancoDto>)bancoServicio.Obtener(string.Empty, false),
                 "Descripcion", "Id"
                 );
 
+            Validar.ComoNumero(txtNumeroTarjeta);
+            Validar.ComoNumero(txtCuponPago);
+            nudMontoTarjeta.Maximum = TotalAPagar;
+            nudCantidadCuotas.Maximum = 18;
             PoblarComboBox(
                 cmbTarjeta,
                 (List<TarjetaDto>)tarjetaServicio.Obtener(string.Empty, false),
                 "Descripcion", "Id"
                 );
 
-            nudMontoCheque.Maximum = TotalAPagar;
-            nudMontoTarjeta.Maximum = TotalAPagar;
+            Validar.ComoTexto(txtApellido);
+            Validar.ComoTexto(txtNombre);
+            Validar.ComoDni(txtDni);
             nudMontoCtaCte.Maximum = TotalAPagar;
+
+            lblTotalEfectivo.Text = 0.ToString("c");
+            lblTotalCuentaCorriente.Text = 0.ToString("c");
+            lblTotalCheque.Text = 0.ToString("c");
+            lblTotalTarjeta.Text = 0.ToString("c");
+
+            lblVuelto.Text = 0.ToString("c");
 
             CargarDatos();
         }
@@ -173,6 +192,7 @@
         private void ActualizarMontoEfectivo()
         {
             lblTotalEfectivo.Text = PagoEnEfectivo.ToString("C2");
+            CalcularVuelto();
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -193,6 +213,9 @@
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            if (!DatosPagoChequeCorrectos() || !DatosPagoTarjetaCorrectos())
+                return;
+
             try
             {
                 if (PagoEnEfectivo > 0)
@@ -245,6 +268,56 @@
             }
         }
 
+        private bool DatosPagoChequeCorrectos()
+        {
+            if (nudMontoCheque.Value == 0)
+                return true;
+
+            var ok = true;
+
+            if (string.IsNullOrEmpty(txtNumeroCheque.Text))
+            {
+                Validar.SetErrorProvider(txtNumeroCheque, "El campo es obligatorio");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(txtNumeroCheque);
+
+            if (!ok)
+                tabControlFormaPago.SelectedIndex = 1;
+
+            return ok;
+        }
+
+        private bool DatosPagoTarjetaCorrectos()
+        {
+            if (nudMontoTarjeta.Value == 0)
+                return true;
+
+            var ok = true;
+
+            if (string.IsNullOrEmpty(txtNumeroTarjeta.Text))
+            { 
+                Validar.SetErrorProvider(txtNumeroTarjeta, "El campo es obligatorio");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(txtNumeroTarjeta);
+
+            if (string.IsNullOrEmpty(txtCuponPago.Text))
+            { 
+                Validar.SetErrorProvider(txtCuponPago, "El campo es obligatorio");
+                ok = false;
+            }
+            else
+                Validar.ClearErrorProvider(txtCuponPago);
+
+            if (!ok)
+                tabControlFormaPago.SelectedIndex = 0;
+
+            return ok;
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             RealizoVenta = false;
@@ -258,22 +331,28 @@
 
         private void CalcularVuelto()
         {
-            lblVuelto.Text = (nudPagaCon.Value - PagoEnEfectivo).ToString("C2");
+            var vuelto = PagoEnEfectivo > 0
+                ? nudPagaCon.Value > PagoEnEfectivo
+                    ? (nudPagaCon.Value - PagoEnEfectivo)
+                    :0
+                : 0;
+
+            lblVuelto.Text = vuelto.ToString("C2");
 
             lblVuelto.ForeColor = PagoEnEfectivo < nudPagaCon.Value
                 ? System.Drawing.Color.SeaGreen
-                : System.Drawing.Color.Coral;
+                : System.Drawing.Color.Black;
         }
 
         private void btnNuevaTarjeta_Click(object sender, EventArgs e)
         {
-            var fBanco = new _00048_Abm_Banco(TipoOperacion.Nuevo);
-            fBanco.ShowDialog();
+            var fTarjeta = new _00046_Abm_tarjeta(TipoOperacion.Nuevo);
+            fTarjeta.ShowDialog();
 
-            if(fBanco.RealizoAlgunaOperacion)
+            if(fTarjeta.RealizoAlgunaOperacion)
                 PoblarComboBox(
-                    cmbBanco,
-                    bancoServicio.Obtener(string.Empty, false),
+                    cmbTarjeta,
+                    tarjetaServicio.Obtener(string.Empty, false),
                     "Descipcion", "Id"
                     );
 

@@ -21,11 +21,20 @@
             Validar = new Validar();
         }
 
-        public override void CargarDatos(long? entidadId)
+        private void _00052_Abm_PuestoTrabajo_Load(object sender, System.EventArgs e)
         {
-            base.CargarDatos(entidadId);
+            Validar.ComoAlfanumerico(txtDescripcion, true);
+            txtCodigo.Text = _servicio.ProximoCodigo().ToString("0000");
 
-            var resultado = (PuestoTrabajoDto)_servicio.Obtener(entidadId.Value);
+            CargarDatos();
+        }
+
+        public void CargarDatos()
+        {
+            if (!EntidadId.HasValue)
+                return;
+
+            var resultado = (PuestoTrabajoDto)_servicio.Obtener(EntidadId.Value);
 
             if (resultado == null)
             {
@@ -35,9 +44,6 @@
 
             txtDescripcion.Text = resultado.Descripcion;
             txtCodigo.Text = resultado.Codigo.ToString("0000");
-
-            if (TipoOperacion == TipoOperacion.Eliminar)
-                DesactivarControles(this);
         }
 
         public override bool VerificarDatosObligatorios()
@@ -91,17 +97,5 @@
             _servicio.Eliminar(EntidadId.Value);
         }
 
-        public override void LimpiarControles(object obj, bool tieneValorAsociado = false)
-        {
-            base.LimpiarControles(obj);
-
-            txtDescripcion.Focus();
-        }
-
-        private void _00052_Abm_PuestoTrabajo_Load(object sender, System.EventArgs e)
-        {
-            Validar.ComoTexto(txtDescripcion, false);
-            txtCodigo.Text = _servicio.ProximoCodigo().ToString("0000");
-        }
     }
 }

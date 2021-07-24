@@ -8,6 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using Aplicacion.Constantes;
     using IServicios.Comprobante;
     using IServicios.Comprobante.DTOs;
     using IServicios.FormaPago;
@@ -31,7 +32,7 @@
 
             // Libreria para que refresque cada 5 seg la grilla
             // con las facturas que estan pendientes de pago.
-            Observable.Interval(TimeSpan.FromSeconds(5))
+            Observable.Interval(TimeSpan.FromSeconds(10))
                 .ObserveOn(DispatcherScheduler.Instance)
                 .Subscribe(_ => { CargarDatos(); });
         }
@@ -42,6 +43,42 @@
             dgvGrillaPedientePago.DataSource = _facturaServicio.ObtenerPendientesPago();
             FormatearGrilla(dgvGrillaPedientePago);
             CargarDatosDetalleComprobante();
+        }
+
+        private void CargarDatosDetalleComprobante()
+        {
+            dgvGrillaDetalleComprobante.DataSource = facturaSeleccionada.Items 
+                ?? new List<ComprobantePendienteDetalleDto>();
+
+            // Formatear grilla
+            for (int i = 0; i < dgvGrillaDetalleComprobante.ColumnCount; i++)
+                dgvGrillaDetalleComprobante.Columns[i].Visible = false;
+
+            dgvGrillaDetalleComprobante.Columns["Descripcion"].Visible = true;
+            dgvGrillaDetalleComprobante.Columns["Descripcion"].DisplayIndex = 1;
+            dgvGrillaDetalleComprobante.Columns["Descripcion"].HeaderText = "Detalle";
+            dgvGrillaDetalleComprobante.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvGrillaDetalleComprobante.Columns["Descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dgvGrillaDetalleComprobante.Columns["Cantidad"].Visible = true;
+            dgvGrillaDetalleComprobante.Columns["Cantidad"].DisplayIndex = 2;
+            dgvGrillaDetalleComprobante.Columns["Cantidad"].HeaderText = "Cant.";
+            dgvGrillaDetalleComprobante.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvGrillaDetalleComprobante.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvGrillaDetalleComprobante.Columns["PrecioStr"].Visible = true;
+            dgvGrillaDetalleComprobante.Columns["PrecioStr"].DisplayIndex = 3;
+            dgvGrillaDetalleComprobante.Columns["PrecioStr"].HeaderText = "Precio";
+            dgvGrillaDetalleComprobante.Columns["PrecioStr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvGrillaDetalleComprobante.Columns["PrecioStr"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].Visible = true;
+            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].DisplayIndex = 4;
+            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].HeaderText = "Subtotal";
+            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            lblTotal.Text = facturaSeleccionada.Items.Sum(x => x.SubTotal).ToString("C2");
         }
 
         public override void FormatearGrilla(DataGridView dgv)
@@ -85,53 +122,28 @@
             CargarDatosDetalleComprobante();
         }
 
-        private void CargarDatosDetalleComprobante()
-        {
-            dgvGrillaDetalleComprobante.DataSource = facturaSeleccionada.Items 
-                ?? new List<ComprobantePendienteDetalleDto>();
-
-            // Formatear grilla
-            for (int i = 0; i < dgvGrillaDetalleComprobante.ColumnCount; i++)
-                dgvGrillaDetalleComprobante.Columns[i].Visible = false;
-
-            dgvGrillaDetalleComprobante.Columns["Descripcion"].Visible = true;
-            dgvGrillaDetalleComprobante.Columns["Descripcion"].DisplayIndex = 1;
-            dgvGrillaDetalleComprobante.Columns["Descripcion"].HeaderText = "Detalle";
-            dgvGrillaDetalleComprobante.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvGrillaDetalleComprobante.Columns["Descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-            dgvGrillaDetalleComprobante.Columns["Cantidad"].Visible = true;
-            dgvGrillaDetalleComprobante.Columns["Cantidad"].DisplayIndex = 2;
-            dgvGrillaDetalleComprobante.Columns["Cantidad"].HeaderText = "Cant.";
-            dgvGrillaDetalleComprobante.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvGrillaDetalleComprobante.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgvGrillaDetalleComprobante.Columns["PrecioStr"].Visible = true;
-            dgvGrillaDetalleComprobante.Columns["PrecioStr"].DisplayIndex = 3;
-            dgvGrillaDetalleComprobante.Columns["PrecioStr"].HeaderText = "Precio";
-            dgvGrillaDetalleComprobante.Columns["PrecioStr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvGrillaDetalleComprobante.Columns["PrecioStr"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].Visible = true;
-            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].DisplayIndex = 4;
-            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].HeaderText = "Subtotal";
-            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvGrillaDetalleComprobante.Columns["SubTotalStr"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            lblTotal.Text = facturaSeleccionada.Items.Sum(x => x.SubTotal).ToString("C2");
-        }
-
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
             if (facturaSeleccionada == null || facturaSeleccionada.ClienteId == 0)
                 return;
 
-            var fFormaPago = new _00044_FormaPago(facturaSeleccionada.MontoPagar, facturaSeleccionada.ClienteId);
+            var facturaSeleccionadaId = facturaSeleccionada.Id;
+            var facturaSeleccionadaMontoPagar = facturaSeleccionada.MontoPagar;
+            var facturaSeleccionadaClienteId = facturaSeleccionada.ClienteId;
+
+            var fFormaPago = new _00044_FormaPago(facturaSeleccionadaMontoPagar, facturaSeleccionadaClienteId);
             fFormaPago.ShowDialog();
 
             if (fFormaPago.RealizoVenta)
-                _formaPagoServicios.Insertar(fFormaPago.FormasPago, facturaSeleccionada.Id);
+                if (facturaSeleccionadaMontoPagar != fFormaPago.FormasPago.Sum(x => x.Monto))
+                {
+                    Mjs.Alerta($"No se pudo realizar el pago.{Environment.NewLine}El total abonado no coincide con el total de la factura.");
+                    return;
+                }
+                else
+                _formaPagoServicios.Insertar(fFormaPago.FormasPago, facturaSeleccionadaId);
 
+            facturaSeleccionada = new ComprobantePendienteDto();
             CargarDatos();
         }
     }

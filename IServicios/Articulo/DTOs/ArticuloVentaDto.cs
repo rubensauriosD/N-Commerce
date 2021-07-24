@@ -1,8 +1,8 @@
-﻿using Aplicacion.Constantes;
-using System;
-
-namespace IServicios.Articulo.DTOs
+﻿namespace IServicios.Articulo.DTOs
 {
+    using Aplicacion.Constantes;
+    using System;
+
     public class ArticuloVentaDto
     {
         public long Id { get; set; }
