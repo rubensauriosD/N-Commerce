@@ -18,6 +18,7 @@
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IUnidadMedidaServicio>();
+            Validar = new Validar();
         }
 
         private void _00024_Abm_UnidadDeMedida_Load(object sender, System.EventArgs e)

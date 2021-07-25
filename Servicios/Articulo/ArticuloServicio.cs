@@ -389,7 +389,34 @@
                     && x.Descripcion.Equals(datoVerificar,
                     StringComparison.CurrentCultureIgnoreCase))
                     .Any();
+        }
 
+        public bool VerificarSiExisteCodigo(int codigo, long? entidadId = null)
+        {
+            if (entidadId.HasValue)
+                return _unidadDeTrabajo.ArticuloRepositorio.Obtener(x => !x.EstaEliminado
+                && x.Id != entidadId.Value
+                && x.Codigo == codigo)
+                .Any();
+
+            else
+                return _unidadDeTrabajo.ArticuloRepositorio.Obtener(x => !x.EstaEliminado
+                    && x.Codigo == codigo)
+                    .Any();
+        }
+
+        public bool VerificarSiExisteCodigoBarra(string codigoBarra, long? entidadId = null)
+        {
+            if (entidadId.HasValue)
+                return _unidadDeTrabajo.ArticuloRepositorio.Obtener(x => !x.EstaEliminado
+                && x.Id != entidadId.Value
+                && x.CodigoBarra == codigoBarra)
+                .Any();
+
+            else
+                return _unidadDeTrabajo.ArticuloRepositorio.Obtener(x => !x.EstaEliminado
+                    && x.CodigoBarra == codigoBarra)
+                    .Any();
         }
 
         private decimal ObtenerPrecioPublicoDesdeArticulo(Articulo art, long listaPrecioId)

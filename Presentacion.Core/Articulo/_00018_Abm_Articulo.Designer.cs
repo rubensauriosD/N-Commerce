@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_00018_Abm_Articulo));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabDatosArticulo = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPrecio = new System.Windows.Forms.GroupBox();
             this.btnNuevoIva = new System.Windows.Forms.Button();
@@ -82,7 +82,7 @@
             this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.imgFoto = new System.Windows.Forms.PictureBox();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1.SuspendLayout();
+            this.tabDatosArticulo.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupPrecio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioCosto)).BeginInit();
@@ -97,16 +97,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabDatosArticulo
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(5, 66);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(571, 431);
-            this.tabControl1.TabIndex = 0;
+            this.tabDatosArticulo.Controls.Add(this.tabPage1);
+            this.tabDatosArticulo.Controls.Add(this.tabPage2);
+            this.tabDatosArticulo.Controls.Add(this.tabPage3);
+            this.tabDatosArticulo.Location = new System.Drawing.Point(5, 66);
+            this.tabDatosArticulo.Name = "tabDatosArticulo";
+            this.tabDatosArticulo.SelectedIndex = 0;
+            this.tabDatosArticulo.Size = new System.Drawing.Size(571, 431);
+            this.tabDatosArticulo.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -768,14 +768,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 500);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabDatosArticulo);
             this.MaximumSize = new System.Drawing.Size(594, 539);
             this.MinimumSize = new System.Drawing.Size(594, 539);
             this.Name = "_00018_Abm_Articulo";
             this.Text = "Articulo (Alta, Baja y Modificación)";
             this.Load += new System.EventHandler(this._00018_Abm_Articulo_Load);
-            this.Controls.SetChildIndex(this.tabControl1, 0);
-            this.tabControl1.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.tabDatosArticulo, 0);
+            this.tabDatosArticulo.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.groupPrecio.ResumeLayout(false);
@@ -799,7 +799,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabDatosArticulo;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupPrecio;
         private System.Windows.Forms.Button btnNuevoIva;

@@ -146,7 +146,62 @@
 
         public override bool VerificarSiExiste(long? id = null)
         {
-            return _articuloServicio.VerificarSiExiste(txtDescripcion.Text, id);
+            bool ok = false;
+
+            int.TryParse(txtCodigo.Text, out int nuevoCodigo);
+
+            if (!string.IsNullOrEmpty(txtCodigo.Text))
+            {
+                bool existeCodigo = TipoOperacion == TipoOperacion.Modificar && EntidadId.HasValue
+                    ? _articuloServicio.VerificarSiExisteCodigo(nuevoCodigo, EntidadId)
+                    : _articuloServicio.VerificarSiExisteCodigo(nuevoCodigo);
+
+                if (existeCodigo)
+                {
+                    Validar.SetErrorProvider(txtCodigo, "El código pertenece a otro artículo.");
+                    tabDatosArticulo.SelectedIndex = 0;
+                    ok = true;
+                }
+            }
+            else
+                Validar.ClearErrorProvider(txtCodigo);
+
+
+            if (!string.IsNullOrEmpty(txtcodigoBarra.Text))
+            {
+                bool existeCodigo = TipoOperacion == TipoOperacion.Modificar && EntidadId.HasValue
+                    ? _articuloServicio.VerificarSiExisteCodigoBarra(txtcodigoBarra.Text, EntidadId)
+                    : _articuloServicio.VerificarSiExisteCodigoBarra(txtcodigoBarra.Text);
+
+                if (existeCodigo)
+                {
+                    Validar.SetErrorProvider(txtcodigoBarra, "El código de barra pertenece a otro artículo.");
+                    tabDatosArticulo.SelectedIndex = 0;
+                    ok = true;
+                }
+            }
+            else
+                Validar.ClearErrorProvider(txtcodigoBarra);
+
+
+            if (!string.IsNullOrEmpty(txtDescripcion.Text))
+            {
+                bool existeCodigo = TipoOperacion == TipoOperacion.Modificar && EntidadId.HasValue
+                    ? _articuloServicio.VerificarSiExiste(txtDescripcion.Text, id)
+                    : _articuloServicio.VerificarSiExisteCodigoBarra(txtDescripcion.Text);
+
+                if (existeCodigo)
+                {
+                    Validar.SetErrorProvider(txtDescripcion, "La descripción pertenece a otro artículo.");
+                    tabDatosArticulo.SelectedIndex = 0;
+                    ok = true;
+                }
+            }
+            else
+                Validar.ClearErrorProvider(txtDescripcion);
+
+
+            return ok;
         }
 
         // --- Sobrescritura de comportamiento de botones
@@ -272,10 +327,17 @@
 
         private void btnAgregarImagen_Click(object sender, System.EventArgs e)
         {
-            openFile.ShowDialog();
-            imgFoto.Image = string.IsNullOrEmpty(openFile.FileName)
-                ? ImagenProductoPorDefecto
-                : Image.FromFile(openFile.FileName);
+            if (openFile.ShowDialog() != DialogResult.OK || !openFile.CheckFileExists)
+                return;
+
+            try
+            {
+                imgFoto.Image = Image.FromFile(openFile.FileName);
+            }
+            catch (System.Exception)
+            {
+                Mjs.Error("La imagen seleccionada no es válida.");
+            }
         }
 
         private void chkActivarHoraVenta_CheckedChanged(object sender, System.EventArgs e)
