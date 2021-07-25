@@ -39,28 +39,11 @@
             Validar.ComoAlfanumerico(txtObservacion, false);
             txtObservacion.MaxLength = 400;
 
-            PoblarComboBox(
-                cmbMotivoBaja,
-                _motivoBajaServicio.Obtener(string.Empty).Where(x => x.Id != 1).ToList(),
-                "Descripcion",
-                "id"
-                );
-        }
-
-        public override void CargarDatos(long? entidadId)
-        {
-            base.CargarDatos(entidadId);
-
-            if (EntidadId > 0)
-                bajaArticuloDto = (BajaArticuloDto)_bajaArticuloServicio.Obtener((long)EntidadId);
-
-            txtArticulo.Text = bajaArticuloDto.Articulo;
-            nudStockActual.Value = bajaArticuloDto.Stock;
-            nudCantidadBaja.Maximum = bajaArticuloDto.Stock;
-            txtObservacion.Text = bajaArticuloDto.Observacion;
-
-            if (bajaArticuloDto.MotivoBajaId != 0)
-                cmbMotivoBaja.SelectedItem = bajaArticuloDto.MotivoBajaId; 
+            var lstMotivosBaja = _motivoBajaServicio.Obtener(string.Empty)
+                .Select(x => (MotivoBajaDto)x)
+                .Where(x => x.Id != 1)
+                .ToList();
+            PoblarComboBox(cmbMotivoBaja, lstMotivosBaja, "Descripcion", "Id");
         }
 
         public override bool VerificarDatosObligatorios()
@@ -185,7 +168,7 @@
         {
             int.TryParse(cadenaBuscar, out int codigo);
 
-            var lstArticulos = _articuloServicio.Obtener(cadenaBuscar)
+            var lstArticulos = _articuloServicio.Obtener(string.Empty)
                 .Select(x => (ArticuloDto)x)
                 .Where(x => x.Descripcion.Contains(cadenaBuscar) 
                     || x.CodigoBarra.Contains(cadenaBuscar)

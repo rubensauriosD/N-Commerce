@@ -113,7 +113,7 @@
         // -- Acciones de botones
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
-            var form = new _00030_Abm_BajaArticulos(TipoOperacion.Nuevo, objetoSeleccionado.Id);
+            var form = new _00030_Abm_BajaArticulos(TipoOperacion.Nuevo);
             form.ShowDialog();
 
             if (form.RealizoAlgunaOperacion)
