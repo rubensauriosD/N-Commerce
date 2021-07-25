@@ -1,5 +1,7 @@
 ﻿namespace Presentacion.Core.Caja
 {
+    using System;
+    using System.Linq;
     using System.Windows.Forms;
     using Aplicacion.Constantes;
     using IServicio.Caja;
@@ -41,21 +43,19 @@
 
             cajaActivaId = (long)cajaId;
 
-            PoblarComboBox(
-                cmbConcepto,
-                _servicioConceptoGasto.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id"
-                );
-        }
+            dtpFecha.MaxDate = DateTime.Today;
+            dtpFecha.MinDate = DateTime.Today.AddYears(-1);
 
-        public override void CargarDatos(long? entidadId)
-        {
-            base.CargarDatos(entidadId);
+            _servicioConceptoGasto.Obtener(string.Empty, false)
+                .Select(x => (ConceptoGastoDto)x)
+                .ToList()
+                .ForEach(x => cmbConcepto.Items.Add(x));
+            cmbConcepto.DisplayMember = "Descripcion";
+            cmbConcepto.ValueMember = "Id";
 
-            if (entidadId.HasValue)
+            if (EntidadId.HasValue)
             {
-                var resultado = (GastoDto)_servicio.Obtener(entidadId.Value);
+                var resultado = (GastoDto)_servicio.Obtener(EntidadId.Value);
 
                 if (resultado == null)
                 {
@@ -65,16 +65,26 @@
 
                 txtDescripcion.Text = resultado.Descripcion;
                 dtpFecha.Value = resultado.Fecha;
-                cmbConcepto.SelectedValue = resultado.ConceptoGastoId;
                 nudMontoPagar.Value = resultado.Monto;
 
-              if (TipoOperacion == TipoOperacion.Eliminar)
-                    DesactivarControles(this);
+                var conceptoGasto = _servicioConceptoGasto.Obtener(resultado.ConceptoGastoId);
+
+                if (conceptoGasto.Eliminado)
+                    cmbConcepto.Items.Add(conceptoGasto);
+
+                cmbConcepto.SelectedItem = conceptoGasto;
             }
         }
 
         public override bool VerificarDatosObligatorios()
         {
+            if (nudMontoPagar.Value <= 0)
+            {
+                Validar.SetErrorProvider(nudMontoPagar, "El monto de gasto debe ser superior a 0.");
+                return false;
+            }
+            else Validar.ClearErrorProvider(nudMontoPagar);
+
             return ValidateChildren();
         }
 

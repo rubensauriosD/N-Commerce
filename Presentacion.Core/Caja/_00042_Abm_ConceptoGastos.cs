@@ -18,6 +18,7 @@
             InitializeComponent();
 
             _servicio = ObjectFactory.GetInstance<IConceptoGastoServicio>();
+            Validar = new Validar();
         }
 
         private void _00042_Abm_ConceptoGastos_Load(object sender, System.EventArgs e)

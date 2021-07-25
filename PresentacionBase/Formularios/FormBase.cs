@@ -208,13 +208,12 @@
         }
 
         public virtual void PoblarComboBox(ComboBox cmb,
-             object datos,
+            object datos,
             string PropiedadMostrar = "",
             string propiedadDevolver = "")
         {
             cmb.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb.DataSource = datos;
-
 
             if (!string.IsNullOrEmpty(PropiedadMostrar))
             {

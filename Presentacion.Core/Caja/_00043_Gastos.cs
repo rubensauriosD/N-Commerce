@@ -1,9 +1,9 @@
-﻿using System.Windows.Forms;
-using IServicio.Caja;
-using PresentacionBase.Formularios;
-
-namespace Presentacion.Core.Caja
+﻿namespace Presentacion.Core.Caja
 {
+    using System.Windows.Forms;
+    using IServicio.Caja;
+    using PresentacionBase.Formularios;
+
     public partial class _00043_Gastos : FormConsulta
     {
         private readonly IGastoServicio _gastoServicio;
@@ -46,6 +46,7 @@ namespace Presentacion.Core.Caja
         {
             var form = new _00044_Abm_Gastos(tipoOperacion, id);
             form.ShowDialog();
+
             return form.RealizoAlgunaOperacion;
         }
     }
