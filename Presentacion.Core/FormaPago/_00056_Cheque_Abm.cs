@@ -40,15 +40,20 @@
         private void _00056_Cheque_Abm_Load(object sender, EventArgs e)
         {
             Validar.ComoNumero(txtNumero, true);
+
+            dtpVencimiento.MaxDate = DateTime.Today.AddDays(180);
+
+            if (TipoOperacion == TipoOperacion.Nuevo)
+                dtpVencimiento.MinDate = DateTime.Today.AddDays(-30);
+
+            CargarDatos();
         }
 
-        public override void CargarDatos(long? entidadId)
+        public void CargarDatos()
         {
-            base.CargarDatos(entidadId);
-
-            if (entidadId.HasValue)
+            if (EntidadId.HasValue)
             {
-                var resultado = (ChequeDto)_servicio.Obtener(entidadId.Value);
+                var resultado = (ChequeDto)_servicio.Obtener(EntidadId.Value);
 
                 if (resultado == null)
                 {
@@ -60,9 +65,6 @@
                 dtpVencimiento.Value = resultado.FechaVencimiento;
                 lblCliente.Text = resultado.Cliente;
                 lblBanco.Text = resultado.Banco;
-
-                if (TipoOperacion == TipoOperacion.Eliminar)
-                    DesactivarControles(this);
             }
         }
 

@@ -243,7 +243,6 @@ namespace PresentacionBase.Formularios
         private System.Windows.Forms.Panel pnlSeparador;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.DataGridView dgvGrilla;
         protected System.Windows.Forms.ToolStripButton btnNuevo;
         protected System.Windows.Forms.ToolStripButton btnModificar;
         protected System.Windows.Forms.ToolStripButton btnEliminar;
@@ -252,5 +251,6 @@ namespace PresentacionBase.Formularios
         private System.Windows.Forms.ToolStripStatusLabel lblRegistros;
         private System.Windows.Forms.PictureBox picBuscar;
         public System.Windows.Forms.Panel pnlBusqueda;
+        protected System.Windows.Forms.DataGridView dgvGrilla;
     }
 }

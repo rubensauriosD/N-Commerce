@@ -25,8 +25,8 @@
 
         public string FechaDepositoStr => FechaDeposito != null ? ((DateTime)FechaDeposito).ToString("d") : "---";
 
-        public bool Vencido => FechaVencimiento >= DateTime.Today;
+        public bool Vencido => FechaVencimiento <= DateTime.Today;
 
-        public bool PorVencer => FechaVencimiento < DateTime.Today;
+        public bool PorVencer => DateTime.Today < FechaVencimiento;
     }
 }

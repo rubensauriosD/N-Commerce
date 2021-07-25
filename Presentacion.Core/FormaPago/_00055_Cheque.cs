@@ -48,6 +48,12 @@
 
         private void BtnDepositar_Click(object sender, EventArgs e)
         {
+            if (dgvGrilla.RowCount < 1)
+            {
+                Mjs.Info("No hay elementos para depositar.");
+                return;
+            }
+
             var fDepositoCheque = new _00057_Cheque_Deposito(cheque.Banco, cheque.Cliente);
             fDepositoCheque.ShowDialog();
 
