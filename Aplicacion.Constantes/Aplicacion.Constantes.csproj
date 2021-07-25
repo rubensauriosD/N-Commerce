@@ -91,6 +91,8 @@
     <Content Include="Imagenes\logo.png" />
     <Content Include="Imagenes\new_b.png" />
     <Content Include="Imagenes\new_w.png" />
+    <Content Include="Imagenes\visibility_b.png" />
+    <Content Include="Imagenes\visibility_w.png" />
     <None Include="Imagenes\print_b.png" />
     <None Include="Imagenes\print_w.png" />
     <None Include="Imagenes\peso_b.png" />

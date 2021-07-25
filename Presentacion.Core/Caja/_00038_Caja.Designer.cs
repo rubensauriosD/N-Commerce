@@ -112,8 +112,8 @@ namespace Presentacion.Core.Caja
             this.btnAbrirCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirCaja.Image")));
             this.btnAbrirCaja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAbrirCaja.Name = "btnAbrirCaja";
-            this.btnAbrirCaja.Size = new System.Drawing.Size(109, 50);
-            this.btnAbrirCaja.Text = "Apertura de Caja";
+            this.btnAbrirCaja.Size = new System.Drawing.Size(61, 50);
+            this.btnAbrirCaja.Text = "Apertura";
             this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
             // 
@@ -122,11 +122,11 @@ namespace Presentacion.Core.Caja
             this.btnCierreCaja.BackColor = System.Drawing.Color.White;
             this.btnCierreCaja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCierreCaja.ForeColor = System.Drawing.Color.Black;
-            this.btnCierreCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCierreCaja.Image")));
+            this.btnCierreCaja.Image = Imagen.Ver;
             this.btnCierreCaja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCierreCaja.Name = "btnCierreCaja";
-            this.btnCierreCaja.Size = new System.Drawing.Size(94, 50);
-            this.btnCierreCaja.Text = "Cierre de Caja";
+            this.btnCierreCaja.Size = new System.Drawing.Size(61, 50);
+            this.btnCierreCaja.Text = "Ver Caja";
             this.btnCierreCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
             // 
@@ -169,6 +169,7 @@ namespace Presentacion.Core.Caja
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(202, 20);
             this.txtBuscar.TabIndex = 1;
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
             // 
             // pnlBusqueda
             // 

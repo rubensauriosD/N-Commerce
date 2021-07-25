@@ -22,6 +22,7 @@ namespace Aplicacion.Constantes
         public static Image Pago => Properties.RecursoImagenes.peso_b;
         public static Image Reversion => Properties.RecursoImagenes.peso_no_b;
         public static Image Imprimir=> Properties.RecursoImagenes.print_b;
+        public static Image Ver=> Properties.RecursoImagenes.visibility_b;
 
         //
         // Imagenes por Defecto

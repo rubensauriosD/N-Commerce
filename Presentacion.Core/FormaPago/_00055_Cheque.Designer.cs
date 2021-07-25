@@ -32,8 +32,6 @@ namespace Presentacion.Core.Cliente
             this.chkDepositados = new System.Windows.Forms.CheckBox();
             this.chkVencidos = new System.Windows.Forms.CheckBox();
             this.chkPorVencer = new System.Windows.Forms.CheckBox();
-            this.pnlBusqueda.SuspendLayout();
-            this.SuspendLayout();
             // 
             // pnlBusqueda
             // 

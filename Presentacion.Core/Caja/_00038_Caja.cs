@@ -181,5 +181,6 @@ namespace Presentacion.Core.Caja
         {
             Close();
         }
+
     }
 }

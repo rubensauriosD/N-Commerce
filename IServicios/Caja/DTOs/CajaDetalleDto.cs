@@ -13,5 +13,7 @@
         public TipoMovimiento TipoMovimiento { get; set; }
 
         public decimal Monto { get; set; }
+
+        public string TipoPagoStr => TipoPago.ToString();
     }
 }

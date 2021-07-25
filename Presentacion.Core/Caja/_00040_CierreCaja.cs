@@ -30,6 +30,9 @@
 
         private void _00040_CierreCaja_Load(object sender, EventArgs e)
         {
+            if (caja.UsuarioCierreId.HasValue && caja.UsuarioCierreId != 0)
+                BloquearCierreCaja();
+
             lblMontoInicial.Text = caja.MontoAperturaStr;
             lblMontoCierre.Text = caja.MontoCierreCalculadoStr;
 
@@ -46,6 +49,14 @@
 
             ActalizarTotalArqueo();
             nudArqueoEfectivo.Focus();
+        }
+
+        private void BloquearCierreCaja()
+        {
+            btnCerrarCaja.Enabled = false;
+            nudArqueoCheque.Enabled = false;
+            nudArqueoEfectivo.Enabled = false;
+            nudArqueoTarjeta.Enabled = false;
         }
 
         private void ActalizarTotalArqueo()
@@ -130,7 +141,9 @@
         }
 
         private void ConfiguracionDatosGrillaIngresos(DataGridView dgv, string filtro)
-            => dgv.DataSource = caja.Detalle.Where(x => x.TipoMovimiento == Aplicacion.Constantes.TipoMovimiento.Ingreso).ToList();
+            => dgv.DataSource = caja.Detalle
+            .Where(x => x.TipoMovimiento == TipoMovimiento.Ingreso && x.TipoPagoStr.Contains(filtro))
+            .ToList();
 
         private void ConfiguracionFormatoGrillaIngresos(DataGridView dgv)
         {
@@ -157,7 +170,9 @@
         }
 
         private void ConfiguracionDatosGrillaCompras(DataGridView dgv, string filtro)
-            => dgv.DataSource = caja.Detalle.Where(x => x.TipoMovimiento == Aplicacion.Constantes.TipoMovimiento.Egreso).ToList();
+            => dgv.DataSource = caja.Detalle
+            .Where(x => x.TipoMovimiento == TipoMovimiento.Egreso && x.TipoPagoStr.Contains(filtro))
+            .ToList();
 
         private void ConfiguracionFormatoGrillaCompras(DataGridView dgv)
         {
