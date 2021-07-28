@@ -102,7 +102,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(198, 22);
             this.txtUsuario.TabIndex = 0;
-            this.txtUsuario.Text = "admin";
+            this.txtUsuario.Text = "dperez";
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pnlPassword
@@ -134,7 +134,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(198, 22);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "123456";
+            this.txtPassword.Text = "123qwe";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnIngresar

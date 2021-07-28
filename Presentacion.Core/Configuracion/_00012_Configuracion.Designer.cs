@@ -826,6 +826,7 @@ namespace Presentacion.Core.Configuracion
             this.pnlBasculaConfig.Controls.Add(this.rdbEtiquetaPorPeso);
             this.pnlBasculaConfig.Controls.Add(this.txtDigitosComienzoCodigo);
             this.pnlBasculaConfig.Controls.Add(this.label11);
+            this.pnlBasculaConfig.Enabled = false;
             this.pnlBasculaConfig.Location = new System.Drawing.Point(18, 43);
             this.pnlBasculaConfig.Name = "pnlBasculaConfig";
             this.pnlBasculaConfig.Size = new System.Drawing.Size(484, 100);

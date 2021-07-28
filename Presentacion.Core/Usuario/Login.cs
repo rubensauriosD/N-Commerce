@@ -61,22 +61,22 @@
             }
 
             // Loguear Usuario Admin
-            if (txtUsuario.Text == UsuarioAdmin.Usuario
-                && txtPassword.Text == UsuarioAdmin.Password)
-            {
-                Identidad.UsuarioId = 0;
-                Identidad.Usuario = "Admin";
-                Identidad.Nombre = "Super";
-                Identidad.Apellido = "Usuario";
-                Identidad.Foto = Imagen.Usuario;
-
-                PuedeAccedearAlSistema = true;
-                txtPassword.Clear();
-                txtUsuario.Clear();
-                txtUsuario.Focus();
-                Close();
-                return;
-            }
+            //if (txtUsuario.Text == UsuarioAdmin.Usuario
+            //    && txtPassword.Text == UsuarioAdmin.Password)
+            //{
+            //    Identidad.UsuarioId = 0;
+            //    Identidad.Usuario = "Admin";
+            //    Identidad.Nombre = "Super";
+            //    Identidad.Apellido = "Usuario";
+            //    Identidad.Foto = Imagen.Usuario;
+            //
+            //    PuedeAccedearAlSistema = true;
+            //    txtPassword.Clear();
+            //    txtUsuario.Clear();
+            //    txtUsuario.Focus();
+            //    Close();
+            //    return;
+            //}
 
             // loguear en el sistema
             if (_servicio.VerificarAcceso(txtUsuario.Text, txtPassword.Text))

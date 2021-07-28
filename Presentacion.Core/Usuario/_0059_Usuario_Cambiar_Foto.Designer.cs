@@ -46,6 +46,7 @@ namespace Presentacion.Core.Usuario
             this.picImagen.Location = new System.Drawing.Point(12, 67);
             this.picImagen.Name = "picImagen";
             this.picImagen.Size = new System.Drawing.Size(190, 190);
+            this.picImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picImagen.TabIndex = 0;
             this.picImagen.TabStop = false;
             // 

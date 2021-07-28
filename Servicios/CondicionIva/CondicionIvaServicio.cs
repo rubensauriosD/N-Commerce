@@ -1,15 +1,15 @@
-﻿using System;
-using IServicio.BaseDto;
-using IServicio.Departamento;
-using System.Collections.Generic;
-using System.Linq;
-using Dominio.UnidadDeTrabajo;
-using IServicio.CondicionIva.DTOs;
-using System.Linq.Expressions;
-using Servicios.Base;
-
-namespace Servicios.CondicionIva
+﻿namespace Servicios.CondicionIva
 {
+    using System;
+    using IServicio.BaseDto;
+    using IServicio.Departamento;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.CondicionIva.DTOs;
+    using System.Linq.Expressions;
+    using Servicios.Base;
+
     public class CondicionIvaServicio : ICondicionIvaServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;

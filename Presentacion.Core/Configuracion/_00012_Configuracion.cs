@@ -65,11 +65,14 @@
 
             _configuracion = _configuracionServicio.Obtener();
 
-            if (_configuracion != null)
-                CargarDatosDeConfiguracion();
+            if (_configuracion == null)
+               _configuracion = _configuracionServicio.ConfiguracionPorDefecto();
 
             else
-                PrepararParaCargaDeConfiguracion();
+                _configuracion.EsPrimeraVez = false;
+            //    PrepararParaCargaDeConfiguracion();
+
+            CargarDatosDeConfiguracion();
         }
 
         private void SetearValidaciones()
@@ -153,8 +156,6 @@
 
         private void CargarDatosDeConfiguracion()
         {
-            _configuracion.EsPrimeraVez = false;
-
             //
             // Datos de la empresa
             //

@@ -103,5 +103,53 @@
                 CodigoBascula = config.CodigoBascula
             };
         }
+
+        public ConfiguracionDto ConfiguracionPorDefecto()
+        {
+            return new ConfiguracionDto
+            {
+                Id = 0,
+                Eliminado = false,
+                EsPrimeraVez = true,
+
+                // TODO: Borrar los datos generales de la configuracion para que los cargue el usuario
+                // Genereales
+                LocalidadId = 1,
+                RazonSocial = "RAZÓN SOCIAL",
+                NombreFantasia = "NOMBRE FANTASÍA",
+                Cuit = "30991236549",
+                Direccion = "DIRECCION",
+                Telefono = "381 123 1234",
+                Celular = "381 999 1234",
+                Email = "mail@dominio.com",
+                
+                // Compra
+                ActualizaCostoDesdeCompra = true,
+                TipoFormaPagoPorDefectoCompra = Aplicacion.Constantes.TipoPago.Efectivo,
+
+                // Venta
+                FacturaDescuentaStock = true,
+                PresupuestoDescuentaStock = false,
+                RemitoDescuentaStock = false,
+                ListaPrecioPorDefectoId = 1,
+                ObservacionEnPieFactura = "***",
+                PuestoCajaSeparado = true,
+                TipoFormaPagoPorDefectoVenta = Aplicacion.Constantes.TipoPago.Efectivo,
+                UnificarRenglonesIngresarMismoProducto = true,
+                DepositoVentaId = 1,
+
+                // Caja
+                IngresoManualCajaInicial = true,
+                PermitirArqueoNegativo = false,
+
+                // Stock
+                DepositoNuevoArticuloId = 1,
+                ActivarBascula = false,
+                CodigoBascula = "",
+                EtiquetaPorPeso = true,
+                EtiquetaPorPrecio = false,
+            };
+
+        }
     }
 }

@@ -13,12 +13,14 @@
 
             Validador validador = (string txt, out string errMjs) =>
             {
-                errMjs = "Password debe tener entre 6 y 20 caracteres alfanuméricos.";
+                errMjs = $@"Password debe tener entre 6 y 20 caracteres alfanuméricos.{Environment.NewLine}Al menos una letra, al menos número.";
 
                 bool ok = txt.All(c => char.IsLetterOrDigit(c) || c == '\b');
 
-                ok &= txt.Length >= 6;
-                ok &= txt.Length <= 20;
+                ok &= txt.Any(c => char.IsDigit(c));
+                ok &= txt.Any(c => char.IsLetter(c));
+
+                ok &=  6 <= txt.Length && txt.Length <= 20;
 
                 if (obligatorio)
                 {
@@ -31,7 +33,7 @@
 
             Validador validadorLetra = (string txt, out string errMjs) =>
             {
-                errMjs = "Password debe tener entre 6 y 12 caracteres alfanuméricos.";
+                errMjs = $@"Password debe tener entre 6 y 20 caracteres alfanuméricos.{Environment.NewLine}Al menos una letra, al menos número.";
 
                 bool ok = txt.All(c => char.IsLetterOrDigit(c) || c == '\b');
 

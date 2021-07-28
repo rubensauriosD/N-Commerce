@@ -41,19 +41,21 @@
             _compraServicios = ObjectFactory.GetInstance<ICompraServicio>();
             Validar = new Validar();
 
+        }
+
+        private void _00053_Compra_Load(object sender, EventArgs e)
+        {
             var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)
             {
                 Mjs.Alerta($@"No hay una caja abierta.{Environment.NewLine}Por favor abra una caja para poder realizar la operación.");
                 Close();
+                return;
             }
 
             this.cajaActivaId = (long)cajaActivaId;
-        }
 
-        private void _00053_Compra_Load(object sender, EventArgs e)
-        {
             Validar.ComoCuit(txtCuit);
             Validar.ComoNumero(txtCodigo);
             Validar.ComoNumero(txtNroComprobante);

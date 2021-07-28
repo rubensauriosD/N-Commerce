@@ -7,5 +7,7 @@ namespace IServicio.Configuracion
         void Grabar(ConfiguracionDto configuracionDto);
 
         ConfiguracionDto Obtener();
+
+        ConfiguracionDto ConfiguracionPorDefecto();
     }
 }

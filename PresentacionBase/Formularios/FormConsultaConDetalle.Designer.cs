@@ -75,7 +75,7 @@ namespace PresentacionBase.Formularios
             this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(47, 50);
-            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
@@ -87,7 +87,7 @@ namespace PresentacionBase.Formularios
             this.btnModificar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(64, 50);
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "&Modificar";
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
@@ -99,7 +99,7 @@ namespace PresentacionBase.Formularios
             this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(59, 50);
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
@@ -116,7 +116,7 @@ namespace PresentacionBase.Formularios
             this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(70, 50);
-            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Text = "&Actualizar";
             this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
@@ -198,8 +198,6 @@ namespace PresentacionBase.Formularios
             this.Controls.Add(this.pnlBusqueda);
             this.Controls.Add(this.pnlSeparador);
             this.Controls.Add(this.toolStrip1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FormConsultaConDetalle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FormConsulta_Load);
