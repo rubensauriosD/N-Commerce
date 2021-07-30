@@ -80,7 +80,7 @@
                 return;
             }
 
-            if (entidadId.HasValue)
+            if (!entidadId.HasValue)
             {
                 MessageBox.Show("Por favor seleccione un registro");
                 return;

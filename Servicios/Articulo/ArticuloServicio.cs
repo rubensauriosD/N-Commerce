@@ -292,7 +292,7 @@
             int.TryParse(codigo, out int _codigo);
 
             return _unidadDeTrabajo.ArticuloRepositorio
-                .Obtener(x => x.CodigoBarra == codigo || x.Codigo == _codigo,
+                .Obtener(x => (x.CodigoBarra == codigo || x.Codigo == _codigo) && !x.EstaEliminado,
                     "Rubro, Marca, UnidadMedida, Iva, Stocks, Stocks.Deposito, Precios")
                 .Select(x => new ArticuloVentaDto()
                 {
@@ -320,7 +320,7 @@
             int.TryParse(codigo, out int _codigo);
 
             return _unidadDeTrabajo.ArticuloRepositorio
-                .Obtener(x => x.CodigoBarra == codigo || x.Codigo == _codigo)
+                .Obtener(x => (x.CodigoBarra == codigo || x.Codigo == _codigo) && !x.EstaEliminado)
                 .Select(x => new ArticuloCompraDto()
                 {
                     ProductoId = x.Id,

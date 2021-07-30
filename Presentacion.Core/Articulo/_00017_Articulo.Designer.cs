@@ -121,6 +121,7 @@
             this.imgFoto.Location = new System.Drawing.Point(75, 119);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(207, 207);
+            this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgFoto.TabIndex = 212;
             this.imgFoto.TabStop = false;
             // 
@@ -245,7 +246,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(336, 368);
+            this.tabPage3.Size = new System.Drawing.Size(358, 337);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Precios";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -263,7 +264,7 @@
             this.dgvPrecios.ReadOnly = true;
             this.dgvPrecios.RowHeadersVisible = false;
             this.dgvPrecios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrecios.Size = new System.Drawing.Size(330, 362);
+            this.dgvPrecios.Size = new System.Drawing.Size(352, 331);
             this.dgvPrecios.TabIndex = 7;
             // 
             // tabPage4
@@ -273,7 +274,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(336, 368);
+            this.tabPage4.Size = new System.Drawing.Size(358, 337);
             this.tabPage4.TabIndex = 2;
             this.tabPage4.Text = "Stock";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -291,7 +292,7 @@
             this.dgvStock.ReadOnly = true;
             this.dgvStock.RowHeadersVisible = false;
             this.dgvStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStock.Size = new System.Drawing.Size(330, 320);
+            this.dgvStock.Size = new System.Drawing.Size(352, 289);
             this.dgvStock.TabIndex = 6;
             // 
             // panel1
@@ -302,7 +303,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 42);
+            this.panel1.Size = new System.Drawing.Size(352, 42);
             this.panel1.TabIndex = 0;
             // 
             // lblStockActual

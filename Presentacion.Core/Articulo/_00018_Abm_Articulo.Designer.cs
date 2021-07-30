@@ -755,7 +755,7 @@
             this.imgFoto.Margin = new System.Windows.Forms.Padding(2);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(292, 258);
-            this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgFoto.TabIndex = 0;
             this.imgFoto.TabStop = false;
             // 
