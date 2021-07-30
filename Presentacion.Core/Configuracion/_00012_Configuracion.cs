@@ -8,11 +8,15 @@
     using IServicio.Configuracion;
     using IServicio.Configuracion.DTOs;
     using IServicio.Departamento;
+    using IServicio.Departamento.DTOs;
     using IServicio.Deposito;
+    using IServicio.Deposito.DTOs;
     using IServicio.ListaPrecio;
     using IServicio.ListaPrecio.DTOs;
     using IServicio.Localidad;
+    using IServicio.Localidad.DTOs;
     using IServicio.Provincia;
+    using IServicio.Provincia.DTOs;
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Departamento;
     using Presentacion.Core.Localidad;
@@ -70,7 +74,6 @@
 
             else
                 _configuracion.EsPrimeraVez = false;
-            //    PrepararParaCargaDeConfiguracion();
 
             CargarDatosDeConfiguracion();
         }
@@ -95,49 +98,17 @@
 
         private void PoblarComboBoxes()
         {
-            PoblarComboBox(
-                cmbProvincia,
-                _provinciaServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id");
+            CargarComboProvincia();
 
-            if (cmbProvincia.Items.Count > 0)
-                PoblarComboBox(
-                    cmbDepartamento,
-                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            CargarComboDepartamento();
 
-            if (cmbDepartamento.Items.Count > 0)
-                PoblarComboBox(
-                    cmbLocalidad,
-                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            CargarComboLocalidad();
 
-            var lstListaPrecios = _listaPreciosServicio
-                .Obtener(string.Empty, false)
-                .Select(x => (ListaPrecioDto)x)
-                .Where(x => !x.NecesitaAutorizacion)
-                .ToList();
+            CargarComboListaPrecios();
 
-            PoblarComboBox(
-                cmbListaPrecioDefecto,
-                lstListaPrecios,
-                "Descripcion",
-                "Id");
+            CargarComboDepositoStock();
 
-            PoblarComboBox(
-                cmbDepositoPorDefectoStock,
-                _depositoServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id");
-
-            PoblarComboBox(
-                cmbDepositoPorDefectoVenta,
-                _depositoServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id");
+            CargarComboDepositoVenta();
 
             PoblarComboBox(
                 cmbTipoPagoCompraPorDefecto,
@@ -148,10 +119,111 @@
                 Enum.GetValues(typeof(TipoPago)));
         }
 
-        private void PrepararParaCargaDeConfiguracion()
+        private void CargarComboProvincia(long idElemento = 0)
         {
-            _configuracion = new ConfiguracionDto();
-            _configuracion.EsPrimeraVez = true;
+            var lstProvincias = _provinciaServicio.Obtener(string.Empty, false)
+                .Select(x => (ProvinciaDto)x)
+                .ToList();
+
+            if (idElemento != 0)
+            {
+                var provincia = (ProvinciaDto)_provinciaServicio.Obtener(idElemento);
+                if(provincia.Eliminado)
+                    lstProvincias.Add(provincia);
+            }
+
+            PoblarComboBox(cmbProvincia, lstProvincias, "Descripcion", "id");
+        }
+
+        private void CargarComboDepartamento(long idElemento = 0)
+        {
+            var lstDepartamentos = new List<DepartamentoDto>();
+            if (cmbProvincia.Items.Count > 0 || cmbProvincia.SelectedValue != null)
+                lstDepartamentos = _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue)
+                    .Select(x => (DepartamentoDto)x)
+                    .ToList();
+
+            if (idElemento != 0)
+            {
+                var departamento = (DepartamentoDto)_departamentoServicio.Obtener(idElemento);
+
+                if(departamento.Eliminado)
+                    lstDepartamentos.Add(departamento);
+            }
+
+            PoblarComboBox(cmbDepartamento, lstDepartamentos, "Descripcion", "Id");
+        }
+
+        private void CargarComboLocalidad(long idElemento = 0)
+        {
+            var lstLocalidades = new List<LocalidadDto>();
+
+            if (cmbDepartamento.Items.Count > 0 || cmbDepartamento.SelectedValue != null)
+                lstLocalidades = _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue)
+                    .Select(x => (LocalidadDto)x)
+                    .ToList();
+
+            if (idElemento != 0)
+            {
+                var localidad = (LocalidadDto)_localidadServicio.Obtener(idElemento);
+
+                if(localidad.Eliminado)
+                    lstLocalidades.Add(localidad);
+            }
+
+            PoblarComboBox(cmbLocalidad, lstLocalidades, "Descripcion", "id");
+        }
+
+        private void CargarComboListaPrecios(long idElemento = 0)
+        {
+            var lstListas = _listaPreciosServicio.Obtener(string.Empty, false)
+                .Select(x => (ListaPrecioDto)x)
+                .Where(x => !x.NecesitaAutorizacion)
+                .ToList();
+
+            if (idElemento != 0)
+            {
+                var listaPrecio = (ListaPrecioDto)_listaPreciosServicio.Obtener(idElemento);
+
+                if(listaPrecio.Eliminado)
+                    lstListas.Add(listaPrecio);
+            }
+
+            PoblarComboBox(cmbListaPrecioDefecto, lstListas, "Descripcion", "id");
+        }
+
+        private void CargarComboDepositoStock(long idElemento = 0)
+        {
+            var lstDeposito = _depositoServicio.Obtener(string.Empty, false)
+                .Select(x => (DepositoDto)x)
+                .ToList();
+
+            if (idElemento != 0)
+            {
+                var listaPrecio = (DepositoDto)_depositoServicio.Obtener(idElemento);
+
+                if(listaPrecio.Eliminado)
+                    lstDeposito.Add(listaPrecio);
+            }
+
+            PoblarComboBox(cmbDepositoPorDefectoStock, lstDeposito, "Descripcion", "id");
+        }
+
+        private void CargarComboDepositoVenta(long idElemento = 0)
+        {
+            var lstDeposito = _depositoServicio.Obtener(string.Empty, false)
+                    .Select(x => (DepositoDto)x)
+                    .ToList();
+
+            if (idElemento != 0)
+            {
+                var deposito = (DepositoDto)_depositoServicio.Obtener(idElemento);
+
+                if(deposito.Eliminado)
+                    lstDeposito.Add(deposito);
+            }
+
+            PoblarComboBox(cmbDepositoPorDefectoVenta, lstDeposito, "Descripcion", "id");
         }
 
         private void CargarDatosDeConfiguracion()
@@ -167,10 +239,13 @@
             txtDireccion.Text = _configuracion.Direccion;
             txtEmail.Text = _configuracion.Email;
 
+            CargarComboProvincia(_configuracion.ProvinciaId);
             cmbProvincia.SelectedValue = _configuracion.ProvinciaId;
-            CargarDepartamentosPorProvincia(_configuracion.ProvinciaId);
+
+            CargarComboDepartamento(_configuracion.DepartamentoId);
             cmbDepartamento.SelectedValue = _configuracion.DepartamentoId;
-            CargarLocalidadesPorDepartamento(_configuracion.DepartamentoId);
+
+            CargarComboLocalidad(_configuracion.LocalidadId);
             cmbLocalidad.SelectedValue = _configuracion.LocalidadId;
 
             //
@@ -180,6 +255,8 @@
             chkPresupuestoDescuentaStock.Checked = _configuracion.PresupuestoDescuentaStock;
             chkActualizaCostoDesdeCompra.Checked = _configuracion.ActualizaCostoDesdeCompra;
             cmbTipoPagoCompraPorDefecto.SelectedItem = _configuracion.TipoFormaPagoPorDefectoCompra;
+
+            CargarComboDepositoStock(_configuracion.DepositoNuevoArticuloId);
             cmbDepositoPorDefectoStock.SelectedValue = _configuracion.DepositoNuevoArticuloId;
 
             //
@@ -187,8 +264,12 @@
             //
             txtObservacionFactura.Text = _configuracion.ObservacionEnPieFactura;
             chkRenglonesFactura.Checked = _configuracion.UnificarRenglonesIngresarMismoProducto;
-            cmbListaPrecioDefecto.SelectedValue = _configuracion.ListaPrecioPorDefectoId;
             cmbTipoPagoPorDefecto.SelectedItem = _configuracion.TipoFormaPagoPorDefectoVenta;
+
+            CargarComboListaPrecios(_configuracion.ListaPrecioPorDefectoId);
+            cmbListaPrecioDefecto.SelectedValue = _configuracion.ListaPrecioPorDefectoId;
+
+            CargarComboDepositoVenta(_configuracion.DepositoVentaId);
             cmbDepositoPorDefectoVenta.SelectedValue = _configuracion.DepositoVentaId;
 
             //
@@ -209,40 +290,6 @@
 
             chkPuestoSeparado.Checked = _configuracion.PuestoCajaSeparado;
             chkPermitirArqueoNegativo.Checked = _configuracion.PermitirArqueoNegativo;
-        }
-
-        private void CargarDepartamentosPorProvincia(long provinciaId)
-        {
-            var lstDepartamentos = _departamentoServicio.ObtenerPorProvincia(provinciaId).ToList();
-
-            if (lstDepartamentos.Count < 1)
-            {
-                cmbLocalidad.Enabled = false;
-                cmbLocalidad.DataSource = new List<object>();
-
-                cmbDepartamento.Enabled = false;
-                cmbDepartamento.DataSource = new List<object>();
-
-                return;
-            }
-
-            cmbDepartamento.Enabled = true;
-            PoblarComboBox(cmbDepartamento, lstDepartamentos, "Descripcion", "Id");
-        }
-
-        private void CargarLocalidadesPorDepartamento(long departamentoId)
-        {
-            var lstlocalidades = _localidadServicio.ObtenerPorDepartamento(departamentoId).ToList();
-
-            if (lstlocalidades.Count < 1)
-            {
-                cmbLocalidad.DataSource = new List<object>();
-                cmbLocalidad.Enabled = false;
-                return;
-            }
-
-            cmbLocalidad.Enabled = true;
-            PoblarComboBox(cmbLocalidad, lstlocalidades, "Descripcion", "Id");
         }
 
         private void ExtraerDatosCargados()
@@ -350,8 +397,8 @@
 
             _configuracion.ProvinciaId = (long)cmbProvincia.SelectedValue;
 
-            CargarDepartamentosPorProvincia(_configuracion.ProvinciaId);
-
+            CargarComboDepartamento();
+            CargarComboLocalidad();
         }
 
         private void cmbDepartamento_SelectionChangeCommitted(object sender, EventArgs e)
@@ -359,26 +406,16 @@
             if (_configuracion.DepartamentoId == (long)cmbDepartamento.SelectedValue)
                 return;
 
-            _configuracion.DepartamentoId = 
-                cmbDepartamento.Items.Count > 0
-                ? (long)cmbDepartamento.SelectedValue
-                : 0;
+            _configuracion.DepartamentoId = (long)cmbDepartamento.SelectedValue;
 
-            if(_configuracion.DepartamentoId > 0)
-                CargarLocalidadesPorDepartamento(_configuracion.DepartamentoId);
+            CargarComboDepartamento(_configuracion.DepartamentoId);
 
-            _configuracion.LocalidadId =
-                cmbLocalidad.Items.Count > 0
-                ? (long)cmbLocalidad.SelectedValue
-                : 0;
+            CargarComboLocalidad();
         }
 
         private void cmbLocalidad_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            _configuracion.LocalidadId =
-                cmbLocalidad.Items.Count > 0
-                ? (long)cmbLocalidad.SelectedValue
-                : 0;
+            _configuracion.LocalidadId = (long)cmbLocalidad.SelectedValue;
         }
 
         // --- Acciones de botones
@@ -411,12 +448,12 @@
             var form = new _00002_Abm_Provincia(TipoOperacion.Nuevo);
             form.ShowDialog();
 
-            if(form.RealizoAlgunaOperacion)
-                PoblarComboBox(
-                    cmbProvincia,
-                    _provinciaServicio.Obtener(string.Empty, false),
-                    "Descripcion",
-                    "Id");
+            if (!form.RealizoAlgunaOperacion)
+                return;
+
+            CargarComboProvincia();
+            CargarComboDepartamento();
+            CargarComboLocalidad();
         }
 
         private void btnNuevoDepartamento_Click(object sender, EventArgs e)
@@ -424,12 +461,11 @@
             var form = new _00004_Abm_Departamento(TipoOperacion.Nuevo);
             form.ShowDialog();
 
-            if (form.RealizoAlgunaOperacion)
-                PoblarComboBox(
-                    cmbDepartamento,
-                    _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            if (!form.RealizoAlgunaOperacion)
+                return;
+
+            CargarComboDepartamento();
+            CargarComboLocalidad();
         }
 
         private void btnNuevaLocalidad_Click(object sender, EventArgs e)
@@ -437,12 +473,10 @@
             var form = new _00006_AbmLocalidad(TipoOperacion.Nuevo);
             form.ShowDialog();
 
-            if (form.RealizoAlgunaOperacion)
-                PoblarComboBox(
-                    cmbLocalidad,
-                    _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                    "Descripcion",
-                    "Id");
+            if (!form.RealizoAlgunaOperacion)
+                return;
+
+            CargarComboLocalidad();
         }
 
         private void btnNuevaListaPrecio_Click(object sender, EventArgs e)
@@ -450,12 +484,10 @@
             var f = new _00033_Abm_ListaPrecio(TipoOperacion.Nuevo);
             f.ShowDialog();
 
-            if(f.RealizoAlgunaOperacion)
-                PoblarComboBox(
-                    cmbListaPrecioDefecto,
-                    _listaPreciosServicio.Obtener(string.Empty, false),
-                    "Descripcion",
-                    "Id");
+            if (f.RealizoAlgunaOperacion)
+                return;
+
+            CargarComboListaPrecios();
         }
 
         private void btnNuevoDeposito_Click(object sender, EventArgs e)
@@ -466,16 +498,8 @@
             if (!f.RealizoAlgunaOperacion)
                 return;
 
-            PoblarComboBox(
-                    cmbDepositoPorDefectoStock,
-                    _depositoServicio.Obtener(string.Empty, false),
-                    "Descripcion",
-                    "Id");
-            PoblarComboBox(
-                cmbDepositoPorDefectoVenta,
-                _depositoServicio.Obtener(string.Empty, false),
-                "Descripcion",
-                "Id");
+            CargarComboDepositoStock(_configuracion.DepositoNuevoArticuloId);
+            CargarComboDepositoVenta(_configuracion.DepositoVentaId);
         }
 
         private void chkActibarBascula_CheckedChanged(object sender, EventArgs e)

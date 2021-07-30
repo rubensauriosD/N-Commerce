@@ -78,7 +78,7 @@
             dgvGrilla.Columns["MontoSignado"].DefaultCellStyle.Format = "c2";
 
             lblSaldoCuentaCorriente.Text = proveedor.MovimientosCuentaCorriente
-                .Sum(x => x.Monto * (x.TipoMovimiento == TipoMovimiento.Ingreso ? 1 : -1))
+                .Sum(x => x.MontoSignado)
                 .ToString("C2");
         }
 
@@ -121,7 +121,7 @@
                 return;
             }
 
-            if (movimientoCuentaCorriente.TipoMovimiento == TipoMovimiento.Egreso)
+            if (movimientoCuentaCorriente.TipoMovimiento == TipoMovimiento.Ingreso)
             {
                 Mjs.Alerta("No se puede revertir este movimiento.");
                 return;

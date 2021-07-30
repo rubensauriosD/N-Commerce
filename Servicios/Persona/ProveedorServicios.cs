@@ -68,12 +68,15 @@
                 if (proveedor == null || caja == null)
                     return false;
 
+                if (pago.Monto < 0)
+                    pago.Monto = pago.Monto * -1;
+
                 proveedor.MovimientoCuentaCorrienteProveedores.Add(new MovimientoCuentaCorrienteProveedor()
                 {
                     Descripcion = pago.Descripcion,
                     Monto = pago.Monto,
                     Fecha = DateTime.Now,
-                    TipoMovimiento = Aplicacion.Constantes.TipoMovimiento.Ingreso,
+                    TipoMovimiento = Aplicacion.Constantes.TipoMovimiento.Egreso,
                     EstaEliminado = false
                 });
 
@@ -102,12 +105,15 @@
                 if (proveedor == null || caja == null)
                     return false;
 
+                if (pago.Monto < 0)
+                    pago.Monto = pago.Monto * -1;
+
                 proveedor.MovimientoCuentaCorrienteProveedores.Add(new MovimientoCuentaCorrienteProveedor()
                 {
                     Descripcion = $@"Reversion Pago: {pago.Descripcion}",
                     Monto = pago.Monto,
                     Fecha = DateTime.Now,
-                    TipoMovimiento = Aplicacion.Constantes.TipoMovimiento.Egreso,
+                    TipoMovimiento = Aplicacion.Constantes.TipoMovimiento.Ingreso,
                     EstaEliminado = false
                 });
 
