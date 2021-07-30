@@ -13,6 +13,7 @@
     {
         private readonly IProveedorServicio _servicio;
         private ProveedorDto proveedor;
+        private ToolStripButton btnCuentaCorriente;
 
         public _00015_Proveedor(IProveedorServicio provinciaServicio)
         {
@@ -28,7 +29,7 @@
         {
             AgregarSeparadorAlMenu();
 
-            var btnCuentaCorriente = new ToolStripButton();
+            btnCuentaCorriente = new ToolStripButton();
             btnCuentaCorriente.Text = @"Cuenta Corriente";
             btnCuentaCorriente.Image = Imagen.Pago;
             btnCuentaCorriente.Click += MostrarCuentaCuente;
@@ -100,6 +101,10 @@
             base.dgvGrilla_RowEnter(sender, e);
 
             proveedor = (ProveedorDto)EntidadSeleccionada;
+
+            btnModificar.Enabled = proveedor.CUIT != "99999999999";
+            btnEliminar.Enabled = proveedor.CUIT != "99999999999";
+            btnCuentaCorriente.Enabled = proveedor.CUIT != "99999999999";
         }
     }
 }

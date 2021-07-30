@@ -34,8 +34,8 @@
             this.cmbProvincia = new System.Windows.Forms.ComboBox();
             this.btnNuevaProvincia = new System.Windows.Forms.Button();
             this.btnNuevoDepartamento = new System.Windows.Forms.Button();
-            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -45,7 +45,7 @@
             this.label1.Location = new System.Drawing.Point(28, 178);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
-            this.label1.TabIndex = 12;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Descripción";
             // 
             // txtDescripcion
@@ -54,7 +54,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(114, 175);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(288, 22);
-            this.txtDescripcion.TabIndex = 11;
+            this.txtDescripcion.TabIndex = 7;
             // 
             // label2
             // 
@@ -63,7 +63,7 @@
             this.label2.Location = new System.Drawing.Point(41, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 16);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Provincia";
             // 
             // cmbProvincia
@@ -74,7 +74,7 @@
             this.cmbProvincia.Location = new System.Drawing.Point(114, 95);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(288, 24);
-            this.cmbProvincia.TabIndex = 14;
+            this.cmbProvincia.TabIndex = 1;
             this.cmbProvincia.SelectionChangeCommitted += new System.EventHandler(this.cmbProvincia_SelectionChangeCommitted);
             // 
             // btnNuevaProvincia
@@ -82,7 +82,7 @@
             this.btnNuevaProvincia.Location = new System.Drawing.Point(408, 95);
             this.btnNuevaProvincia.Name = "btnNuevaProvincia";
             this.btnNuevaProvincia.Size = new System.Drawing.Size(37, 24);
-            this.btnNuevaProvincia.TabIndex = 15;
+            this.btnNuevaProvincia.TabIndex = 2;
             this.btnNuevaProvincia.Text = "...";
             this.btnNuevaProvincia.UseVisualStyleBackColor = true;
             this.btnNuevaProvincia.Click += new System.EventHandler(this.btnNuevaProvincia_Click);
@@ -92,20 +92,10 @@
             this.btnNuevoDepartamento.Location = new System.Drawing.Point(408, 134);
             this.btnNuevoDepartamento.Name = "btnNuevoDepartamento";
             this.btnNuevoDepartamento.Size = new System.Drawing.Size(37, 24);
-            this.btnNuevoDepartamento.TabIndex = 18;
+            this.btnNuevoDepartamento.TabIndex = 5;
             this.btnNuevoDepartamento.Text = "...";
             this.btnNuevoDepartamento.UseVisualStyleBackColor = true;
             this.btnNuevoDepartamento.Click += new System.EventHandler(this.btnNuevoDepartamento_Click);
-            // 
-            // cmbDepartamento
-            // 
-            this.cmbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDepartamento.FormattingEnabled = true;
-            this.cmbDepartamento.Location = new System.Drawing.Point(114, 135);
-            this.cmbDepartamento.Name = "cmbDepartamento";
-            this.cmbDepartamento.Size = new System.Drawing.Size(288, 24);
-            this.cmbDepartamento.TabIndex = 17;
             // 
             // label3
             // 
@@ -114,16 +104,26 @@
             this.label3.Location = new System.Drawing.Point(11, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 16);
-            this.label3.TabIndex = 16;
+            this.label3.TabIndex = 3;
             this.label3.Text = "Departamento";
+            // 
+            // cmbDepartamento
+            // 
+            this.cmbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(114, 134);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(288, 24);
+            this.cmbDepartamento.TabIndex = 4;
             // 
             // _00006_AbmLocalidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(466, 226);
-            this.Controls.Add(this.btnNuevoDepartamento);
             this.Controls.Add(this.cmbDepartamento);
+            this.Controls.Add(this.btnNuevoDepartamento);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnNuevaProvincia);
             this.Controls.Add(this.cmbProvincia);
@@ -141,8 +141,8 @@
             this.Controls.SetChildIndex(this.cmbProvincia, 0);
             this.Controls.SetChildIndex(this.btnNuevaProvincia, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.cmbDepartamento, 0);
             this.Controls.SetChildIndex(this.btnNuevoDepartamento, 0);
+            this.Controls.SetChildIndex(this.cmbDepartamento, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,7 +155,7 @@
         private System.Windows.Forms.ComboBox cmbProvincia;
         private System.Windows.Forms.Button btnNuevaProvincia;
         private System.Windows.Forms.Button btnNuevoDepartamento;
-        private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
     }
 }

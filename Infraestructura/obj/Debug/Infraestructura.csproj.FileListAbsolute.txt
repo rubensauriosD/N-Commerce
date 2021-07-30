@@ -105,9 +105,9 @@ D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.inicial.
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.pagoCuentaCorrienteProveedores.resources
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.vincular_gasto_con_caja.resources
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.actualizar_configuracion_para_arqueo_negativo.resources
+D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.Nuevassemillasdeusuarioyempleado.resources
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.GenerateResource.cache
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.CoreCompileInputs.cache
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.CopyComplete
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.dll
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.pdb
-D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.Nuevassemillasdeusuarioyempleado.resources

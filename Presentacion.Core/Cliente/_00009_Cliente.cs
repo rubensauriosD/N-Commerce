@@ -1,6 +1,5 @@
 ﻿namespace Presentacion.Core.Cliente
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
     using IServicio.Persona;
@@ -40,6 +39,16 @@
             dgv.Columns["EliminadoStr"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["EliminadoStr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns["EliminadoStr"].DisplayIndex = 2;
+        }
+
+        public override void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            base.dgvGrilla_RowEnter(sender, e);
+
+            var cliente = (ClienteDto)EntidadSeleccionada;
+
+            btnModificar.Enabled = cliente.Dni != "99999999";
+            btnEliminar.Enabled = cliente.Dni != "99999999";
         }
 
         public override bool EjecutarComando(TipoOperacion tipoOperacion, long? id = null)

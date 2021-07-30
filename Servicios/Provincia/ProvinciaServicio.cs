@@ -1,15 +1,15 @@
-﻿using System;
-using IServicio.Provincia;
-using IServicio.Provincia.DTOs;
-using System.Collections.Generic;
-using System.Linq;
-using Dominio.UnidadDeTrabajo;
-using IServicio.BaseDto;
-using System.Linq.Expressions;
-using Servicios.Base;
-
-namespace Servicios.Provincia
+﻿namespace Servicios.Provincia
 {
+    using System;
+    using IServicio.Provincia;
+    using IServicio.Provincia.DTOs;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.BaseDto;
+    using System.Linq.Expressions;
+    using Servicios.Base;
+
     public class ProvinciaServicio : IProvinciaServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;

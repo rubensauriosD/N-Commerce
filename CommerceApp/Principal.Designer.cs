@@ -81,6 +81,7 @@
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.picFotoUsuario = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRubro = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlInfoUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFotoUsuario)).BeginInit();
@@ -281,6 +282,7 @@
             this.btnBajaArticulo,
             this.toolStripMenuItem6,
             this.btnMarca,
+            this.btnRubro,
             this.btnUnidadMedida,
             this.btnDeposito});
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
@@ -529,6 +531,13 @@
             this.panel2.Size = new System.Drawing.Size(784, 3);
             this.panel2.TabIndex = 4;
             // 
+            // btnRubro
+            // 
+            this.btnRubro.Name = "btnRubro";
+            this.btnRubro.Size = new System.Drawing.Size(207, 22);
+            this.btnRubro.Text = "Rubro";
+            this.btnRubro.Click += new System.EventHandler(this.btnRubro_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,6 +622,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnAdministrarDepositos;
         private System.Windows.Forms.ToolStripMenuItem btnDepositoTransferencias;
         private System.Windows.Forms.ToolStripMenuItem btnBajaArticulo;
+        private System.Windows.Forms.ToolStripMenuItem btnRubro;
     }
 }
 

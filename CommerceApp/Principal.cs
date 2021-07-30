@@ -227,5 +227,10 @@
         {
             ObjectFactory.GetInstance<_00005_Localidad>().ShowDialog();
         }
+
+        private void btnRubro_Click(object sender, EventArgs e)
+        {
+            ObjectFactory.GetInstance<_00019_Rubro>().ShowDialog();
+        }
     }
 }

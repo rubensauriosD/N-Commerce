@@ -18,6 +18,7 @@
         private IArticuloServicio _articuloServicios;
         private IMarcaServicio _marcaServicios;
         private IRubroServicio _rubroServicios;
+        private Validar Validar;
 
         private List<ArticuloDto> lstArticulosFiltrados;
         private List<ArticuloDto> lstArticulos;
@@ -29,6 +30,7 @@
             _articuloServicios = ObjectFactory.GetInstance<IArticuloServicio>();
             _marcaServicios = ObjectFactory.GetInstance<IMarcaServicio>();
             _rubroServicios = ObjectFactory.GetInstance<IRubroServicio>();
+            Validar = new Validar();
 
             lstArticulosFiltrados = new List<ArticuloDto>();
             lstArticulos = (List<ArticuloDto>)_articuloServicios.Obtener(string.Empty);
@@ -43,20 +45,10 @@
             chkArticulo.Checked = false;
 
             cmbMarca.Enabled = false;
-            PoblarComboBox(
-                cmbMarca,
-                (List<MarcaDto>)_marcaServicios.Obtener(string.Empty),
-                "Descripcion",
-                "Id"
-                );
+            CargarComboMarca();
 
             cmbRubro.Enabled = false;
-            PoblarComboBox(
-                cmbRubro,
-                (List<RubroDto>)_rubroServicios.Obtener(string.Empty),
-                "Descripcion",
-                "Id"
-                );
+            CargarComboRubro();
 
             nudCodigoDesde.Value = 0m;
             nudCodigoDesde.Enabled = chkArticulo.Checked;
@@ -69,6 +61,36 @@
             nudAjuste.DecimalPlaces = 0;
             nudAjuste.Value = 100;
             chkMarca.Focus();
+        }
+
+        private void CargarComboRubro(long id = 0)
+        {
+            var lstRubro = _rubroServicios.Obtener(string.Empty, false)
+                .Select(x => (RubroDto)x)
+                .ToList();
+
+            if (id != 0)
+            {
+                RubroDto rubro = (RubroDto)_rubroServicios.Obtener(id);
+                lstRubro.Add(rubro);
+            }
+
+            PoblarComboBox(cmbRubro, lstRubro, "Descripcion", "Id");
+        }
+
+        private void CargarComboMarca(long id = 0)
+        {
+            var lstMarca = _marcaServicios.Obtener(string.Empty, false)
+                .Select(x => (MarcaDto)x)
+                .ToList();
+
+            if (id != 0)
+            {
+                MarcaDto marca = (MarcaDto)_marcaServicios.Obtener(id);
+                lstMarca.Add(marca);
+            }
+
+            PoblarComboBox(cmbMarca, lstMarca, "Descripcion", "Id");
         }
 
         private void chkMarca_CheckedChanged(object sender, EventArgs e)
@@ -159,19 +181,35 @@
 
         private bool ValidarDatosCargados()
         {
+            var ok = true;
+
+            if (chkMarca.Checked && cmbMarca.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbMarca, "Seleccionar una marca.");
+                ok = false;
+            }
+            else Validar.ClearErrorProvider(cmbMarca);
+
+            if (chkRubro.Checked && cmbRubro.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbRubro, "Seleccionar una rubro.");
+                ok = false;
+            }
+            else Validar.ClearErrorProvider(cmbRubro);
+
             bool porcentajeAlto = rdbPorcentaje.Checked && nudAjuste.Value >= 200;
             if (porcentajeAlto && !Mjs.Preguntar($@"El porcentaje ingresado es alto.{Environment.NewLine} ¿Seguro que desea continuar?"))
-                return false;
+                ok = false;
 
             bool precioAlto = rdbPorcentaje.Checked && nudAjuste.Value >= 10000;
             if (precioAlto && !Mjs.Preguntar($@"El precio ingresado es alto.{Environment.NewLine} ¿Seguro que desea continuar?"))
-                return false;
+                ok = false;
 
             bool noHayCriteriosDeFiltrado = !chkArticulo.Checked && !chkMarca.Checked && !chkRubro.Checked;
             if (noHayCriteriosDeFiltrado && !Mjs.Preguntar($@"Está por modificar el precio de todos los artículos en existencia.{Environment.NewLine}¿Seguro que desea continuar?"))
-                return false;
+                ok = false;
 
-            return true;
+            return ok;
         }
 
         private void FiltrarArticulos()
@@ -180,18 +218,18 @@
 
             if(chkMarca.Checked)
                 lstArticulosFiltrados = lstArticulosFiltrados
-                    .Where( x => x.MarcaId == ((MarcaDto)cmbMarca.SelectedItem).Id
-                ).ToList();
+                    .Where( x => x.MarcaId == (long)cmbMarca.SelectedValue)
+                    .ToList();
 
             if(chkRubro.Checked)
                 lstArticulosFiltrados = lstArticulosFiltrados
-                    .Where( x => x.RubroId == ((RubroDto)cmbRubro.SelectedItem).Id
-                ).ToList();
+                    .Where( x => x.RubroId == (long) cmbRubro.SelectedValue)
+                    .ToList();
 
             if(chkArticulo.Checked)
                 lstArticulosFiltrados = lstArticulosFiltrados
-                    .Where( x => x.Codigo >= nudCodigoDesde.Value && x.Codigo <= nudCodigoHasta.Value
-                ).ToList();
+                    .Where( x => x.Codigo >= nudCodigoDesde.Value && x.Codigo <= nudCodigoHasta.Value)
+                    .ToList();
 
         }
     }

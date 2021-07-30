@@ -1,14 +1,20 @@
 ﻿namespace Presentacion.Core.Articulo
 {
+    using System;
     using System.Drawing;
+    using System.Linq;
     using System.Windows.Forms;
     using Aplicacion.Constantes;
     using IServicio.Articulo;
     using IServicio.Articulo.DTOs;
     using IServicio.Iva;
+    using IServicio.Iva.DTOs;
     using IServicio.Marca;
+    using IServicio.Marca.DTOs;
     using IServicio.Rubro;
+    using IServicio.Rubro.DTOs;
     using IServicio.UnidadMedida;
+    using IServicio.UnidadMedida.DTOs;
     using PresentacionBase.Formularios;
     using StructureMap;
 
@@ -33,13 +39,6 @@
             _unidadMedidaServicio = ObjectFactory.GetInstance<IUnidadMedidaServicio>();
             _ivaServicio = ObjectFactory.GetInstance<IIvaServicio>();
             Validar = new Validar();
-
-            imgFoto.Image = ImagenProductoPorDefecto;
-
-            PoblarComboBox(cmbMarca, _marcaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
-            PoblarComboBox(cmbRubro, _rubroServicio.Obtener(string.Empty, false), "Descripcion", "Id");
-            PoblarComboBox(cmbUnidad, _unidadMedidaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
-            PoblarComboBox(cmbIva, _ivaServicio.Obtener(string.Empty, false), "Descripcion", "Id");
         }
 
         private void _00018_Abm_Articulo_Load(object sender, System.EventArgs e)
@@ -53,16 +52,24 @@
             Validar.ComoAlfanumerico(txtUbicacion);
             Validar.ComoAlfanumerico(txtDetalle);
             Validar.ComoPrecio(nudPrecioCosto,true);
+
+            CargarComboMarca();
+            CargarComboRubro();
+            CargarComboUnidadMedida();
+            CargarComboIva();
+
+            imgFoto.Image = ImagenProductoPorDefecto;
+
+            if (EntidadId.HasValue)
+                CargarDatos();
         }
 
-        public override void CargarDatos(long? entidadId)
+        private void CargarDatos()
         {
-            base.CargarDatos(entidadId);
-
             groupPrecio.Enabled = false;
             nudStock.Enabled = false;
 
-            var resultado = (ArticuloDto)_articuloServicio.Obtener(entidadId.Value);
+            var resultado = (ArticuloDto)_articuloServicio.Obtener(EntidadId.Value);
 
             if (resultado == null)
             {
@@ -79,6 +86,12 @@
             txtAbreviatura.Text = resultado.Abreviatura;
             txtDetalle.Text = resultado.Detalle;
             txtUbicacion.Text = resultado.Ubicacion;
+
+            CargarComboMarca(resultado.MarcaId);
+            CargarComboRubro(resultado.RubroId);
+            CargarComboUnidadMedida(resultado.UnidadMedidaId);
+            CargarComboIva(resultado.IvaId);
+
             cmbMarca.SelectedValue = resultado.MarcaId;
             cmbRubro.SelectedValue = resultado.RubroId;
             cmbUnidad.SelectedValue = resultado.UnidadMedidaId;
@@ -100,6 +113,66 @@
             // Foto del Articulo
             //
             imgFoto.Image = Imagen.ConvertirImagen(resultado.Foto);
+        }
+
+        private void CargarComboIva(long ivaId = 0)
+        {
+            var lstIva = _ivaServicio.Obtener(string.Empty, false)
+                .Select(x => (IvaDto)x)
+                .ToList();
+
+            if (ivaId != 0)
+            {
+                var iva = (IvaDto)_ivaServicio.Obtener(ivaId);
+                lstIva.Add(iva);
+            }
+
+            PoblarComboBox(cmbIva, lstIva, "Descripcion", "Id");
+        }
+
+        private void CargarComboUnidadMedida(long unidadMedidaId = 0)
+        {
+            var lstUnidadMedida = _unidadMedidaServicio.Obtener(string.Empty, false)
+                .Select(x => (UnidadMedidaDto)x)
+                .ToList();
+
+            if (unidadMedidaId != 0)
+            {
+                var unidadMedida = (UnidadMedidaDto)_unidadMedidaServicio.Obtener(unidadMedidaId);
+                lstUnidadMedida.Add(unidadMedida);
+            }
+
+            PoblarComboBox(cmbUnidad, lstUnidadMedida, "Descripcion", "Id");
+        }
+
+        private void CargarComboRubro(long rubroId = 0)
+        {
+            var lstRubro = _rubroServicio.Obtener(string.Empty, false)
+                .Select(x => (RubroDto)x)
+                .ToList();
+
+            if (rubroId != 0)
+            {
+                var rubro = (RubroDto)_rubroServicio.Obtener(rubroId);
+                lstRubro.Add(rubro);
+            }
+
+            PoblarComboBox(cmbRubro, lstRubro, "Descripcion", "Id");
+        }
+
+        private void CargarComboMarca(long marcaId = 0)
+        {
+            var lstMarca = _marcaServicio.Obtener(string.Empty, false)
+                .Select(x => (MarcaDto)x)
+                .ToList();
+
+            if (marcaId != 0)
+            {
+                var marca = (MarcaDto)_marcaServicio.Obtener(marcaId);
+                lstMarca.Add(marca);
+            }
+
+            PoblarComboBox(cmbMarca, lstMarca, "Descripcion", "Id");
         }
 
         public override bool VerificarDatosObligatorios()
@@ -283,7 +356,7 @@
         }
 
         // --- Eventos de Botones
-        private void btnNuevaMarca_Click(object sender, System.EventArgs e)
+        private void btnNuevaMarca_Click(object sender, EventArgs e)
         {
             var fNuevaMarca = new _00022_Abm_Marca(TipoOperacion.Nuevo);
             fNuevaMarca.ShowDialog();
@@ -293,7 +366,7 @@
             }
         }
         
-        private void btnNuevoRubro_Click(object sender, System.EventArgs e)
+        private void btnNuevoRubro_Click(object sender, EventArgs e)
         {
             var fNuevoRubro = new _00020_Abm_Rubro(TipoOperacion.Nuevo);
             fNuevoRubro.ShowDialog();
@@ -303,7 +376,7 @@
             }
         }
         
-        private void btnNuevoIva_Click(object sender, System.EventArgs e)
+        private void btnNuevoIva_Click(object sender, EventArgs e)
         {
             var fNuevaIva = new _00026_Abm_Iva(TipoOperacion.Nuevo);
             fNuevaIva.ShowDialog();
@@ -314,7 +387,7 @@
             }
         }
         
-        private void btnNuevaUnidad_Click(object sender, System.EventArgs e)
+        private void btnNuevaUnidad_Click(object sender, EventArgs e)
         {
             var fNuevaUnidad = new _00024_Abm_UnidadDeMedida(TipoOperacion.Nuevo);
             fNuevaUnidad.ShowDialog();
@@ -325,7 +398,7 @@
             }
         }
 
-        private void btnAgregarImagen_Click(object sender, System.EventArgs e)
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
             if (openFile.ShowDialog() != DialogResult.OK || !openFile.CheckFileExists)
                 return;
@@ -340,13 +413,13 @@
             }
         }
 
-        private void chkActivarHoraVenta_CheckedChanged(object sender, System.EventArgs e)
+        private void chkActivarHoraVenta_CheckedChanged(object sender, EventArgs e)
         {
             dtpHoraDesde.Enabled = chkActivarHoraVenta.Checked;
             dtpHoraHasta.Enabled = chkActivarHoraVenta.Checked;
         }
 
-        private void chkActivarLimite_CheckedChanged(object sender, System.EventArgs e)
+        private void chkActivarLimite_CheckedChanged(object sender, EventArgs e)
         {
             nudLimiteVenta.Enabled = chkActivarLimite.Checked;
         }

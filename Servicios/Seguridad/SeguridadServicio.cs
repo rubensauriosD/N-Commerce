@@ -68,7 +68,8 @@
             var pass = Encriptar(password);
 
             return _unidadDeTrabajo.UsuarioRepositorio
-                .Obtener(x => x.Nombre == usuario && x.Password == pass).Any();
+                .Obtener(x => x.Nombre == usuario && x.Password == pass && !x.EstaBloqueado && !x.Empleado.EstaEliminado, "Empleado")
+                .Any();
         }
     }
 }

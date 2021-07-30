@@ -7,6 +7,7 @@ using PresentacionBase.Formularios;
 using StructureMap;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Presentacion.Core.Usuario
@@ -24,12 +25,24 @@ namespace Presentacion.Core.Usuario
             _servicio = servicio;
         }
 
+        private void _00011_Usuario_Load(object sender, EventArgs e)
+        {
+            // Asignar Imagen a Botones
+            btnActualizar.Image = Imagen.Actualizar;
+            btnNuevo.Image = Imagen.Nuevo;
+            btnSalir.Image = Imagen.Salir;
+            btnBloquear.Image = Imagen.Bloquear;
+            btnResetPassword.Image = Imagen.Limpiar;
+            btnActualizar.Image = Imagen.Actualizar;
+
+            ActualizarDatos(string.Empty);
+        }
 
         private void ActualizarDatos(string txt)
 
         {
             // Cargar datos
-            dgvGrilla.DataSource = _servicio.Obtener(txt);
+            dgvGrilla.DataSource = _servicio.Obtener(txt, false);
 
             if (dgvGrilla.Columns.Count < 1)
                 dgvGrilla.DataSource = new List<UsuarioDto>();
@@ -153,19 +166,6 @@ namespace Presentacion.Core.Usuario
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void _00011_Usuario_Load(object sender, EventArgs e)
-        {
-            // Asignar Imagen a Botones
-            btnActualizar.Image = Imagen.Actualizar;
-            btnNuevo.Image = Imagen.Nuevo;
-            btnSalir.Image = Imagen.Salir;
-            btnBloquear.Image = Imagen.Bloquear;
-            btnResetPassword.Image = Imagen.Limpiar;
-            btnActualizar.Image = Imagen.Actualizar;
-
-            ActualizarDatos(string.Empty);
         }
     }
 }

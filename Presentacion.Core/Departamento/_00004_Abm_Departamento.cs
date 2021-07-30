@@ -4,10 +4,12 @@
     using IServicio.Departamento;
     using IServicio.Departamento.DTOs;
     using IServicio.Provincia;
+    using IServicio.Provincia.DTOs;
     using IServicios.Departamento.DTOs;
     using Presentacion.Core.Provincia;
     using PresentacionBase.Formularios;
     using StructureMap;
+    using System.Linq;
 
     public partial class _00004_Abm_Departamento : FormAbm
     {
@@ -29,18 +31,35 @@
         {
             Validar.ComoAlfanumerico(txtDescripcion, true);
 
-            PoblarComboBox(cmbProvincia,
-                _provinciaServicio.Obtener(string.Empty),
-                "Descripcion",
-                "Id");
-
-            if (EntidadId.HasValue)
+            CargarComboProvincia();
+            
+            if (EntidadId.HasValue && EntidadId != 0)
             {
-                var entidad = (DepartamentoDto)_departamentoServicio.Obtener(EntidadId.Value);
-                cmbProvincia.SelectedValue = entidad.ProvinciaId;
+                var departamento = (DepartamentoDto)_departamentoServicio.Obtener(EntidadId.Value);
+                var provincia = (ProvinciaDto)_provinciaServicio.Obtener(departamento.ProvinciaId);
 
-                txtDescripcion.Text = entidad.Descripcion;
+                if (provincia.Eliminado)
+                    CargarComboProvincia(provincia.Id);
+
+                cmbProvincia.SelectedValue = departamento.ProvinciaId;
+
+                txtDescripcion.Text = departamento.Descripcion;
             }
+        }
+
+        private void CargarComboProvincia(long idElemento = 0)
+        {
+            var lstProvincias = _provinciaServicio.Obtener(string.Empty, false)
+                .Select(x => (ProvinciaDto)x)
+                .ToList();
+
+            if (idElemento != 0)
+            {
+                var provincia = (ProvinciaDto)_provinciaServicio.Obtener(idElemento);
+                lstProvincias.Add(provincia);
+            }
+
+            PoblarComboBox(cmbProvincia, lstProvincias, "Descripcion", "id");
         }
 
         public override void EjecutarComandoNuevo()
@@ -68,7 +87,7 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            if (cmbProvincia.Items.Count <= 0)
+            if (cmbProvincia.Items.Count <= 0 || cmbProvincia.SelectedValue == null)
             {
                 Validar.SetErrorProvider(cmbProvincia, "Obligatorio");
                 return false;
@@ -92,12 +111,8 @@
             formNuevaProvincia.ShowDialog();
 
             if (formNuevaProvincia.RealizoAlgunaOperacion)
-            {
-                PoblarComboBox(cmbProvincia,
-                    _provinciaServicio.Obtener(string.Empty, false),
-                    "Descripcion",
-                    "Id");
-            }
+                CargarComboProvincia();
         }
+
     }
 }

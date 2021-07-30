@@ -65,6 +65,10 @@
                     ctrl.Enabled = false;
                     break;
 
+                case Button ctrl:
+                    ctrl.Enabled = false;
+                    break;
+
                 // Contenedores
                 case GroupBox cont:
                     foreach (object ctrl in cont.Controls)
