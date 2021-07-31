@@ -46,46 +46,65 @@
             dtpFecha.MaxDate = DateTime.Today;
             dtpFecha.MinDate = DateTime.Today.AddYears(-1);
 
-            _servicioConceptoGasto.Obtener(string.Empty, false)
-                .Select(x => (ConceptoGastoDto)x)
-                .ToList()
-                .ForEach(x => cmbConcepto.Items.Add(x));
-            cmbConcepto.DisplayMember = "Descripcion";
-            cmbConcepto.ValueMember = "Id";
+            CargarComboConceptoGasto();
 
             if (EntidadId.HasValue)
             {
-                var resultado = (GastoDto)_servicio.Obtener(EntidadId.Value);
+                var gasto = (GastoDto)_servicio.Obtener(EntidadId.Value);
 
-                if (resultado == null)
+                if (gasto == null)
                 {
                     MessageBox.Show("Ocurrio un error al obtener el registro seleccionado.");
                     Close();
                 }
 
-                txtDescripcion.Text = resultado.Descripcion;
-                dtpFecha.Value = resultado.Fecha;
-                nudMontoPagar.Value = resultado.Monto;
+                txtDescripcion.Text = gasto.Descripcion;
+                dtpFecha.Value = gasto.Fecha;
+                nudMontoPagar.Value = gasto.Monto;
 
-                var conceptoGasto = _servicioConceptoGasto.Obtener(resultado.ConceptoGastoId);
+                CargarComboConceptoGasto(gasto.ConceptoGastoId);
+                cmbConcepto.SelectedValue = gasto.ConceptoGastoId;
+            }
+        }
+
+        private void CargarComboConceptoGasto(long id = 0)
+        {
+            var lstConceptos = _servicioConceptoGasto.Obtener(string.Empty, false)
+                .Select(x => (ConceptoGastoDto)x)
+                .ToList();
+
+            if (id != 0)
+            {
+                var conceptoGasto = (ConceptoGastoDto)_servicioConceptoGasto.Obtener(id);
 
                 if (conceptoGasto.Eliminado)
-                    cmbConcepto.Items.Add(conceptoGasto);
-
-                cmbConcepto.SelectedItem = conceptoGasto;
+                    lstConceptos.Add(conceptoGasto);
             }
+
+            PoblarComboBox(cmbConcepto, lstConceptos, "Descripcion", "Id");
         }
 
         public override bool VerificarDatosObligatorios()
         {
+            bool ok = true;
+
             if (nudMontoPagar.Value <= 0)
             {
                 Validar.SetErrorProvider(nudMontoPagar, "El monto de gasto debe ser superior a 0.");
-                return false;
+                ok = false;
             }
             else Validar.ClearErrorProvider(nudMontoPagar);
 
-            return ValidateChildren();
+            if (cmbConcepto.Items.Count < 1 || cmbConcepto.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbConcepto, "Seleccione un concepto de gasto.");
+                ok = false;
+            }
+            else Validar.ClearErrorProvider(cmbConcepto);
+
+            ok &= ValidateChildren();
+
+            return ok;
         }
 
         public override bool VerificarSiExiste(long? id = null)
