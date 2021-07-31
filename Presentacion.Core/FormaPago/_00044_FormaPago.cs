@@ -48,36 +48,36 @@
         private void _00044_FormaPago_Load(object sender, EventArgs e)
         {
             Validar.ComoNumero(txtNumeroCheque);
-            nudMontoCheque.Maximum = TotalAPagar;
-            txtNumeroCheque.MaxLength = 10;
-            dtpFechaVencimientoCheque.MinDate = DateTime.Today.AddDays(-30);
-            dtpFechaVencimientoCheque.MaxDate = DateTime.Today.AddDays(180);
-            PoblarComboBox(
-                cmbBanco,
-                (List<BancoDto>)bancoServicio.Obtener(string.Empty, false),
-                "Descripcion", "Id"
-                );
-
-            Validar.ComoNumero(txtNumeroTarjeta);
-            Validar.ComoNumero(txtCuponPago);
-            nudMontoTarjeta.Maximum = TotalAPagar;
-            nudCantidadCuotas.Maximum = 18;
-            PoblarComboBox(
-                cmbTarjeta,
-                (List<TarjetaDto>)tarjetaServicio.Obtener(string.Empty, false),
-                "Descripcion", "Id"
-                );
-
             Validar.ComoTexto(txtApellido);
             Validar.ComoTexto(txtNombre);
             Validar.ComoDni(txtDni);
+            Validar.ComoNumero(txtNumeroTarjeta);
+            Validar.ComoNumero(txtCuponPago);
+
+            dtpFechaVencimientoCheque.MinDate = DateTime.Today.AddDays(-30);
+            dtpFechaVencimientoCheque.MaxDate = DateTime.Today.AddDays(180);
+            nudMontoTarjeta.Maximum = TotalAPagar;
+            nudCantidadCuotas.Maximum = 18;
             nudMontoCtaCte.Maximum = TotalAPagar;
+            nudMontoCheque.Maximum = TotalAPagar;
+            txtNumeroCheque.MaxLength = 10;
+
+            PoblarComboBox(
+                cmbBanco,
+                bancoServicio.Obtener(string.Empty, false),
+                "Descripcion", "Id"
+                );
+
+            PoblarComboBox(
+                cmbTarjeta,
+                tarjetaServicio.Obtener(string.Empty, false),
+                "Descripcion", "Id"
+                );
 
             lblTotalEfectivo.Text = 0.ToString("c");
             lblTotalCuentaCorriente.Text = 0.ToString("c");
             lblTotalCheque.Text = 0.ToString("c");
             lblTotalTarjeta.Text = 0.ToString("c");
-
             lblVuelto.Text = 0.ToString("c");
 
             CargarDatos();

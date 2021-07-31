@@ -90,7 +90,10 @@ namespace Presentacion.Core.Caja
 
         private void ActualizarDatos(string txtBuscar, bool buscarFecha = false, DateTime? desde = null, DateTime? hasta = null)
         {
-            dgvGrilla.DataSource = servicio.Obtener(txtBuscar, buscarFecha, desde ?? DateTime.Now, hasta ?? DateTime.Now);
+            dgvGrilla.DataSource = servicio.Obtener(txtBuscar, buscarFecha, desde ?? DateTime.Now, hasta ?? DateTime.Now)
+                .OrderByDescending(x => x.FechaApertura)
+                .ThenByDescending(x => x.FechaCierre)
+                .ToList();
 
             FormatearGrilla(dgvGrilla);
         }
@@ -157,15 +160,8 @@ namespace Presentacion.Core.Caja
             ActualizarDatos(string.Empty);
         }
 
-        private void btnCierreCaja_Click(object sender, EventArgs e)
+        private void btnVistaCaja_Click(object sender, EventArgs e)
         {
-            // Verificar que la caja no este abierta
-            if (!servicio.VerificarSiExisteCajaAbierta(Identidad.UsuarioId))
-            {
-                Mjs.Alerta("No hay una caja para cerrar.");
-                return;
-            }
-
             var fCerrarCaja = new _00040_CierreCaja(cajaDto);
             fCerrarCaja.ShowDialog();
 

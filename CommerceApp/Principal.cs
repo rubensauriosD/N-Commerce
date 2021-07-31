@@ -154,11 +154,11 @@
             // Verificar que la caja este abierta
             if (!_cajaServicio.VerificarSiExisteCajaAbierta(Identidad.UsuarioId))
             {
-                Mjs.Alerta("No hay una caja abierta.");
+                Mjs.Alerta("El usuario no tiene una caja abierta.");
                 return;
             }
 
-            var cajaActiva = ObjectFactory.GetInstance<ICajaServicio>().ObtenerCajaAciva(Identidad.UsuarioId);
+            var cajaActiva = _cajaServicio.ObtenerCajaAciva(Identidad.UsuarioId);
             new _00040_CierreCaja(cajaActiva).ShowDialog();
         }
 

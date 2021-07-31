@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using Aplicacion.Constantes;
     using Dominio.UnidadDeTrabajo;
     using Infraestructura.UnidadDeTrabajo;
     using IServicio.Caja.DTOs;
@@ -70,6 +71,13 @@
             null).Any();
         }
 
+        public bool VerificarSiCajaFueCerrada(long cajaId)
+        {
+            return _unidadDeTrabajo.CajaRepositorio
+                .Obtener(cajaId)
+                .UsuarioCierreId.HasValue;
+        }
+
         public IEnumerable<CajaDto> Obtener(string cadenaBuscar, bool filtroPorFecha, DateTime fechaDesde, DateTime fechaHasta)
         {
             Expression<Func<Dominio.Entidades.Caja, bool>> filtro = x =>
@@ -123,18 +131,19 @@
             }
         }
 
-        public void Cerrar(long usuarioId, decimal monto)
+        public void Cerrar(long cajaId, decimal monto)
         {
             try
             {
-                var caja = _unidadDeTrabajo.CajaRepositorio.Obtener()
-                    .ToList()
-                    .LastOrDefault(x => x.UsuarioAperturaId == usuarioId && x.UsuarioCierreId == null);
+                var caja = _unidadDeTrabajo.CajaRepositorio.Obtener(cajaId);
 
                 if (caja == null)
                     throw new Exception("No se encontro una caja para cerrar");
 
-                caja.UsuarioCierreId = usuarioId;
+                if(caja.UsuarioCierreId.HasValue)
+                    throw new Exception("La caja ya se encuentra cerrada.");
+
+                caja.UsuarioCierreId = Identidad.UsuarioId;
                 caja.FechaCierre = DateTime.Now;
                 caja.MontoCierre = monto;
 

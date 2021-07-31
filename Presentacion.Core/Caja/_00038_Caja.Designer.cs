@@ -36,7 +36,7 @@ namespace Presentacion.Core.Caja
             this.pnlSeparador = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAbrirCaja = new System.Windows.Forms.ToolStripButton();
-            this.btnCierreCaja = new System.Windows.Forms.ToolStripButton();
+            this.btnVistaCaja = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnActualizar = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
@@ -93,7 +93,7 @@ namespace Presentacion.Core.Caja
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAbrirCaja,
-            this.btnCierreCaja,
+            this.btnVistaCaja,
             this.toolStripSeparator1,
             this.btnActualizar,
             this.btnSalir});
@@ -117,18 +117,18 @@ namespace Presentacion.Core.Caja
             this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
             // 
-            // btnCierreCaja
+            // btnVistaCaja
             // 
-            this.btnCierreCaja.BackColor = System.Drawing.Color.White;
-            this.btnCierreCaja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCierreCaja.ForeColor = System.Drawing.Color.Black;
-            this.btnCierreCaja.Image = Imagen.Ver;
-            this.btnCierreCaja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCierreCaja.Name = "btnCierreCaja";
-            this.btnCierreCaja.Size = new System.Drawing.Size(61, 50);
-            this.btnCierreCaja.Text = "Ver Caja";
-            this.btnCierreCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
+            this.btnVistaCaja.BackColor = System.Drawing.Color.White;
+            this.btnVistaCaja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVistaCaja.ForeColor = System.Drawing.Color.Black;
+            this.btnVistaCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnVistaCaja.Image")));
+            this.btnVistaCaja.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVistaCaja.Name = "btnVistaCaja";
+            this.btnVistaCaja.Size = new System.Drawing.Size(61, 50);
+            this.btnVistaCaja.Text = "Ver Caja";
+            this.btnVistaCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVistaCaja.Click += new System.EventHandler(this.btnVistaCaja_Click);
             // 
             // toolStripSeparator1
             // 
@@ -257,7 +257,7 @@ namespace Presentacion.Core.Caja
         private System.Windows.Forms.Panel pnlSeparador;
         private System.Windows.Forms.ToolStrip toolStrip1;
         protected System.Windows.Forms.ToolStripButton btnAbrirCaja;
-        protected System.Windows.Forms.ToolStripButton btnCierreCaja;
+        protected System.Windows.Forms.ToolStripButton btnVistaCaja;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripButton btnActualizar;
         protected System.Windows.Forms.ToolStripButton btnSalir;

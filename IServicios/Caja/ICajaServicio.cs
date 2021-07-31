@@ -8,6 +8,8 @@
     {
         bool VerificarSiExisteCajaAbierta(long usuarioId);
 
+        bool VerificarSiCajaFueCerrada(long cajaId);
+
         decimal ObtenerMontoCajaAnterior(long usuarioId);
 
         IEnumerable<CajaDto> Obtener(string cadenaBuscar, bool filtroPorFecha, DateTime fechaDesde, DateTime fechaHasta);
@@ -18,6 +20,6 @@
 
         void Abrir(long usuarioId, decimal monto);
 
-        void Cerrar(long usuarioId, decimal monto);
+        void Cerrar(long cajaId, decimal monto);
     }
 }

@@ -2,17 +2,40 @@
 {
     using System.Windows.Forms;
     using IServicio.Caja;
+    using IServicio.Caja.DTOs;
+    using IServicios.Caja;
     using PresentacionBase.Formularios;
 
     public partial class _00043_Gastos : FormConsulta
     {
         private readonly IGastoServicio _gastoServicio;
+        private readonly ICajaServicio _cajaServicio;
 
-        public _00043_Gastos(IGastoServicio gastoServicio)
+        public _00043_Gastos(IGastoServicio gastoServicio, ICajaServicio cajaServicio)
         {
             InitializeComponent();
 
             _gastoServicio = gastoServicio;
+            _cajaServicio = cajaServicio;
+        }
+
+        public override void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            base.dgvGrilla_RowEnter(sender, e);
+
+            var gasto = EntidadSeleccionada as GastoDto;
+
+            if (_cajaServicio.VerificarSiCajaFueCerrada(gasto.CajaId))
+            { 
+                btnEliminar.Enabled = false;
+                btnModificar.Enabled = false;
+            }
+            else
+            { 
+                btnEliminar.Enabled = true;
+                btnModificar.Enabled = true;
+            }
+
         }
 
         public override void ActualizarDatos(DataGridView dgv, string cadenaBuscar)

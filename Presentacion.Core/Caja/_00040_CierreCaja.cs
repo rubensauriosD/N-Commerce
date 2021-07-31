@@ -30,8 +30,7 @@
 
         private void _00040_CierreCaja_Load(object sender, EventArgs e)
         {
-            if (caja.UsuarioCierreId.HasValue && caja.UsuarioCierreId != 0)
-                BloquearCierreCaja();
+            ChequearSiPuedeCerrarLaCaja();
 
             lblMontoInicial.Text = caja.MontoAperturaStr;
             lblMontoCierre.Text = caja.MontoCierreCalculadoStr;
@@ -49,6 +48,18 @@
 
             ActalizarTotalArqueo();
             nudArqueoEfectivo.Focus();
+        }
+
+        private void ChequearSiPuedeCerrarLaCaja()
+        {
+            bool puedeCerrarCaja = true;
+
+            //puedeCerrarCaja &= caja.UsuarioAperturaId == Identidad.UsuarioId;
+
+            puedeCerrarCaja &= !(caja.UsuarioCierreId != 0);
+
+            if (!puedeCerrarCaja)
+                BloquearCierreCaja();
         }
 
         private void BloquearCierreCaja()
@@ -86,7 +97,7 @@
             if (totalArqueo != caja.MontoCierreCalculado && !Mjs.Preguntar(mjs))
                     return;
 
-            _cajaServicio.Cerrar(Identidad.UsuarioId, totalArqueo);
+            _cajaServicio.Cerrar(caja.Id, totalArqueo);
             Close();
         }
 

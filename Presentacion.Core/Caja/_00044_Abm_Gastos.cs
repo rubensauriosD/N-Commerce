@@ -39,6 +39,7 @@
             {
                 Mjs.Alerta("No se puede continuar con la operación porqué no hay una caja abierta.");
                 Close();
+                return;
             }
 
             cajaActivaId = (long)cajaId;
