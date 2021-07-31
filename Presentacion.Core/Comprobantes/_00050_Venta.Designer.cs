@@ -283,8 +283,8 @@
             this.nudCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudCantidad.Location = new System.Drawing.Point(501, 150);
             this.nudCantidad.Maximum = new decimal(new int[] {
-            1316134912,
-            2328,
+            999999,
+            0,
             0,
             0});
             this.nudCantidad.Name = "nudCantidad";
@@ -576,6 +576,11 @@
             this.nudDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDescuento.ForeColor = System.Drawing.Color.Black;
             this.nudDescuento.Location = new System.Drawing.Point(585, 51);
+            this.nudDescuento.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(187, 22);
             this.nudDescuento.TabIndex = 9;

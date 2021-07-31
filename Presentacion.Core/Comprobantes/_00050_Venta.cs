@@ -610,11 +610,8 @@
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
-            if (facturaView.Items.Count < 1)
-            {
-                Mjs.Alerta("No hay elementos para mostrar.");
+            if (!DatosIngresadosCorrectos())
                 return;
-            }
 
             facturaView.TipoComprobante = (TipoComprobante)cmbComprobanteTipo.SelectedItem;
             facturaView.PuestoVentaId = (long)cmbPuestoVenta.SelectedValue;
@@ -660,6 +657,35 @@
             ImprimirFactura(nuevaFactura, facturaView.Cliente.ApyNom);
 
             LimpiarParaNuevaFactura();
+        }
+
+        private bool DatosIngresadosCorrectos()
+        {
+            bool ok = true;
+
+            if (cmbComprobanteListaPrecio.Items.Count < 1 || cmbComprobanteListaPrecio.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbComprobanteListaPrecio, "Seleccione una lista de precios.");
+                ok = false;
+            }
+            else 
+                Validar.ClearErrorProvider(cmbComprobanteListaPrecio);
+
+            if (cmbPuestoVenta.Items.Count < 1 || cmbPuestoVenta.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbPuestoVenta, "Seleccione un puesto de venta.");
+                ok = false;
+            }
+            else 
+                Validar.ClearErrorProvider(cmbPuestoVenta);
+
+            if (facturaView.Items.Count < 1)
+            {
+                Mjs.Alerta("No hay elementos para mostrar.");
+                ok = false;
+            }
+
+            return ok;
         }
 
         private void ImprimirFactura(FacturaDto factura, string cliente)
