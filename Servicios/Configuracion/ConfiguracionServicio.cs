@@ -132,7 +132,7 @@
                 PresupuestoDescuentaStock = false,
                 RemitoDescuentaStock = false,
                 ListaPrecioPorDefectoId = 1,
-                ObservacionEnPieFactura = "***",
+                ObservacionEnPieFactura = "",
                 PuestoCajaSeparado = true,
                 TipoFormaPagoPorDefectoVenta = Aplicacion.Constantes.TipoPago.Efectivo,
                 UnificarRenglonesIngresarMismoProducto = true,

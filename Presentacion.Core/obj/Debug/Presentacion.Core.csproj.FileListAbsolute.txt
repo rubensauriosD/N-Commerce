@@ -306,3 +306,4 @@ D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.csproj.CoreComp
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.csproj.CopyComplete
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.dll
 D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.pdb
+D:\Code\N-Commerce\Presentacion.Core\obj\Debug\Presentacion.Core.FormaPago._00045_Tarjeta.resources

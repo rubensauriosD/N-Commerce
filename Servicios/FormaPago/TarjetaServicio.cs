@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Dominio.UnidadDeTrabajo;
-using IServicio.BaseDto;
-using IServicio.FormaPago;
-using IServicios.FormaPago.DTOs;
-using Servicios.Base;
-
-namespace Servicios.FormaPago
+﻿namespace Servicios.FormaPago
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Dominio.UnidadDeTrabajo;
+    using IServicio.BaseDto;
+    using IServicio.FormaPago;
+    using IServicios.FormaPago.DTOs;
+    using Servicios.Base;
+
     public class TarjetaServicio : ITarjetaServicio
     {
         private readonly IUnidadDeTrabajo _unidadDeTrabajo;

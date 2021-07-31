@@ -42,15 +42,17 @@
                 // Tarjeta
                 //
                 if (!context.Tarjetas.Any())
+                { 
                     context.Tarjetas.Add(new Tarjeta
                     {
                         Descripcion = "VISA",
                     });
 
-                context.Tarjetas.Add(new Tarjeta
-                {
-                    Descripcion = "MASTER",
-                });
+                    context.Tarjetas.Add(new Tarjeta
+                    {
+                        Descripcion = "MASTER",
+                    });
+                }
 
                 //
                 // Banco

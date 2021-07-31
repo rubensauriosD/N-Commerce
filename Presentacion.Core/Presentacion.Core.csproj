@@ -609,6 +609,9 @@
     <EmbeddedResource Include="Cliente\_00034_ClienteCtaCte.resx">
       <DependentUpon>_00034_ClienteCtaCte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormaPago\_00045_Tarjeta.resx">
+      <DependentUpon>_00045_Tarjeta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormaPago\_00055_Cheque.resx">
       <DependentUpon>_00055_Cheque.cs</DependentUpon>
     </EmbeddedResource>

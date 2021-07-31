@@ -94,6 +94,7 @@
 
             // Bascula
             validar.ComoNumero(txtDigitosComienzoCodigo);
+            txtDigitosComienzoCodigo.MaxLength = 4;
         }
 
         private void PoblarComboBoxes()
@@ -305,9 +306,9 @@
             _configuracion.Direccion = txtDireccion.Text;
             _configuracion.Email = txtEmail.Text;
 
-            _configuracion.ProvinciaId = (long)cmbProvincia.SelectedValue;
-            _configuracion.DepartamentoId = (long)cmbProvincia.SelectedValue;
-            _configuracion.LocalidadId = (long)cmbProvincia.SelectedValue;
+            //_configuracion.ProvinciaId = (long)cmbProvincia.SelectedValue;
+            //_configuracion.DepartamentoId = (long)cmbProvincia.SelectedValue;
+            _configuracion.LocalidadId = (long)cmbLocalidad.SelectedValue;
 
             //
             // Datos del Stock
@@ -354,12 +355,13 @@
             if (!validar.EsCuit(txtCUIL.Text, out string errMjs))
             {
                 validar.SetErrorProvider(txtCUIL, errMjs);
+                tabControlConfig.SelectedIndex = 0;
                 ok = false;
             }
             else
                 validar.ClearErrorProvider(txtCUIL);
 
-            if (_configuracion.ProvinciaId < 1)
+            if (cmbProvincia.SelectedValue == null || cmbProvincia.Items.Count < 1)
             {
                 validar.SetErrorProvider(cmbProvincia, "Debes seleccionar una provincia.");
                 ok = false;
@@ -367,21 +369,32 @@
             else
                 validar.ClearErrorProvider(cmbProvincia);
 
-            if(_configuracion.LocalidadId < 1)
+            if (cmbLocalidad.SelectedValue == null || cmbLocalidad.Items.Count < 1)
             {
                 validar.SetErrorProvider(cmbLocalidad, "Debes seleccionar una localidad.");
+                tabControlConfig.SelectedIndex = 0;
                 ok = false;
             }
             else
                 validar.ClearErrorProvider(cmbLocalidad);
 
-            if (_configuracion.DepartamentoId < 1)
+            if (cmbDepartamento.SelectedValue == null || cmbDepartamento.Items.Count < 1)
             {
                 validar.SetErrorProvider(cmbDepartamento, "Debes seleccionar una departamento.");
+                tabControlConfig.SelectedIndex = 0;
                 ok = false;
             }
             else
                 validar.ClearErrorProvider(cmbDepartamento);
+
+            if (chkActibarBascula.Checked && string.IsNullOrEmpty(txtDigitosComienzoCodigo.Text))
+            {
+                validar.SetErrorProvider(txtDigitosComienzoCodigo, "Ingrese un codigo.");
+                tabControlConfig.SelectedIndex = 4;
+                ok = false;
+            }
+            else
+                validar.ClearErrorProvider(txtDigitosComienzoCodigo);
 
             if (!ok)
                 Mjs.Alerta("Alguno de los datos ingresados son incorrectos.");
