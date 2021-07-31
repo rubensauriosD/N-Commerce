@@ -169,6 +169,7 @@
                         }).ToList();
 
                 var gastos = (x.Gastos ?? new List<Dominio.Entidades.Gasto>())
+                        .Where(g => !g.EstaEliminado)
                         .Select(d => new GastoDto()
                         {
                             Id = d.Id,
