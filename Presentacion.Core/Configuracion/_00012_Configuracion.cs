@@ -139,7 +139,7 @@
         private void CargarComboDepartamento(long idElemento = 0)
         {
             var lstDepartamentos = new List<DepartamentoDto>();
-            if (cmbProvincia.Items.Count > 0 || cmbProvincia.SelectedValue != null)
+            if (cmbProvincia.Items.Count > 0 && cmbProvincia.SelectedValue != null)
                 lstDepartamentos = _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue)
                     .Select(x => (DepartamentoDto)x)
                     .ToList();
@@ -159,7 +159,7 @@
         {
             var lstLocalidades = new List<LocalidadDto>();
 
-            if (cmbDepartamento.Items.Count > 0 || cmbDepartamento.SelectedValue != null)
+            if (cmbDepartamento.Items.Count > 0 && cmbDepartamento.SelectedValue != null)
                 lstLocalidades = _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue)
                     .Select(x => (LocalidadDto)x)
                     .ToList();
@@ -420,8 +420,6 @@
                 return;
 
             _configuracion.DepartamentoId = (long)cmbDepartamento.SelectedValue;
-
-            CargarComboDepartamento(_configuracion.DepartamentoId);
 
             CargarComboLocalidad();
         }

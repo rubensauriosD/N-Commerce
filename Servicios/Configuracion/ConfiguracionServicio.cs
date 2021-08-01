@@ -114,7 +114,7 @@
 
                 // TODO: Borrar los datos generales de la configuracion para que los cargue el usuario
                 // Genereales
-                LocalidadId = 1,
+                LocalidadId = 12,
                 RazonSocial = "RAZÓN SOCIAL",
                 NombreFantasia = "NOMBRE FANTASÍA",
                 Cuit = "30991236549",
