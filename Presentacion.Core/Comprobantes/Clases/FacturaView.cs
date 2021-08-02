@@ -42,16 +42,18 @@
 
         public void AgregarItem(ItemView item, bool unificarLineas)
         {
-            if (unificarLineas 
-                && !item.EsArticuloAlternativo
-                && !item.IngresoPorBascula
-                && Items.Any(x => x.Codigo == item.Codigo
-                                  && x.ListaPrecioId == item.ListaPrecioId
-                                  && !x.EsArticuloAlternativo
-                                  && !x.IngresoPorBascula))
+            unificarLineas &= !item.EsArticuloAlternativo;
+                unificarLineas &= !item.IngresoPorBascula;
+            unificarLineas &= Items.Any(x => x.Codigo == item.Codigo
+                              && x.ListaPrecioId == item.ListaPrecioId
+                              && !x.EsArticuloAlternativo
+                              && !x.IngresoPorBascula
+                              && x.Precio == item.Precio);
+            if (unificarLineas)
             {
                 var it = Items.First(x => x.Codigo == item.Codigo
-                                        && x.ListaPrecioId == item.ListaPrecioId);
+                                        && x.ListaPrecioId == item.ListaPrecioId
+                                        && x.Precio == item.Precio);
                 it.Cantidad += item.Cantidad;
                 return;
             }

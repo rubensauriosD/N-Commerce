@@ -18,7 +18,7 @@
 
         IEnumerable<ArticuloVentaDto> ObtenerLookUp(string cadenaBuasar, long listaPreciosId);
 
-        ArticuloVentaDto ObtenerPorCodigo(string codigo, long depositoId, long listaPrecioId);
+        ArticuloVentaDto ObtenerPorCodigo(int codigo, long depositoId, long listaPrecioId);
 
         ArticuloCompraDto ObtenerPorCodigo(string codigo);
 

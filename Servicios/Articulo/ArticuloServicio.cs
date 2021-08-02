@@ -287,12 +287,10 @@
                 .ToList();
         }
 
-        public ArticuloVentaDto ObtenerPorCodigo(string codigo, long listaPrecioId, long depositoId)
+        public ArticuloVentaDto ObtenerPorCodigo(int codigo, long listaPrecioId, long depositoId)
         {
-            int.TryParse(codigo, out int _codigo);
-
             return _unidadDeTrabajo.ArticuloRepositorio
-                .Obtener(x => (x.CodigoBarra == codigo || x.Codigo == _codigo) && !x.EstaEliminado,
+                .Obtener(x => (x.CodigoBarra == codigo.ToString() || x.Codigo == codigo) && !x.EstaEliminado,
                     "Rubro, Marca, UnidadMedida, Iva, Stocks, Stocks.Deposito, Precios")
                 .Select(x => new ArticuloVentaDto()
                 {

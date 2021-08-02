@@ -307,6 +307,7 @@
             if (codigo == string.Empty || e.KeyChar != (char)Keys.Enter)
                 return;
 
+
             // Codigo con *
             if (codigo.Contains("*") && ObtenerArticuloAlternativo(codigo))
             {
@@ -317,25 +318,25 @@
             }
 
             // Codigo con Bascula
-            if (configuracion.ActivarBascula
-                && codigo.Length == 13
-                && configuracion.CodigoBascula == codigo.Substring(0, 4)
-                && ObtenerArticuloBascula(codigo))
+            if (ObtenerCodigoDeBascula(codigo, out string[] codigoBascula))
             {
                 // Agregar Item
-                item.IngresoPorBascula = true;
-                btnAgregarItem.PerformClick();
+                if (ObtenerArticuloBascula(codigoBascula[1], codigoBascula[2]))
+                { 
+                    item.IngresoPorBascula = true;
+                    btnAgregarItem.PerformClick();
+                }
                 return;
             }
 
             // Codigo de Barra
-            articuloSeleccionado = _articuloServicio.ObtenerPorCodigo(txtCodigo.Text,
-                listaPrecioSeleccionada.Id,
-                configuracion.DepositoVentaId);
+            if (!int.TryParse(codigo, out int codigoArticulo))
+                return;
 
-            if (articuloSeleccionado == null)
+            // Intento obtener el aritulo
+            if (!ObtenerArticuloPorCodigo(codigoArticulo))
             {
-                Mjs.Error("Código no encontrado.");
+                Mjs.Alerta("No se pudo encontrar el árticulo.");
                 txtCodigo.Clear();
                 txtCodigo.Focus();
                 return;
@@ -344,20 +345,40 @@
             btnAgregarItem.PerformClick();
         }
 
-        private bool ObtenerArticuloBascula(string codigo)
+        private bool ObtenerCodigoDeBascula(string codigo, out string[] codigoBascula)
         {
-            if (!int.TryParse(codigo.Substring(4, 3), out int codigoArticulo)
-                || !decimal.TryParse(codigo.Substring(7, 5), out decimal precioPeso))
+            codigoBascula = new string[4];
+
+            if(!configuracion.ActivarBascula || codigo.Length != 13)
+                return false;
+
+            codigoBascula[0] = codigo.Substring(0, 4);
+            codigoBascula[1] = codigo.Substring(4, 3);
+            codigoBascula[2] = codigo.Substring(7, 5);
+            codigoBascula[3] = codigo.Substring(12, 1);
+
+            Mjs.Info($"{codigoBascula[0]} {codigoBascula[1]} {codigoBascula[2]} {codigoBascula[3]} ");
+
+            if (codigoBascula[0] != configuracion.CodigoBascula)
+                return false;
+
+            return true;
+        }
+
+        private bool ObtenerArticuloBascula(string codigoStr, string precioPesoStr)
+        {
+            if (!int.TryParse(codigoStr, out int codigo))
+                return false;
+
+            if (!decimal.TryParse(precioPesoStr, out decimal precioPeso))
                 return false;
 
             // Intento obtener el aritulo
-            articuloSeleccionado = _articuloServicio.ObtenerPorCodigo(
-                codigoArticulo.ToString(),
-                listaPrecioSeleccionada.Id,
-                configuracion.DepositoVentaId);
-
-            if (articuloSeleccionado == null)
+            if (!ObtenerArticuloPorCodigo(codigo))
+            {
+                Mjs.Alerta("No se pudo encontrar el árticulo.");
                 return false;
+            }
 
             if (configuracion.EtiquetaPorPrecio)
                 articuloSeleccionado.Precio = precioPeso / 100;
@@ -372,22 +393,23 @@
         {
             var codigoBuscar = codigo.Substring(0, codigo.IndexOf("*"));
 
+            // Obtener el precio alternativo
+            if (!decimal.TryParse(codigo.Substring(codigo.IndexOf("*") + 1), out decimal precioAlternativo))
+            {
+                Mjs.Alerta("Error al leer el precio ingresado.");
+                return false;
+            }
+
             // Si no ingreso el codigo regreso
             if (string.IsNullOrEmpty(codigoBuscar))
                 return false;
 
             // Intento obtener el aritulo
-            articuloSeleccionado = _articuloServicio.ObtenerPorCodigo(codigoBuscar,
-                listaPrecioSeleccionada.Id,
-                configuracion.DepositoVentaId);
-
-            // Si no se pudo obtener el articulo
-            if (articuloSeleccionado == null)
+            if (!ObtenerArticuloPorCodigo(int.Parse(codigoBuscar)))
+            {
+                Mjs.Alerta("No se pudo encontrar el árticulo.");
                 return false;
-
-            // Obtener el precio alternativo
-            if (!decimal.TryParse(codigo.Substring(codigo.IndexOf("*") + 1), out decimal precioAlternativo))
-                return false;
+            }
 
             articuloSeleccionado.Precio = precioAlternativo;
 
@@ -411,12 +433,28 @@
             if (articuloLookUp.EntidadSeleccionada == null)
                 return;
 
-            articuloSeleccionado = _articuloServicio.ObtenerPorCodigo(
-                ((ArticuloDto)articuloLookUp.EntidadSeleccionada).Codigo.ToString(),
-                listaPrecioSeleccionada.Id,
-                configuracion.DepositoVentaId);
+            if (!ObtenerArticuloPorCodigo(((ArticuloDto)articuloLookUp.EntidadSeleccionada).Codigo))
+            {
+                Mjs.Alerta("El código seleccionado no pertenece a un artículo.");
+                return;
+            }
 
             btnAgregarItem.PerformClick();
+        }
+
+        public bool ObtenerArticuloPorCodigo(int codigo)
+        {
+            long listaPrecios = listaPrecioSeleccionada.Id;
+            long deposito = configuracion.DepositoVentaId;
+            ArticuloVentaDto articulo;
+
+            articulo = _articuloServicio.ObtenerPorCodigo(codigo, listaPrecios, deposito);
+
+            if (articulo == null)
+                return false;
+
+            articuloSeleccionado = articulo;
+            return true;
         }
 
         // --- Evnto de BtnAgregar
@@ -767,6 +805,9 @@
 
         private void ImprimirPresupuesto(PresupuestoDto presupuesto)
         {
+            var observaciones = configuracion.ObservacionEnPieFactura != ""
+                ? configuracion.ObservacionEnPieFactura : "---";
+
             var items = presupuesto.Items
                 .Select(i => new InformePresupuestoDetalleDto()
                 {
@@ -783,7 +824,8 @@
                 new ReportParameter("SubTotal", presupuesto.SubTotal.ToString("c")),
                 new ReportParameter("Iva", (presupuesto.Iva105 + presupuesto.Iva21).ToString("c")),
                 new ReportParameter("Descuento", presupuesto.Descuento.ToString("c")),
-                new ReportParameter("Total", presupuesto.Total.ToString("C2"))
+                new ReportParameter("Total", presupuesto.Total.ToString("C2")),
+                new ReportParameter("Observaciones", observaciones)
             };
             
             var form = new FormBase();
