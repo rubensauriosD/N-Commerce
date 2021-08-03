@@ -29,3 +29,4 @@ D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.
 D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csproj.CoreCompileInputs.cache
 D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.dll
 D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.pdb
+D:\Code\N-Commerce\Aplicacion.Constantes\obj\Debug\Aplicacion.Constantes.csprojAssemblyReference.cache

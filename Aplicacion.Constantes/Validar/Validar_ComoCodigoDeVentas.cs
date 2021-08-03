@@ -6,16 +6,16 @@
 
     public partial class Validar
     {
-        public void ComoCodigoBarra(Control control, bool obligatorio = false)
+        public void ComoCodigoDeVentas(Control control, bool obligatorio = false)
         {
             if (control is TextBox)
-                ConfigurarProiedadesCodigoBarra(control as TextBox);
+                ConfigurarProiedadesCodigoDeVentas(control as TextBox);
 
             Validador validador = (string txt, out string errMjs) =>
             {
-                errMjs = "Código barra debe una cadena númerica de 100 dígitos como máximo.";
+                errMjs = "Código inválido.";
 
-                bool ok = txt.All(c => char.IsDigit(c) || char.IsWhiteSpace(c) || c == '\b');
+                bool ok = txt.All(c => char.IsDigit(c) || c == '*' || c == ',' || c == '\b');
 
                 ok &= txt.Length <= 100;
 
@@ -47,10 +47,10 @@
                 => errorProvider.SetError((Control)sender, "");
         }
 
-        private void ConfigurarProiedadesCodigoBarra(TextBox textBox)
+        private void ConfigurarProiedadesCodigoDeVentas(TextBox textBox)
         {
             textBox.MaxLength = 100;
-            textBox.TextAlign = HorizontalAlignment.Left;
+            textBox.TextAlign = HorizontalAlignment.Center;
         }
     }
 }

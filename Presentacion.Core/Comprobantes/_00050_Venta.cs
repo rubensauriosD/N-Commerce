@@ -99,7 +99,7 @@
         private void _00050_Venta_Load(object sender, EventArgs e)
         {
             Validar.ComoDni(txtClienteDni);
-            Validar.ComoAlfanumerico(txtCodigo);
+            Validar.ComoCodigoDeVentas(txtCodigo);
             Validar.ComoNumero(txtPrecioUnitario);
 
             if (!ObjectFactory.GetInstance<ICajaServicio>().VerificarSiExisteCajaAbierta(Identidad.UsuarioId))
@@ -391,21 +391,22 @@
 
         private bool ObtenerArticuloAlternativo(string codigo)
         {
-            var codigoBuscar = codigo.Substring(0, codigo.IndexOf("*"));
+            var codigoStr = codigo.Substring(0, codigo.IndexOf("*"));
+            var precioStr = codigo.Substring(codigo.IndexOf("*") + 1);
 
             // Obtener el precio alternativo
-            if (!decimal.TryParse(codigo.Substring(codigo.IndexOf("*") + 1), out decimal precioAlternativo))
+            if (!decimal.TryParse(precioStr, out decimal precioAlternativo))
             {
                 Mjs.Alerta("Error al leer el precio ingresado.");
                 return false;
             }
 
             // Si no ingreso el codigo regreso
-            if (string.IsNullOrEmpty(codigoBuscar))
+            if (string.IsNullOrEmpty(codigoStr))
                 return false;
 
             // Intento obtener el aritulo
-            if (!ObtenerArticuloPorCodigo(int.Parse(codigoBuscar)))
+            if (!ObtenerArticuloPorCodigo(int.Parse(codigoStr)))
             {
                 Mjs.Alerta("No se pudo encontrar el árticulo.");
                 return false;

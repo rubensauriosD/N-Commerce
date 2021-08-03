@@ -530,6 +530,7 @@ namespace Presentacion.Core.Configuracion
             this.label4.Size = new System.Drawing.Size(221, 16);
             this.label4.TabIndex = 17;
             this.label4.Text = "Tipo de pago Compras por Defecto";
+            this.label4.Visible = false;
             // 
             // cmbTipoPagoCompraPorDefecto
             // 
@@ -540,6 +541,7 @@ namespace Presentacion.Core.Configuracion
             this.cmbTipoPagoCompraPorDefecto.Name = "cmbTipoPagoCompraPorDefecto";
             this.cmbTipoPagoCompraPorDefecto.Size = new System.Drawing.Size(261, 24);
             this.cmbTipoPagoCompraPorDefecto.TabIndex = 5;
+            this.cmbTipoPagoCompraPorDefecto.Visible = false;
             // 
             // chkActualizaCostoDesdeCompra
             // 
