@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using Aplicacion.Constantes;
+    using IServicio.Configuracion;
+    using IServicio.Configuracion.DTOs;
     using IServicio.FormaPago;
     using IServicio.Persona;
     using IServicio.Persona.DTOs;
@@ -15,7 +17,6 @@
     {
         private readonly IBancoServicio bancoServicio;
         private readonly ITarjetaServicio tarjetaServicio;
-        private readonly IClienteServicio clienteServicio;
 
         public List<FormaPagoDto> FormasPago { get; private set; }
         public bool RealizoOperaciones { get; private set; } = false;
@@ -32,12 +33,29 @@
 
             bancoServicio = ObjectFactory.GetInstance<IBancoServicio>();
             tarjetaServicio = ObjectFactory.GetInstance<ITarjetaServicio>();
-            clienteServicio = ObjectFactory.GetInstance<IClienteServicio>();
 
             TotalAPagar = totalAPagar;
             FormasPago = new List<FormaPagoDto>();
         }
 
+        public _00054_FormaPagoCompra(decimal totalAPagar, TipoPago tipoPago)
+            : this(totalAPagar)
+        {
+            switch (tipoPago)
+            {
+                case TipoPago.Tarjeta:
+                    tabControlFormaPago.SelectedIndex = 0;
+                    break;
+
+                case TipoPago.Cheque:
+                    tabControlFormaPago.SelectedIndex = 1;
+                    break;
+
+                case TipoPago.CtaCte:
+                    tabControlFormaPago.SelectedIndex = 2;
+                    break;
+            }
+        }
         public void HabilitarPagoCuentaCorriente(string nombre, string cuit, decimal saldo = 0, decimal limite = 0)
         {
             tabPageCuentaCorriente.Visible = true;

@@ -104,14 +104,36 @@
 
         public override bool VerificarDatosObligatorios()
         {
-            return ValidateChildren();
+            bool ok = ValidateChildren();
+
+            if (cmbProvincia.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbProvincia, "Seleccionar una provincia.");
+                ok = false;
+            }
+            else Validar.ClearErrorProvider(cmbProvincia);
+
+            if (cmbDepartamento.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbDepartamento, "Seleccionar un departamento.");
+                ok = false;
+            }
+            else Validar.ClearErrorProvider(cmbDepartamento);
+
+            if (cmbLocalidad.SelectedValue == null)
+            {
+                Validar.SetErrorProvider(cmbLocalidad, "Seleccionar una localidad.");
+                ok = false;
+            }
+            else Validar.ClearErrorProvider(cmbLocalidad);
+
+            return ok;
         }
 
         public override bool VerificarSiExiste(long? id = null)
         {
             return _servicio.VerificarSiExisteCuit(txtCUIT.Text, id);
         }
-
 
         // --- Acciones de botones
         public override void EjecutarComandoNuevo()
@@ -164,6 +186,8 @@
                 return;
 
             ActualizarProvincia();
+            ActualizarDepartamento();
+            ActualizarLocalidad();
         }
 
         private void btnNuevoDepartamento_Click(object sender, System.EventArgs e)
@@ -207,45 +231,13 @@
         // --- SELECCION DE LOCALIDAD
         private void cmbProvincia_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
-            if (cmbProvincia.Items.Count < 1)
-            {
-                cmbDepartamento.DataSource = new List<DepartamentoDto>();
-                cmbLocalidad.DataSource = new List<LocalidadDto>();
-                return;
-            }
-
-            PoblarComboBox(
-                cmbDepartamento,
-                _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue),
-                "Descripcion",
-                "Id");
-
-            if (cmbDepartamento.Items.Count < 1)
-            {
-                cmbLocalidad.DataSource = new List<LocalidadDto>();
-                return;
-            }
-
-            PoblarComboBox(
-                cmbLocalidad,
-                _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                "Descripcion",
-                "Id");
+            ActualizarDepartamento();
+            ActualizarLocalidad();
         }
 
         private void cmbDepartamento_SelectionChangeCommitted(object sender, System.EventArgs e)
         {
-            if (cmbDepartamento.Items.Count < 1)
-            {
-                cmbLocalidad.DataSource = new List<LocalidadDto>();
-                return;
-            }
-
-            PoblarComboBox(
-                cmbLocalidad,
-                _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue),
-                "Descripcion",
-                "Id");
+            ActualizarLocalidad();
         }
 
         private void ActualizarProvincia(long id = 0)
@@ -258,7 +250,9 @@
             if (id != 0)
             {
                 ProvinciaDto provincia = (ProvinciaDto)_provinciaServicio.Obtener(id);
-                lstProvincias.Add(provincia);
+
+                if(provincia.Eliminado)
+                    lstProvincias.Add(provincia);
             }
 
             PoblarComboBox(cmbProvincia, lstProvincias, "Descripcion", "Id");
@@ -280,7 +274,9 @@
             if (id != 0)
             {
                 DepartamentoDto departamento = (DepartamentoDto)_departamentoServicio.Obtener(id);
-                lstDepartamentos.Add(departamento);
+
+                if(departamento.Eliminado)
+                    lstDepartamentos.Add(departamento);
             }
 
             PoblarComboBox(cmbDepartamento, lstDepartamentos, "Descripcion", "Id");
@@ -302,7 +298,9 @@
             if (id != 0)
             {
                 LocalidadDto localidad = (LocalidadDto)_localidadServicio.Obtener(id);
-                lstLocalidads.Add(localidad);
+
+                if(localidad.Eliminado)
+                    lstLocalidads.Add(localidad);
             }
 
             PoblarComboBox(cmbLocalidad, lstLocalidads, "Descripcion", "Id");

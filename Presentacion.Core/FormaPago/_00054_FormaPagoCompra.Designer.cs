@@ -785,7 +785,7 @@ namespace Presentacion.Core.FormaPago
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabControlFormaPago);
             this.Name = "_00054_FormaPagoCompra";
-            this.Text = "_00054_FormaPagoCompra";
+            this.Text = "Pago";
             this.Load += new System.EventHandler(this._00054_FormaPagoCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPagaCon)).EndInit();
             this.tabControlFormaPago.ResumeLayout(false);

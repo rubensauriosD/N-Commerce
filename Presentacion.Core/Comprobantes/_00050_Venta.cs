@@ -682,7 +682,7 @@
 
             if (!configuracion.PuestoCajaSeparado)
             { 
-                var fFormaPago = new _00044_FormaPago(facturaView.Total, facturaView.Cliente.Id);
+                var fFormaPago = new _00044_FormaPago(facturaView.Total, facturaView.Cliente.Id, configuracion.TipoFormaPagoPorDefectoVenta);
                 fFormaPago.ShowDialog();
 
                 if (fFormaPago.RealizoVenta)

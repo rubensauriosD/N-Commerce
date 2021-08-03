@@ -9,6 +9,8 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using Aplicacion.Constantes;
+    using IServicio.Configuracion;
+    using IServicio.Configuracion.DTOs;
     using IServicios.Comprobante;
     using IServicios.Comprobante.DTOs;
     using IServicios.FormaPago;
@@ -19,15 +21,21 @@
         private delegate void NoArgDelefate();
         private readonly IFacturaServicio _facturaServicio;
         private readonly IFormaPagoServicios _formaPagoServicios;
+        private readonly ConfiguracionDto configuracion;
         private ComprobantePendienteDto facturaSeleccionada;
 
         public _00049_CobroDiferido(
             IFacturaServicio facturaServicio,
-            IFormaPagoServicios formaPagoServicios)
+            IFormaPagoServicios formaPagoServicios,
+            IConfiguracionServicio configuracionServicios)
         {
             InitializeComponent();
+
             _facturaServicio = facturaServicio;
             _formaPagoServicios = formaPagoServicios;
+
+            configuracion = configuracionServicios.Obtener();
+
             facturaSeleccionada = new ComprobantePendienteDto();
 
             // Libreria para que refresque cada 5 seg la grilla
@@ -131,7 +139,7 @@
             var facturaSeleccionadaMontoPagar = facturaSeleccionada.MontoPagar;
             var facturaSeleccionadaClienteId = facturaSeleccionada.ClienteId;
 
-            var fFormaPago = new _00044_FormaPago(facturaSeleccionadaMontoPagar, facturaSeleccionadaClienteId);
+            var fFormaPago = new _00044_FormaPago(facturaSeleccionadaMontoPagar, facturaSeleccionadaClienteId, configuracion.TipoFormaPagoPorDefectoVenta);
             fFormaPago.ShowDialog();
 
             if (fFormaPago.RealizoVenta)

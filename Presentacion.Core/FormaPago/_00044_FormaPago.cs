@@ -45,6 +45,25 @@
             ClienteSaldoCuentaCorriente = clienteServicio.SaldoCuentaCorriente(Cliente.Id);
         }
 
+        public _00044_FormaPago(decimal totalAPagar, long clienteId, TipoPago formaPago)
+            : this(totalAPagar, clienteId)
+        {
+            switch (formaPago)
+            {
+                case TipoPago.Tarjeta:
+                    tabControlFormaPago.SelectedIndex = 0;
+                    break;
+
+                case TipoPago.Cheque:
+                    tabControlFormaPago.SelectedIndex = 1;
+                    break;
+
+                case TipoPago.CtaCte:
+                    tabControlFormaPago.SelectedIndex = 2;
+                    break;
+            }
+        }
+
         private void _00044_FormaPago_Load(object sender, EventArgs e)
         {
             Validar.ComoNumero(txtNumeroCheque);
