@@ -415,12 +415,6 @@
     <Compile Include="FormaPago\_00049_CobroDiferido.Designer.cs">
       <DependentUpon>_00049_CobroDiferido.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormaPago\_00054_FormaPagoCompra.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormaPago\_00054_FormaPagoCompra.Designer.cs">
-      <DependentUpon>_00054_FormaPagoCompra.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormaPago\_00057_Cheque_Deposito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -665,9 +659,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormaPago\_00049_CobroDiferido.resx">
       <DependentUpon>_00049_CobroDiferido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormaPago\_00054_FormaPagoCompra.resx">
-      <DependentUpon>_00054_FormaPagoCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormaPago\_00056_Cheque_Abm.resx">
       <DependentUpon>_00056_Cheque_Abm.cs</DependentUpon>

@@ -76,14 +76,17 @@
                 txtMail.Text = proveedor.Mail;
 
                 ActualizarCondicionIva(proveedor.CondicionIvaId);
-                ActualizarProvincia(localidad.ProvinciaId);
-                ActualizarDepartamento(localidad.DepartamentoId);
-                ActualizarLocalidad(localidad.Id);
-
                 cmbCondicionIva.SelectedValue = proveedor.CondicionIvaId;
+
+                ActualizarProvincia(localidad.ProvinciaId);
                 cmbProvincia.SelectedValue = localidad.ProvinciaId;
+
+                ActualizarDepartamento(localidad.DepartamentoId);
                 cmbDepartamento.SelectedValue = localidad.DepartamentoId;
+
+                ActualizarLocalidad(localidad.Id);
                 cmbLocalidad.SelectedValue = localidad.Id;
+
             }
         }
 
@@ -266,7 +269,7 @@
                 return;
             }
 
-            var lstDepartamentos = _departamentoServicio.Obtener(string.Empty, false)
+            var lstDepartamentos = _departamentoServicio.ObtenerPorProvincia((long)cmbProvincia.SelectedValue)
                 .Select(x => (DepartamentoDto)x)
                 .OrderBy(x => x.Descripcion)
                 .ToList();
@@ -290,7 +293,7 @@
                 return;
             }
 
-            var lstLocalidads = _localidadServicio.Obtener(string.Empty, false)
+            var lstLocalidads = _localidadServicio.ObtenerPorDepartamento((long)cmbDepartamento.SelectedValue)
                 .Select(x => (LocalidadDto)x)
                 .OrderBy(x => x.Descripcion)
                 .ToList();

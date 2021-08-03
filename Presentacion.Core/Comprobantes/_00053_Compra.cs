@@ -58,7 +58,7 @@
 
             Validar.ComoCuit(txtCuit);
             Validar.ComoNumero(txtCodigo);
-            Validar.ComoNumero(txtNroComprobante);
+            Validar.ComoNumero(txtNroComprobante, true);
 
             dtpFecha.MaxDate = DateTime.Now;
             PoblarComboBox(cmbTipoComprobante, Enum.GetValues(typeof(TipoComprobante)));
