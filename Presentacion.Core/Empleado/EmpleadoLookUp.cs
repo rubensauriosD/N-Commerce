@@ -1,12 +1,11 @@
-﻿using IServicio.Persona;
-using IServicio.Persona.DTOs;
-using IServicio.Usuario;
-using PresentacionBase.Formularios;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace Presentacion.Core.Empleado
+﻿namespace Presentacion.Core.Empleado
 {
+    using IServicio.Persona;
+    using IServicio.Persona.DTOs;
+    using PresentacionBase.Formularios;
+    using System.Linq;
+    using System.Windows.Forms;
+
     public partial class EmpleadoLookUp : FormLookUp
     {
         private readonly IEmpleadoServicio _servicio;
@@ -30,8 +29,10 @@ namespace Presentacion.Core.Empleado
 
         public override void ActualizarDatos(DataGridView dgv, string cadenaBuscar)
         {
-            dgv.DataSource = (List<EmpleadoDto>)_servicio
-                                    .Obtener(typeof(EmpleadoDto), cadenaBuscar);
+            dgv.DataSource = _servicio.Obtener(typeof(EmpleadoDto), cadenaBuscar)
+                .Select(x => (EmpleadoDto)x)
+                .Where(x => !x.Eliminado)
+                .ToList();
 
             base.ActualizarDatos(dgv, cadenaBuscar);
         }

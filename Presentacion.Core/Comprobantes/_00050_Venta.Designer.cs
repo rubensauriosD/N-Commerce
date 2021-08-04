@@ -577,15 +577,11 @@
             this.nudDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDescuento.ForeColor = System.Drawing.Color.Black;
             this.nudDescuento.Location = new System.Drawing.Point(585, 51);
-            this.nudDescuento.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(187, 22);
             this.nudDescuento.TabIndex = 9;
             this.nudDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudDescuento.Leave += new System.EventHandler(this.nudDescuento_Leave);
             // 
             // label12
             // 
@@ -593,7 +589,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(470, 49);
+            this.label12.Location = new System.Drawing.Point(464, 51);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(115, 21);
             this.label12.TabIndex = 8;
@@ -606,7 +602,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(506, 19);
+            this.label11.Location = new System.Drawing.Point(503, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(79, 21);
             this.label11.TabIndex = 6;

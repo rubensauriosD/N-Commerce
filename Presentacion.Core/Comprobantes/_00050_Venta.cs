@@ -357,8 +357,6 @@
             codigoBascula[2] = codigo.Substring(7, 5);
             codigoBascula[3] = codigo.Substring(12, 1);
 
-            Mjs.Info($"{codigoBascula[0]} {codigoBascula[1]} {codigoBascula[2]} {codigoBascula[3]} ");
-
             if (codigoBascula[0] != configuracion.CodigoBascula)
                 return false;
 
@@ -571,6 +569,7 @@
             nudCantidad.Enabled = false;
             txtSubTotalLinea.Clear();
             txtSubTotalLinea.Enabled = false;
+            facturaView.Descuento = 0;
 
             txtCodigo.Clear();
             txtCodigo.Focus();
@@ -837,6 +836,13 @@
                 parametros);
             
             form.ShowDialog();
+        }
+
+        // --- Descuento
+        private void nudDescuento_Leave(object sender, EventArgs e)
+        {
+            facturaView.Descuento = nudDescuento.Value;
+            CargarPieDeComprobante();
         }
     }
 }
