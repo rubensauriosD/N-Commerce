@@ -36,13 +36,14 @@
 
         private void _00030_Abm_BajaArticulos_Load(object sender, EventArgs e)
         {
-            Validar.ComoAlfanumerico(txtObservacion, false);
+            Validar.ComoAlfanumerico(txtObservacion, true);
             txtObservacion.MaxLength = 400;
 
-            var lstMotivosBaja = _motivoBajaServicio.Obtener(string.Empty)
+            var lstMotivosBaja = _motivoBajaServicio.Obtener(string.Empty,false)
                 .Select(x => (MotivoBajaDto)x)
                 .Where(x => x.Id != 1)
                 .ToList();
+
             PoblarComboBox(cmbMotivoBaja, lstMotivosBaja, "Descripcion", "Id");
         }
 
@@ -100,14 +101,12 @@
             if (!fNuevoMotivoBaja.RealizoAlgunaOperacion)
                 return;
 
-            var lstMotivosBaja = _motivoBajaServicio.Obtener(string.Empty).Where(x => x.Id != 1).ToList();
+            var lstMotivosBaja = _motivoBajaServicio.Obtener(string.Empty, false)
+                .Select(x => (MotivoBajaDto)x)
+                .Where(x => x.Id != 1)
+                .ToList();
 
-            PoblarComboBox(
-                cmbMotivoBaja,
-                lstMotivosBaja,
-                "Descripcion",
-                "id"
-                );
+            PoblarComboBox(cmbMotivoBaja, lstMotivosBaja, "Descripcion", "id");
 
             bajaArticuloDto.MotivoBajaId = lstMotivosBaja.First(x => x.Id == lstMotivosBaja.Max(m => m.Id)).Id;
             cmbMotivoBaja.SelectedItem = bajaArticuloDto.MotivoBajaId;
@@ -173,6 +172,7 @@
                 .Where(x => x.Descripcion.Contains(cadenaBuscar) 
                     || x.CodigoBarra.Contains(cadenaBuscar)
                     || x.Codigo == codigo)
+                .Where(x => x.StockActual > 0)
                 .ToList();
 
             grilla.DataSource = lstArticulos;
