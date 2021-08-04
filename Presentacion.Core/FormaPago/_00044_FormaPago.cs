@@ -42,7 +42,7 @@
             TotalAPagar = totalAPagar;
             FormasPago = new List<FormaPagoDto>();
             Cliente = (ClienteDto)clienteServicio.Obtener(typeof(ClienteDto), clienteId);
-            ClienteSaldoCuentaCorriente = clienteServicio.SaldoCuentaCorriente(Cliente.Id);
+            ClienteSaldoCuentaCorriente = 0;
         }
 
         public _00044_FormaPago(decimal totalAPagar, long clienteId, TipoPago formaPago)
@@ -130,22 +130,27 @@
                 txtNombre.Text = Cliente.Nombre;
                 txtDni.Text = Cliente.Dni;
                 
+                ClienteSaldoCuentaCorriente = clienteServicio.SaldoCuentaCorriente(Cliente.Id);
                 lblSaldoCuentaCorriente.Text = ClienteSaldoCuentaCorriente.ToString("C2");
-                lblLimiteCuentaCorriente.Text = 
-                    Cliente.TieneLimiteCompra
+                lblLimiteCuentaCorriente.Text =  Cliente.TieneLimiteCompra
                     ? Cliente.MontoMaximoCtaCteStr
                     : "---";
 
+                var pagoMaximoEnCtaCte = Cliente.MontoMaximoCtaCte > ClienteSaldoCuentaCorriente
+                    ? Cliente.MontoMaximoCtaCte - ClienteSaldoCuentaCorriente
+                    : 0;
+
                 nudMontoCtaCte.Maximum = Cliente.TieneLimiteCompra
-                    ? (Cliente.MontoMaximoCtaCte - ClienteSaldoCuentaCorriente)
+                    ? pagoMaximoEnCtaCte
                     : 99999999;
 
                 nudMontoCtaCte.Focus();
-                nudMontoCtaCte.Select(0, nudMontoCtaCte.Value.ToString().Length);
+                nudMontoCtaCte.Select(0, nudMontoCtaCte.Value.ToString().Length+1);
 
                 return;
             }
 
+            ClienteSaldoCuentaCorriente = 0;
             nudMontoCtaCte.Enabled = false;
             txtApellido.Text = string.Empty;
             txtNombre.Text = string.Empty;
@@ -181,25 +186,38 @@
             ActualizarMontoEfectivo();
         }
 
-        private void nudMontoCtaCte_ValueChanged(object sender, EventArgs e)
+
+        private void nudMontoCtaCte_Leave(object sender, EventArgs e)
         {
-            if ((nudMontoCheque.Value + nudMontoCtaCte.Value + nudMontoTarjeta.Value) > TotalAPagar)
+            if (nudMontoCtaCte.Value <= 0)
+                return;
+
+            var pagosSuperanTotalPagar = (nudMontoCheque.Value + nudMontoCtaCte.Value + nudMontoTarjeta.Value) > TotalAPagar;
+
+            if (pagosSuperanTotalPagar)
             {
                 Mjs.Error("Los pagos superan el monto a pagar.");
-                nudMontoCtaCte.Value = PagoEnEfectivo < 0 ? 0 : PagoEnEfectivo;
+                nudMontoCtaCte.Focus();
+                nudMontoCtaCte.Select(0,9);
                 ActualizarMontoEfectivo();
                 return;
             }
 
-            bool MontoPagoCtaCteOk = Cliente.TieneLimiteCompra 
-                ? (ClienteSaldoCuentaCorriente + nudMontoCtaCte.Value) < Cliente.MontoMaximoCtaCte
+            bool pagoCtaCteOk = Cliente.TieneLimiteCompra 
+                ? (ClienteSaldoCuentaCorriente + nudMontoCtaCte.Value) <= Cliente.MontoMaximoCtaCte
                 : true;
 
-            if (!MontoPagoCtaCteOk)
+            if (!pagoCtaCteOk)
             {
-                Mjs.Alerta("El momnto en cuenta corriente supera el límite establecido para el cliente");
-                nudMontoCtaCte.Maximum = Cliente.MontoMaximoCtaCte;
-                nudMontoCtaCte.Value = Cliente.MontoMaximoCtaCte;
+                var pagoMaximoEnCtaCte = Cliente.MontoMaximoCtaCte > ClienteSaldoCuentaCorriente
+                    ? Cliente.MontoMaximoCtaCte - ClienteSaldoCuentaCorriente
+                    : 0;
+
+                Mjs.Alerta("El pago en cuenta corriente supera el límite de compra para el cliente");
+                nudMontoCtaCte.Maximum = pagoMaximoEnCtaCte;
+
+                nudMontoCtaCte.Value = pagoMaximoEnCtaCte;
+
                 ActualizarMontoEfectivo();
                 return;
             }

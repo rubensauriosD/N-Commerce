@@ -1,7 +1,9 @@
 ﻿namespace Presentacion.Core.Cliente
 {
+    using System;
     using System.Linq;
     using System.Windows.Forms;
+    using Aplicacion.Constantes;
     using IServicio.Persona;
     using IServicio.Persona.DTOs;
     using PresentacionBase.Formularios;
@@ -15,6 +17,23 @@
             InitializeComponent();
 
             _servicio = provinciaServicio;
+        }
+
+        private void _00009_Cliente_Load(object sender, System.EventArgs e)
+        {
+            var btnCuentaCorrienteCliente = new ToolStripButton();
+            btnCuentaCorrienteCliente.Text = "Cuenta Corriente";
+            btnCuentaCorrienteCliente.Image = Imagen.Pago;
+            btnCuentaCorrienteCliente.Click += 
+                (object objeto, EventArgs eveto) => new _00034_ClienteCtaCte(((ClienteDto)EntidadSeleccionada).Id).ShowDialog();
+
+            AgregarSeparadorAlMenu();
+            AgregarBotonAlMenu(btnCuentaCorrienteCliente);
+        }
+
+        private void clickCC(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public override void ActualizarDatos(DataGridView dgv, string cadenaBuscar)

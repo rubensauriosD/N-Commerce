@@ -116,7 +116,7 @@
                 CajaId = (long)cajaActivaId,
                 ClienteId = cliente.Id,
                 Monto = fMontoPago.MontoPago,
-                TipoMovimiento = TipoMovimiento.Ingreso,
+                TipoMovimiento = TipoMovimiento.Egreso,
                 Descripcion = "Pago en cuenta corriente",
             };
 
@@ -128,6 +128,12 @@
 
         private void btnCancelarPago_Click(object sender, EventArgs e)
         {
+            if (movimientoCuentaCorriente.TipoMovimiento == TipoMovimiento.Ingreso)
+            {
+                Mjs.Info("No se puede revertir el movimiento seleccionado.");
+                return;
+            }
+
             var cajaActivaId = ObjectFactory.GetInstance<ICajaServicio>().ObtenerIdCajaAciva(Identidad.UsuarioId);
 
             if (cajaActivaId == null)
@@ -144,7 +150,7 @@
                 CajaId = (long)cajaActivaId,
                 ClienteId = cliente.Id,
                 Monto = movimientoCuentaCorriente.Monto,
-                TipoMovimiento = TipoMovimiento.Egreso,
+                TipoMovimiento = TipoMovimiento.Ingreso,
                 Descripcion = $@"Reversión pago: {movimientoCuentaCorriente.Descripcion}",
             };
 

@@ -61,7 +61,7 @@
                     Descripcion = pago.Descripcion,
                     Monto = pago.Monto,
                     Fecha = DateTime.Now,
-                    TipoMovimiento = TipoMovimiento.Ingreso,
+                    TipoMovimiento = TipoMovimiento.Egreso,
                     EstaEliminado = false
                 });
 
@@ -96,7 +96,7 @@
                     Descripcion = pago.Descripcion,
                     Monto = pago.Monto,
                     Fecha = DateTime.Now,
-                    TipoMovimiento = TipoMovimiento.Egreso,
+                    TipoMovimiento = TipoMovimiento.Ingreso,
                     EstaEliminado = false
                 });
 
@@ -118,7 +118,7 @@
 
         public List<MovimientoCuentaCorrienteClienteDto> ObtenerMovimientosCuentaCorriente(long id)
         {
-            var lstMovimientos = _unidadDeTrabajo.ClienteRepositorio.Obtener(id, "MovimientoCuentaCorriente")
+            var lstMovimientos = _unidadDeTrabajo.ClienteRepositorio.Obtener(id, "CuentaCorriente")
                 .CuentaCorriente
                 .ToList();
 

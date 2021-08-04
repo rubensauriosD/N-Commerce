@@ -79,19 +79,18 @@
             {
                 Monto = formaPago.Monto,
                 TipoPago = TipoPago.CtaCte,
-                EstaEliminado = false
-            });
+                EstaEliminado = false,
+                MovimientoCuentaCorriente = new MovimientoCuentaCorriente
+                {
+                    Fecha = factura.Fecha,
+                    ClienteId = formaPago.ClienteId,
+                    Monto = formaPago.Monto,
+                    TipoMovimiento = TipoMovimiento.Ingreso,
+                    Descripcion = $"F{factura.TipoComprobante} - {factura.Numero.ToString("0000")}",
+                    EstaEliminado = false
+                }
 
-            factura.Cliente.CuentaCorriente.Add(new MovimientoCuentaCorriente
-            {
-                Fecha = factura.Fecha,
-                Monto = formaPago.Monto,
-                TipoMovimiento = TipoMovimiento.Egreso,
-                Descripcion = $"{ factura.TipoComprobante } - { factura.Numero }",
-                ClienteId = formaPago.ClienteId,
-                EstaEliminado = false
             });
-
         }
 
         private void AgregarNuevoPagoCheque(Factura factura, FormaPagoChequeDto formaPago, Caja caja)

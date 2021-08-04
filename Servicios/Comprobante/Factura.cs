@@ -77,8 +77,7 @@
                             if (stockActual == null)
                                 throw new Exception("Ocurrio un error al obtener el Stock del Articulo");
 
-                            if (stockActual.Cantidad >= item.Cantidad)
-                                stockActual.Cantidad -= item.Cantidad;
+                            stockActual.Cantidad -= item.Cantidad;
 
                             _unidadDeTrabajo.StockRepositorio.Modificar(stockActual);
                         }

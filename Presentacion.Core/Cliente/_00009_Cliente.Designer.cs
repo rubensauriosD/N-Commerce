@@ -30,6 +30,10 @@
         {
             this.SuspendLayout();
             // 
+            // pnlBusqueda
+            // 
+            this.pnlBusqueda.Size = new System.Drawing.Size(800, 43);
+            // 
             // _00009_Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -37,7 +41,9 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "_00009_Cliente";
             this.Text = "Clientes";
+            this.Load += new System.EventHandler(this._00009_Cliente_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

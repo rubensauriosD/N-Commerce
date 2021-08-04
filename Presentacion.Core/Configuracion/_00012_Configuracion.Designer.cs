@@ -722,9 +722,9 @@ namespace Presentacion.Core.Configuracion
             this.chkPermitirArqueoNegativo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.chkPermitirArqueoNegativo.Location = new System.Drawing.Point(39, 193);
             this.chkPermitirArqueoNegativo.Name = "chkPermitirArqueoNegativo";
-            this.chkPermitirArqueoNegativo.Size = new System.Drawing.Size(171, 20);
+            this.chkPermitirArqueoNegativo.Size = new System.Drawing.Size(177, 20);
             this.chkPermitirArqueoNegativo.TabIndex = 2;
-            this.chkPermitirArqueoNegativo.Text = "PermitirArqueoNegativo";
+            this.chkPermitirArqueoNegativo.Text = "Permitir Arqueo Negativo";
             this.chkPermitirArqueoNegativo.UseVisualStyleBackColor = true;
             // 
             // chkPuestoSeparado

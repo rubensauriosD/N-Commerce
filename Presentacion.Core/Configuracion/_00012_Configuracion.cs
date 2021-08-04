@@ -86,8 +86,8 @@
             validar.ComoCuit(txtCUIL, true);
             validar.ComoTelefono(txtTelefono);
             validar.ComoTelefono(txtCelular);
-            validar.ComoDomicilio(txtDireccion);
-            validar.ComoMail(txtEmail);
+            validar.ComoDomicilio(txtDireccion, true);
+            validar.ComoMail(txtEmail, true);
 
             // Ventas
             validar.ComoAlfanumerico(txtObservacionFactura);

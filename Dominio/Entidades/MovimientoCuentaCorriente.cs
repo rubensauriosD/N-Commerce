@@ -9,13 +9,9 @@
     public class MovimientoCuentaCorriente : Movimiento
     {
         // Propiedades 
-        public long FormaPagoId { get; set; }
-
         public long ClienteId { get; set; }
 
         // Propiedades de Navegacion
         public virtual Cliente Cliente { get; set; }
-
-        public virtual FormaPago FormaPago { get; set; }
     }
 }

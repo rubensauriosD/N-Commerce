@@ -350,7 +350,7 @@
             this.nudMontoCtaCte.Size = new System.Drawing.Size(228, 23);
             this.nudMontoCtaCte.TabIndex = 132;
             this.nudMontoCtaCte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudMontoCtaCte.ValueChanged += new System.EventHandler(this.nudMontoCtaCte_ValueChanged);
+            this.nudMontoCtaCte.Leave += new System.EventHandler(this.nudMontoCtaCte_Leave);
             // 
             // label21
             // 

@@ -111,3 +111,4 @@ D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.CoreCompileI
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.csproj.CopyComplete
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.dll
 D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.pdb
+D:\Code\N-Commerce\Infraestructura\obj\Debug\Infraestructura.Migrations.RealacionFormaPago_MovimientoCuentaCorriente.resources
