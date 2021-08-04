@@ -364,6 +364,14 @@
                 return;
             }
 
+            if (itemSeleccionado.Precio > nudPrecioUnitario.Value
+                && !Mjs.Preguntar($"El nuevo precio del artículo es menor al actual.{Environment.NewLine}¿Seguro que desea actualizarlo?"))
+            {
+                itemSeleccionado = new ArticuloCompraDto();
+                SetEstadoCargaCodigo();
+                return;
+            }
+
             itemSeleccionado.Precio = nudPrecioUnitario.Value;
             itemSeleccionado.Cantidad = nudCantidad.Value;
             compra.AgregarItem(itemSeleccionado);

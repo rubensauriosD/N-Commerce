@@ -318,13 +318,14 @@
             int.TryParse(codigo, out int _codigo);
 
             return _unidadDeTrabajo.ArticuloRepositorio
-                .Obtener(x => (x.CodigoBarra == codigo || x.Codigo == _codigo) && !x.EstaEliminado)
+                .Obtener(x => (x.CodigoBarra == codigo || x.Codigo == _codigo) && !x.EstaEliminado, "Precios")
                 .Select(x => new ArticuloCompraDto()
                 {
                     ProductoId = x.Id,
                     Codigo = x.Codigo.ToString(),
                     CodigoBarra = x.CodigoBarra,
                     Descripcion = x.Descripcion,
+                    Precio = x.Precios.First(p => p.FechaActualizacion == x.Precios.Max(pc => pc.FechaActualizacion)).PrecioCosto
                 }).FirstOrDefault();
         }
 
