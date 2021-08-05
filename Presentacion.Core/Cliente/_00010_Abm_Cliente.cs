@@ -77,6 +77,7 @@
             {
                 MessageBox.Show("Ocurrio un error al obtener el registro seleccionado.");
                 Close();
+                return;
             }
 
             // Cargar Datos en controles
@@ -87,8 +88,8 @@
             txtTelefono.Text = resultado.Telefono;
             txtDomicilio.Text = resultado.Direccion;
             txtMail.Text = resultado.Mail;
-            chkLimiteCompra.Checked = resultado.TieneLimiteCompra;
             chkActivarCuentaCorriente.Checked = resultado.ActivarCtaCte;
+            chkLimiteCompra.Checked = resultado.TieneLimiteCompra;
             nudLimiteCompra.Value = resultado.MontoMaximoCtaCte;
             cmbCondicionIva.SelectedValue = resultado.CondicionIvaId;
 
@@ -291,7 +292,13 @@
         {
             chkLimiteCompra.Enabled = chkActivarCuentaCorriente.Checked;
             chkLimiteCompra.Checked = false;
-            nudLimiteCompra.Enabled = chkActivarCuentaCorriente.Checked;
+            nudLimiteCompra.Enabled = false;
+            nudLimiteCompra.Value = 0;
+        }
+
+        private void chkLimiteCompra_CheckedChanged(object sender, System.EventArgs e)
+        {
+            nudLimiteCompra.Enabled = chkLimiteCompra.Checked;
             nudLimiteCompra.Value = 0;
         }
     }

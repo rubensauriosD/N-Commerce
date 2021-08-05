@@ -21,25 +21,27 @@
         private ClienteDto cliente;
         private MovimientoCuentaCorrienteClienteDto movimientoCuentaCorriente;
         private List<MovimientoCuentaCorrienteClienteDto> lstMovimientosCuentaCorriente;
+        private bool _aplicarFiltros;
 
         public _00034_ClienteCtaCte(long clienteId)
         {
             InitializeComponent();
 
             _clienteServicios = ObjectFactory.GetInstance<IClienteServicio>();
+            _aplicarFiltros = false;
 
             cliente = (ClienteDto)_clienteServicios.Obtener(typeof(ClienteDto),clienteId);
             movimientoCuentaCorriente = new MovimientoCuentaCorrienteClienteDto();
+        }
 
-            SetearControles();
 
+        private void _00034_ClienteCtaCte_Load(object sender, EventArgs e)
+        {
             CargarDatos();
         }
 
-        private void SetearControles()
+        private void FormatearGrilla()
         {
-            dgvGrilla.DataSource = new List<MovimientoCuentaCorrienteClienteDto>();
-
             // Formatear Grilla
             for (int i = 0; i < dgvGrilla.ColumnCount; i++)
                 dgvGrilla.Columns[i].Visible = false;
@@ -86,7 +88,28 @@
                 .OrderByDescending(x => x.Fecha)
                 .ToList();
 
-            dgvGrilla.DataSource = lstMovimientosCuentaCorriente;
+            // Filtros
+            dtpDesde.MaxDate = lstMovimientosCuentaCorriente.Max(x => x.Fecha);
+            dtpHasta.MaxDate = lstMovimientosCuentaCorriente.Max(x => x.Fecha);
+
+            dtpDesde.MinDate = lstMovimientosCuentaCorriente.Min(x => x.Fecha);
+            dtpHasta.MinDate = lstMovimientosCuentaCorriente.Min(x => x.Fecha);
+
+            bool puedoAplicarElFilrto = dtpDesde.Value <= dtpHasta.Value;
+
+            if (_aplicarFiltros && puedoAplicarElFilrto)
+            {
+                dgvGrilla.DataSource = lstMovimientosCuentaCorriente
+                    .Where(x => dtpDesde.Value.Date <= x.Fecha.Date && x.Fecha.Date <= dtpHasta.Value.Date)
+                    .ToList();
+
+                _aplicarFiltros = false;
+            }
+            else
+                dgvGrilla.DataSource = lstMovimientosCuentaCorriente;
+
+            FormatearGrilla();
+
             lblSaldoCuentaCorriente.Text = lstMovimientosCuentaCorriente
                 .Sum(x => x.Monto * (x.TipoMovimiento == TipoMovimiento.Ingreso ? 1 : -1))
                 .ToString("C2");
@@ -204,5 +227,18 @@
             movimientoCuentaCorriente = (MovimientoCuentaCorrienteClienteDto)dgvGrilla.Rows[e.RowIndex].DataBoundItem;
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            bool puedoAplicarElFilrto = dtpDesde.Value <= dtpHasta.Value;
+
+            if (!puedoAplicarElFilrto)
+            {
+                Mjs.Alerta("Intervalo de tiempo no permitido.");
+                return;
+            }
+
+            _aplicarFiltros = true;
+            ActualizarGrilla();
+        }
     }
 }

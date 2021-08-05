@@ -39,8 +39,8 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlSeparador = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -118,8 +118,8 @@
             this.pnlCriterioBusqueda.Controls.Add(this.btnBuscar);
             this.pnlCriterioBusqueda.Controls.Add(this.label2);
             this.pnlCriterioBusqueda.Controls.Add(this.label1);
-            this.pnlCriterioBusqueda.Controls.Add(this.dateTimePicker2);
-            this.pnlCriterioBusqueda.Controls.Add(this.dateTimePicker1);
+            this.pnlCriterioBusqueda.Controls.Add(this.dtpHasta);
+            this.pnlCriterioBusqueda.Controls.Add(this.dtpDesde);
             this.pnlCriterioBusqueda.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCriterioBusqueda.Location = new System.Drawing.Point(0, 145);
             this.pnlCriterioBusqueda.Name = "pnlCriterioBusqueda";
@@ -136,6 +136,7 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label2
             // 
@@ -157,23 +158,23 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Fecha desde";
             // 
-            // dateTimePicker2
+            // dtpHasta
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(291, 12);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(106, 21);
-            this.dateTimePicker2.TabIndex = 7;
+            this.dtpHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(291, 12);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(106, 21);
+            this.dtpHasta.TabIndex = 7;
             // 
-            // dateTimePicker1
+            // dtpDesde
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(96, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(106, 21);
-            this.dateTimePicker1.TabIndex = 6;
+            this.dtpDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDesde.Location = new System.Drawing.Point(96, 12);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(106, 21);
+            this.dtpDesde.TabIndex = 6;
             // 
             // panel1
             // 
@@ -342,8 +343,8 @@
             this.MaximumSize = new System.Drawing.Size(674, 612);
             this.MinimumSize = new System.Drawing.Size(674, 612);
             this.Name = "_00034_ClienteCtaCte";
-            this.ShowIcon = false;
             this.Text = "Cuenta Corriente de Clientes";
+            this.Load += new System.EventHandler(this._00034_ClienteCtaCte_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).EndInit();
             this.pnlTotalDeuda.ResumeLayout(false);
             this.pnlTotalDeuda.PerformLayout();
@@ -367,8 +368,8 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlSeparador;
         private System.Windows.Forms.ToolStrip toolStrip1;

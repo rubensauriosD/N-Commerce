@@ -342,6 +342,7 @@
             this.chkLimiteCompra.TabIndex = 2;
             this.chkLimiteCompra.Text = "Activar Limite de Compra";
             this.chkLimiteCompra.UseVisualStyleBackColor = true;
+            this.chkLimiteCompra.CheckedChanged += new System.EventHandler(this.chkLimiteCompra_CheckedChanged);
             // 
             // panel4
             // 
