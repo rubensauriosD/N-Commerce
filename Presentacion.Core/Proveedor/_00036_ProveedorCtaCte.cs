@@ -20,12 +20,14 @@
         private readonly IProveedorServicio _proveedorServicios;
         private ProveedorDto proveedor;
         private MovimientoCuentaCorrienteProveedorDto movimientoCuentaCorriente;
+        private bool _aplicarFiltros;
 
         public _00036_ProveedorCtaCte(long proveedorId)
         {
             InitializeComponent();
 
             _proveedorServicios = ObjectFactory.GetInstance<IProveedorServicio>();
+            _aplicarFiltros = false;
 
             proveedor = (ProveedorDto)_proveedorServicios.Obtener(proveedorId);
             movimientoCuentaCorriente = new MovimientoCuentaCorrienteProveedorDto();
@@ -51,7 +53,26 @@
                 .OrderByDescending(x => x.Fecha)
                 .ToList();
 
-            dgvGrilla.DataSource = proveedor.MovimientosCuentaCorriente;
+            // Filtros
+            dtpDesde.MaxDate = proveedor.MovimientosCuentaCorriente.Max(x => x.Fecha);
+            dtpHasta.MaxDate = proveedor.MovimientosCuentaCorriente.Max(x => x.Fecha);
+
+            dtpDesde.MinDate = proveedor.MovimientosCuentaCorriente.Min(x => x.Fecha);
+            dtpHasta.MinDate = proveedor.MovimientosCuentaCorriente.Min(x => x.Fecha);
+
+            bool puedoAplicarElFilrto = dtpDesde.Value <= dtpHasta.Value;
+
+            if (_aplicarFiltros && puedoAplicarElFilrto)
+            {
+                dgvGrilla.DataSource = proveedor.MovimientosCuentaCorriente
+                    .Where(x => dtpDesde.Value.Date <= x.Fecha.Date && x.Fecha.Date <= dtpHasta.Value.Date)
+                    .ToList();
+
+                _aplicarFiltros = false;
+            }
+            else
+                dgvGrilla.DataSource = proveedor.MovimientosCuentaCorriente;
+
 
             // Formatear Grilla
             for (int i = 0; i < dgvGrilla.ColumnCount; i++)
@@ -184,5 +205,18 @@
             movimientoCuentaCorriente = (MovimientoCuentaCorrienteProveedorDto)dgvGrilla.Rows[e.RowIndex].DataBoundItem;
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            bool puedoAplicarElFilrto = dtpDesde.Value <= dtpHasta.Value;
+
+            if (!puedoAplicarElFilrto)
+            {
+                Mjs.Alerta("Intervalo de tiempo no permitido.");
+                return;
+            }
+
+            _aplicarFiltros = true;
+            ActualizarGrilla();
+        }
     }
 }
